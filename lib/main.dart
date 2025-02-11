@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Sign-Up/sign_up_ui.dart';
 
 void main() {
@@ -13,9 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: SignUp.routName,
+      initialRoute: LogIn.routName,
       routes: {
         SignUp.routName: (context) =>SignUp(),
+        LogIn.routName: (context) => LogIn(),
       },
     );
   }

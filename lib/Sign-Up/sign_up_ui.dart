@@ -214,7 +214,7 @@ class SignUp extends StatelessWidget {
                             filled: true,
                             fillColor: Color(0xFFDEDAE0),
                           ),
-                          items: <String>['Egypt', 'Canada', 'UK'].map((String value) {
+                          items: <String>['Asian or Pacific Islander', 'Black or African American', 'Hispanic or Latino', 'Native American or Alaskan Native', 'white or Caucasian', 'Multiracial or Biracial', 'A race/ethnicity not listed here'].map((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
@@ -272,6 +272,7 @@ class SignUp extends StatelessWidget {
                               TextSpan(text: 'LogIn',
                                 style: TextStyle(fontSize: 15,color: Color(0xFF502371),
                                 decoration: TextDecoration.underline,
+                                  fontFamily: 'Inder'
                                 ),
                                   recognizer: TapGestureRecognizer()..onTap=(){},
                               ),
@@ -316,7 +317,7 @@ class SignUp extends StatelessWidget {
                                 'Continue with Google',
                                 style: TextStyle(
                                   color: Color(0xFF817F82),
-                                  fontFamily: 'Regular',
+                                  fontFamily: 'Inder',
                                   fontSize: 18,
                                 ),
                               ),
@@ -344,7 +345,7 @@ class SignUp extends StatelessWidget {
                                 'Continue with Facebook',
                                 style: TextStyle(
                                   color: Color(0xFF817F82),
-                                  fontFamily: 'Regular',
+                                  fontFamily: 'Inder',
                                   fontSize: 18,
                                 ),
                               ),
