@@ -29,7 +29,7 @@ class OperationButtonModule extends StatelessWidget {
         style: TextStyle(
           color: buttonTextColor,
           fontFamily: 'Inder',
-          fontSize: 18,
+          fontSize: 20,
         ),
       ),
     );
