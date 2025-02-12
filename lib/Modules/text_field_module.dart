@@ -10,9 +10,9 @@ class TextFieldModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return  Column(crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
+        SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
         Text(
           textFieldTitle,
           style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/Modules/text_field_module.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -35,114 +36,13 @@ class SignUp extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                                
-                        SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
-                        const Text(
-                          'Username',
-                          style: TextStyle(
-                            fontFamily: 'Inder',
-                            fontSize: 16,
-                            color: Color(0xFF57585D),
-                          ),
-                        ),
-                        const TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Username',
-                            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            border: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            hintStyle: TextStyle(fontFamily: 'Inder'),
-                            filled: true,
-                            fillColor: Color(0xFFDEDAE0),
-                          ),
-                        ),
+                        TextFieldModule(textFieldTitle: 'Username', hintTextTitle: 'Enter username',),
+                        TextFieldModule(textFieldTitle: 'Email', hintTextTitle: 'useremail@plceholder.com'),
+                        TextFieldModule(textFieldTitle: 'Password', hintTextTitle: 'Enter password'),
+                        TextFieldModule(textFieldTitle: 'Confirm password', hintTextTitle: 'Enter password'),
+                        TextFieldModule(textFieldTitle: 'Date of birth', hintTextTitle: 'DD/MM/YYYY',suffix: Icon(Icons.calendar_today_outlined),),
                         SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                        const Text(
-                          'Email',
-                          style: TextStyle(
-                            fontFamily: 'Inder',
-                            fontSize: 16,
-                            color: Color(0xFF57585D),
-                          ),
-                        ),
-                        const TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Email',
-                            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-                            hintStyle: TextStyle(fontFamily: 'Inder'),
-                            filled: true,
-                            fillColor: Color(0xFFDEDAE0),
-                          ),
-                          keyboardType: TextInputType.emailAddress,
-                        ),
-                        SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                        const Text(
-                          'Password',
-                          style: TextStyle(
-                            fontFamily: 'Inder',
-                            fontSize: 16,
-                            color: Color(0xFF57585D),
-                          ),
-                        ),
-                        const TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: 'Password',
-                            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-                            hintStyle: TextStyle(fontFamily: 'Inder'),
-                            filled: true,
-                            fillColor: Color(0xFFDEDAE0),
-                          ),
-                        ),
-                        SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                        const Text(
-                          'Confirm Password',
-                          style: TextStyle(
-                            fontFamily: 'Inder',
-                            fontSize: 16,
-                            color: Color(0xFF57585D),
-                          ),
-                        ),
-                        const TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: 'Confirm Password',
-                            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            hintStyle: TextStyle(fontFamily: 'Inder'),
-                            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-                            filled: true,
-                            fillColor: Color(0xFFDEDAE0),
-                          ),
-                        ),
-                        SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                        const Text(
-                          'Date of birth',
-                          style: TextStyle(
-                            fontFamily: 'Inder',
-                            fontSize: 16,
-                            color: Color(0xFF57585D),
-                          ),
-                        ),
-                        const TextField(
-                          decoration: InputDecoration(
-                            suffix: Icon(Icons.calendar_today_outlined,
-                                color: Color(0xFF57585D)),
-                            hintStyle: TextStyle(fontFamily: 'Inder'),
-                            hintText: 'DD/MM/YYYY',
-                            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-                            filled: true,
-                            fillColor: Color(0xFFDEDAE0),
-                          ),
-                        ),
-                        SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                        const Text(
+                        Text(
                           'Gender',
                           style: TextStyle(
                             fontFamily: 'Inder',
@@ -242,7 +142,7 @@ class SignUp extends StatelessWidget {
                             fillColor: Color(0xFFDEDAE0),
                           ),
                         ),
-                        SizedBox(height: MediaQuery.sizeOf(context).height * 0.07),
+                        SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
                         ElevatedButton(
                           onPressed: () {
                             // Add your sign-up logic here
