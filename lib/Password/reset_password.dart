@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 
 class ResetPassword extends StatelessWidget {
@@ -48,32 +49,11 @@ class ResetPassword extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         TextFieldModule(hintTextTitle: 'Enter new passwword', textFieldTitle: 'New password'),
                         SizedBox(height: MediaQuery.sizeOf(context).height * 0.009),
                         TextFieldModule(hintTextTitle: 'Enter password', textFieldTitle: 'Confirm password'),
                         SizedBox(height: MediaQuery.sizeOf(context).height * 0.045),
-                        ElevatedButton(
-                          onPressed: () {
-                            // Add your sign-up logic here
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF49146D),
-                            foregroundColor: Colors.white,
-                            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            minimumSize: Size(double.infinity, 50),
-                          ),
-                          child: const Text(
-                            'Reset password',
-                            style: TextStyle(
-                              fontFamily: 'Inder',
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
+                        OperationButtonModule(borderColor: Color(0xFF502371), buttonColor: Color(0xFF502371), buttonText: 'Reset password', buttonTextColor: Colors.white),
                         SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
                       ],
                     ),
