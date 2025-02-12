@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/Modules/text_field_module.dart';
 
 class ResetPassword extends StatelessWidget {
   const ResetPassword({Key? key}) : super(key: key);
@@ -41,55 +42,16 @@ class ResetPassword extends StatelessWidget {
                     color: Color(0xFF817F82),
                   ),
                 ),
-                SizedBox(height: MediaQuery.sizeOf(context).height * 0.003),
+                SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
 
-                        SizedBox(height: MediaQuery.sizeOf(context).height * 0.008),
-                        const Text(
-                          'New Password',
-                          style: TextStyle(
-                            fontFamily: 'Inder',
-                            fontSize: 18,
-                            color: Color(0xFF57585D),
-                          ),
-                        ),
-                        const TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Enter new password',
-                            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-                            hintStyle: TextStyle(fontFamily: 'Inder',color: Color(0xFFABABAB)),
-                            filled: true,
-                            fillColor: Color(0xFFDEDAE0),
-                          ),
-                          keyboardType: TextInputType.emailAddress,
-                        ),
-                        SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
-                        const Text(
-                          'Confirm password',
-                          style: TextStyle(
-                            fontFamily: 'Inder',
-                            fontSize: 18,
-                            color: Color(0xFF57585D),
-                          ),
-                        ),
-                        const TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Enter password',
-                            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-                            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-                            hintStyle: TextStyle(fontFamily: 'Inder',color: Color(0xFFABABAB)),
-                            filled: true,
-                            fillColor: Color(0xFFDEDAE0),
-                          ),
-                          keyboardType: TextInputType.emailAddress,
-                        ),
+                        TextFieldModule(hintTextTitle: 'Enter new passwword', textFieldTitle: 'New password'),
+                        SizedBox(height: MediaQuery.sizeOf(context).height * 0.009),
+                        TextFieldModule(hintTextTitle: 'Enter password', textFieldTitle: 'Confirm password'),
                         SizedBox(height: MediaQuery.sizeOf(context).height * 0.045),
                         ElevatedButton(
                           onPressed: () {
