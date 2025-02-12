@@ -12,7 +12,7 @@ class TextFieldModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Column(
       children: [
-        SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
+        SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
         Text(
           textFieldTitle,
           style: TextStyle(
@@ -28,7 +28,7 @@ class TextFieldModule extends StatelessWidget {
             focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
             enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
             border: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-            hintStyle: TextStyle(fontFamily: 'Inder'),
+            hintStyle: TextStyle(fontFamily: 'Inder',color: Color(0xFFABABAB),),
             filled: true,
             fillColor: Color(0xFFDEDAE0),
           ),
