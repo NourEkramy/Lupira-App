@@ -60,33 +60,7 @@ class ForgotPassword extends StatelessWidget {
                         SizedBox(height: MediaQuery.sizeOf(context).height * 0.045),
                         OperationButtonModule(borderColor: Color(0xFF502371), buttonColor: Color(0xFF502371), buttonText: 'Send verification email', buttonTextColor: Colors.white),
                         SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
-                        ElevatedButton(
-                          onPressed: () {
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF502371),
-                            foregroundColor: Colors.white,
-                            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              side: BorderSide(color: Color(0xFF502371),width: 2)
-                            ),
-                            minimumSize: Size(double.infinity, 50),
-                          ),
-
-                          child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Back to login',
-                                style: TextStyle(
-                                  color: Color(0xFF502371),
-                                  fontFamily: 'Inder',
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        OperationButtonModule(borderColor: Color(0xFF502371), buttonColor: Color(0xFFEBE4E4), buttonText: 'Back to login', buttonTextColor: Color(0xFF502371)),
                       ],
                     ),
                   ),
