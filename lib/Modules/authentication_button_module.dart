@@ -15,7 +15,7 @@ class AuthenticationButtonModule extends StatelessWidget {
         SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
         Center(
           child: RichText(text: TextSpan(text: conditionQeustion,
-            style: TextStyle(fontSize: 15,color: Color(0xFF817F82),fontFamily: 'Inder'),
+            style: TextStyle(fontSize: 15,color: Color(0xFF817F82),fontFamily: 'Inder',),
             children: [
               TextSpan(text: conditionOperation,
                 style: TextStyle(fontSize: 15,color: Color(0xFF502371),
