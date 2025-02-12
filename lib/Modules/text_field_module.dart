@@ -23,7 +23,7 @@ class TextFieldModule extends StatelessWidget {
         ),
         TextField(
           decoration: InputDecoration(
-            suffix: suffix?? SizedBox(),
+            suffixIcon: suffix?? SizedBox(),
             hintText: hintTextTitle,
             focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
             enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
