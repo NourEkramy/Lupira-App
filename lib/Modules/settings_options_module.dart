@@ -12,7 +12,7 @@ class SettingsOptionsModule extends StatelessWidget {
       GestureDetector(
         onTap: (){},
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 35,vertical: 13),
+          padding: EdgeInsets.symmetric(horizontal: 35,vertical: 13),
           child: Row(
             children: [
               Image.asset(optionIcon),

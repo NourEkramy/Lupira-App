@@ -1,8 +1,33 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/Modules/settings_options_module.dart';
 
 class Settings extends StatelessWidget {
-  const Settings({super.key});
+  List<String> optionIcon = [
+    'assets/images/man 2.png',
+    'assets/images/password-lock 1.png',
+    'assets/images/language 1.png',
+    'assets/images/Icon.png',
+    'assets/images/Icon (1).png'
+  ];
+  List<String> optionText = [
+    'Profile',
+    'Change password',
+    'Language',
+    'Delete account',
+    'Log out'
+  ];
+  List<Color> optionTextColor = [
+    Color(0xFF4B4A4C),
+    Color(0xFF4B4A4C),
+    Color(0xFF4B4A4C),
+    Color(0xFF4B4A4C),
+    Color(0xFFD6101D)
+  ];
+
+  Settings({super.key});
 
   static const String routName = "Settings";
 
@@ -10,50 +35,33 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFDEDAE0),
-      body: Column(
-        children: [
-          AppBar(
-            backgroundColor: Color(0xFF744199),
-            title: Text(
-              'Settigns',
-              style: TextStyle(
-                fontSize: 40,
-                fontFamily: 'Alegreya',
-                color: Color(0xFFEBE4E4),
-              ),
+      appBar: AppBar(
+        backgroundColor: Color(0xFF744199),
+        title: Center(
+          child: Text(
+            'Settigns',
+            style: TextStyle(
+              fontSize: 40,
+              fontFamily: 'Alegreya',
+              color: Color(0xFFEBE4E4),
             ),
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Column(children: [
-                  GestureDetector(
-                    onTap: (){},
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 35,vertical: 13),
-                      child: Row(
-                        children: [
-                          Image.asset('assets/images/man 2.png'),
-                          SizedBox(width: MediaQuery.sizeOf(context).width * 0.065),
-                          Text(
-                            'Profile',
-                            style: TextStyle(
-                              color: Color(0xFF4B4A4C),
-                              fontFamily: 'Inder',
-                              fontSize: 24,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Divider(thickness: 1,color: Color(0xFFABABAB),),
-                ]),
-              ),
-            ),
-          ),
-        ],
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 18,
+          vertical: 50,
+        ),
+        child: ListView.builder(
+          itemBuilder: (BuildContext context, int index) {
+            return SettingsOptionsModule(
+                optionTextColor: optionTextColor[index],
+                optionIcon: optionIcon[index],
+                optionText: optionText[index]);
+          },
+          itemCount: 5,
+        ),
       ),
     );
   }
