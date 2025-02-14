@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Sign-Up/sign_up_ui.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,9 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: SignUp.routName,
       routes: {
-        SignUp.routName: (context) =>SignUp(),
       },
     );
   }
