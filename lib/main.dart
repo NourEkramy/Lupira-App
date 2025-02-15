@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/About-Lupira/about_lupira.dart';
 
 import 'BaseScreen/base_screen.dart';
 
@@ -14,9 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: BaseScreen.routeName,
+      initialRoute: AboutLupira.routName,
       routes: {
-        BaseScreen.routeName: (context) => BaseScreen(),
+        AboutLupira.routName: (context) => AboutLupira(),
       },
     );
   }
