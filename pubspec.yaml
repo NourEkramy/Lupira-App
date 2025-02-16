@@ -96,9 +96,14 @@ flutter:
         - asset: assets/fonts/Alegreya/static/Alegreya-ExtraBoldItalic.ttf
           weight: 700
           style: italic
+
     - family: Inder
       fonts:
       - asset: assets/fonts/Inder/Inder-Regular.ttf
+
+    - family: BerkshireSwash
+      fonts:
+      - asset: assets/fonts/Berkshire_Swash/BerkshireSwash-Regular.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
