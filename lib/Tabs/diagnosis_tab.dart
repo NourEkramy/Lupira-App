@@ -29,8 +29,10 @@ class DiagnosisTab extends StatelessWidget {
                 ),
               ),
             ),
-            DetectionCardModule(mainTitle: "Start Lupus Detection"),
-             Padding(
+            DetectionCardModule(
+              mainTitle: "Start Lupus Detection",
+            ),
+            Padding(
               padding: const EdgeInsets.only(
                 left: 10,
               ),
@@ -58,7 +60,9 @@ class DiagnosisTab extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(width: 5,),
+                        SizedBox(
+                          width: 5,
+                        ),
                         Icon(
                           Icons.arrow_forward_ios_sharp,
                           color: Color(0xff744199),
@@ -69,6 +73,12 @@ class DiagnosisTab extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+
+              ),
+              child: Row(),
             ),
           ],
         ),
