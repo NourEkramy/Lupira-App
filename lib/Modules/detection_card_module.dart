@@ -45,15 +45,17 @@ class DetectionCardModule extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
-                      subtitle??"",
-                      style: const TextStyle(
-                        color: Color(0xFF3D1A57),
-                        fontFamily: "Inder",
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
+                    subtitle != null
+                        ? Text(
+                            subtitle ?? "",
+                            style: const TextStyle(
+                              color: Color(0xFF3D1A57),
+                              fontFamily: "Inder",
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          )
+                        : SizedBox(),
                     ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
