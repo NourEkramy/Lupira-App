@@ -26,7 +26,7 @@ class DetectionCardModule extends StatelessWidget {
           margin: const EdgeInsets.only(
             top: 6,
             right: 4,
-            bottom: 50,
+            bottom: 40,
           ),
           child: Row(
             children: [

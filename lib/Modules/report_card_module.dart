@@ -32,7 +32,7 @@ class ReportCardModule extends StatelessWidget {
       margin: const EdgeInsets.only(
         bottom: 25,
       ),
-      width: MediaQuery.of(context).size.width * 0.94,
+      width: MediaQuery.of(context).size.width * 0.93,
       child: Row(
         children: [
           Image.asset("assets/images/medical-clipboard .png"),
