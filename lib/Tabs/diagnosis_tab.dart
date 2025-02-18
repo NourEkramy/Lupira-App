@@ -9,9 +9,11 @@ class DiagnosisTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 25,
-          horizontal: 10,
+        padding: const EdgeInsets.only(
+          left: 10,
+          right: 10,
+          top: 25,
+          bottom: 10,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
