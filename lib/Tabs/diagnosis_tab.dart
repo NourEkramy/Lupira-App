@@ -36,6 +36,7 @@ class DiagnosisTab extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(
                 left: 10,
+                bottom: 15,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
