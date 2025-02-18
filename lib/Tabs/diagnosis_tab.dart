@@ -75,25 +75,18 @@ class DiagnosisTab extends StatelessWidget {
                 ],
               ),
             ),
-            ReportCardModule(
-              reportDate: "5 May, 2024",
-              reportResult: "No signs of lupus detected",
-            ),
-            ReportCardModule(
-              reportDate: "5 May, 2024",
-              reportResult: "No signs of lupus detected",
-            ),
-            ReportCardModule(
-              reportDate: "5 May, 2024",
-              reportResult: "No signs of lupus detected",
-            ),
-            ReportCardModule(
-              reportDate: "5 May, 2024",
-              reportResult: "No signs of lupus detected",
-            ),
-            ReportCardModule(
-              reportDate: "5 May, 2024",
-              reportResult: "No signs of lupus detected",
+            SizedBox(
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return ReportCardModule(
+                    reportDate: "5 May, 2024",
+                    reportResult: "No signs of lupus detected",
+                  );
+                },
+                itemCount: 5,
+              ),
             ),
           ],
         ),
