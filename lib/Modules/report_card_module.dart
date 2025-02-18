@@ -30,7 +30,7 @@ class ReportCardModule extends StatelessWidget {
         horizontal: 15,
       ),
       margin: const EdgeInsets.only(
-        top: 15,
+        top: 25,
       ),
       width: MediaQuery.of(context).size.width * 0.94,
       child: Row(
