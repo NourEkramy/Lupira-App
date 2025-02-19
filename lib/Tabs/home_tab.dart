@@ -9,8 +9,8 @@ class HomeTab extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.only(
-          left: 10,
-          right: 10,
+          left: 14,
+          right: 14,
           top: 40,
           bottom: 25,
         ),
@@ -21,13 +21,16 @@ class HomeTab extends StatelessWidget {
               mainTitle: 'Quick Detection',
               subtitle: 'Free lupus detection',
             ),
-            Text(
-              'Learn More',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Color(0xFF502371),
-                fontFamily: 'Inder',
+            Padding(
+              padding: const EdgeInsets.only(left: 8,bottom: 3),
+              child: Text(
+                'Learn More',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 24,
+                  color: Color(0xFF502371),
+                  fontFamily: 'Inder',
+                ),
               ),
             ),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.015),
@@ -114,6 +117,7 @@ class HomeTab extends StatelessWidget {
                             TextSpan(
                               text: 'Lupira',
                               style: TextStyle(
+                                fontWeight: FontWeight.normal,
                                 fontSize: 21,
                                 color: Color(0xFF502371),
                                 fontFamily: 'BerkshireSwash',
