@@ -29,28 +29,14 @@ class SettingsTabs extends StatelessWidget {
 
   SettingsTabs({super.key});
 
-  void _showLogoutBottomSheets(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return LogoutBottomSheets();
-        },
-      );
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     List<VoidCallback> optionActions = [
           () {},
           () {},
-          () {
-        },
           () {},
-          () {
-            _showLogoutBottomSheets(context);
-          },
+          () {},
+          () {},
     ];
 
     return Padding(
