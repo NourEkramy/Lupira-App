@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/BottomSheets/logout_bottom_sheets.dart';
 import 'package:untitled/Modules/settings_options_module.dart';
 
 class SettingsTabs extends StatelessWidget {
@@ -28,6 +29,17 @@ class SettingsTabs extends StatelessWidget {
 
   SettingsTabs({super.key});
 
+  void _showLogoutBottomSheets(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return LogoutBottomSheets();
+        },
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     List<VoidCallback> optionActions = [
@@ -36,7 +48,9 @@ class SettingsTabs extends StatelessWidget {
           () {
         },
           () {},
-          () {},
+          () {
+            _showLogoutBottomSheets(context);
+          },
     ];
 
     return Padding(
