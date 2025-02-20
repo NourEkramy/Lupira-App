@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/Modules/settings_options_module.dart';
+import '../Bottom Sheets/language_bottom_sheets.dart';
 
 class SettingsTabs extends StatelessWidget {
   final List<String> optionIcons = [
@@ -28,13 +29,25 @@ class SettingsTabs extends StatelessWidget {
 
   SettingsTabs({super.key});
 
+  void _showLanguageBottomSheet(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return LanguageBottomSheets();
+        },
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     List<VoidCallback> optionActions = [
           () {},
           () {},
           () {
-        },
+        _showLanguageBottomSheet(context);
+      },
           () {},
           () {},
     ];
