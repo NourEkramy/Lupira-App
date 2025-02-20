@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/BottomSheets/delete_account_bottom_sheet.dart';
 import 'package:untitled/Modules/settings_options_module.dart';
 
 class SettingsTabs extends StatelessWidget {
@@ -32,7 +33,7 @@ class SettingsTabs extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback(
             (){
               showModalBottomSheet(context: context, builder: (BuildContext context){
-                return ;
+                return DeleteAccountBottomSheet();
               },);
             }
     );
@@ -45,7 +46,9 @@ class SettingsTabs extends StatelessWidget {
           () {},
           () {
         },
-          () {},
+          () {
+            _showDeleteAccountBottomSheet(context);
+          },
           () {},
     ];
 
