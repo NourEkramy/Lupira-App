@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/BaseScreen/base_screen.dart';
+import 'package:untitled/Change%20Password/change_password.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,9 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: BaseScreen.routeName,
+      initialRoute: ChangePassword.routName,
       routes: {
         BaseScreen.routeName: (context) => BaseScreen(),
+        ChangePassword.routName: (context) => ChangePassword(),
       },
     );
   }

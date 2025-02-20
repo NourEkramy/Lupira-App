@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/BottomSheets/logout_bottom_sheets.dart';
 import 'package:untitled/Modules/settings_options_module.dart';
 
 class SettingsTabs extends StatelessWidget {
