@@ -28,6 +28,16 @@ class SettingsTabs extends StatelessWidget {
 
   SettingsTabs({super.key});
 
+  void _showDeleteAccountBottomSheet(BuildContext context){
+    WidgetsBinding.instance.addPostFrameCallback(
+            (){
+              showModalBottomSheet(context: context, builder: (BuildContext context){
+                return ;
+              },);
+            }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     List<VoidCallback> optionActions = [
