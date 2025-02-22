@@ -1,14 +1,28 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/Modules/authentication_button_module.dart';
+import 'package:untitled/Modules/drop_down_list_module.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Modules/user_credentials_card_module.dart';
 
 class SignUp extends StatelessWidget {
-  const SignUp({Key? key}) : super(key: key);
+  SignUp({Key? key}) : super(key: key);
 
   static const String routName = "SignUp";
+
+  static const List<Map<String, dynamic>> textFields = [
+    {'title': 'Username', 'hint': 'Enter username'},
+    {'title': 'Email', 'hint': 'useremail@placeholder.com'},
+    {'title': 'Password', 'hint': 'Enter password'},
+    {'title': 'Confirm password', 'hint': 'Enter password'},
+    {
+      'title': 'Date of birth',
+      'hint': 'DD/MM/YYYY',
+      'suffix': Icon(Icons.calendar_today_outlined)
+    },
+    {'title': 'Phone', 'hint': 'Enter phone number'},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,174 +46,56 @@ class SignUp extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextFieldModule(
-                      textFieldTitle: 'Username',
-                      hintTextTitle: 'Enter username',
-                      hintTextColor: Color(0xFFABABAB),
-                      titelTextColor: Color(0xFF57585D),
-                      borderColor: Colors.transparent,
-                      backgroundColor: Color(0xFFDEDAE0),
-                      titelFontSize: 16,
-                    ),
-                    TextFieldModule(
-                      textFieldTitle: 'Email',
-                      hintTextTitle: 'useremail@plceholder.com',
-                      hintTextColor: Color(0xFFABABAB),
-                      titelTextColor: Color(0xFF57585D),
-                      borderColor: Colors.transparent,
-                      backgroundColor: Color(0xFFDEDAE0),
-                      titelFontSize: 16,
-                    ),
-                    TextFieldModule(
-                      textFieldTitle: 'Password',
-                      hintTextTitle: 'Enter password',
-                      hintTextColor: Color(0xFFABABAB),
-                      titelTextColor: Color(0xFF57585D),
-                      borderColor: Colors.transparent,
-                      backgroundColor: Color(0xFFDEDAE0),
-                      titelFontSize: 16,
-                    ),
-                    TextFieldModule(
-                      textFieldTitle: 'Confirm password',
-                      hintTextTitle: 'Enter password',
-                      hintTextColor: Color(0xFFABABAB),
-                      titelTextColor: Color(0xFF57585D),
-                      borderColor: Colors.transparent,
-                      backgroundColor: Color(0xFFDEDAE0),
-                      titelFontSize: 16,
-                    ),
-                    TextFieldModule(
-                      textFieldTitle: 'Date of birth',
-                      hintTextTitle: 'DD/MM/YYYY',
-                      suffix: Icon(Icons.calendar_today_outlined),
-                      hintTextColor: Color(0xFFABABAB),
-                      titelTextColor: Color(0xFF57585D),
-                      borderColor: Colors.transparent,
-                      backgroundColor: Color(0xFFDEDAE0),
-                      titelFontSize: 16,
-                    ),
-                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                    Text(
-                      'Gender',
-                      style: TextStyle(
-                        fontFamily: 'Inder',
-                        fontSize: 16,
-                        color: Color(0xFF57585D),
-                      ),
-                    ),
-                    DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        hintText: 'Gender',
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        hintStyle: TextStyle(
-                          fontFamily: 'Inder',
-                          color: Color(0xFFABABAB),
-                        ),
-                        filled: true,
-                        fillColor: Color(0xFFDEDAE0),
-                      ),
-                      items: <String>['Male', 'Female'].map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        var textField = textFields[index];
+                        return TextFieldModule(
+                          textFieldTitle: textField['titel'],
+                          hintTextTitle: textField['hint'],
+                          hintTextColor: Color(0xFFABABAB),
+                          titelTextColor: Color(0xFF57585D),
+                          borderColor: Colors.transparent,
+                          backgroundColor: Color(0xFFDEDAE0),
+                          suffix: textField['suffix'],
                         );
-                      }).toList(),
-                      onChanged: (String? newValue) {},
+                      },
                     ),
-                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                    Text(
-                      'Country',
-                      style: TextStyle(
-                        fontFamily: 'Inder',
-                        fontSize: 16,
-                        color: Color(0xFF57585D),
-                      ),
-                    ),
-                    DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        hintText: 'Choose Country',
-                        hintStyle: TextStyle(
-                            fontFamily: 'Inder', color: Color(0xFFABABAB)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        filled: true,
-                        fillColor: Color(0xFFDEDAE0),
-                      ),
-                      items:
-                          <String>['Egypt', 'Canada', 'UK'].map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {},
-                    ),
-                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                    Text(
-                      'Ethnicity',
-                      style: TextStyle(
-                        fontFamily: 'Inder',
-                        fontSize: 16,
-                        color: Color(0xFF57585D),
-                      ),
-                    ),
-                    DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        hintText: 'Select Ethnicity',
-                        hintStyle: TextStyle(
-                          fontFamily: 'Inder',
-                          color: Color(0xFFABABAB),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        filled: true,
-                        fillColor: Color(0xFFDEDAE0),
-                      ),
-                      items:
-                          <String>['Egypt', 'Canada', 'UK'].map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {},
-                    ),
-                    TextFieldModule(
-                      hintTextTitle: 'Enter phone number',
-                      textFieldTitle: 'Phone',
-                      hintTextColor: Color(0xFFABABAB),
-                      titelTextColor: Color(0xFF57585D),
+                    DropDownListModule(
+                      options: ['Male', 'Female'],
+                      hintColor: Color(0xFFABABAB),
+                      hintText: 'Select gender',
+                      textColor: Color(0xFF57585D),
                       borderColor: Colors.transparent,
+                      text: 'Gender',
                       backgroundColor: Color(0xFFDEDAE0),
-                      titelFontSize: 16,
+                    ),
+                    DropDownListModule(
+                      options: ['Egypt', 'Canada', 'UK'],
+                      hintColor: Color(0xFFABABAB),
+                      hintText: 'Choose country',
+                      textColor: Color(0xFF57585D),
+                      borderColor: Colors.transparent,
+                      text: 'Country',
+                      backgroundColor: Color(0xFFDEDAE0),
+                    ),
+                    DropDownListModule(
+                      options: [
+                        'Asian or Pacific Islander',
+                        'Black or African American',
+                        'Hispanic or Latino',
+                        'Native American or Alaskan Native',
+                        'White or Caucasian',
+                        'Multoracial or Biracial',
+                        'A race/ethnicity not listed here'
+                      ],
+                      hintColor: Color(0xFFABABAB),
+                      hintText: 'Select Ethnicity',
+                      textColor: Color(0xFF57585D),
+                      borderColor: Colors.transparent,
+                      text: 'Ethnicity',
+                      backgroundColor: Color(0xFFDEDAE0),
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
                     OperationButtonModule(
