@@ -117,7 +117,7 @@ class SignUp extends StatelessWidget {
                       onChanged: (String? newValue) {},
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                    const Text(
+                    Text(
                       'Country',
                       style: TextStyle(
                         fontFamily: 'Inder',
@@ -154,7 +154,7 @@ class SignUp extends StatelessWidget {
                       onChanged: (String? newValue) {},
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                    const Text(
+                    Text(
                       'Ethnicity',
                       style: TextStyle(
                         fontFamily: 'Inder',
