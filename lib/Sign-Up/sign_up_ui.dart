@@ -52,7 +52,7 @@ class SignUp extends StatelessWidget {
                       itemBuilder: (context, index) {
                         var textField = textFields[index];
                         return TextFieldModule(
-                          textFieldTitle: textField['titel'],
+                          textFieldTitle: textField['title'],
                           hintTextTitle: textField['hint'],
                           hintTextColor: Color(0xFFABABAB),
                           titelTextColor: Color(0xFF57585D),
@@ -61,6 +61,7 @@ class SignUp extends StatelessWidget {
                           suffix: textField['suffix'],
                         );
                       },
+                      itemCount: textFields.length,
                     ),
                     DropDownListModule(
                       options: ['Male', 'Female'],
