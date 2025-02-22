@@ -15,6 +15,7 @@ class DropDownListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
         Text(
