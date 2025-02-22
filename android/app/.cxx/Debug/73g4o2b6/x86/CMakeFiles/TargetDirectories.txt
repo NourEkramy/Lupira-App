@@ -1,0 +1,2 @@
+C:/Users/Rojena/StudioProjects/Lupira-App/android/app/.cxx/Debug/73g4o2b6/x86/CMakeFiles/edit_cache.dir
+C:/Users/Rojena/StudioProjects/Lupira-App/android/app/.cxx/Debug/73g4o2b6/x86/CMakeFiles/rebuild_cache.dir
