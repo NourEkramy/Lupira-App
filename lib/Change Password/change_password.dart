@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
+import 'package:untitled/Modules/text_field_module.dart';
 
 class ChangePassword extends StatelessWidget {
   static const String routName = "ChangePassword";
@@ -41,102 +42,9 @@ class ChangePassword extends StatelessWidget {
                   fontFamily: 'Inder',
                 ),
               ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
-              Text(
-                'Old password',
-                style: TextStyle(
-                  fontFamily: 'Inder',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF4B4A4C),
-                ),
-              ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Enter old password',
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFABABAB)),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFABABAB)),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFABABAB)),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  hintStyle: TextStyle(
-                    fontFamily: 'Inder',
-                    color: Color(0xFF817F82),
-                    fontSize: 16,
-                  ),
-                  filled: true,
-                  fillColor: Color(0xFFDEDAE0),
-                ),
-              ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
-              Text(
-                'New password',
-                style: TextStyle(
-                  fontFamily: 'Inder',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF4B4A4C),
-                ),
-              ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Enter new password',
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFABABAB)),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFABABAB)),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFABABAB)),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  hintStyle: TextStyle(
-                    fontFamily: 'Inder',
-                    color: Color(0xFF817F82),
-                    fontSize: 16,
-                  ),
-                  filled: true,
-                  fillColor: Color(0xFFDEDAE0),
-                ),
-              ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
-              Text(
-                'Confirm password',
-                style: TextStyle(
-                  fontFamily: 'Inder',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF4B4A4C),
-                ),
-              ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Enter password',
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFABABAB)),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFABABAB)),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFABABAB)),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  hintStyle: TextStyle(
-                    fontFamily: 'Inder',
-                    color: Color(0xFF817F82),
-                    fontSize: 16,
-                  ),
-                  filled: true,
-                  fillColor: Color(0xFFDEDAE0),
-                ),
-              ),
+              TextFieldModule(hintTextTitle: 'Enter old password', textFieldTitle: 'Old password', hintTextColor: Color(0xFF817F82), titelTextColor: Color(0xFF4B4A4C), borderColor: Color(0xFFABABAB), backgroundColor: Colors.transparent),
+              TextFieldModule(hintTextTitle: 'Enter new password', textFieldTitle: 'New password', hintTextColor: Color(0xFF817F82), titelTextColor: Color(0xFF4B4A4C), borderColor: Color(0xFFABABAB), backgroundColor: Colors.transparent),
+              TextFieldModule(hintTextTitle: 'Enter password', textFieldTitle: 'Confirm password', hintTextColor: Color(0xFF817F82), titelTextColor: Color(0xFF4B4A4C), borderColor: Color(0xFFABABAB), backgroundColor: Colors.transparent),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.07),
               OperationButtonModule(
                 borderColor: Color(0xFF502371),
