@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'BaseScreen/base_screen.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
@@ -12,7 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: BaseScreen.routeName,
       routes: {
+        BaseScreen.routeName: (context) => BaseScreen(),
       },
     );
   }
