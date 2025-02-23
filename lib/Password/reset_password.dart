@@ -40,9 +40,9 @@ class ResetPassword extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextFieldModule(hintTextTitle: 'Enter new passwword', textFieldTitle: 'New password'),
+                  TextFieldModule(hintTextTitle: 'Enter new passwword', textFieldTitle: 'New password', hintTextColor: Color(0xFFABABAB), titelTextColor: Color(0xFF817F82), borderColor: Color(0xFFDEDAE0), backgroundColor: Color(0xFFDEDAE0),),
                   SizedBox(height: MediaQuery.sizeOf(context).height * 0.009),
-                  TextFieldModule(hintTextTitle: 'Enter password', textFieldTitle: 'Confirm password'),
+                  TextFieldModule(hintTextTitle: 'Enter password', textFieldTitle: 'Confirm password', hintTextColor: Color(0xFFABABAB), titelTextColor: Color(0xFF817F82), borderColor: Color(0xFFDEDAE0), backgroundColor: Color(0xFFDEDAE0),),
                   SizedBox(height: MediaQuery.sizeOf(context).height * 0.045),
                   OperationButtonModule(borderColor: Color(0xFF502371), buttonColor: Color(0xFF502371), buttonText: 'Reset password', buttonTextColor: Colors.white),
                   SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Password/reset_password.dart';
 
 import 'BaseScreen/base_screen.dart';
 
@@ -14,9 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: BaseScreen.routeName,
+      initialRoute: ResetPassword.routName,
       routes: {
         BaseScreen.routeName: (context) => BaseScreen(),
+        ResetPassword.routName: (context) => ResetPassword(),
       },
     );
   }
