@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Modules/drop_down_list_module.dart';
+
+import '../Modules/text_field_module.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
   static const String routName = "Profile";
+
+  static const List<Map<String, dynamic>> textFields = [
+    {'title': 'Username', 'hint': 'Nadia'},
+    {'title': 'Email', 'hint': 'nadia@gmail.com'},
+    {'title': 'Date of birth', 'hint': '11/5/2002', 'suffix': Icon(Icons.calendar_today_outlined)},
+    {'title': 'Phone', 'hint': 'Enter phone number'},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +37,11 @@ class Profile extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(left: 8, right: 8, top: 32,),
+          padding: const EdgeInsets.only(
+            left: 8,
+            right: 8,
+            top: 32,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -38,7 +52,10 @@ class Profile extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(color: Color(0xFFABABAB), width: 3,),
+                        border: Border.all(
+                          color: Color(0xFFABABAB),
+                          width: 3,
+                        ),
                       ),
                       child: CircleAvatar(
                         radius: 65,
@@ -62,37 +79,59 @@ class Profile extends StatelessWidget {
                   ],
                 ),
               ),
-              Text(
-                'Old password',
-                style: TextStyle(
-                  fontFamily: 'Inder',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF4B4A4C),
-                ),
-              ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              var textField = textFields[index];
+              return TextFieldModule(
+                textFieldTitle: textField['title'],
+                hintTextTitle: textField['hint'],
+                hintTextColor: Color(0xFF4B4A4C),
+                titelTextColor: Color(0xFF4B4A4C),
+                borderColor: Color(0xFFABABAB),
+                backgroundColor: Color(0xFFDEDAE0),
+                suffix: textField['suffix'],
+              );
+            },
+            itemCount: textFields.length,
+          ),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Enter old password',
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFABABAB)),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFABABAB)),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFABABAB)),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  hintStyle: TextStyle(
-                    fontFamily: 'Inder',
-                    color: Color(0xFF817F82),
-                    fontSize: 16,
-                  ),
-                  filled: true,
-                  fillColor: Color(0xFFDEDAE0),
-                ),
-              ),
+              DropDownListModule(
+                  options: ['Male', 'Female'],
+                  hintColor: Color(0xFF4B4A4C),
+                  hintText: 'Female',
+                  textColor: Color(0xFF4B4A4C),
+                  borderColor: Color(0xFFABABAB),
+                  text: 'Gender',
+                  backgroundColor: Colors.transparent),
+              SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
+              DropDownListModule(
+                  options: ['Egypt', 'Canada', 'UK'],
+                  hintColor: Color(0xFF4B4A4C),
+                  hintText: 'Country',
+                  textColor: Color(0xFF4B4A4C),
+                  borderColor: Color(0xFFABABAB),
+                  text: 'Country',
+                  backgroundColor: Colors.transparent),
+              SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
+              DropDownListModule(
+                  options: [
+                    'Asian or Pacific Islander',
+                    'Black or African American',
+                    'Hispanic or Latino',
+                    'Native American or Alaskan Native',
+                    'White or Caucasian',
+                    'Multoracial or Biracial',
+                    'A race/ethnicity not listed here'
+                  ],
+                  hintColor: Color(0xFF4B4A4C),
+                  hintText: 'Ethnicity',
+                  textColor: Color(0xFF4B4A4C),
+                  borderColor: Color(0xFFABABAB),
+                  text: 'Ethnicity',
+                  backgroundColor: Colors.transparent),
+              SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
             ],
           ),
         ),
