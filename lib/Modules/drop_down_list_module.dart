@@ -1,48 +1,37 @@
-import 'dart:ffi';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TextFieldModule extends StatelessWidget {
-  String textFieldTitle;
-  String hintTextTitle;
-  Color hintTextColor;
-  Color titelTextColor;
-  Color borderColor;
-  Color backgroundColor;
-  Widget? suffix;
+class DropDownListModule extends StatelessWidget {
 
-  TextFieldModule(
-      {super.key,
-      required this.hintTextTitle,
-      required this.textFieldTitle,
-      required this.hintTextColor,
-      required this.titelTextColor,
-      required this.borderColor,
-      required this.backgroundColor,
-      this.suffix});
+  String text;
+  String hintText;
+  Color borderColor;
+  Color hintColor;
+  Color textColor;
+  Color backgroundColor;
+  List<String> options;
+
+  DropDownListModule({super.key, required this.options, required this.hintColor, required this.hintText, required this.textColor, required this.borderColor, required this.text, required this.backgroundColor,});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
+        SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
         Text(
-          textFieldTitle,
+          text,
           style: TextStyle(
             fontFamily: 'Inder',
             fontSize: 18,
-            color: titelTextColor,
+            color: textColor,
           ),
         ),
-        TextField(
+        DropdownButtonFormField<String>(
           decoration: InputDecoration(
-            suffixIcon: suffix ?? SizedBox(),
-            hintText: hintTextTitle,
+            hintText: hintText,
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: borderColor),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+                borderRadius: BorderRadius.circular(10)),
             enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: borderColor),
                 borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -52,11 +41,18 @@ class TextFieldModule extends StatelessWidget {
             hintStyle: TextStyle(
               fontSize: 16,
               fontFamily: 'Inder',
-              color: hintTextColor,
+              color: hintColor,
             ),
             filled: true,
             fillColor: backgroundColor,
           ),
+          items: options.map((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+          onChanged: (String? newValue) {},
         ),
       ],
     );
