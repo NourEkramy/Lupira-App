@@ -49,6 +49,7 @@ class ArticleCardModule extends StatelessWidget {
                 websiteName,
                 style: TextStyle(
                   fontSize: 14,
+                  fontWeight: FontWeight.w500,
                   fontFamily: 'Inder',
                   color: Color(0xFF817F82),
                 ),
@@ -62,7 +63,7 @@ class ArticleCardModule extends StatelessWidget {
                 articleName,
                 style: TextStyle(
                   fontSize: 20,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
                   fontFamily: 'Inder',
                   color: Color(0xFF4B4A4C),
                 ),
