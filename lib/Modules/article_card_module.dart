@@ -49,24 +49,18 @@ class ArticleCardModule extends StatelessWidget {
                 websiteName,
                 style: TextStyle(
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,
                   fontFamily: 'Inder',
                   color: Color(0xFF817F82),
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: 4.0,
-              ),
-              child: Text(
-                articleName,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Inder',
-                  color: Color(0xFF4B4A4C),
-                ),
+            Text(
+              articleName,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Inder',
+                color: Color(0xFF4B4A4C),
               ),
             ),
             Padding(
