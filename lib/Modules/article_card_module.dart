@@ -70,7 +70,7 @@ class ArticleCardModule extends StatelessWidget {
               child: Text(
                 articleDate,
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 15,
                   fontFamily: 'Inder',
                   color: Color(0xFF817F82),
                 ),
