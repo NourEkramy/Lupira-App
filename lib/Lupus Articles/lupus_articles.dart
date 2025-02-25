@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Modules/article_card_module.dart';
 
 class LupusArticles extends StatelessWidget {
   static const String routName = 'LupusArticles';
@@ -33,68 +34,7 @@ class LupusArticles extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Color(0xFFD2CFD3),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      ),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      ),
-                      child: Image.asset(
-                          'assets/images/living with lupus 1 (1).png',
-                          width: double.infinity,
-                          fit: BoxFit.fill),
-                    ),
-                  ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
-                  Padding(
-                    padding: EdgeInsets.only(left:8.0,),
-                    child: Text(
-                      'helthline',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: 'Inder',
-                        color: Color(0xFF817F82),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    'Living with Lupus',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Inder',
-                      color: Color(0xFF4B4A4C),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left:8.0,),
-                    child: Text(
-                      '5 November, 2019',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontFamily: 'Inder',
-                        color: Color(0xFF817F82),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
-                ],
-              ),
-            )
+            ArticleCardModule(articleDate: '5 November, 2019', articleImage: 'assets/images/living with lupus 1 (1).png', articleName: 'Living with Lupus', websiteName: 'HealthLinks', redirectFunction: (){}),
           ],
         ),
       ),
