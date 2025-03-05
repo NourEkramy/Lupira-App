@@ -26,6 +26,7 @@ class DropDownListModule extends StatelessWidget {
             color: textColor,
           ),
         ),
+        SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
         DropdownButtonFormField<String>(
           dropdownColor: Color(0xFFDEDAE0),
           decoration: InputDecoration(
