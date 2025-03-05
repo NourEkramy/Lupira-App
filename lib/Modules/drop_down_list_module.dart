@@ -27,6 +27,7 @@ class DropDownListModule extends StatelessWidget {
           ),
         ),
         DropdownButtonFormField<String>(
+          dropdownColor: Color(0xFFDEDAE0),
           decoration: InputDecoration(
             hintText: hintText,
             focusedBorder: OutlineInputBorder(
@@ -49,7 +50,11 @@ class DropDownListModule extends StatelessWidget {
           items: options.map((String value) {
             return DropdownMenuItem<String>(
               value: value,
-              child: Text(value),
+              child: Text(value, style: TextStyle(
+                fontFamily: 'Inder',
+                fontSize: 16,
+                color: textColor,
+              ),),
             );
           }).toList(),
           onChanged: (String? newValue) {},
