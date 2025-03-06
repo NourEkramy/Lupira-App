@@ -34,6 +34,7 @@ class MainLayout extends StatelessWidget {
             ),
           ),
         ),
+        body: child,
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
