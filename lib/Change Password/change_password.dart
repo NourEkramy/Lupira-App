@@ -4,6 +4,11 @@ import 'package:untitled/Modules/text_field_module.dart';
 
 class ChangePassword extends StatelessWidget {
   static const String routName = "ChangePassword";
+  static const List<Map<String, dynamic>> textfields = [
+    {'title': 'Old password', 'hint': 'Enter old password'},
+    {'title': 'New password', 'hint': 'Enter new password'},
+    {'title': 'Confirm password', 'hint': 'Enter password'},
+  ];
 
   ChangePassword({super.key});
 
@@ -42,9 +47,22 @@ class ChangePassword extends StatelessWidget {
                   fontFamily: 'Inder',
                 ),
               ),
-              TextFieldModule(hintTextTitle: 'Enter old password', textFieldTitle: 'Old password', hintTextColor: Color(0xFF817F82), titelTextColor: Color(0xFF4B4A4C), borderColor: Color(0xFFABABAB), backgroundColor: Colors.transparent),
-              TextFieldModule(hintTextTitle: 'Enter new password', textFieldTitle: 'New password', hintTextColor: Color(0xFF817F82), titelTextColor: Color(0xFF4B4A4C), borderColor: Color(0xFFABABAB), backgroundColor: Colors.transparent),
-              TextFieldModule(hintTextTitle: 'Enter password', textFieldTitle: 'Confirm password', hintTextColor: Color(0xFF817F82), titelTextColor: Color(0xFF4B4A4C), borderColor: Color(0xFFABABAB), backgroundColor: Colors.transparent),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  var textField = textfields[index];
+                  return TextFieldModule(
+                    textFieldTitle: textField['title'],
+                    hintTextTitle: textField['hint'],
+                    hintTextColor: Color(0xFF817F82),
+                    titelTextColor: Color(0xFF4B4A4C),
+                    borderColor: Color(0xFFABABAB),
+                    backgroundColor: Colors.transparent,
+                  );
+                },
+                itemCount: 3,
+              ),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.07),
               OperationButtonModule(
                 borderColor: Color(0xFF502371),
