@@ -30,7 +30,6 @@ class LogIn extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-
                   TextFieldModule(hintTextTitle: 'Enter email', textFieldTitle: 'Email', hintTextColor: Color(0xFFABABAB), titelTextColor: Color(0xFF817F82), borderColor: Color(0xFFDEDAE0), backgroundColor: Color(0xFFDEDAE0),),
                   TextFieldModule(hintTextTitle: 'Enter password', textFieldTitle: 'Password', hintTextColor: Color(0xFFABABAB), titelTextColor: Color(0xFF817F82), borderColor: Color(0xFFDEDAE0), backgroundColor: Color(0xFFDEDAE0),),
                   SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
