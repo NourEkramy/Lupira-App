@@ -36,7 +36,13 @@ class TextFieldModule extends StatelessWidget {
             color: titelTextColor,
           ),
         ),
+        SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
         TextField(
+          style: TextStyle(
+            color: Color(0xff4B4A4C),
+            fontFamily: "Inder",
+            fontSize: 16,
+          ),
           decoration: InputDecoration(
             suffixIcon: suffix ?? SizedBox(),
             hintText: hintTextTitle,
