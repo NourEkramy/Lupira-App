@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ArticleCardModule extends StatelessWidget {
   String websiteName, articleName, articleDate, articleImage;
-  Function redirectFunction;
+  VoidCallback redirectFunction;
 
   ArticleCardModule(
       {super.key,
@@ -15,7 +15,7 @@ class ArticleCardModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: redirectFunction(),
+      onTap: redirectFunction,
       child: Container(
         decoration: BoxDecoration(
           color: Color(0xFFD2CFD3),
@@ -36,8 +36,15 @@ class ArticleCardModule extends StatelessWidget {
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
                 ),
-                child: Image.asset(articleImage,
-                    width: double.infinity, fit: BoxFit.fill),
+                child: Image.network(
+                  articleImage,
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height*0.3,
+                  fit: BoxFit.fill,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Text('Image failed to load');
+                  },
+                ),
               ),
             ),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
