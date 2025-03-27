@@ -17,6 +17,7 @@ class ArticleCardModule extends StatelessWidget {
     return GestureDetector(
       onTap: redirectFunction,
       child: Container(
+        width: MediaQuery.of(context).size.width*0.9,
         decoration: BoxDecoration(
           color: Color(0xFFD2CFD3),
           borderRadius: BorderRadius.circular(10),
