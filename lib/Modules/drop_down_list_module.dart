@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class DropDownListModule extends StatelessWidget {
-
   String text;
   String hintText;
   Color borderColor;
@@ -10,7 +9,16 @@ class DropDownListModule extends StatelessWidget {
   Color backgroundColor;
   List<String> options;
 
-  DropDownListModule({super.key, required this.options, required this.hintColor, required this.hintText, required this.textColor, required this.borderColor, required this.text, required this.backgroundColor,});
+  DropDownListModule({
+    super.key,
+    required this.options,
+    required this.hintColor,
+    required this.hintText,
+    required this.textColor,
+    required this.borderColor,
+    required this.text,
+    required this.backgroundColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +59,14 @@ class DropDownListModule extends StatelessWidget {
           items: options.map((String value) {
             return DropdownMenuItem<String>(
               value: value,
-              child: Text(value, style: TextStyle(
-                fontFamily: 'Inder',
-                fontSize: 16,
-                color: textColor,
-              ),),
+              child: Text(
+                value,
+                style: TextStyle(
+                  fontFamily: 'Inder',
+                  fontSize: 16,
+                  color: textColor,
+                ),
+              ),
             );
           }).toList(),
           onChanged: (String? newValue) {},
