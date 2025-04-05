@@ -12,6 +12,7 @@ class TextFieldModule extends StatelessWidget {
   Color backgroundColor;
   Widget? suffix;
   TextEditingController textController;
+  TextInputType textFieldType;
 
   TextFieldModule(
       {super.key,
@@ -22,6 +23,7 @@ class TextFieldModule extends StatelessWidget {
       required this.borderColor,
       required this.backgroundColor,
       required this.textController,
+      required this.textFieldType,
       this.suffix});
 
   @override
@@ -41,6 +43,7 @@ class TextFieldModule extends StatelessWidget {
         SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
         TextField(
           controller: textController,
+          keyboardType: textFieldType,
           style: TextStyle(
             color: Color(0xff4B4A4C),
             fontFamily: "Inder",
