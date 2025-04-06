@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +10,10 @@ class TextFieldModule extends StatelessWidget {
   Color backgroundColor;
   Widget? suffix;
   TextEditingController textController;
-  TextInputType textFieldType;
+  TextInputType? textFieldType;
+  bool obscureText;
+  bool isReadOnly;
+  VoidCallback? onTap;
 
   TextFieldModule(
       {super.key,
@@ -24,6 +25,9 @@ class TextFieldModule extends StatelessWidget {
       required this.backgroundColor,
       required this.textController,
       required this.textFieldType,
+      this.obscureText=false,
+      this.isReadOnly=false,
+      this.onTap,
       this.suffix});
 
   @override
@@ -42,6 +46,9 @@ class TextFieldModule extends StatelessWidget {
         ),
         SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
         TextField(
+          onTap: onTap,
+          readOnly: isReadOnly,
+          obscureText: obscureText,
           controller: textController,
           keyboardType: textFieldType,
           style: TextStyle(
