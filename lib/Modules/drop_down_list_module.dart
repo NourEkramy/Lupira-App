@@ -38,7 +38,6 @@ class DropDownListModule extends StatelessWidget {
         DropdownButtonFormField<String>(
           dropdownColor: Color(0xFFDEDAE0),
           decoration: InputDecoration(
-            hintText: hintText,
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: borderColor),
                 borderRadius: BorderRadius.circular(10)),
@@ -48,13 +47,16 @@ class DropDownListModule extends StatelessWidget {
             border: OutlineInputBorder(
                 borderSide: BorderSide(color: borderColor),
                 borderRadius: BorderRadius.all(Radius.circular(10))),
-            hintStyle: TextStyle(
+            filled: true,
+            fillColor: backgroundColor,
+          ),
+          hint: Text(
+            hintText,
+            style: TextStyle(
               fontSize: 16,
               fontFamily: 'Inder',
               color: hintColor,
             ),
-            filled: true,
-            fillColor: backgroundColor,
           ),
           items: options.map((String value) {
             return DropdownMenuItem<String>(
