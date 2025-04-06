@@ -52,7 +52,7 @@ class TextFieldModule extends StatelessWidget {
           controller: textController,
           keyboardType: textFieldType,
           style: TextStyle(
-            color: Color(0xff4B4A4C),
+            color: titelTextColor,
             fontFamily: "Inder",
             fontSize: 16,
           ),
