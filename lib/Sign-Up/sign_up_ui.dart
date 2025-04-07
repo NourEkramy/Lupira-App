@@ -104,70 +104,78 @@ class _SignUpState extends State<SignUp> {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
+                              SizedBox(
+                                  height:
+                                      MediaQuery.sizeOf(context).height * 0.02),
                               Text(
-                                'Phone',
+                                textField['title'],
                                 style: TextStyle(
                                   fontFamily: 'Inder',
                                   fontSize: 18,
                                   color: Color(0xFF817F82),
                                 ),
                               ),
-                              SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
-                              Row(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      showCountryPicker(
-                                        context: context,
-                                        showPhoneCode: true,
-                                        onSelect: (Country country) {
-                                          setState(() {
-                                            selectedPhoneCountry = country;
-                                          });
-                                        },
-                                      );
+                              SizedBox(
+                                  height: MediaQuery.sizeOf(context).height *
+                                      0.005),
+                              GestureDetector(
+                                onTap: () {
+                                  showCountryPicker(
+                                    context: context,
+                                    showPhoneCode: true,
+                                    onSelect: (Country country) {
+                                      setState(() {
+                                        selectedPhoneCountry = country;
+                                      });
                                     },
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 12, vertical: 14),
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFDEDAE0),
-                                        borderRadius:
-                                            BorderRadius.circular(10),
-                                      ),
-                                      child: Text(
+                                  );
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 12),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFDEDAE0),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Text(
                                         selectedPhoneCountry != null
                                             ? '+${selectedPhoneCountry!.phoneCode}'
                                             : 'Code',
                                         style: TextStyle(
+                                          fontFamily: 'Inder',
                                           color: selectedPhoneCountry != null
-                                              ? Colors.black
+                                              ? Color(0xFF817F82)
                                               : Color(0xFFABABAB),
+                                          fontSize: 16,
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 10),
-                                  Expanded(
-                                    child: TextField(
-                                      controller: controllers[index],
-                                      keyboardType: TextInputType.phone,
-                                      decoration: InputDecoration(
-                                        hintText: 'Enter phone number',
-                                        filled: true,
-                                        fillColor: Color(0xFFDEDAE0),
-                                        border: OutlineInputBorder(
-                                          borderSide: BorderSide.none,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        hintStyle: TextStyle(
-                                            color: Color(0xFFABABAB)),
+                                      SizedBox(width: 8),
+                                      Container(
+                                        width: 1,
+                                        height: 24,
+                                        color: Colors.grey,
                                       ),
-                                    ),
+                                      SizedBox(width: 8),
+                                      Expanded(
+                                        child: TextField(
+                                          style: TextStyle(
+                                              color: Color(0xFF817F82),
+                                              fontFamily: 'Inder'),
+                                          controller: controllers[index],
+                                          keyboardType: textField['keyboardType'],
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintText: textField['hint'],
+                                            hintStyle: TextStyle(
+                                                color: Color(0xFFABABAB),
+                                                fontFamily: 'Inder'),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ],
                           );
@@ -245,7 +253,6 @@ class _SignUpState extends State<SignUp> {
                                         : Color(0xFF817F82), // Selected color
                                   ),
                                 ),
-
                                 Icon(
                                   Icons.arrow_drop_down,
                                   color: Color(0xFF606060),
