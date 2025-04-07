@@ -1,3 +1,4 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/Modules/authentication_button_module.dart';
@@ -18,8 +19,14 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final List<TextEditingController> controllers = [];
 
+  Country? selectedCountry;
+  Country? selectedPhoneCountry;
+
   static const List<Map<String, dynamic>> textFields = [
-    {'title': 'Username', 'hint': 'Enter username',},
+    {
+      'title': 'Username',
+      'hint': 'Enter username',
+    },
     {
       'title': 'Email',
       'hint': 'useremail@placeholder.com',
@@ -38,7 +45,10 @@ class _SignUpState extends State<SignUp> {
     {
       'title': 'Date of birth',
       'hint': 'DD/MM/YYYY',
-      'suffix': Icon(Icons.calendar_today_outlined),
+      'suffix': Icon(
+        Icons.calendar_today_outlined,
+        color: Color(0xFF606060),
+      ),
       'isReadOnly': true,
     },
     {
@@ -62,6 +72,7 @@ class _SignUpState extends State<SignUp> {
     }
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,9 +80,7 @@ class _SignUpState extends State<SignUp> {
         cardBody: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: MediaQuery
-                .sizeOf(context)
-                .height * 0.05),
+            SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
             Text(
               'Sign Up',
               style: TextStyle(
@@ -80,9 +89,7 @@ class _SignUpState extends State<SignUp> {
                 color: Color(0xFF49146D),
               ),
             ),
-            SizedBox(height: MediaQuery
-                .sizeOf(context)
-                .height * 0.01),
+            SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -93,9 +100,81 @@ class _SignUpState extends State<SignUp> {
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         var textField = textFields[index];
+                        if (index == 5) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
+                              Text(
+                                'Phone',
+                                style: TextStyle(
+                                  fontFamily: 'Inder',
+                                  fontSize: 18,
+                                  color: Color(0xFF817F82),
+                                ),
+                              ),
+                              SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
+                              Row(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      showCountryPicker(
+                                        context: context,
+                                        showPhoneCode: true,
+                                        onSelect: (Country country) {
+                                          setState(() {
+                                            selectedPhoneCountry = country;
+                                          });
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 12, vertical: 14),
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFDEDAE0),
+                                        borderRadius:
+                                            BorderRadius.circular(10),
+                                      ),
+                                      child: Text(
+                                        selectedPhoneCountry != null
+                                            ? '+${selectedPhoneCountry!.phoneCode}'
+                                            : 'Code',
+                                        style: TextStyle(
+                                          color: selectedPhoneCountry != null
+                                              ? Colors.black
+                                              : Color(0xFFABABAB),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  Expanded(
+                                    child: TextField(
+                                      controller: controllers[index],
+                                      keyboardType: TextInputType.phone,
+                                      decoration: InputDecoration(
+                                        hintText: 'Enter phone number',
+                                        filled: true,
+                                        fillColor: Color(0xFFDEDAE0),
+                                        border: OutlineInputBorder(
+                                          borderSide: BorderSide.none,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        hintStyle: TextStyle(
+                                            color: Color(0xFFABABAB)),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          );
+                        }
                         return TextFieldModule(
                           onTap: index == 4 ? selectDate : null,
-                          isReadOnly: textField['isReadOnly']??false,
+                          isReadOnly: textField['isReadOnly'] ?? false,
                           textController: controllers[index],
                           textFieldType: textField['keyboardType'],
                           obscureText: textField['keyboardType'] ==
@@ -120,14 +199,62 @@ class _SignUpState extends State<SignUp> {
                       text: 'Gender',
                       backgroundColor: Color(0xFFDEDAE0),
                     ),
-                    DropDownListModule(
-                      options: ['Egypt', 'Canada', 'UK'],
-                      hintColor: Color(0xFFABABAB),
-                      hintText: 'Choose country',
-                      textColor: Color(0xFF817F82),
-                      borderColor: Colors.transparent,
-                      text: 'Country',
-                      backgroundColor: Color(0xFFDEDAE0),
+                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Country',
+                          style: TextStyle(
+                            fontFamily: 'Inder',
+                            fontSize: 18,
+                            color: Color(0xFF817F82),
+                          ),
+                        ),
+                        SizedBox(
+                            height: MediaQuery.sizeOf(context).height * 0.005),
+                        GestureDetector(
+                          onTap: () {
+                            showCountryPicker(
+                              context: context,
+                              onSelect: (Country country) {
+                                setState(() {
+                                  selectedCountry = country;
+                                });
+                              },
+                            );
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 16),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFDEDAE0),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  selectedCountry?.name ?? 'Select country',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Inder',
+                                    color: selectedCountry == null
+                                        ? Color(0xFFABABAB) // Placeholder color
+                                        : Color(0xFF817F82), // Selected color
+                                  ),
+                                ),
+
+                                Icon(
+                                  Icons.arrow_drop_down,
+                                  color: Color(0xFF606060),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     DropDownListModule(
                       options: [
@@ -140,15 +267,13 @@ class _SignUpState extends State<SignUp> {
                         'A race/ethnicity not listed here'
                       ],
                       hintColor: Color(0xFFABABAB),
-                      hintText: 'Select Ethnicity',
+                      hintText: 'Select ethnicity',
                       textColor: Color(0xFF817F82),
                       borderColor: Colors.transparent,
                       text: 'Ethnicity',
                       backgroundColor: Color(0xFFDEDAE0),
                     ),
-                    SizedBox(height: MediaQuery
-                        .sizeOf(context)
-                        .height * 0.05),
+                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
                     OperationButtonModule(
                         borderColor: Color(0xFF49146D),
                         buttonColor: Color(0xFF49146D),
@@ -166,6 +291,7 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
+
   Future<void> selectDate() async {
     final DateTime now = DateTime.now();
     DateTime? picked = await showDatePicker(
@@ -177,7 +303,7 @@ class _SignUpState extends State<SignUp> {
     if (picked != null) {
       setState(() {
         controllers[4].text =
-        "${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}";
+            "${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}";
       });
     }
   }
