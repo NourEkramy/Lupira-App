@@ -1,11 +1,11 @@
 import 'package:country_picker/country_picker.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/Modules/authentication_button_module.dart';
 import 'package:untitled/Modules/drop_down_list_module.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Modules/user_credentials_card_module.dart';
+
 
 class SignUp extends StatefulWidget {
   SignUp({Key? key}) : super(key: key);
@@ -72,6 +72,15 @@ class _SignUpState extends State<SignUp> {
     }
     super.dispose();
   }
+
+void signUp(){
+ String userName=controllers[0].text;
+ String password=controllers[1].text;
+ String confirmPassword=controllers[2].text;
+ String dateOfBirth=controllers[3].text;
+ String phoneNumber=controllers[4].text;
+
+}
 
   @override
   Widget build(BuildContext context) {
@@ -282,6 +291,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
                     OperationButtonModule(
+                      onTap: signUp,
                         borderColor: Color(0xFF49146D),
                         buttonColor: Color(0xFF49146D),
                         buttonText: 'Sigup',
