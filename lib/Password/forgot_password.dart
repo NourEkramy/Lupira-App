@@ -40,6 +40,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Failed to send email")),
       );
+      setState(() {
+        emailSentFlag = true;
+      });
     }
   }
 
