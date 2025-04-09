@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Modules/user_credentials_card_module.dart';
-
 import 'forgot_password_api.dart';
+
+bool emailSentFlag = false;
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key? key}) : super(key: key);
@@ -30,7 +31,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Email sent successful")),
       );
-      // Navigate or clear form if needed
+
+      setState(() {
+        emailSentFlag = true;
+      });
+
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Failed to send email")),
@@ -46,8 +51,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.06),
-            Text(
-              'Forgot password?',
+            Text(emailSentFlag ? 'Verification email': 'Forgot password?',
               style: TextStyle(
                 fontSize: 43,
                 fontFamily: 'Alegreya',
@@ -56,7 +60,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             ),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.003),
             Text(
-              'Enter your Email account to reset password',
+              emailSentFlag ? 'We’ve sent a verification link to your email': 'Enter your Email account to reset password',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,
@@ -90,7 +94,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     OperationButtonModule(
                       borderColor: Color(0xFF502371),
                       buttonColor: Color(0xFF502371),
-                      buttonText: 'Send verification email',
+                      buttonText: emailSentFlag ? 'Resend email': 'Send verification email',
                       buttonTextColor: Colors.white,
                       onTap: forgotPassword,
                     ),
