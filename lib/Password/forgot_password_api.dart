@@ -24,10 +24,8 @@ class ForgotPasswordApi{
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print('Successful: ${response.body}');
       return true;
     } else {
-      print(" failed: ${response.body}");
       return false;
     }
   }
