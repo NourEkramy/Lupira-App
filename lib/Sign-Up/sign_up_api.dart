@@ -38,10 +38,8 @@ class SignUpApi{
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("Signup successful: ${response.body}");
       return true;
     } else {
-      print("Signup failed: ${response.body}");
       return false;
     }
   }
