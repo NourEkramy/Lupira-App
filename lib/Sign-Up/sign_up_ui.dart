@@ -5,6 +5,7 @@ import 'package:untitled/Modules/drop_down_list_module.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Modules/user_credentials_card_module.dart';
+import 'package:untitled/Sign-Up/sign_up_api.dart';
 
 
 class SignUp extends StatefulWidget {
@@ -21,6 +22,8 @@ class _SignUpState extends State<SignUp> {
 
   Country? selectedCountry;
   Country? selectedPhoneCountry;
+  String? selectedGender;
+  String? selectedEthnicity;
 
   static const List<Map<String, dynamic>> textFields = [
     {
@@ -73,12 +76,39 @@ class _SignUpState extends State<SignUp> {
     super.dispose();
   }
 
-void signUp(){
+Future<void> signUp() async {
  String userName=controllers[0].text;
- String password=controllers[1].text;
- String confirmPassword=controllers[2].text;
- String dateOfBirth=controllers[3].text;
- String phoneNumber=controllers[4].text;
+ String email=controllers[1].text;
+ String password=controllers[2].text;
+ String confirmPassword=controllers[3].text;
+ String dateOfBirth=controllers[4].text;
+ String phoneNumber=controllers[5].text;
+
+ String phone = "+${selectedPhoneCountry!.phoneCode}$phoneNumber";
+ String country = selectedCountry!.name;
+
+ bool success = await SignUpApi.signupUser(
+   username: userName,
+   email: email,
+   password: password,
+   confirmPassword: confirmPassword,
+   dateOfBirth: dateOfBirth,
+   phoneNumber: phone,
+   gender: selectedGender!,
+   country: country,
+   ethnicity: selectedEthnicity!,
+ );
+
+ if (success) {
+   ScaffoldMessenger.of(context).showSnackBar(
+     SnackBar(content: Text("Sign up successful")),
+   );
+   // Navigate or clear form if needed
+ } else {
+   ScaffoldMessenger.of(context).showSnackBar(
+     SnackBar(content: Text("Sign up failed")),
+   );
+ }
 
 }
 
@@ -215,6 +245,11 @@ void signUp(){
                       borderColor: Colors.transparent,
                       text: 'Gender',
                       backgroundColor: Color(0xFFDEDAE0),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedGender = value;
+                        });
+                      },
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
                     Column(
@@ -288,6 +323,11 @@ void signUp(){
                       borderColor: Colors.transparent,
                       text: 'Ethnicity',
                       backgroundColor: Color(0xFFDEDAE0),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedEthnicity = value;
+                        });
+                      },
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
                     OperationButtonModule(

@@ -8,6 +8,8 @@ class DropDownListModule extends StatelessWidget {
   Color textColor;
   Color backgroundColor;
   List<String> options;
+  ValueChanged<String?>? onChanged;
+  String? selectedValue;
 
   DropDownListModule({
     super.key,
@@ -18,6 +20,8 @@ class DropDownListModule extends StatelessWidget {
     required this.borderColor,
     required this.text,
     required this.backgroundColor,
+    this.onChanged,
+    this.selectedValue,
   });
 
   @override
@@ -71,7 +75,8 @@ class DropDownListModule extends StatelessWidget {
               ),
             );
           }).toList(),
-          onChanged: (String? newValue) {},
+          value: selectedValue,
+          onChanged: onChanged,
         ),
       ],
     );
