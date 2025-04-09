@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/Log-In/log_in_api.dart';
 import 'package:untitled/Modules/authentication_button_module.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
@@ -15,8 +16,26 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  TextEditingController userNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  void logIn() async{
+    String email= emailController.text;
+    String password = passwordController.text;
+    bool success = await LogInApi.logInUser(email: email, password: password);
+
+    if (success) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Log in successful")),
+      );
+      // Navigate or clear form if needed
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Log in failed")),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +58,7 @@ class _LogInState extends State<LogIn> {
                 child: Column(
                   children: [
                     TextFieldModule(
-                      textController: userNameController,
+                      textController: emailController,
                       textFieldType: TextInputType.text,
                       hintTextTitle: 'Enter email',
                       textFieldTitle: 'Email',
@@ -81,7 +100,9 @@ class _LogInState extends State<LogIn> {
                         borderColor: Color(0xFF502371),
                         buttonColor: Color(0xFF502371),
                         buttonText: 'Login',
-                        buttonTextColor: Colors.white),
+                        buttonTextColor: Colors.white,
+                        onTap: logIn,
+                    ),
                     AuthenticationButtonModule(
                         conditionOperation: 'Sign Up',
                         conditionQeustion: "Don't have an account?  "),
