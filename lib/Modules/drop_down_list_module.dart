@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class DropDownListModule extends StatelessWidget {
-
   String text;
   String hintText;
   Color borderColor;
@@ -10,7 +9,16 @@ class DropDownListModule extends StatelessWidget {
   Color backgroundColor;
   List<String> options;
 
-  DropDownListModule({super.key, required this.options, required this.hintColor, required this.hintText, required this.textColor, required this.borderColor, required this.text, required this.backgroundColor,});
+  DropDownListModule({
+    super.key,
+    required this.options,
+    required this.hintColor,
+    required this.hintText,
+    required this.textColor,
+    required this.borderColor,
+    required this.text,
+    required this.backgroundColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +34,10 @@ class DropDownListModule extends StatelessWidget {
             color: textColor,
           ),
         ),
+        SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
         DropdownButtonFormField<String>(
+          dropdownColor: Color(0xFFDEDAE0),
           decoration: InputDecoration(
-            hintText: hintText,
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: borderColor),
                 borderRadius: BorderRadius.circular(10)),
@@ -38,18 +47,28 @@ class DropDownListModule extends StatelessWidget {
             border: OutlineInputBorder(
                 borderSide: BorderSide(color: borderColor),
                 borderRadius: BorderRadius.all(Radius.circular(10))),
-            hintStyle: TextStyle(
+            filled: true,
+            fillColor: backgroundColor,
+          ),
+          hint: Text(
+            hintText,
+            style: TextStyle(
               fontSize: 16,
               fontFamily: 'Inder',
               color: hintColor,
             ),
-            filled: true,
-            fillColor: backgroundColor,
           ),
           items: options.map((String value) {
             return DropdownMenuItem<String>(
               value: value,
-              child: Text(value),
+              child: Text(
+                value,
+                style: TextStyle(
+                  fontFamily: 'Inder',
+                  fontSize: 16,
+                  color: textColor,
+                ),
+              ),
             );
           }).toList(),
           onChanged: (String? newValue) {},

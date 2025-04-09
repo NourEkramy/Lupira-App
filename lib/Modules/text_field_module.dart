@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,16 +9,26 @@ class TextFieldModule extends StatelessWidget {
   Color borderColor;
   Color backgroundColor;
   Widget? suffix;
+  TextEditingController textController;
+  TextInputType? textFieldType;
+  bool obscureText;
+  bool isReadOnly;
+  VoidCallback? onTap;
 
   TextFieldModule(
       {super.key,
-      required this.hintTextTitle,
-      required this.textFieldTitle,
-      required this.hintTextColor,
-      required this.titelTextColor,
-      required this.borderColor,
-      required this.backgroundColor,
-      this.suffix});
+        required this.hintTextTitle,
+        required this.textFieldTitle,
+        required this.hintTextColor,
+        required this.titelTextColor,
+        required this.borderColor,
+        required this.backgroundColor,
+        required this.textController,
+        required this.textFieldType,
+        this.obscureText=false,
+        this.isReadOnly=false,
+        this.onTap,
+        this.suffix});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +44,18 @@ class TextFieldModule extends StatelessWidget {
             color: titelTextColor,
           ),
         ),
+        SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
         TextField(
+          onTap: onTap,
+          readOnly: isReadOnly,
+          obscureText: obscureText,
+          controller: textController,
+          keyboardType: textFieldType,
+          style: TextStyle(
+            color: titelTextColor,
+            fontFamily: "Inder",
+            fontSize: 16,
+          ),
           decoration: InputDecoration(
             suffixIcon: suffix ?? SizedBox(),
             hintText: hintTextTitle,
