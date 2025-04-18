@@ -2,7 +2,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class SignUpApi{
-  static Future<bool> signupUser({
+
+  static Future<Map<String, dynamic>> signupUser({
     required String username,
     required String email,
     required String password,
@@ -37,10 +38,18 @@ class SignUpApi{
       body: body,
     );
 
+    final decoded = jsonDecode(response.body);
+
     if (response.statusCode == 200 || response.statusCode == 201) {
-      return true;
+      return {
+        'success': true,
+        'message': decoded['message'] ?? 'Sign up successful',
+      };
     } else {
-      return false;
+      return {
+        'success': false,
+        'message': decoded['message'] ?? 'Sign up failed',
+      };
     }
   }
 }

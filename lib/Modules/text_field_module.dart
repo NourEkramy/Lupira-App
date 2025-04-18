@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 class TextFieldModule extends StatelessWidget {
   String textFieldTitle;
@@ -9,24 +11,28 @@ class TextFieldModule extends StatelessWidget {
   Color borderColor;
   Color backgroundColor;
   Widget? suffix;
-  TextEditingController textController;
+  // TextEditingController textController;
   TextInputType? textFieldType;
   bool obscureText;
   bool isReadOnly;
   VoidCallback? onTap;
+  List<FormFieldValidator<String>>? validators;
+  String name;
 
   TextFieldModule(
       {super.key,
+      required this.name,
+      this.validators,
       required this.hintTextTitle,
       required this.textFieldTitle,
       required this.hintTextColor,
       required this.titelTextColor,
       required this.borderColor,
       required this.backgroundColor,
-      required this.textController,
+      // required this.textController,
       required this.textFieldType,
-      this.obscureText=false,
-      this.isReadOnly=false,
+      this.obscureText = false,
+      this.isReadOnly = false,
       this.onTap,
       this.suffix});
 
@@ -45,11 +51,12 @@ class TextFieldModule extends StatelessWidget {
           ),
         ),
         SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
-        TextField(
+        FormBuilderTextField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           onTap: onTap,
           readOnly: isReadOnly,
           obscureText: obscureText,
-          controller: textController,
+          // controller: textController,
           keyboardType: textFieldType,
           style: TextStyle(
             color: titelTextColor,
@@ -57,6 +64,7 @@ class TextFieldModule extends StatelessWidget {
             fontSize: 16,
           ),
           decoration: InputDecoration(
+            errorMaxLines: 3,
             suffixIcon: suffix ?? SizedBox(),
             hintText: hintTextTitle,
             focusedBorder: OutlineInputBorder(
@@ -76,6 +84,8 @@ class TextFieldModule extends StatelessWidget {
             filled: true,
             fillColor: backgroundColor,
           ),
+          name: name,
+          validator: FormBuilderValidators.compose(validators ?? []),
         ),
       ],
     );
