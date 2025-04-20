@@ -140,16 +140,13 @@ class _SignUpState extends State<SignUp> {
         bool success = response['success'];
         String message = response['message'];
 
-        print('success: $success');
-        print('response: $message');
-        print('response: $response');
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              message,//dont forget the meesage variable
+              message,
               style: TextStyle(color: Colors.white),
             ),
-            backgroundColor: true ? Colors.green : Color(0xFFB9433E),//success
+            backgroundColor: success ? Colors.green : Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -161,45 +158,16 @@ class _SignUpState extends State<SignUp> {
       }catch(e){
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text("Please fix the errors in the form"),
-            backgroundColor: Colors.orange,
+            content: Text("Signup error: $e"),
+            backgroundColor: Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
             behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10,),
           ),
         );
-        print("Signup error: $e");
-      };
-
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   SnackBar(
-      //     content: Text(
-      //       message,//dont forget the meesage variable
-      //       style: TextStyle(color: Colors.white),
-      //     ),
-      //     backgroundColor: true ? Colors.green : Color(0xFFB9433E),//success
-      //     shape: RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.circular(12),
-      //     ),
-      //     behavior: SnackBarBehavior.floating,
-      //     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      //     duration: Duration(seconds: 3),
-      //   ),
-      // );
-    } else {
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   SnackBar(
-      //     content: Text("Please fix the errors in the form"),
-      //     backgroundColor: Colors.orange,
-      //     shape: RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.circular(12),
-      //     ),
-      //     behavior: SnackBarBehavior.floating,
-      //     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      //   ),
-      // );
+      }
     }
   }
 

@@ -1,8 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class SignUpApi{
-
+class SignUpApi {
   static Future<Map<String, dynamic>> signupUser({
     required String username,
     required String email,
@@ -41,14 +40,18 @@ class SignUpApi{
     final decoded = jsonDecode(response.body);
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      return {
-        'success': true,
-        'message': decoded['message'] ?? 'Sign up successful',
-      };
+      try {
+        return {
+          'success': true,
+          'message': decoded['message'] ?? 'Sign up successful',
+        };
+      } catch (e) {
+        throw FormatException("Invalid JSON format: ${response.body}");
+      }
     } else {
       return {
         'success': false,
-        'message': decoded['message'] ?? 'Sign up failed',
+        'message': decoded['error'] ?? 'Sign Up failed',
       };
     }
   }
