@@ -1,9 +1,8 @@
-
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class LogInApi{
-  static Future<bool> logInUser({
+  static Future<Map<String, dynamic>> logInUser({
     required String email,
     required String password,
   }) async {
@@ -24,10 +23,22 @@ class LogInApi{
       body: body,
     );
 
+    final decoded = jsonDecode(response.body);
+
     if (response.statusCode == 200 || response.statusCode == 201) {
-      return true;
+      try {
+        return {
+          'success': true,
+          'message': decoded['message'] ?? 'Login successful',
+        };
+      } catch (e) {
+        throw FormatException("Invalid JSON format: ${response.body}");
+      }
     } else {
-      return false;
+      return {
+        'success': false,
+        'message': decoded['error'] ?? 'Login failed',
+      };
     }
   }
 }
