@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 class DropDownListModule extends StatelessWidget {
   String text;
@@ -8,9 +10,13 @@ class DropDownListModule extends StatelessWidget {
   Color textColor;
   Color backgroundColor;
   List<String> options;
+  String name;
+  List<FormFieldValidator<String>>? validators;
+  ValueChanged<String?>? onChanged;
 
   DropDownListModule({
     super.key,
+    required this.name,
     required this.options,
     required this.hintColor,
     required this.hintText,
@@ -18,6 +24,8 @@ class DropDownListModule extends StatelessWidget {
     required this.borderColor,
     required this.text,
     required this.backgroundColor,
+    this.validators,
+    this.onChanged,
   });
 
   @override
@@ -35,12 +43,12 @@ class DropDownListModule extends StatelessWidget {
           ),
         ),
         SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
-        DropdownButtonFormField<String>(
+        FormBuilderDropdown<String>(
           dropdownColor: Color(0xFFDEDAE0),
           decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: borderColor),
-                borderRadius: BorderRadius.circular(10)),
+                borderRadius: BorderRadius.all(Radius.circular(10))),
             enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: borderColor),
                 borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -71,7 +79,10 @@ class DropDownListModule extends StatelessWidget {
               ),
             );
           }).toList(),
-          onChanged: (String? newValue) {},
+          name: name,
+          validator: FormBuilderValidators.compose(validators ?? []),
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          onChanged: onChanged,
         ),
       ],
     );
