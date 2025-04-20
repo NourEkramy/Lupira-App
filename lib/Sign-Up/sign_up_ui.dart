@@ -116,8 +116,6 @@ class _SignUpState extends State<SignUp> {
 
       String userName = values['Username'];
       String email = values['Email'];
-      String password = values['Password'];
-      String confirmPassword = values['Confirm password'];
       String dateOfBirth = values['Date of birth'];
       String phoneNumber = values['Phone'];
 
@@ -128,8 +126,8 @@ class _SignUpState extends State<SignUp> {
         final response = await SignUpApi.signupUser(
           username: userName,
           email: email,
-          password: password,
-          confirmPassword: confirmPassword,
+          password: values['Password'],
+          confirmPassword: values['Confirm password'],
           dateOfBirth: dateOfBirth,
           phoneNumber: phone,
           gender: selectedGender!,
