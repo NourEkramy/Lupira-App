@@ -1,16 +1,44 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 class TextFieldModule extends StatelessWidget {
   String textFieldTitle;
   String hintTextTitle;
+  Color hintTextColor;
+  Color titelTextColor;
+  Color borderColor;
+  Color backgroundColor;
   Widget? suffix;
+  // TextEditingController textController;
+  TextInputType? textFieldType;
+  bool obscureText;
+  bool isReadOnly;
+  VoidCallback? onTap;
+  List<FormFieldValidator<String>>? validators;
+  String name;
 
-  TextFieldModule({super.key, required this.hintTextTitle, required this.textFieldTitle, this.suffix});
+  TextFieldModule(
+      {super.key,
+        required this.name,
+        this.validators,
+        required this.hintTextTitle,
+        required this.textFieldTitle,
+        required this.hintTextColor,
+        required this.titelTextColor,
+        required this.borderColor,
+        required this.backgroundColor,
+        // required this.textController,
+        required this.textFieldType,
+        this.obscureText = false,
+        this.isReadOnly = false,
+        this.onTap,
+        this.suffix});
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
@@ -18,21 +46,46 @@ class TextFieldModule extends StatelessWidget {
           textFieldTitle,
           style: TextStyle(
             fontFamily: 'Inder',
-            fontSize: 16,
-            color: Color(0xFF57585D),
+            fontSize: 18,
+            color: titelTextColor,
           ),
         ),
-        TextField(
-          decoration: InputDecoration(
-            suffixIcon: suffix?? SizedBox(),
-            hintText: hintTextTitle,
-            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-            border: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(10))),
-            hintStyle: TextStyle(fontFamily: 'Inder',color: Color(0xFFABABAB),),
-            filled: true,
-            fillColor: Color(0xFFDEDAE0),
+        SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
+        FormBuilderTextField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          onTap: onTap,
+          readOnly: isReadOnly,
+          obscureText: obscureText,
+          // controller: textController,
+          keyboardType: textFieldType,
+          style: TextStyle(
+            color: titelTextColor,
+            fontFamily: "Inder",
+            fontSize: 16,
           ),
+          decoration: InputDecoration(
+            errorMaxLines: 3,
+            suffixIcon: suffix ?? SizedBox(),
+            hintText: hintTextTitle,
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: borderColor),
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: borderColor),
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            border: OutlineInputBorder(
+                borderSide: BorderSide(color: borderColor),
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            hintStyle: TextStyle(
+              fontSize: 16,
+              fontFamily: 'Inder',
+              color: hintTextColor,
+            ),
+            filled: true,
+            fillColor: backgroundColor,
+          ),
+          name: name,
+          validator: FormBuilderValidators.compose(validators ?? []),
         ),
       ],
     );
