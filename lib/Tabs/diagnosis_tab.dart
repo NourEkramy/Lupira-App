@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
 import 'package:untitled/Modules/report_card_module.dart';
 
+import '../Detection/detection_screen.dart';
+
 class DiagnosisTab extends StatelessWidget {
   const DiagnosisTab({super.key});
 
@@ -33,6 +35,14 @@ class DiagnosisTab extends StatelessWidget {
               ),
             ),
             DetectionCardModule(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetectionScreen(),
+                  ),
+                );
+              },
               mainTitle: "Start Lupus Detection",
             ),
             Padding(
