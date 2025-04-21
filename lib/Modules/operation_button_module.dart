@@ -6,15 +6,14 @@ class OperationButtonModule extends StatelessWidget {
   Color buttonColor;
   Color buttonTextColor;
   String buttonText;
+  VoidCallback onTap;
 
-  OperationButtonModule({super.key, required this.borderColor, required this.buttonColor, required this.buttonText, required this.buttonTextColor});
+  OperationButtonModule({super.key, required this.borderColor, required this.buttonColor, required this.buttonText, required this.buttonTextColor, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return  ElevatedButton(
-      onPressed: () {
-        // Add your sign-up logic here
-      },
+      onPressed: onTap,
       style: ElevatedButton.styleFrom(
         backgroundColor: buttonColor,
         padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
