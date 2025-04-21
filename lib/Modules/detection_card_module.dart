@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class DetectionCardModule extends StatelessWidget {
   String mainTitle;
   String? subtitle;
+  VoidCallback? onTap;
 
   DetectionCardModule({
     super.key,
     required this.mainTitle,
+    required this.onTap,
     this.subtitle,
   });
 
@@ -58,7 +60,7 @@ class DetectionCardModule extends StatelessWidget {
                         : SizedBox(),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: onTap,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFCABDD3),
                         padding: const EdgeInsets.symmetric(
