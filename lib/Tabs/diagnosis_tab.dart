@@ -3,6 +3,7 @@ import 'package:untitled/Modules/detection_card_module.dart';
 import 'package:untitled/Modules/report_card_module.dart';
 
 import '../Detection/detection_screen.dart';
+import '../Layout/main_layout.dart';
 
 class DiagnosisTab extends StatelessWidget {
   const DiagnosisTab({super.key});
@@ -39,7 +40,10 @@ class DiagnosisTab extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DetectionScreen(),
+                    builder: (context) => MainLayout(
+                      title: "Detection",
+                      child: DetectionScreen(),
+                    ),
                   ),
                 );
               },
