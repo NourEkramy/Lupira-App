@@ -11,7 +11,6 @@ class TextFieldModule extends StatelessWidget {
   Color borderColor;
   Color backgroundColor;
   Widget? suffix;
-  // TextEditingController textController;
   TextInputType? textFieldType;
   bool obscureText;
   bool isReadOnly;
@@ -29,7 +28,6 @@ class TextFieldModule extends StatelessWidget {
         required this.titelTextColor,
         required this.borderColor,
         required this.backgroundColor,
-        // required this.textController,
         required this.textFieldType,
         this.obscureText = false,
         this.isReadOnly = false,

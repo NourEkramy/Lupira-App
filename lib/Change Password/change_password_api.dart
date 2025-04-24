@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class ChangePasswordApi {
   static const String Url =
-      'https://lupira.onrender.com/api/auth/password/forgot';
+      'https://lupira.onrender.com/api/auth/password';
 
   static Future<Map<String, dynamic>> changePassword({
     required String oldPassword,

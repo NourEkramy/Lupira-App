@@ -7,15 +7,18 @@ import 'package:untitled/Modules/text_field_module.dart';
 
 class ChangePassword extends StatefulWidget {
   static const String routName = "ChangePassword";
+
   static List<Map<String, dynamic>> textfields = [
     {
-      'validator': [
+      'validators': [
         FormBuilderValidators.required(errorText: 'Old password is required')
       ],
+      'name': 'Old password',
       'title': 'Old password',
       'hint': 'Enter old password',
     },
     {
+      'name': 'New password',
       'title': 'New password',
       'hint': 'Enter new password',
       'validators': [
@@ -29,7 +32,11 @@ class ChangePassword extends StatefulWidget {
         ),
       ],
     },
-    {'title': 'Confirm password', 'hint': 'Enter password'},
+    {
+      'name': 'Confirm password',
+      'title': 'Confirm password',
+      'hint': 'Enter password',
+    },
   ];
 
   ChangePassword({super.key});
@@ -44,10 +51,12 @@ class _ChangePasswordState extends State<ChangePassword> {
   Future<void> changePassword() async {
     if (_formKey.currentState?.saveAndValidate() ?? false) {
       final values = _formKey.currentState!.value;
+      print("Form Values: $values");
 
       try {
         final response = await ChangePasswordApi.changePassword(
-          token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMjAsImlhdCI6MTc0NTI3MTcyOCwiZXhwIjoxNzQ1Mjc1MzI4fQ.PWkFHvrRCj90gyqtrwunWa-MkqyLrNVyTa1WqmKgL6M",
+          token:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMjAsImlhdCI6MTc0NTUxNzE5MCwiZXhwIjoxNzQ1NTIwNzkwfQ.3e6Gdyi3XMrGdzyCspWC_mk2bRDfM7kfIEkMCtJrhHc",
           confirmPassword: values['Confirm password'],
           newPassword: values['New password'],
           oldPassword: values['Old password'],
@@ -74,7 +83,7 @@ class _ChangePasswordState extends State<ChangePassword> {
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text("$e"),
+            content: Text("Error: $e"),
             backgroundColor: Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -133,7 +142,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   itemBuilder: (context, index) {
                     var textField = ChangePassword.textfields[index];
                     final customValidator =
-                        textField['title'] == 'Confirm password'
+                        textField['name'] == 'Confirm password'
                             ? [
                                 (val) {
                                   final password = _formKey.currentState
@@ -149,7 +158,7 @@ class _ChangePasswordState extends State<ChangePassword> {
 
                     return TextFieldModule(
                       obscureText: true,
-                      name: textField['title'],
+                      name: textField['name'],
                       validators: customValidator,
                       textFieldTitle: textField['title'],
                       hintTextTitle: textField['hint'],
@@ -157,7 +166,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                       titelTextColor: Color(0xFF4B4A4C),
                       borderColor: Color(0xFFABABAB),
                       backgroundColor: Colors.transparent,
-                      textFieldType: null,
+                      textFieldType: TextInputType.visiblePassword,
                     );
                   },
                   itemCount: 3,
