@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../Modules/question_page_module.dart';
+
 class DetectionScreen extends StatefulWidget {
   DetectionScreen({super.key});
 
@@ -13,6 +15,9 @@ class _DetectionScreenState extends State<DetectionScreen> {
   PageController _pageController = PageController();
   int _currentPage = 0;
   double _progress = 0.0;
+  String? selectedFatigue;
+  String? selectedFrequency;
+  String? selectedFever;
 
   void _nextPage() {
     if (_currentPage < 2) {
@@ -44,77 +49,79 @@ class _DetectionScreenState extends State<DetectionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        LinearProgressIndicator(
-          value: _progress,
-          backgroundColor: Colors.grey[300],
-          valueColor: AlwaysStoppedAnimation<Color>(
-            Color(0xFF9166B0),
-          ),
-        ),
-        Expanded(
-          child: PageView(
-            controller: _pageController,
-            physics: NeverScrollableScrollPhysics(),
-            children: [
-              _buildQuestionPage(
-                "Have you experienced persistent fatigue?",
-                ["Yes", "No"],
-              ),
-              _buildQuestionPage(
-                "How often do you experience fatigue?",
-                ["Never", "Rarely", "Sometimes", "Often", "Always"],
-              ),
-              _buildQuestionPage(
-                "Do you have a fever?",
-                ["Yes", "No"],
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: ElevatedButton(
-            onPressed: _nextPage,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF9166B0),
-            ),
-            child: Text(
-              "Next",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildQuestionPage(String question, List<String> options) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(18.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.014,
+            child: LinearProgressIndicator(
+              value: _progress,
+              borderRadius: BorderRadius.circular(20.0),
+              backgroundColor: Color(0xffC5C3C6),
+              valueColor: AlwaysStoppedAnimation<Color>(
+                Color(0xFF9D82AF),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.03,
+          ),
           Text(
             "Symptoms",
             style: TextStyle(
               fontFamily: "Inder",
-              fontSize: 24,
+              fontSize: 26,
               fontWeight: FontWeight.w700,
               color: Color(0xff3D1A57),
             ),
           ),
-          SizedBox(height: 10),
-          Text(question, style: TextStyle(fontSize: 16)),
-          ...options.map((option) {
-            return RadioListTile(
-              title: Text(option),
-              value: option,
-              groupValue: null, // Update this with user response logic
-              onChanged: (value) {},
-            );
-          }).toList(),
+          Expanded(
+            child: PageView(
+              controller: _pageController,
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                QuestionPageModule(
+                  question: "Have you experienced persistent fatigue?",
+                  options: ["Yes", "No"],
+                  selectedValue: selectedFatigue,
+                  onChanged: (value) => setState(() {
+                    selectedFatigue = value;
+                  }),
+                ),
+                QuestionPageModule(
+                  question: "How often do you experience fatigue?",
+                  options: ["Never", "Rarely", "Sometimes", "Often", "Always"],
+                  selectedValue: selectedFrequency,
+                  onChanged: (value) => setState(() {
+                    selectedFrequency = value;
+                  }),
+                ),
+                QuestionPageModule(
+                  question: "Do you have a fever?",
+                  options: ["Yes", "No"],
+                  selectedValue: selectedFever,
+                  onChanged: (value) => setState(() {
+                    selectedFever = value;
+                  }),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: ElevatedButton(
+              onPressed: _nextPage,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFF9166B0),
+              ),
+              child: Text(
+                "Next",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
         ],
       ),
     );
