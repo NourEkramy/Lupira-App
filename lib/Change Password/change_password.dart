@@ -13,12 +13,12 @@ class ChangePassword extends StatefulWidget {
       'validators': [
         FormBuilderValidators.required(errorText: 'Old password is required')
       ],
-      'name': 'Old password',
+      'name': 'oldPassword',
       'title': 'Old password',
       'hint': 'Enter old password',
     },
     {
-      'name': 'New password',
+      'name': 'newPassword',
       'title': 'New password',
       'hint': 'Enter new password',
       'validators': [
@@ -33,13 +33,13 @@ class ChangePassword extends StatefulWidget {
       ],
     },
     {
-      'name': 'Confirm password',
+      'name': 'confirmNewPassword',
       'title': 'Confirm password',
       'hint': 'Enter password',
     },
   ];
 
-  ChangePassword({super.key});
+  const ChangePassword({super.key});
 
   @override
   State<ChangePassword> createState() => _ChangePasswordState();
@@ -51,15 +51,14 @@ class _ChangePasswordState extends State<ChangePassword> {
   Future<void> changePassword() async {
     if (_formKey.currentState?.saveAndValidate() ?? false) {
       final values = _formKey.currentState!.value;
-      print("Form Values: $values");
 
       try {
         final response = await ChangePasswordApi.changePassword(
           token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMjAsImlhdCI6MTc0NTUxNzE5MCwiZXhwIjoxNzQ1NTIwNzkwfQ.3e6Gdyi3XMrGdzyCspWC_mk2bRDfM7kfIEkMCtJrhHc",
-          confirmPassword: values['Confirm password'],
-          newPassword: values['New password'],
-          oldPassword: values['Old password'],
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMjAsImlhdCI6MTc0NTUzNDQ5NiwiZXhwIjoxNzQ1NTM4MDk2fQ.iQCS07ssPbgTF3KVA6nDoDa8c2Xod8A6E6kUXoJFzOI",
+          confirmPassword: values['confirmNewPassword'],
+          newPassword: values['newPassword'],
+          oldPassword: values['oldPassword'],
         );
 
         bool success = response['success'];
@@ -142,11 +141,11 @@ class _ChangePasswordState extends State<ChangePassword> {
                   itemBuilder: (context, index) {
                     var textField = ChangePassword.textfields[index];
                     final customValidator =
-                        textField['name'] == 'Confirm password'
+                        textField['name'] == 'confirmNewPassword'
                             ? [
                                 (val) {
                                   final password = _formKey.currentState
-                                      ?.fields['New password']?.value;
+                                      ?.fields['newPassword']?.value;
                                   if (val == null || val.isEmpty)
                                     return 'Please confirm your password';
                                   if (val != password)

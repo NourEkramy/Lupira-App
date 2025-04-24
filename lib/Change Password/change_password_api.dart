@@ -21,7 +21,7 @@ class ChangePasswordApi {
     final body = jsonEncode({
       'oldPassword': oldPassword,
       'newPassword': newPassword,
-      'confirmPassword': confirmPassword,
+      'confirmNewPassword': confirmPassword,
     });
 
     final response = await http.patch(
