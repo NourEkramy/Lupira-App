@@ -25,11 +25,9 @@ class QuestionsServices {
 
         return model.questions ?? [];
       } else {
-        print("Error: ${response.statusCode} - ${response.body}");
         return [];
       }
     } catch (e) {
-      print("Exception occurred: $e");
       return [];
     }
   }
