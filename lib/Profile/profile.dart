@@ -1,19 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/Modules/drop_down_list_module.dart';
-
+import 'package:untitled/Profile/profile_api.dart';
 import '../Modules/text_field_module.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({super.key});
 
   static const String routName = "Profile";
 
+
+
   static const List<Map<String, dynamic>> textFields = [
     {'title': 'Username', 'hint': 'Nadia'},
     {'title': 'Email', 'hint': 'nadia@gmail.com'},
-    {'title': 'Date of birth', 'hint': '11/5/2002', 'suffix': Icon(Icons.calendar_today_outlined)},
+    {
+      'title': 'Date of birth',
+      'hint': '11/5/2002',
+      'suffix': Icon(Icons.calendar_today_outlined)
+    },
     {'title': 'Phone', 'hint': 'Enter phone number'},
   ];
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
@@ -79,25 +91,31 @@ class Profile extends StatelessWidget {
                   ],
                 ),
               ),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              var textField = textFields[index];
-              return TextFieldModule(
-                textFieldTitle: textField['title'],
-                hintTextTitle: textField['hint'],
-                hintTextColor: Color(0xFF4B4A4C),
-                titelTextColor: Color(0xFF4B4A4C),
-                borderColor: Color(0xFFABABAB),
-                backgroundColor: Color(0xFFDEDAE0),
-                suffix: textField['suffix'],
-              );
-            },
-            itemCount: textFields.length,
-          ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  var textField = Profile.textFields[index];
+                  return TextFieldModule(
+                    textFieldType: null,
+                    name: '',
+                    validators: [],
+                    textFieldTitle: textField['title'],
+                    hintTextTitle: textField['hint'],
+                    hintTextColor: Color(0xFF4B4A4C),
+                    titelTextColor: Color(0xFF4B4A4C),
+                    borderColor: Color(0xFFABABAB),
+                    backgroundColor: Color(0xFFDEDAE0),
+                    suffix: textField['suffix'],
+                  );
+                },
+                itemCount: Profile.textFields.length,
+              ),
+              SizedBox(height: MediaQuery
+                  .sizeOf(context)
+                  .height * 0.01),
               DropDownListModule(
+                  name: '',
                   options: ['Male', 'Female'],
                   hintColor: Color(0xFF4B4A4C),
                   hintText: 'Female',
@@ -105,8 +123,11 @@ class Profile extends StatelessWidget {
                   borderColor: Color(0xFFABABAB),
                   text: 'Gender',
                   backgroundColor: Colors.transparent),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
+              SizedBox(height: MediaQuery
+                  .sizeOf(context)
+                  .height * 0.01),
               DropDownListModule(
+                  name: '',
                   options: ['Egypt', 'Canada', 'UK'],
                   hintColor: Color(0xFF4B4A4C),
                   hintText: 'Country',
@@ -114,8 +135,11 @@ class Profile extends StatelessWidget {
                   borderColor: Color(0xFFABABAB),
                   text: 'Country',
                   backgroundColor: Colors.transparent),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
+              SizedBox(height: MediaQuery
+                  .sizeOf(context)
+                  .height * 0.01),
               DropDownListModule(
+                  name: '',
                   options: [
                     'Asian or Pacific Islander',
                     'Black or African American',
@@ -131,7 +155,9 @@ class Profile extends StatelessWidget {
                   borderColor: Color(0xFFABABAB),
                   text: 'Ethnicity',
                   backgroundColor: Colors.transparent),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
+              SizedBox(height: MediaQuery
+                  .sizeOf(context)
+                  .height * 0.05),
             ],
           ),
         ),
