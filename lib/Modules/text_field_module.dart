@@ -11,37 +11,38 @@ class TextFieldModule extends StatelessWidget {
   Color borderColor;
   Color backgroundColor;
   Widget? suffix;
-  // TextEditingController textController;
   TextInputType? textFieldType;
   bool obscureText;
   bool isReadOnly;
   VoidCallback? onTap;
   List<FormFieldValidator<String>>? validators;
   String name;
+  String? initialProfileData;
 
-  TextFieldModule(
-      {super.key,
-        required this.name,
-        this.validators,
-        required this.hintTextTitle,
-        required this.textFieldTitle,
-        required this.hintTextColor,
-        required this.titelTextColor,
-        required this.borderColor,
-        required this.backgroundColor,
-        // required this.textController,
-        required this.textFieldType,
-        this.obscureText = false,
-        this.isReadOnly = false,
-        this.onTap,
-        this.suffix});
+  TextFieldModule({super.key,
+    required this.name,
+    this.validators,
+    required this.hintTextTitle,
+    required this.textFieldTitle,
+    required this.hintTextColor,
+    required this.titelTextColor,
+    required this.borderColor,
+    required this.backgroundColor,
+    required this.textFieldType,
+    this.initialProfileData,
+    this.obscureText = false,
+    this.isReadOnly = false,
+    this.onTap,
+    this.suffix});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
+        SizedBox(height: MediaQuery
+            .sizeOf(context)
+            .height * 0.03),
         Text(
           textFieldTitle,
           style: TextStyle(
@@ -50,13 +51,15 @@ class TextFieldModule extends StatelessWidget {
             color: titelTextColor,
           ),
         ),
-        SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
+        SizedBox(height: MediaQuery
+            .sizeOf(context)
+            .height * 0.005),
         FormBuilderTextField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           onTap: onTap,
+          initialValue: initialProfileData,
           readOnly: isReadOnly,
           obscureText: obscureText,
-          // controller: textController,
           keyboardType: textFieldType,
           style: TextStyle(
             color: titelTextColor,

@@ -5,6 +5,7 @@ import '../Models/user_profile_data_model.dart';
 class ProfileApi {
   static Future<UserProfileDataModel?> fetchProfile(String token) async {
     final url = Uri.parse('https://lupira.onrender.com/api/users/profile');
+
     final headers = {
       "Authorization": "Bearer $token",
       "Content-Type": "application/json",
@@ -21,10 +22,10 @@ class ProfileApi {
         UserProfileDataModel model = UserProfileDataModel.fromJson(jsonData);
         return model;
       } else {
-
+        print("Failed to fetch profile: ${response.statusCode}");
       }
     } catch (e) {
-
+      print("Error fetching profile: $e");
     }
     return null;
   }
