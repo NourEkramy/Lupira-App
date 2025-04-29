@@ -49,7 +49,7 @@ class _ResetPasswordState extends State<ResetPassword> {
       try {
         final response = await ResetPasswordApi.resetPassword(
           token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMjAsImlhdCI6MTc0NTUxNzE5MCwiZXhwIjoxNzQ1NTIwNzkwfQ.3e6Gdyi3XMrGdzyCspWC_mk2bRDfM7kfIEkMCtJrhHc",
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMjAsImlhdCI6MTc0NTkzODE4MywiZXhwIjoxNzQ1OTQxNzgzfQ.OhvabFu1dXGTEvS7ieMZrVWdvMyB3tFppi9WtzEUes8",
           newPassword: values['newPassword'],
           confirmPassword: values['confirmNewPassword'],
         );
