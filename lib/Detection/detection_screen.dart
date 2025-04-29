@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../Models/detection_questions_model.dart';
 import '../Modules/question_page_module.dart';
+import 'detection_screen_api.dart';
 
 class DetectionScreen extends StatefulWidget {
-  DetectionScreen({super.key});
+  const DetectionScreen({super.key});
 
   static const String routeName = "DetectionScreen";
 
@@ -12,24 +14,56 @@ class DetectionScreen extends StatefulWidget {
 }
 
 class _DetectionScreenState extends State<DetectionScreen> {
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
   int _currentPage = 0;
   double _progress = 0.0;
-  String? selectedFatigue;
-  String? selectedFrequency;
-  String? selectedFever;
+  List<Questions> questionsList = [];
+  Map<String, String?> answers = {};
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadQuestions();
+  }
+
+  Future<void> _loadQuestions() async {
+    String token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMjAsImlhdCI6MTc0NTk2NDk5OSwiZXhwIjoxNzQ1OTY4NTk5fQ.mP4-5xqIVaoBlycM1t5BlVfi7jwHVubY8ZYHMaZ1uGM";
+
+    List<Questions> fetchedQuestions =
+        await QuestionsServices.getQuestions(token);
+    setState(() {
+      questionsList = fetchedQuestions;
+      isLoading = false;
+      _progress = fetchedQuestions.isEmpty ? 0.0 : 1 / fetchedQuestions.length;
+    });
+  }
+
+  String _getTitleForPage(int pageIndex) {
+    if (pageIndex == 0) {
+      return "ANA test presence";
+    } else if (pageIndex > 0 && pageIndex <= 16) {
+      return "Symptoms";
+    } else {
+      return "Laboratory Tests";
+    }
+  }
 
   void _nextPage() {
-    if (_currentPage < 2) {
+    if (_currentPage < questionsList.length - 1) {
       setState(() {
         _currentPage++;
-        _progress = (_currentPage + 1) / 3; // Update progress
+        _progress = (_currentPage + 1) / questionsList.length;
       });
       _pageController.animateToPage(
         _currentPage,
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
+    } else {
+      // All questions answered, you can submit the `answers` map here
+      print("Answers: $answers");
     }
   }
 
@@ -37,11 +71,11 @@ class _DetectionScreenState extends State<DetectionScreen> {
     if (_currentPage > 0) {
       setState(() {
         _currentPage--;
-        _progress = (_currentPage + 1) / 3; // Update progress
+        _progress = (_currentPage + 1) / questionsList.length;
       });
       _pageController.animateToPage(
         _currentPage,
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
     }
@@ -49,6 +83,10 @@ class _DetectionScreenState extends State<DetectionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: Column(
@@ -59,8 +97,8 @@ class _DetectionScreenState extends State<DetectionScreen> {
             child: LinearProgressIndicator(
               value: _progress,
               borderRadius: BorderRadius.circular(20.0),
-              backgroundColor: Color(0xffC5C3C6),
-              valueColor: AlwaysStoppedAnimation<Color>(
+              backgroundColor: const Color(0xffC5C3C6),
+              valueColor: const AlwaysStoppedAnimation<Color>(
                 Color(0xFF9D82AF),
               ),
             ),
@@ -69,8 +107,8 @@ class _DetectionScreenState extends State<DetectionScreen> {
             height: MediaQuery.of(context).size.height * 0.03,
           ),
           Text(
-            "Symptoms",
-            style: TextStyle(
+            _getTitleForPage(_currentPage),
+            style: const TextStyle(
               fontFamily: "Inder",
               fontSize: 26,
               fontWeight: FontWeight.w700,
@@ -78,48 +116,76 @@ class _DetectionScreenState extends State<DetectionScreen> {
             ),
           ),
           Expanded(
-            child: PageView(
+            child: PageView.builder(
               controller: _pageController,
-              physics: NeverScrollableScrollPhysics(),
-              children: [
-                QuestionPageModule(
-                  question: "Have you experienced persistent fatigue?",
-                  options: ["Yes", "No"],
-                  selectedValue: selectedFatigue,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: questionsList.length,
+              itemBuilder: (context, index) {
+                final question = questionsList[index];
+                return QuestionPageModule(
+                  question: question.questionText ?? "",
+                  options: question.options ?? [],
+                  selectedValue: answers[question.sId],
                   onChanged: (value) => setState(() {
-                    selectedFatigue = value;
+                    answers[question.sId ?? ''] = value;
                   }),
-                ),
-                QuestionPageModule(
-                  question: "How often do you experience fatigue?",
-                  options: ["Never", "Rarely", "Sometimes", "Often", "Always"],
-                  selectedValue: selectedFrequency,
-                  onChanged: (value) => setState(() {
-                    selectedFrequency = value;
-                  }),
-                ),
-                QuestionPageModule(
-                  question: "Do you have a fever?",
-                  options: ["Yes", "No"],
-                  selectedValue: selectedFever,
-                  onChanged: (value) => setState(() {
-                    selectedFever = value;
-                  }),
-                ),
-              ],
+                );
+              },
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: ElevatedButton(
-              onPressed: _nextPage,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF9166B0),
-              ),
-              child: Text(
-                "Next",
-                style: TextStyle(color: Colors.white),
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _currentPage > 0
+                    ? GestureDetector(
+                        onTap: _prevPage,
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.arrow_back_ios_outlined,
+                              color: Color(0xff9166B0),
+                              size: 17,
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.02,
+                            ),
+                            const Text(
+                              "Back",
+                              style: TextStyle(
+                                color: Color(0xff9166B0),
+                                fontFamily: "Inder",
+                                fontSize: 19,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    : const SizedBox(),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.27,
+                  child: ElevatedButton(
+                    onPressed: _nextPage,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF502371),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: Text(
+                      _currentPage == questionsList.length - 1
+                          ? "Submit"
+                          : "Next",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Inder",
+                        fontSize: 19,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
