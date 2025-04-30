@@ -17,12 +17,14 @@ class QuestionPageModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.only(bottom: 8.0,),
+            margin: EdgeInsets.only(
+              bottom: 8.0,
+            ),
             child: Text(
               question,
               style: const TextStyle(
@@ -62,6 +64,13 @@ class QuestionPageModule extends StatelessWidget {
               ),
             );
           }),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          const Divider(
+            color: Color(0xffABABAB),
+            thickness: 1,
+          ),
         ],
       ),
     );
