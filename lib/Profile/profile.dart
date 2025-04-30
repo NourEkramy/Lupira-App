@@ -18,6 +18,9 @@ class _ProfileState extends State<Profile> {
   final _formKey = GlobalKey<FormBuilderState>();
   UserProfileDataModel? profileData;
   bool isLoading = true;
+  bool isEditable = false;
+  String token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjA1NDQ3NCwiZXhwIjoxNzQ2MDU4MDc0fQ.hAXHXA89tN5ixE4r3_N81GzZqucbahoH1HKkyLb9HBQ";
 
   static List<Map<String, dynamic>> textFields = [
     {
@@ -26,7 +29,10 @@ class _ProfileState extends State<Profile> {
     {
       'title': 'Email',
     },
-    {'title': 'Date of birth', 'suffix': Icon(Icons.calendar_today_outlined)},
+    {
+      'title': 'Date of birth',
+      'suffix': Icon(Icons.calendar_today_outlined),
+    },
     {
       'title': 'Phone',
     },
@@ -39,14 +45,72 @@ class _ProfileState extends State<Profile> {
   }
 
   Future<void> loadProfile() async {
-    String token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjAxOTcyMywiZXhwIjoxNzQ2MDIzMzIzfQ.oyLCARw-Zd5WgQN4mySUmtFH32KE2_RmOzi9V0_nqYk";
     final data = await ProfileApi.fetchProfile(token);
 
     setState(() {
       profileData = data;
       isLoading = false;
     });
+  }
+
+  Future<void> updateProfile() async {
+    final values = _formKey.currentState!.value;
+
+    String userName = values['Username'];
+    String email = values['Email'];
+    String dateOfBirth = values['Date of birth'];
+    String phoneNumber = values['Phone'];
+    String gender = values['gender']; //is not assigned with real values
+    String country = values['country']; //is not assigned with real values
+    String ethnicity = values['ethnicity']; //is not assigned with real values
+
+    if (_formKey.currentState!.validate()) {
+      try {
+        final response = await ProfileApi.applyProfileEdits(
+          token: token,
+          country: country,
+          dateOfBirth: dateOfBirth,
+          email: email,
+          ethnicity: ethnicity,
+          gender: gender,
+          phoneNumber: phoneNumber,
+          username: userName,
+        );
+        bool success = response['success'];
+        String message = response['message'];
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              message,
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: success ? Colors.green : Color(0xFFB9433E),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            behavior: SnackBarBehavior.floating,
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Updating data error: $e"),
+            backgroundColor: Color(0xFFB9433E),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            behavior: SnackBarBehavior.floating,
+            margin: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 10,
+            ),
+          ),
+        );
+      }
+    }
   }
 
   @override
@@ -138,7 +202,14 @@ class _ProfileState extends State<Profile> {
                             textFieldTitle: textField['title'],
                             hintTextTitle: '',
                             initialProfileData: hintData ?? '',
-                            isReadOnly: true,
+                            isReadOnly: !isEditable,
+                            onTap: () {
+                              if (!isEditable) {
+                                setState(() {
+                                  isEditable = true;
+                                });
+                              }
+                            },
                             hintTextColor: Color(0xFF4B4A4C),
                             titelTextColor: Color(0xFF4B4A4C),
                             borderColor: Color(0xFFABABAB),
@@ -151,7 +222,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
                     DropDownListModule(
-                        isReadOnly: false,
+                        isReadOnly: isEditable,
                         initialProfileChoice: profileData?.data?.gender,
                         name: 'Gender',
                         options: ['Male', 'Female'],
@@ -163,7 +234,7 @@ class _ProfileState extends State<Profile> {
                         backgroundColor: Colors.transparent),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
                     DropDownListModule(
-                        isReadOnly: false,
+                        isReadOnly: isEditable,
                         initialProfileChoice: profileData?.data?.country,
                         name: 'Country',
                         options: ['Egypt', 'Canada', 'UK'],
@@ -175,7 +246,7 @@ class _ProfileState extends State<Profile> {
                         backgroundColor: Colors.transparent),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
                     DropDownListModule(
-                        isReadOnly: false,
+                        isReadOnly: isEditable,
                         initialProfileChoice: profileData?.data?.ethnicity,
                         name: 'Ethnicity',
                         options: [
@@ -194,6 +265,13 @@ class _ProfileState extends State<Profile> {
                         text: 'Ethnicity',
                         backgroundColor: Colors.transparent),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
+                    if (isEditable)
+                      ElevatedButton(
+                        onPressed: updateProfile,
+                        child: Text(
+                          'Save changes',
+                        ),
+                      )
                   ],
                 ),
               ),
