@@ -40,7 +40,7 @@ class _ProfileState extends State<Profile> {
 
   Future<void> loadProfile() async {
     String token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMjAsImlhdCI6MTc0NTk2Nzk4OSwiZXhwIjoxNzQ1OTcxNTg5fQ.qTo75Spl_jmfBh1yrD0CSjUBJU-poAZSUytHVtgatbA";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjAxOTcyMywiZXhwIjoxNzQ2MDIzMzIzfQ.oyLCARw-Zd5WgQN4mySUmtFH32KE2_RmOzi9V0_nqYk";
     final data = await ProfileApi.fetchProfile(token);
 
     setState(() {
