@@ -29,15 +29,16 @@ class Data {
   String? phoneNumber;
   String? ethnicity;
 
-  Data(
-      {this.iId,
-      this.username,
-      this.email,
-      this.gender,
-      this.country,
-      this.dateOfBirth,
-      this.phoneNumber,
-      this.ethnicity});
+  Data({
+    this.iId,
+    this.username,
+    this.email,
+    this.gender,
+    this.country,
+    this.dateOfBirth,
+    this.phoneNumber,
+    this.ethnicity,
+  });
 
   Data.fromJson(Map<String, dynamic> json) {
     iId = json['_id'];

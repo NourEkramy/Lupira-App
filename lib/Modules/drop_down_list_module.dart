@@ -48,7 +48,7 @@ class DropDownListModule extends StatelessWidget {
         ),
         SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
         FormBuilderDropdown<String>(
-          enabled: isReadOnly,
+          enabled: !isReadOnly,
           initialValue: initialProfileChoice,
           dropdownColor: Color(0xFFDEDAE0),
           decoration: InputDecoration(
