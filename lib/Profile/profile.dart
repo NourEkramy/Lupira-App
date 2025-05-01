@@ -20,7 +20,10 @@ class _ProfileState extends State<Profile> {
   bool isLoading = true;
   bool isEditable = false;
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjA1NDQ3NCwiZXhwIjoxNzQ2MDU4MDc0fQ.hAXHXA89tN5ixE4r3_N81GzZqucbahoH1HKkyLb9HBQ";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjEwNTgxMSwiZXhwIjoxNzQ2MTA5NDExfQ.1LyMZW8hwzTBJrodk1E1lDRZIc8r0ohGziI7HnUHTmg";
+  String? selectedCountry;
+  String? selectedGender;
+  String? selectedEthnicity;
 
   static List<Map<String, dynamic>> textFields = [
     {
@@ -45,12 +48,27 @@ class _ProfileState extends State<Profile> {
   }
 
   Future<void> loadProfile() async {
-    final data = await ProfileApi.fetchProfile(token);
+    try {
+      final data = await ProfileApi.fetchProfile(token);
 
-    setState(() {
-      profileData = data;
-      isLoading = false;
-    });
+      if (data != null && data.data != null) {
+        setState(() {
+          profileData = data;
+          selectedGender = data.data!.gender;
+          selectedCountry = data.data!.country;
+          selectedEthnicity = data.data!.ethnicity;
+          isLoading = false;
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   Future<void> updateProfile() async {
@@ -60,21 +78,18 @@ class _ProfileState extends State<Profile> {
     String email = values['Email'];
     String dateOfBirth = values['Date of birth'];
     String phoneNumber = values['Phone'];
-    String gender = values['gender']; //is not assigned with real values
-    String country = values['country']; //is not assigned with real values
-    String ethnicity = values['ethnicity']; //is not assigned with real values
 
     if (_formKey.currentState!.validate()) {
       try {
         final response = await ProfileApi.applyProfileEdits(
-          token: token,
-          country: country,
-          dateOfBirth: dateOfBirth,
-          email: email,
-          ethnicity: ethnicity,
-          gender: gender,
-          phoneNumber: phoneNumber,
-          username: userName,
+          token: token ?? '',
+          country: selectedCountry ?? '',
+          dateOfBirth: dateOfBirth ?? '',
+          email: email ?? '',
+          ethnicity: selectedEthnicity ?? '',
+          gender: selectedGender ?? '',
+          phoneNumber: phoneNumber ?? '',
+          username: userName ?? '',
         );
         bool success = response['success'];
         String message = response['message'];
@@ -135,7 +150,7 @@ class _ProfileState extends State<Profile> {
         ),
       ),
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? Center(child: CircularProgressIndicator(),)
           : SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -221,49 +236,101 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
-                    DropDownListModule(
-                        isReadOnly: isEditable,
-                        initialProfileChoice: profileData?.data?.gender,
-                        name: 'Gender',
-                        options: ['Male', 'Female'],
-                        hintColor: Color(0xFF4B4A4C),
-                        hintText: 'Select Gender',
-                        textColor: Color(0xFF4B4A4C),
-                        borderColor: Color(0xFFABABAB),
-                        text: 'Gender',
-                        backgroundColor: Colors.transparent),
+                    GestureDetector(
+                      onTap: () {
+                        if (!isEditable) {
+                          setState(() {
+                            isEditable = true;
+                          });
+                        }
+                      },
+                      child: AbsorbPointer(
+                        absorbing: !isEditable,
+                        child: DropDownListModule(
+                          isReadOnly: true,
+                          initialProfileChoice: profileData?.data?.gender,
+                          onChanged: (value) {
+                            setState(() {
+                              selectedGender = value;
+                            });
+                          },
+                          name: 'Gender',
+                          options: ['Male', 'Female'],
+                          hintColor: Color(0xFF4B4A4C),
+                          hintText: 'Select Gender',
+                          textColor: Color(0xFF4B4A4C),
+                          borderColor: Color(0xFFABABAB),
+                          text: 'Gender',
+                          backgroundColor: Colors.transparent,
+                        ),
+                      ),
+                    ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
-                    DropDownListModule(
-                        isReadOnly: isEditable,
-                        initialProfileChoice: profileData?.data?.country,
-                        name: 'Country',
-                        options: ['Egypt', 'Canada', 'UK'],
-                        hintColor: Color(0xFF4B4A4C),
-                        hintText: 'Select Country',
-                        textColor: Color(0xFF4B4A4C),
-                        borderColor: Color(0xFFABABAB),
-                        text: 'Country',
-                        backgroundColor: Colors.transparent),
+                    GestureDetector(
+                      onTap: () {
+                        if (!isEditable) {
+                          setState(() {
+                            isEditable = true;
+                          });
+                        }
+                      },
+                      child: AbsorbPointer(
+                        absorbing: !isEditable,
+                        child: DropDownListModule(
+                            isReadOnly: true,
+                            initialProfileChoice: profileData?.data?.country,
+                            onChanged: (value) {
+                              setState(() {
+                                selectedCountry = value;
+                              });
+                            },
+                            name: 'Country',
+                            options: ['Egypt', 'Canada', 'UK'],
+                            hintColor: Color(0xFF4B4A4C),
+                            hintText: 'Select Country',
+                            textColor: Color(0xFF4B4A4C),
+                            borderColor: Color(0xFFABABAB),
+                            text: 'Country',
+                            backgroundColor: Colors.transparent),
+                      ),
+                    ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
-                    DropDownListModule(
-                        isReadOnly: isEditable,
-                        initialProfileChoice: profileData?.data?.ethnicity,
-                        name: 'Ethnicity',
-                        options: [
-                          'Asian or Pacific Islander',
-                          'Black or African American',
-                          'Hispanic or Latino',
-                          'Native American or Alaskan Native',
-                          'White or Caucasian',
-                          'Multoracial or Biracial',
-                          'A race/ethnicity not listed here'
-                        ],
-                        hintColor: Color(0xFF4B4A4C),
-                        hintText: 'Select Ethnicity',
-                        textColor: Color(0xFF4B4A4C),
-                        borderColor: Color(0xFFABABAB),
-                        text: 'Ethnicity',
-                        backgroundColor: Colors.transparent),
+                    GestureDetector(
+                      onTap: () {
+                        if (!isEditable) {
+                          setState(() {
+                            isEditable = true;
+                          });
+                        }
+                      },
+                      child: AbsorbPointer(
+                        absorbing: !isEditable,
+                        child: DropDownListModule(
+                            isReadOnly: true,
+                            initialProfileChoice: profileData?.data?.ethnicity,
+                            onChanged: (value) {
+                              setState(() {
+                                selectedEthnicity = value;
+                              });
+                            },
+                            name: 'Ethnicity',
+                            options: [
+                              'Asian or Pacific Islander',
+                              'Black or African American',
+                              'Hispanic or Latino',
+                              'Native American or Alaskan Native',
+                              'White or Caucasian',
+                              'Multoracial or Biracial',
+                              'A race/ethnicity not listed here'
+                            ],
+                            hintColor: Color(0xFF4B4A4C),
+                            hintText: 'Select Ethnicity',
+                            textColor: Color(0xFF4B4A4C),
+                            borderColor: Color(0xFFABABAB),
+                            text: 'Ethnicity',
+                            backgroundColor: Colors.transparent),
+                      ),
+                    ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
                     if (isEditable)
                       ElevatedButton(
@@ -271,7 +338,7 @@ class _ProfileState extends State<Profile> {
                         child: Text(
                           'Save changes',
                         ),
-                      )
+                      ),
                   ],
                 ),
               ),
