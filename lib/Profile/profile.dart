@@ -1,6 +1,5 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:untitled/Modules/drop_down_list_module.dart';
@@ -23,7 +22,7 @@ class _ProfileState extends State<Profile> {
   bool isLoading = true;
   bool isEditable = false;
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjIxNTk0NSwiZXhwIjoxNzQ2MjE5NTQ1fQ.xEmJnkhzrc7WfUaaQodPPrJr6tYZrc87gasc6jRc2YM";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjIyMTk5MSwiZXhwIjoxNzQ2MjI1NTkxfQ.KNxUQfquXuWpxy0X7XnqUs7AztwP1IG8CetxiOS0p_U";
   Country? selectedCountry;
   String? selectedGender;
   String? selectedEthnicity;
@@ -115,6 +114,7 @@ class _ProfileState extends State<Profile> {
           phoneNumber: phone ?? '',
           username: userName ?? '',
         );
+        print('Raw API Response: $response');
 
         bool success = response['success'];
         String message = response['message'];
@@ -319,8 +319,7 @@ class _ProfileState extends State<Profile> {
                                                     : 'Code',
                                                 style: TextStyle(
                                                   fontFamily: 'Inder',
-                                                  color: selectedPhoneCountry !=
-                                                          null
+                                                  color: selectedPhoneCountry != null
                                                       ? Color(0xFF4B4A4C)
                                                       : Color(0xFF817F82),
                                                   fontSize: 16,
@@ -436,8 +435,7 @@ class _ProfileState extends State<Profile> {
                         FormBuilderField<Country>(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           name: 'country',
-                          validator: FormBuilderValidators.required(
-                              errorText: 'Please select a country'),
+                          validator: null,
                           builder: (FormFieldState<Country?> field) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -454,23 +452,19 @@ class _ProfileState extends State<Profile> {
                                     height: MediaQuery.sizeOf(context).height *
                                         0.005),
                                 GestureDetector(
-                                  onTap: () {
-                                    if (isEditable) {
-                                      setState(() {
-                                        showCountryPicker(
-                                          context: context,
-                                          onSelect: (Country country) {
-                                            field.didChange(
-                                                country); // important
-                                            setState(() {
-                                              selectedCountry =
-                                                  country; // optional for display
-                                            });
-                                          },
-                                        );
-                                      });
-                                    }
-                                  },
+                                  onTap: isEditable
+                                      ? () {
+                                          showCountryPicker(
+                                            context: context,
+                                            onSelect: (Country country) {
+                                              field.didChange(country);
+                                              setState(() {
+                                                selectedCountry = country;
+                                              });
+                                            },
+                                          );
+                                        }
+                                      : null,
                                   child: Container(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 12, vertical: 16),
@@ -488,12 +482,11 @@ class _ProfileState extends State<Profile> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          selectedCountry?.name ??
-                                              'Select country',
+                                          selectedCountry?.name ?? profileData?.data?.country ?? 'Select country',
                                           style: TextStyle(
                                             fontSize: 16,
                                             fontFamily: 'Inder',
-                                            color: selectedCountry == null
+                                            color: (selectedCountry == null && profileData?.data?.country == null)
                                                 ? Color(0xFF817F82)
                                                 : Color(0xFF4B4A4C),
                                           ),
