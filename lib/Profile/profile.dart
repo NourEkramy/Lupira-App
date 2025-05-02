@@ -1,6 +1,8 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:untitled/Modules/drop_down_list_module.dart';
 import 'package:untitled/Profile/profile_api.dart';
 import '../Models/user_profile_data_model.dart';
@@ -21,17 +23,31 @@ class _ProfileState extends State<Profile> {
   bool isLoading = true;
   bool isEditable = false;
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjEyNTkyMiwiZXhwIjoxNzQ2MTI5NTIyfQ.X0dJ-GcYt6CkLoGKlz1cUoFlYlbSuRnbMyRVJ4LpZCc";
-  String? selectedCountry;
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjIxNTk0NSwiZXhwIjoxNzQ2MjE5NTQ1fQ.xEmJnkhzrc7WfUaaQodPPrJr6tYZrc87gasc6jRc2YM";
+  Country? selectedCountry;
   String? selectedGender;
   String? selectedEthnicity;
   bool isUpdating = false;
+  Country? selectedPhoneCountry;
 
   static List<Map<String, dynamic>> textFields = [
     {
+      'validators': [
+        FormBuilderValidators.minLength(5,
+            errorText: 'Username must be at least 5 characters long!'),
+        FormBuilderValidators.match(
+          RegExp(r'^[a-zA-Z0-9._]+$'),
+          errorText:
+              'Username can only contain letters, numbers, periods, and underscores!',
+        ),
+      ],
       'title': 'Username',
     },
     {
+      'validators': [
+        FormBuilderValidators.email(
+            errorText: 'Please enter a valid email address!'),
+      ],
       'title': 'Email',
     },
     {
@@ -57,7 +73,7 @@ class _ProfileState extends State<Profile> {
         setState(() {
           profileData = data;
           selectedGender = data.data!.gender;
-          selectedCountry = data.data!.country;
+          selectedCountry = data.data!.country as Country?;
           selectedEthnicity = data.data!.ethnicity;
           isLoading = false;
         });
@@ -81,6 +97,8 @@ class _ProfileState extends State<Profile> {
       String email = values['Email'] ?? '';
       String dateOfBirth = values['Date of birth'] ?? '';
       String phoneNumber = values['Phone'] ?? '';
+      String phone = "+${selectedPhoneCountry!.phoneCode}$phoneNumber";
+      String country = selectedCountry!.name;
 
       setState(() {
         isUpdating = true;
@@ -89,12 +107,12 @@ class _ProfileState extends State<Profile> {
       try {
         final response = await ProfileApi.applyProfileEdits(
           token: token ?? '',
-          country: selectedCountry ?? '',
+          country: country ?? '',
           dateOfBirth: dateOfBirth ?? '',
           email: email ?? '',
           ethnicity: selectedEthnicity ?? '',
           gender: selectedGender ?? '',
-          phoneNumber: phoneNumber ?? '',
+          phoneNumber: phone ?? '',
           username: userName ?? '',
         );
 
@@ -232,9 +250,136 @@ class _ProfileState extends State<Profile> {
                             else
                               hintData = profileData?.data?.phoneNumber;
 
+                            if (index == 3 && isEditable) {
+                              return FormBuilderField<String>(
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                name: 'Phone',
+                                validator: FormBuilderValidators.compose([
+                                  FormBuilderValidators.required(
+                                      errorText:
+                                          'Please enter the phone number'),
+                                  FormBuilderValidators.match(
+                                      RegExp(r'^\d{6,15}$'),
+                                      errorText: 'Enter a valid phone number'),
+                                ]),
+                                builder: (FormFieldState<String?> field) {
+                                  final hasError = field.hasError;
+
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              0.02),
+                                      Text(
+                                        textField['title'],
+                                        style: TextStyle(
+                                          fontFamily: 'Inder',
+                                          fontSize: 18,
+                                          color: Color(0xFF4B4A4C),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              0.005),
+                                      GestureDetector(
+                                        onTap: () {
+                                          showCountryPicker(
+                                            context: context,
+                                            showPhoneCode: true,
+                                            onSelect: (Country country) {
+                                              setState(() {
+                                                selectedPhoneCountry = country;
+                                              });
+                                            },
+                                          );
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 12, vertical: 3),
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFFDEDAE0),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            border: Border.all(
+                                              color: hasError
+                                                  ? Color(0xFFB9433E)
+                                                  : Color(0xFFABABAB),
+                                            ),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                selectedPhoneCountry != null
+                                                    ? '+${selectedPhoneCountry!.phoneCode}'
+                                                    : 'Code',
+                                                style: TextStyle(
+                                                  fontFamily: 'Inder',
+                                                  color: selectedPhoneCountry !=
+                                                          null
+                                                      ? Color(0xFF4B4A4C)
+                                                      : Color(0xFF817F82),
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                              SizedBox(width: 8),
+                                              Container(
+                                                width: 1,
+                                                height: 24,
+                                                color: Color(0xFF4B4A4C),
+                                              ),
+                                              SizedBox(width: 8),
+                                              Expanded(
+                                                child: TextField(
+                                                  keyboardType:
+                                                      textField['keyboardType'],
+                                                  onChanged: field.didChange,
+                                                  style: TextStyle(
+                                                    color: Color(0xFF4B4A4C),
+                                                    fontFamily: 'Inder',
+                                                  ),
+                                                  decoration: InputDecoration(
+                                                    border: InputBorder.none,
+                                                    hintText: textField['hint'],
+                                                    hintStyle: TextStyle(
+                                                      color: Color(0xFFABABAB),
+                                                      fontFamily: 'Inder',
+                                                    ),
+                                                    // errorText removed here
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      if (hasError)
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 6, left: 12),
+                                          child: Text(
+                                            field.errorText ?? '',
+                                            style: TextStyle(
+                                              color: Color(0xFFB9433E),
+                                              fontSize: 12,
+                                              fontFamily: 'Inder',
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
+
                             return TextFieldModule(
                               textFieldType: null,
                               name: textField['title'],
+                              validators: textField['validators'],
                               textFieldTitle: textField['title'],
                               hintTextTitle: '',
                               initialProfileData: hintData ?? '',
@@ -288,35 +433,93 @@ class _ProfileState extends State<Profile> {
                         ),
                         SizedBox(
                             height: MediaQuery.sizeOf(context).height * 0.01),
-                        GestureDetector(
-                          onTap: () {
-                            if (!isEditable) {
-                              setState(() {
-                                isEditable = true;
-                              });
-                            }
+                        FormBuilderField<Country>(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          name: 'country',
+                          validator: FormBuilderValidators.required(
+                              errorText: 'Please select a country'),
+                          builder: (FormFieldState<Country?> field) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Country',
+                                  style: TextStyle(
+                                    fontFamily: 'Inder',
+                                    fontSize: 18,
+                                    color: Color(0xFF4B4A4C),
+                                  ),
+                                ),
+                                SizedBox(
+                                    height: MediaQuery.sizeOf(context).height *
+                                        0.005),
+                                GestureDetector(
+                                  onTap: () {
+                                    if (isEditable) {
+                                      setState(() {
+                                        showCountryPicker(
+                                          context: context,
+                                          onSelect: (Country country) {
+                                            field.didChange(
+                                                country); // important
+                                            setState(() {
+                                              selectedCountry =
+                                                  country; // optional for display
+                                            });
+                                          },
+                                        );
+                                      });
+                                    }
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 12, vertical: 16),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFDEDAE0),
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: field.hasError
+                                            ? Color(0xFFB9433E)
+                                            : Color(0xFFABABAB),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          selectedCountry?.name ??
+                                              'Select country',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'Inder',
+                                            color: selectedCountry == null
+                                                ? Color(0xFF817F82)
+                                                : Color(0xFF4B4A4C),
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_drop_down,
+                                          color: Color(0xFF606060),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                if (field.hasError)
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 5, left: 8),
+                                    child: Text(
+                                      field.errorText ?? '',
+                                      style: TextStyle(
+                                        color: Color(0xFFB9433E),
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            );
                           },
-                          child: AbsorbPointer(
-                            absorbing: !isEditable,
-                            child: DropDownListModule(
-                              isReadOnly: !isEditable,
-                              initialProfileChoice: profileData?.data?.country,
-                              name: 'Country',
-                              options: ['Egypt', 'Canada', 'UK', 'Japan'],
-                              hintColor: Color(0xFF4B4A4C),
-                              hintText: 'Select Country',
-                              textColor: Color(0xFF4B4A4C),
-                              borderColor: Color(0xFFABABAB),
-                              text: 'Country',
-                              backgroundColor: Colors.transparent,
-                              onChanged: (value) {
-                                setState(() {
-                                  selectedCountry = value;
-                                });
-                                print("look at here $selectedCountry");
-                              },
-                            ),
-                          ),
                         ),
                         SizedBox(
                             height: MediaQuery.sizeOf(context).height * 0.01),
@@ -332,7 +535,8 @@ class _ProfileState extends State<Profile> {
                             absorbing: !isEditable,
                             child: DropDownListModule(
                               isReadOnly: !isEditable,
-                              initialProfileChoice: profileData?.data?.ethnicity,
+                              initialProfileChoice:
+                                  profileData?.data?.ethnicity,
                               name: 'Ethnicity',
                               options: [
                                 'Asian or Pacific Islander',
