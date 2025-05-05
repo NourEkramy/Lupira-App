@@ -24,8 +24,8 @@ class _ProfileState extends State<Profile> {
   bool isEditable = false;
   bool isPhoneEditable = false;
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjQzOTE1OCwiZXhwIjoxNzQ2NDQyNzU4fQ.bvJIcpBq3csdkR7HPsMK56ANeL9zl79jDUQ-w9mP_gM";
-  Country? selectedCountry;
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjQ0NzI5NywiZXhwIjoxNzQ2NDUwODk3fQ.iHroI1td5lXa7uTeH3XGRRA303w7gvokd5iYfLBvtsE";
+  String? selectedCountry;
   String? selectedGender;
   String? selectedEthnicity;
   bool isUpdating = false;
@@ -74,7 +74,7 @@ class _ProfileState extends State<Profile> {
         setState(() {
           profileData = data;
           selectedGender = data.data!.gender;
-          selectedCountry = data.data!.country as Country?;
+          selectedCountry = data.data!.country;
           selectedEthnicity = data.data!.ethnicity;
           isLoading = false;
         });
@@ -98,9 +98,9 @@ class _ProfileState extends State<Profile> {
       String email = values['Email'] ?? '';
       String dateOfBirth = values['Date of birth'] ?? '';
       String phoneNumber = values['Phone'] ?? '';
-      String phone = "+${selectedPhoneCountry!.phoneCode}$phoneNumber";
-      String country = selectedCountry!.name;
-
+      String phone =  selectedPhoneCountry != null
+          ? "+${selectedPhoneCountry!.phoneCode}$phoneNumber"
+          : phoneNumber;
       setState(() {
         isUpdating = true;
       });
@@ -108,7 +108,7 @@ class _ProfileState extends State<Profile> {
       try {
         final response = await ProfileApi.applyProfileEdits(
           token: token ?? '',
-          country: country ?? '',
+          country: selectedCountry ?? '',
           dateOfBirth: dateOfBirth ?? '',
           email: email ?? '',
           ethnicity: selectedEthnicity ?? '',
@@ -119,6 +119,9 @@ class _ProfileState extends State<Profile> {
 
         bool success = response['success'];
         String message = response['message'];
+
+        print('status: $success');
+        print('message: $message');
         if (success) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -135,12 +138,30 @@ class _ProfileState extends State<Profile> {
               duration: Duration(seconds: 3),
             ),
           );
-          await loadProfile;
+          await loadProfile();
           setState(() {
             isEditable = false;
             isUpdating = false;
             isPhoneEditable = false;
           });
+        }else{
+          setState(() {
+            isUpdating = false;
+          });
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(message),
+              backgroundColor: Color(0xFFB9433E),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+            ),
+          );
         }
 
         print('Form Values: $values');
@@ -392,6 +413,9 @@ class _ProfileState extends State<Profile> {
                               backgroundColor: Color(0xFFDEDAE0),
                               suffix: textField['suffix'],
                               onTap: () {
+                                if(index == 2){
+                                  selectDate();
+                                }
                                 if (index == 3) {
                                   setState(() {
                                     isPhoneEditable = true;
@@ -441,12 +465,10 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         SizedBox(
-                            height: MediaQuery.sizeOf(context).height * 0.01),
+                            height: MediaQuery.sizeOf(context).height * 0.03),
                         FormBuilderField<Country>(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           name: 'country',
-                          validator: FormBuilderValidators.required(
-                              errorText: 'Please select a country'),
                           builder: (FormFieldState<Country?> field) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -464,6 +486,11 @@ class _ProfileState extends State<Profile> {
                                         0.005),
                                 GestureDetector(
                                   onTap: () {
+                                    if (!isEditable) {
+                                      setState(() {
+                                        isEditable = true;
+                                      });
+                                    }
                                     if (isEditable) {
                                       setState(() {
                                         showCountryPicker(
@@ -473,7 +500,7 @@ class _ProfileState extends State<Profile> {
                                                 country); // important
                                             setState(() {
                                               selectedCountry =
-                                                  country; // optional for display
+                                                  country.name; // optional for display
                                             });
                                           },
                                         );
@@ -497,7 +524,7 @@ class _ProfileState extends State<Profile> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          selectedCountry?.name ??
+                                          selectedCountry ??
                                               'Select country',
                                           style: TextStyle(
                                             fontSize: 16,
@@ -585,7 +612,6 @@ class _ProfileState extends State<Profile> {
                                   ),
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
-
                               ),
                               child: Text(
                                 'Save changes',
@@ -608,5 +634,25 @@ class _ProfileState extends State<Profile> {
               ),
             ),
     );
+  }
+
+  Future<void> selectDate() async {
+    final DateTime now = DateTime.now();
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: now,
+      firstDate: DateTime(now.year - 100),
+      lastDate: now,
+    );
+
+    if (picked != null) {
+      setState(() {
+        String formattedDate =
+            "${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}";
+
+        _formKey.currentState?.fields['Date of birth']
+            ?.didChange(formattedDate);
+      });
+    }
   }
 }
