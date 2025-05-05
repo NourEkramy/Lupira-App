@@ -22,8 +22,9 @@ class _ProfileState extends State<Profile> {
   UserProfileDataModel? profileData;
   bool isLoading = true;
   bool isEditable = false;
+  bool isPhoneEditable = false;
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjIxNTk0NSwiZXhwIjoxNzQ2MjE5NTQ1fQ.xEmJnkhzrc7WfUaaQodPPrJr6tYZrc87gasc6jRc2YM";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjQzOTE1OCwiZXhwIjoxNzQ2NDQyNzU4fQ.bvJIcpBq3csdkR7HPsMK56ANeL9zl79jDUQ-w9mP_gM";
   Country? selectedCountry;
   String? selectedGender;
   String? selectedEthnicity;
@@ -138,6 +139,7 @@ class _ProfileState extends State<Profile> {
           setState(() {
             isEditable = false;
             isUpdating = false;
+            isPhoneEditable = false;
           });
         }
 
@@ -250,7 +252,7 @@ class _ProfileState extends State<Profile> {
                             else
                               hintData = profileData?.data?.phoneNumber;
 
-                            if (index == 3 && isEditable) {
+                            if (index == 3 && (isEditable && isPhoneEditable)) {
                               return FormBuilderField<String>(
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
@@ -390,7 +392,14 @@ class _ProfileState extends State<Profile> {
                               backgroundColor: Color(0xFFDEDAE0),
                               suffix: textField['suffix'],
                               onTap: () {
-                                if (!isEditable) {
+                                if (index == 3) {
+                                  setState(() {
+                                    isPhoneEditable = true;
+                                    if (!isEditable) {
+                                      isEditable = true;
+                                    }
+                                  });
+                                } else if (!isEditable) {
                                   setState(() {
                                     isEditable = true;
                                   });
@@ -562,14 +571,36 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         SizedBox(
-                            height: MediaQuery.sizeOf(context).height * 0.05),
+                            height: MediaQuery.sizeOf(context).height * 0.035),
                         if (isEditable && !isUpdating)
-                          ElevatedButton(
-                            onPressed: updateProfile,
-                            child: Text('Save changes'),
+                          Center(
+                            child: ElevatedButton(
+                              onPressed: updateProfile,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Color(0xFF49146D),
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                    color: Color(0xFF49146D),
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+
+                              ),
+                              child: Text(
+                                'Save changes',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Inder',
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
                           )
                         else
                           SizedBox(),
+                        SizedBox(
+                            height: MediaQuery.sizeOf(context).height * 0.02),
                       ],
                     ),
                   ),
