@@ -21,7 +21,8 @@ class QuestionsServices {
       if (response.statusCode == 200) {
         Map<String, dynamic> jsonFormat = jsonDecode(response.body);
 
-        detectionQuestionsModel model = detectionQuestionsModel.fromJson(jsonFormat);
+        detectionQuestionsModel model =
+            detectionQuestionsModel.fromJson(jsonFormat);
 
         return model.questions ?? [];
       } else {
@@ -29,6 +30,29 @@ class QuestionsServices {
       }
     } catch (e) {
       return [];
+    }
+  }
+
+  static Future<Map<String, dynamic>> sendAndDetect({
+    required String token,
+    required Map<String, dynamic> body,
+  }) async {
+    Uri url = Uri.parse("https://lupira.onrender.com/api/diagnosis/detection");
+
+    final headers = {
+      "Authorization": "Bearer $token",
+      'Content-Type': 'application/json',
+    };
+
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: jsonEncode(body),
+    );
+    if (response.statusCode == 201) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to submit diagnosis: ${response.statusCode}');
     }
   }
 }

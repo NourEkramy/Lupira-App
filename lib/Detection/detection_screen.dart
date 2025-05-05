@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../Models/detection_questions_model.dart';
-import '../Modules/question_page_module.dart';
+import '../Modules/question_module.dart';
 import 'detection_screen_api.dart';
 
 class DetectionScreen extends StatefulWidget {
@@ -22,6 +22,9 @@ class _DetectionScreenState extends State<DetectionScreen> {
   bool isLoading = true;
   List<List<Questions>> pages = [];
   List<int> startIndexes = [];
+  Map<String, bool> hasError = {};
+  String token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjQ3OTU1NCwiZXhwIjoxNzQ2NDgzMTU0fQ.t64KHgkWCKopsUFJ9LW7EzUZSPFP_E6P0qbfGXpdFtU";
 
   @override
   void initState() {
@@ -48,9 +51,6 @@ class _DetectionScreenState extends State<DetectionScreen> {
   }
 
   Future<void> _loadQuestions() async {
-    String token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjA0ODU2NSwiZXhwIjoxNzQ2MDUyMTY1fQ.7dON4PehfS1Z3TNnYudyINoosodnwWtMN7ftdKXv5Ec";
-
     List<Questions> fetchedQuestions =
         await QuestionsServices.getQuestions(token);
     setState(() {
@@ -67,7 +67,24 @@ class _DetectionScreenState extends State<DetectionScreen> {
     return "Laboratory Tests";
   }
 
-  void _nextPage() {
+  Future<void> _nextPage() async {
+    final currentQuestions = pages[_currentPage];
+    bool hasAnyError = false;
+
+    setState(() {
+      for (var q in currentQuestions) {
+        final id = q.sId ?? '';
+        if ((answers[id] ?? '').isEmpty) {
+          hasError[id] = true;
+          hasAnyError = true;
+        } else {
+          hasError[id] = false;
+        }
+      }
+    });
+
+    if (hasAnyError) return;
+
     if (_currentPage < pages.length - 1) {
       setState(() {
         _currentPage++;
@@ -79,9 +96,45 @@ class _DetectionScreenState extends State<DetectionScreen> {
         curve: Curves.easeInOut,
       );
     } else {
-      // All questions answered, submit answers here
-      print("Answers: $answers");
+      final List<Map<String, dynamic>> formattedAnswers = [];
+
+      int questionNumber = 1;
+      for (var entry in answers.entries) {
+        if (entry.value != null && entry.value!.isNotEmpty) {
+          formattedAnswers.add({
+            "questionNumber": questionNumber++,
+            "answer": entry.value,
+          });
+        }
+      }
+
+      final Map<String, dynamic> requestBody = {
+        "responses": formattedAnswers,
+      };
+
+
+      try {
+        dynamic responseData = await QuestionsServices.sendAndDetect(
+          token: token,
+          body: requestBody,
+        );
+        if (responseData['success'] == true) {
+          String result = responseData['data']['result'];
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Diagnosis: $result")),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(responseData['message'] ?? "Diagnosis failed")),
+          );
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Error: ${e.toString()}")),
+        );
+      }
     }
+
   }
 
   void _prevPage() {
@@ -148,12 +201,14 @@ class _DetectionScreenState extends State<DetectionScreen> {
                         ),
                       ),
                       ...questions.map((question) {
-                        return QuestionPageModule(
+                        return QuestionModule(
                           question: question.questionText ?? "",
                           options: question.options ?? [],
                           selectedValue: answers[question.sId],
+                          hasError: hasError[question.sId] ?? false,
                           onChanged: (value) => setState(() {
                             answers[question.sId ?? ''] = value;
+                            hasError[question.sId ?? ''] = false;
                           }),
                         );
                       }),

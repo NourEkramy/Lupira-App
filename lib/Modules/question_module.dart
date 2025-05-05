@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
-class QuestionPageModule extends StatelessWidget {
+class QuestionModule extends StatelessWidget {
   final String question;
   final List<String> options;
   final String? selectedValue;
   final ValueChanged<String?> onChanged;
+  final bool hasError;
 
-  const QuestionPageModule({
+  const QuestionModule({
     super.key,
     required this.question,
     required this.options,
     required this.selectedValue,
     required this.onChanged,
+    required this.hasError,
   });
 
   @override
@@ -55,6 +57,9 @@ class QuestionPageModule extends StatelessWidget {
                 groupValue: selectedValue,
                 activeColor: const Color(0xFF9166B0),
                 fillColor: WidgetStateColor.resolveWith((states) {
+                  if (hasError) {
+                    return const Color(0xFFB9433E);
+                  }
                   if (states.contains(WidgetState.selected)) {
                     return const Color(0xFF9166B0);
                   }
@@ -71,6 +76,31 @@ class QuestionPageModule extends StatelessWidget {
             color: Color(0xffABABAB),
             thickness: 1,
           ),
+          if (hasError)
+            Container(
+              margin: EdgeInsets.symmetric(
+                vertical: 5,
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.error_outlined,
+                    color: Color(0xFFB9433E),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.01,
+                  ),
+                  Text(
+                    "Please choose one answer",
+                    style: TextStyle(
+                      color: Color(0xFFB9433E),
+                      fontFamily: "Inder",
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            )
         ],
       ),
     );
