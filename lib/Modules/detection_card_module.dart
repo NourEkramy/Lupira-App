@@ -24,7 +24,12 @@ class DetectionCardModule extends StatelessWidget {
             color: const Color(0xFFCABDD3),
             borderRadius: BorderRadius.circular(10),
           ),
-          padding: const EdgeInsets.only(right: 20.0, top: 20.0, bottom: 20.0,),
+          padding: const EdgeInsets.only(
+            right: 20.0,
+            top: 20.0,
+            bottom: 20.0,
+            left: 20.0,
+          ),
           margin: const EdgeInsets.only(
             top: 6,
             right: 4,
@@ -35,7 +40,7 @@ class DetectionCardModule extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.5,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
