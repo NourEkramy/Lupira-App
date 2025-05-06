@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../Detection Result/detection_result_screen.dart';
+import '../Layout/main_layout.dart';
 import '../Models/detection_questions_model.dart';
 import '../Modules/question_module.dart';
 import 'detection_screen_api.dart';
@@ -111,7 +113,6 @@ class _DetectionScreenState extends State<DetectionScreen> {
         "responses": formattedAnswers,
       };
 
-
       try {
         dynamic responseData = await QuestionsServices.sendAndDetect(
           token: token,
@@ -119,12 +120,25 @@ class _DetectionScreenState extends State<DetectionScreen> {
         );
         if (responseData['success'] == true) {
           String result = responseData['data']['result'];
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Diagnosis: $result")),
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MainLayout(
+                title: "History",
+                child: DetectionResultScreen(),
+              ),
+              settings: RouteSettings(
+                arguments: {
+                  'result': result,
+                  'code': responseData['data']['code'],
+                },
+              ),
+            ),
           );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(responseData['message'] ?? "Diagnosis failed")),
+            SnackBar(
+                content: Text(responseData['message'] ?? "Diagnosis failed")),
           );
         }
       } catch (e) {
@@ -133,7 +147,6 @@ class _DetectionScreenState extends State<DetectionScreen> {
         );
       }
     }
-
   }
 
   void _prevPage() {

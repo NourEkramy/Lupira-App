@@ -3,28 +3,30 @@ import 'package:flutter/material.dart';
 class DetectionResultScreen extends StatelessWidget {
   const DetectionResultScreen({super.key});
 
+  static const String routeName = "DetectionResultScreen";
+
   @override
   Widget build(BuildContext context) {
+    var data = ModalRoute.of(context)?.settings.arguments as dynamic;
     return Column(
       children: [
-        Container(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: Color(0xFFABABAB),
-              width: 3,
-            ),
-          ),
-          child: CircleAvatar(
-            radius: 65,
-            backgroundColor: Colors.transparent,
-            child: Icon(
-              Icons.person,
-              color: Color(0xFFABABAB),
-              size: 125,
-            ),
-          ),
-        ),
+        data['code'] == 1
+            ? CircleAvatar(
+                radius: 65,
+                backgroundColor: Color(0xffC2D0D0),
+                child: ImageIcon(
+                  AssetImage("assets/images/warning_positive_result.png"),
+                  size: 125,
+                ),
+              )
+            : CircleAvatar(
+                radius: 65,
+                backgroundColor: Color(0xffDDBCC3),
+                child: ImageIcon(
+                  AssetImage("assets/images/warning_positive_result.png"),
+                  size: 125,
+                ),
+              ),
       ],
     );
   }
