@@ -45,7 +45,7 @@ class ReportCardModule extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  reportDate,
+                  reportResult,
                   style: const TextStyle(
                     color: Color(0xFF4B4A4C),
                     fontFamily: "Inder",
@@ -54,7 +54,7 @@ class ReportCardModule extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  reportResult,
+                  reportDate,
                   style: const TextStyle(
                     color: Color(0xFF817F82),
                     fontFamily: "Inder",
