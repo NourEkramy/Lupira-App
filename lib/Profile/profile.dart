@@ -24,7 +24,7 @@ class _ProfileState extends State<Profile> {
   bool isEditable = false;
   bool isPhoneEditable = false;
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjQ0NzI5NywiZXhwIjoxNzQ2NDUwODk3fQ.iHroI1td5lXa7uTeH3XGRRA303w7gvokd5iYfLBvtsE";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjU0NTk4NywiZXhwIjoxNzQ2NTQ5NTg3fQ.KOlfmbVyXBHMPTRjtsJIRarfr4Ma0nI02YXlLiVSwtA";
   String? selectedCountry;
   String? selectedGender;
   String? selectedEthnicity;
@@ -98,7 +98,7 @@ class _ProfileState extends State<Profile> {
       String email = values['Email'] ?? '';
       String dateOfBirth = values['Date of birth'] ?? '';
       String phoneNumber = values['Phone'] ?? '';
-      String phone =  selectedPhoneCountry != null
+      String phone = selectedPhoneCountry != null
           ? "+${selectedPhoneCountry!.phoneCode}$phoneNumber"
           : phoneNumber;
       setState(() {
@@ -144,7 +144,7 @@ class _ProfileState extends State<Profile> {
             isUpdating = false;
             isPhoneEditable = false;
           });
-        }else{
+        } else {
           setState(() {
             isUpdating = false;
           });
@@ -323,7 +323,9 @@ class _ProfileState extends State<Profile> {
                                         },
                                         child: Container(
                                           padding: EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 3),
+                                            horizontal: 12,
+                                            vertical: 3,
+                                          ),
                                           decoration: BoxDecoration(
                                             color: Color(0xFFDEDAE0),
                                             borderRadius:
@@ -413,7 +415,7 @@ class _ProfileState extends State<Profile> {
                               backgroundColor: Color(0xFFDEDAE0),
                               suffix: textField['suffix'],
                               onTap: () {
-                                if(index == 2){
+                                if (index == 2) {
                                   selectDate();
                                 }
                                 if (index == 3) {
@@ -499,8 +501,8 @@ class _ProfileState extends State<Profile> {
                                             field.didChange(
                                                 country); // important
                                             setState(() {
-                                              selectedCountry =
-                                                  country.name; // optional for display
+                                              selectedCountry = country
+                                                  .name; // optional for display
                                             });
                                           },
                                         );
@@ -509,7 +511,7 @@ class _ProfileState extends State<Profile> {
                                   },
                                   child: Container(
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: 12, vertical: 16),
+                                        horizontal: 12, vertical: 16,),
                                     decoration: BoxDecoration(
                                       color: Color(0xFFDEDAE0),
                                       borderRadius: BorderRadius.circular(10),
@@ -524,8 +526,7 @@ class _ProfileState extends State<Profile> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          selectedCountry ??
-                                              'Select country',
+                                          selectedCountry ?? 'Select country',
                                           style: TextStyle(
                                             fontSize: 16,
                                             fontFamily: 'Inder',
