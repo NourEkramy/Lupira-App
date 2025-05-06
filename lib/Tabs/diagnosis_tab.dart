@@ -1,9 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
 import 'package:untitled/Modules/report_card_module.dart';
+import '../Detection/detection_api.dart';
 
-class DiagnosisTab extends StatelessWidget {
+class DiagnosisTab extends StatefulWidget {
   const DiagnosisTab({super.key});
+
+  @override
+  State<DiagnosisTab> createState() => _DiagnosisTabState();
+}
+
+class _DiagnosisTabState extends State<DiagnosisTab> {
+  List<dynamic> historyData = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjU2MDk1NiwiZXhwIjoxNzQ2NTY0NTU2fQ.X9FN4Tv-a0Qzt9aVA1W0ef8OHeNkL9pKYdE7Vr4oISY";
+
+    try {
+      final response = await HistoryApi.fetchHistory(token);
+
+      if (response['success'] == true) {
+        setState(() {
+          historyData = response['history'] ?? [];
+          isLoading = false;
+        });
+      } else {
+        setState(() {
+          historyData = [];
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +73,7 @@ class DiagnosisTab extends StatelessWidget {
             ),
             DetectionCardModule(
               mainTitle: "Start Lupus Detection",
+              onTap: () {},
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -53,6 +93,7 @@ class DiagnosisTab extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
+                    onTap: (){},
                     child: const Row(
                       children: [
                         Text(
@@ -78,19 +119,24 @@ class DiagnosisTab extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return ReportCardModule(
-                    reportDate: "5 May, 2024",
-                    reportResult: "No signs of lupus detected",
-                  );
-                },
-                itemCount: 5,
+            if (isLoading)
+              Center(child: CircularProgressIndicator())
+            else if (historyData.isEmpty)
+              Text("No history available.")
+            else
+              SizedBox(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return ReportCardModule(
+                      reportDate: historyData[index]['date'].substring(0,10),
+                      reportResult: historyData[index]['resultLabel'],
+                    );
+                  },
+                  itemCount: 5,
+                ),
               ),
-            ),
           ],
         ),
       ),
