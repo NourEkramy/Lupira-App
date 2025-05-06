@@ -25,7 +25,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
   List<int> startIndexes = [];
   Map<String, bool> hasError = {};
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjU0MjY1OSwiZXhwIjoxNzQ2NTQ2MjU5fQ.au707k57OR4bWIjXPqLKz5TveYqfzuwJV5KG8WYKiNc";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjU2MTQ4NSwiZXhwIjoxNzQ2NTY1MDg1fQ.0mC37xWv8g2_QsQaEeOknfh_obGNc8dqdQ-fXC0Dhv4";
 
   @override
   void initState() {

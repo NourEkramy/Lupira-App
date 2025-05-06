@@ -67,7 +67,7 @@ class DetectionResultScreen extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Image.asset("name"),
+                    Image.asset("assets/images/phonendoscope.png"),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.002,
                     ),
