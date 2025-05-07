@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
 import 'package:untitled/Modules/report_card_module.dart';
+import '../Detection Details/detection_details_screen.dart';
 import '../Detection-History/detection_history.dart';
 import '../Detection/detection_api.dart';
 import '../Layout/main_layout.dart';
@@ -24,7 +25,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
 
   Future<void> fetchData() async {
     const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjYyMTY5NSwiZXhwIjoxNzQ2NjI1Mjk1fQ.Ud6JRRH7n1rma3o2qbLxPQXjHirjsLtlsTx17yTfBPM";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjY0NTMyOCwiZXhwIjoxNzQ3MjUwMTI4fQ.PRYBxAM9jcRLzAeUESwxI-yAqXvTZGRqJb6Gb5MJ3rw";
 
     try {
       final response = await HistoryApi.fetchHistory(token);
@@ -146,6 +147,19 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return ReportCardModule(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MainLayout(
+                              child: DetectionDetailsScreen(
+                                detectionData: historyData[index],
+                              ),
+                              title: 'Detection Details',
+                            ),
+                          ),
+                        );
+                      },
                       reportDate: historyData[index]['date'].substring(0, 10),
                       reportResult: historyData[index]['resultLabel'],
                     );

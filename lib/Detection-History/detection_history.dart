@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/Detection/detection_api.dart';
+import 'package:untitled/Layout/main_layout.dart';
 import 'package:untitled/Modules/report_card_module.dart';
+
+import '../Detection Details/detection_details_screen.dart';
 
 class DetectionHistory extends StatefulWidget {
   static const String routeName = "DetectionHistory";
@@ -23,7 +26,7 @@ class _DetectionHistoryState extends State<DetectionHistory> {
 
   Future<void> fetchData() async {
     const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjYyMTY5NSwiZXhwIjoxNzQ2NjI1Mjk1fQ.Ud6JRRH7n1rma3o2qbLxPQXjHirjsLtlsTx17yTfBPM";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjY0NTMyOCwiZXhwIjoxNzQ3MjUwMTI4fQ.PRYBxAM9jcRLzAeUESwxI-yAqXvTZGRqJb6Gb5MJ3rw";
 
     try {
       final response = await HistoryApi.fetchHistory(token);
@@ -57,8 +60,22 @@ class _DetectionHistoryState extends State<DetectionHistory> {
       child: ListView.builder(
         itemBuilder: (context, index) {
           return ReportCardModule(
-            reportDate: historyData[index]['date'].substring(0, 10),
-            reportResult: historyData[index]['resultLabel'],
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MainLayout(
+                    child: DetectionDetailsScreen(
+                      detectionData: historyData[index],
+                    ),
+                    title: 'Detection Details',
+                  ),
+                ),
+              );
+            },
+            reportDate: historyData[index]['date']?.substring(0, 10) ??
+                'Unknown date',
+            reportResult: historyData[index]['resultLabel'] ?? 'No result',
           );
         },
         itemCount: historyData.length,

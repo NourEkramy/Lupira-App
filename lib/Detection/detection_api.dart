@@ -3,7 +3,7 @@ import 'dart:convert';
 
 class HistoryApi {
   static Future<dynamic?> fetchHistory(String token) async {
-    final url = Uri.parse('https://lupira.onrender.com/api/diagnosis/history');
+    final url = Uri.parse('https://bismallah-gradproject.onrender.com/api/diagnosis/history');
 
     final headers = {
       "Authorization": "Bearer $token",

@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 class ReportCardModule extends StatelessWidget {
   String reportDate;
   String reportResult;
+  VoidCallback onTap;
 
   ReportCardModule({
     super.key,
     required this.reportDate,
     required this.reportResult,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           color: const Color(0xffD2CFD3),
