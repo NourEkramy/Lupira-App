@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
 import 'package:untitled/Modules/report_card_module.dart';
+import '../Detection-History/detection_history.dart';
 import '../Detection/detection_api.dart';
+import '../Layout/main_layout.dart';
 
 class DiagnosisTab extends StatefulWidget {
   const DiagnosisTab({super.key});
@@ -21,7 +23,8 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
   }
 
   Future<void> fetchData() async {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjU2MDk1NiwiZXhwIjoxNzQ2NTY0NTU2fQ.X9FN4Tv-a0Qzt9aVA1W0ef8OHeNkL9pKYdE7Vr4oISY";
+    const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjYyMTY5NSwiZXhwIjoxNzQ2NjI1Mjk1fQ.Ud6JRRH7n1rma3o2qbLxPQXjHirjsLtlsTx17yTfBPM";
 
     try {
       final response = await HistoryApi.fetchHistory(token);
@@ -93,7 +96,20 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: (){},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MainLayout(
+                            title: "History",
+                            child: DetectionHistory(),
+                          ),
+                          settings: RouteSettings(
+                            arguments: {'responseData': historyData},
+                          ),
+                        ),
+                      );
+                    },
                     child: const Row(
                       children: [
                         Text(
@@ -130,7 +146,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return ReportCardModule(
-                      reportDate: historyData[index]['date'].substring(0,10),
+                      reportDate: historyData[index]['date'].substring(0, 10),
                       reportResult: historyData[index]['resultLabel'],
                     );
                   },

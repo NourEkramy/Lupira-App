@@ -16,11 +16,27 @@ class MainLayout extends StatelessWidget {
       return Scaffold(
         backgroundColor: Color(0xFFDEDAE0),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
+          leading: Builder(
+            builder: (BuildContext context) {
+              return Navigator.canPop(context)
+                  ? IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.pop(context); // Navigate back
+                },
+              )
+                  : SizedBox(); // No back button on the first screen
+            },
+          ),
           elevation: 0,
           toolbarHeight: MediaQuery.of(context).size.height * 0.086,
           shape: RoundedRectangleBorder(
-            borderRadius:
-            BorderRadius.vertical(bottom: Radius.circular(10)),
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
           ),
           backgroundColor: Color(0xFF744199),
           title: Center(
