@@ -25,7 +25,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
   List<int> startIndexes = [];
   Map<String, bool> hasError = {};
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjU2MTQ4NSwiZXhwIjoxNzQ2NTY1MDg1fQ.0mC37xWv8g2_QsQaEeOknfh_obGNc8dqdQ-fXC0Dhv4";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjY0NTMyOCwiZXhwIjoxNzQ3MjUwMTI4fQ.PRYBxAM9jcRLzAeUESwxI-yAqXvTZGRqJb6Gb5MJ3rw";
 
   @override
   void initState() {
@@ -58,7 +58,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
       questionsList = fetchedQuestions;
       _splitQuestionsIntoPages();
       isLoading = false;
-      _progress = fetchedQuestions.isEmpty ? 0.0 : 1 / fetchedQuestions.length;
+      _progress = 0.0;
     });
   }
 
@@ -89,7 +89,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
     if (_currentPage < pages.length - 1) {
       setState(() {
         _currentPage++;
-        _progress = (_currentPage + 1) / pages.length;
+        _progress = _currentPage / pages.length;
       });
       _pageController.animateToPage(
         _currentPage,
@@ -153,7 +153,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
     if (_currentPage > 0) {
       setState(() {
         _currentPage--;
-        _progress = (_currentPage + 1) / pages.length;
+        _progress = _currentPage / pages.length;
       });
       _pageController.animateToPage(
         _currentPage,
@@ -178,16 +178,32 @@ class _DetectionScreenState extends State<DetectionScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.014,
-            child: LinearProgressIndicator(
-              value: _progress,
-              borderRadius: BorderRadius.circular(20.0),
-              backgroundColor: const Color(0xffC5C3C6),
-              valueColor: const AlwaysStoppedAnimation<Color>(
-                Color(0xFF9D82AF),
+          Row(
+            children: [
+              Text(
+                "${(_progress * 100).ceil()}%",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color(0xff817F82),
+                ),
               ),
-            ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.03,
+              ),
+              Expanded(
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.014,
+                  child: LinearProgressIndicator(
+                    value: _progress,
+                    borderRadius: BorderRadius.circular(20.0),
+                    backgroundColor: const Color(0xffC5C3C6),
+                    valueColor: const AlwaysStoppedAnimation<Color>(
+                      Color(0xFF9D82AF),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.03,

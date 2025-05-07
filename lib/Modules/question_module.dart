@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../Bottom Sheets/explanation_bottom_sheet.dart';
+
 class QuestionModule extends StatelessWidget {
   final String question;
   final List<String> options;
@@ -19,22 +21,52 @@ class QuestionModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8.0,
+        vertical: 10.0,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: EdgeInsets.only(
-              bottom: 8.0,
-            ),
-            child: Text(
-              question,
-              style: const TextStyle(
-                fontFamily: "Inder",
-                fontSize: 18,
-                color: Color(0xff4B4A4C),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.only(
+                    bottom: 8.0,
+                  ),
+                  child: Text(
+                    question,
+                    style: const TextStyle(
+                      fontFamily: "Inder",
+                      fontSize: 18,
+                      color: Color(0xff4B4A4C),
+                    ),
+                  ),
+                ),
               ),
-            ),
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return ExplanationBottomSheet();
+                    },
+                  );
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: 6.0,
+                  ),
+                  child: Icon(
+                    Icons.info_outlined,
+                    color: Color(0xff744199),
+                    size: 28,
+                  ),
+                ),
+              ),
+            ],
           ),
           ...options.map((option) {
             return ListTile(
@@ -74,7 +106,6 @@ class QuestionModule extends StatelessWidget {
           ),
           const Divider(
             color: Color(0xffABABAB),
-            thickness: 1,
           ),
           if (hasError)
             Container(

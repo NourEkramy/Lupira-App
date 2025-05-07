@@ -5,7 +5,7 @@ import '../Models/detection_questions_model.dart';
 class QuestionsServices {
   static Future<List<Questions>> getQuestions(String token) async {
     Uri url = Uri.https(
-      "lupira.onrender.com",
+      "bismallah-gradproject.onrender.com",
       "/api/diagnosis/questions",
     );
 
@@ -37,7 +37,7 @@ class QuestionsServices {
     required String token,
     required Map<String, dynamic> body,
   }) async {
-    Uri url = Uri.parse("https://lupira.onrender.com/api/diagnosis/detection");
+    Uri url = Uri.parse("https://bismallah-gradproject.onrender.com/api/diagnosis/detection");
 
     final headers = {
       "Authorization": "Bearer $token",
