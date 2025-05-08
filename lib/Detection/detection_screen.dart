@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Detection Result/detection_result_screen.dart';
+import 'detection_result_screen.dart';
 import '../Layout/main_layout.dart';
 import '../Models/detection_questions_model.dart';
 import '../Modules/question_module.dart';
@@ -25,7 +25,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
   List<int> startIndexes = [];
   Map<String, bool> hasError = {};
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjY4OTM3OSwiZXhwIjoxNzQ3Mjk0MTc5fQ.h2TXZuUU6CG9ij9drtdUL0hTDq_S3OUdHRBLJuS4SEY";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjcwMjQ4MCwiZXhwIjoxNzQ3MzA3MjgwfQ.YjPLQync1xPE15yl3n3lJMXnyDUjiDXJQqLluWoW8dQ";
 
   @override
   void initState() {

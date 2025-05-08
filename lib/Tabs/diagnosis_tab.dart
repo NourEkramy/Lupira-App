@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Bottom%20Sheets/prerequisites_bottom_sheet.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
 import 'package:untitled/Modules/report_card_module.dart';
 
@@ -37,14 +38,12 @@ class DiagnosisTab extends StatelessWidget {
             ),
             DetectionCardModule(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MainLayout(
-                      title: "Detection",
-                      child: DetectionScreen(),
-                    ),
-                  ),
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (BuildContext context){
+                    return PrerequisitesBottomSheet();
+                  },
                 );
               },
               mainTitle: "Start Lupus Detection",
