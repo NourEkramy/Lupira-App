@@ -26,7 +26,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
   Map<String, bool> hasError = {};
   bool hasErrorLoadingQuestions = false;
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjcyNzQ1MiwiZXhwIjoxNzQ3MzMyMjUyfQ.XA9SfWhC6PnOZVB97XOyNdVLnGLXfY4XWkcmA5qz-s8";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjczMjUzOSwiZXhwIjoxNzQ3MzM3MzM5fQ.x5FME22WT3HYMfkDunRMB2BxeJ5Vh8pIkB9T5MHo0mA";
 
   @override
   void initState() {
@@ -114,11 +114,14 @@ class _DetectionScreenState extends State<DetectionScreen> {
     } else {
       final List<Map<String, dynamic>> formattedAnswers = [];
 
-      int questionNumber = 1;
       for (var entry in answers.entries) {
+        final question = questionsList.firstWhere(
+              (q) => q.sId == entry.key,
+        );
+
         if (entry.value != null && entry.value!.isNotEmpty) {
           formattedAnswers.add({
-            "questionNumber": questionNumber++,
+            "questionNumber": question.questionNumber,
             "answer": entry.value,
           });
         }
