@@ -25,7 +25,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
 
   Future<void> fetchData() async {
     const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjY0NTMyOCwiZXhwIjoxNzQ3MjUwMTI4fQ.PRYBxAM9jcRLzAeUESwxI-yAqXvTZGRqJb6Gb5MJ3rw";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjY4ODc1OCwiZXhwIjoxNzQ3MjkzNTU4fQ.tkRDftMFDYeTAHSgsML6MogudZYrLUUmoPcPYsxAXgU";
 
     try {
       final response = await HistoryApi.fetchHistory(token);
