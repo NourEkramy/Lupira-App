@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Detection Result/detection_result_screen.dart';
+import 'detection_result_screen.dart';
 import '../Layout/main_layout.dart';
 import '../Models/detection_questions_model.dart';
 import '../Modules/question_module.dart';
@@ -24,8 +24,9 @@ class _DetectionScreenState extends State<DetectionScreen> {
   List<List<Questions>> pages = [];
   List<int> startIndexes = [];
   Map<String, bool> hasError = {};
+  bool hasErrorLoadingQuestions = false;
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjY4OTM3OSwiZXhwIjoxNzQ3Mjk0MTc5fQ.h2TXZuUU6CG9ij9drtdUL0hTDq_S3OUdHRBLJuS4SEY";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjcwMjQ4MCwiZXhwIjoxNzQ3MzA3MjgwfQ.YjPLQync1xPE15yl3n3lJMXnyDUjiDXJQqLluWoW8dQ";
 
   @override
   void initState() {
@@ -55,8 +56,13 @@ class _DetectionScreenState extends State<DetectionScreen> {
     List<Questions> fetchedQuestions =
         await QuestionsServices.getQuestions(token);
     setState(() {
-      questionsList = fetchedQuestions;
-      _splitQuestionsIntoPages();
+      if (fetchedQuestions.isEmpty) {
+        hasErrorLoadingQuestions = true;
+      } else {
+        questionsList = fetchedQuestions;
+        _splitQuestionsIntoPages();
+        hasErrorLoadingQuestions = false;
+      }
       isLoading = false;
       _progress = 0.0;
     });
@@ -169,6 +175,36 @@ class _DetectionScreenState extends State<DetectionScreen> {
       return const Center(child: CircularProgressIndicator());
     }
 
+    if (hasErrorLoadingQuestions) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 90,
+              backgroundColor: Color(0xffDDBCC3),
+              child: ImageIcon(
+                AssetImage("assets/images/warning_positive_result.png"),
+                color: Color(0xffD6101D),
+                size: 125,
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.025,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                "Questions unavailable !\n Please try again later",
+                style: TextStyle(fontFamily: "Inder",fontSize: 25, color: Color(0xffD6101D)),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.only(
         top: 18.0,
@@ -232,11 +268,14 @@ class _DetectionScreenState extends State<DetectionScreen> {
                         // Show question 20 only if question 19 was answered "Yes"
                         if (question.questionNumber == 20) {
                           return answers.entries.any((entry) =>
-                          questionsList.firstWhere((q) => q.sId == entry.key).questionNumber == 19 &&
+                              questionsList
+                                      .firstWhere((q) => q.sId == entry.key)
+                                      .questionNumber ==
+                                  19 &&
                               entry.value == 'Yes');
                         }
                         return true;
-                      }).map((question){
+                      }).map((question) {
                         return QuestionModule(
                           question: question.questionText ?? "",
                           options: question.options ?? [],
@@ -246,7 +285,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
                             answers[question.sId ?? ''] = value;
                             hasError[question.sId ?? ''] = false;
                           }),
-                          explanationText: question.explanation??"",
+                          explanationText: question.explanation ?? "",
                         );
                       }),
                       SizedBox(
