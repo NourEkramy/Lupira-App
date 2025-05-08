@@ -25,7 +25,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
   List<int> startIndexes = [];
   Map<String, bool> hasError = {};
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjY0NTMyOCwiZXhwIjoxNzQ3MjUwMTI4fQ.PRYBxAM9jcRLzAeUESwxI-yAqXvTZGRqJb6Gb5MJ3rw";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjY4OTM3OSwiZXhwIjoxNzQ3Mjk0MTc5fQ.h2TXZuUU6CG9ij9drtdUL0hTDq_S3OUdHRBLJuS4SEY";
 
   @override
   void initState() {
@@ -228,7 +228,15 @@ class _DetectionScreenState extends State<DetectionScreen> {
                           color: Color(0xff3D1A57),
                         ),
                       ),
-                      ...questions.map((question) {
+                      ...questions.where((question) {
+                        // Show question 20 only if question 19 was answered "Yes"
+                        if (question.questionNumber == 20) {
+                          return answers.entries.any((entry) =>
+                          questionsList.firstWhere((q) => q.sId == entry.key).questionNumber == 19 &&
+                              entry.value == 'Yes');
+                        }
+                        return true;
+                      }).map((question){
                         return QuestionModule(
                           question: question.questionText ?? "",
                           options: question.options ?? [],
@@ -238,6 +246,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
                             answers[question.sId ?? ''] = value;
                             hasError[question.sId ?? ''] = false;
                           }),
+                          explanationText: question.explanation??"",
                         );
                       }),
                       SizedBox(

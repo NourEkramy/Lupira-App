@@ -8,6 +8,7 @@ class QuestionModule extends StatelessWidget {
   final String? selectedValue;
   final ValueChanged<String?> onChanged;
   final bool hasError;
+  final String explanationText;
 
   const QuestionModule({
     super.key,
@@ -16,6 +17,7 @@ class QuestionModule extends StatelessWidget {
     required this.selectedValue,
     required this.onChanged,
     required this.hasError,
+    required this.explanationText,
   });
 
   @override
@@ -51,7 +53,7 @@ class QuestionModule extends StatelessWidget {
                   showModalBottomSheet(
                     context: context,
                     builder: (BuildContext context) {
-                      return ExplanationBottomSheet();
+                      return ExplanationBottomSheet(explanation: explanationText,);
                     },
                   );
                 },

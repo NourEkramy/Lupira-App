@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ExplanationBottomSheet extends StatelessWidget {
-  ExplanationBottomSheet({super.key});
+  String explanation;
+
+  ExplanationBottomSheet({
+    super.key,
+    required this.explanation,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +21,7 @@ class ExplanationBottomSheet extends StatelessWidget {
       width: double.infinity,
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             padding: EdgeInsets.symmetric(
@@ -40,7 +46,32 @@ class ExplanationBottomSheet extends StatelessWidget {
             ),
           ),
           SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
-
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "What does it mean?",
+                  style: TextStyle(
+                    fontFamily: "Inder",
+                    fontSize: 24,
+                    color: Color(0xff4B4A4C),
+                  ),
+                ),
+                SizedBox(height: MediaQuery.sizeOf(context).height * 0.013),
+                Text(
+                  explanation,
+                  style: TextStyle(
+                    fontFamily: "Inder",
+                    fontSize: 20,
+                    color: Color(0xff4B4A4C),
+                  ),
+                ),
+                SizedBox(height: MediaQuery.sizeOf(context).height * 0.07),
+              ],
+            ),
+          ),
         ],
       ),
     );

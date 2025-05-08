@@ -32,6 +32,7 @@ class Questions {
   int? iV;
   String? createdAt;
   String? updatedAt;
+  String? explanation;
 
   Questions(
       {this.sId,
@@ -40,7 +41,7 @@ class Questions {
         this.options,
         this.iV,
         this.createdAt,
-        this.updatedAt});
+        this.updatedAt,this.explanation,});
 
   Questions.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -50,6 +51,7 @@ class Questions {
     iV = json['__v'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
+    explanation=json['explanation'];
   }
 
   Map<String, dynamic> toJson() {
@@ -61,6 +63,7 @@ class Questions {
     data['__v'] = this.iV;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
+    data['explanation'] = this.explanation;
     return data;
   }
 }
