@@ -29,7 +29,7 @@ class DetectionResultScreen extends StatelessWidget {
                   child: ImageIcon(
                     AssetImage("assets/images/negative_result.png"),
                     color: Color(0xff209872),
-                    size: 125,
+                    size: 160,
                   ),
                 ),
           SizedBox(

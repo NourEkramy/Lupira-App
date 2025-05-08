@@ -26,7 +26,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
   Map<String, bool> hasError = {};
   bool hasErrorLoadingQuestions = false;
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjcwMjQ4MCwiZXhwIjoxNzQ3MzA3MjgwfQ.YjPLQync1xPE15yl3n3lJMXnyDUjiDXJQqLluWoW8dQ";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjcyMTM3MywiZXhwIjoxNzQ3MzI2MTczfQ.9T2DBO7NY-ac85-FSN3V0TaWklapNWJJ0Dk8ht2VKjw";
 
   @override
   void initState() {
@@ -81,6 +81,15 @@ class _DetectionScreenState extends State<DetectionScreen> {
     setState(() {
       for (var q in currentQuestions) {
         final id = q.sId ?? '';
+
+        if (q.questionNumber == 20) {
+          final q19 = questionsList.firstWhere((q) => q.questionNumber == 19);
+          final q19Answer = answers[q19.sId];
+          if (q19Answer != 'Yes') {
+            continue; // Skip validation for Q20
+          }
+        }
+
         if ((answers[id] ?? '').isEmpty) {
           hasError[id] = true;
           hasAnyError = true;
