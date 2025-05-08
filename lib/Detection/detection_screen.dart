@@ -26,7 +26,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
   Map<String, bool> hasError = {};
   bool hasErrorLoadingQuestions = false;
   String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjcyMTM3MywiZXhwIjoxNzQ3MzI2MTczfQ.9T2DBO7NY-ac85-FSN3V0TaWklapNWJJ0Dk8ht2VKjw";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjcyNzQ1MiwiZXhwIjoxNzQ3MzMyMjUyfQ.XA9SfWhC6PnOZVB97XOyNdVLnGLXfY4XWkcmA5qz-s8";
 
   @override
   void initState() {
@@ -139,7 +139,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
             context,
             MaterialPageRoute(
               builder: (context) => MainLayout(
-                title: "History",
+                title: "Detection Result",
                 child: DetectionResultScreen(),
               ),
               settings: RouteSettings(
