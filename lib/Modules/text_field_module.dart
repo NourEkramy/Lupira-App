@@ -21,20 +21,20 @@ class TextFieldModule extends StatelessWidget {
 
   TextFieldModule(
       {super.key,
-        required this.name,
-        this.validators,
-        required this.hintTextTitle,
-        required this.textFieldTitle,
-        required this.hintTextColor,
-        required this.titelTextColor,
-        required this.borderColor,
-        required this.backgroundColor,
-        // required this.textController,
-        required this.textFieldType,
-        this.obscureText = false,
-        this.isReadOnly = false,
-        this.onTap,
-        this.suffix});
+      required this.name,
+      this.validators,
+      required this.hintTextTitle,
+      required this.textFieldTitle,
+      required this.hintTextColor,
+      required this.titelTextColor,
+      required this.borderColor,
+      required this.backgroundColor,
+      // required this.textController,
+      required this.textFieldType,
+      this.obscureText = false,
+      this.isReadOnly = false,
+      this.onTap,
+      this.suffix});
 
   @override
   Widget build(BuildContext context) {
