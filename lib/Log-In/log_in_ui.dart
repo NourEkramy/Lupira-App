@@ -47,28 +47,6 @@ class _LogInState extends State<LogIn> {
           await prefs.setString('email', email);
           await prefs.setString('loginTime', DateTime.now().toIso8601String());
 
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                message,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontFamily: 'Inder',
-                ),
-              ),
-              backgroundColor: Colors.green,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              behavior: SnackBarBehavior.floating,
-              margin: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 20,
-              ),
-              duration: Duration(seconds: 5),
-            ),
-          );
           Navigator.pushReplacement(
             context,
             PageRouteBuilder(
