@@ -4,6 +4,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Modules/user_credentials_card_module.dart';
+import '../Log-In/log_in_ui.dart';
 import 'forgot_password_api.dart';
 
 class ForgotPassword extends StatefulWidget {
@@ -31,7 +32,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           email: email,
         );
 
-        bool success = response['success'];
         message = response['message'];
         var code = response['code'];
 
@@ -47,25 +47,39 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             SnackBar(
               content: Text(
                 message,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: 'Inder',
+                ),
               ),
               backgroundColor: Color(0xFFB9433E),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
               behavior: SnackBarBehavior.floating,
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              duration: Duration(seconds: 3),
+              margin: EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 20,
+              ),
+              duration: Duration(seconds: 5),
             ),
           );
         } else
           setState(() {
             codeState = 500;
           });
-      } catch (e) {
+      }catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text("$e"),
+            content: Text(
+              "$e",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontFamily: 'Inder',
+              ),
+            ),
             backgroundColor: Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -73,28 +87,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             behavior: SnackBarBehavior.floating,
             margin: EdgeInsets.symmetric(
               horizontal: 20,
-              vertical: 10,
+              vertical: 20,
             ),
+            duration: Duration(seconds: 5),
           ),
         );
       }
     }
-    // if (success) {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     SnackBar(content: Text("Email sent successful")),
-    //   );
-    //
-    //   setState(() {
-    //     emailSentFlag = true;
-    //   });
-    // } else {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     SnackBar(content: Text("Failed to send email")),
-    //   );
-    //   setState(() {
-    //     emailSentFlag = true;
-    //   });
-    // }
   }
 
   @override
@@ -125,7 +124,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 style: TextStyle(
                   fontSize: 20,
                   fontFamily: 'Inder',
-                  color: codeState == 500 ? Color(0xFFB9433E) : Color(0xFF817F82),
+                  color:
+                      codeState == 500 ? Color(0xFFB9433E) : Color(0xFF817F82),
                 ),
               ),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.003),
@@ -156,8 +156,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       borderColor: Color(0xFFDEDAE0),
                       backgroundColor: Color(0xFFDEDAE0),
                     ),
-                    SizedBox(
-                        height: MediaQuery.sizeOf(context).height * 0.045),
+                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.045),
                     OperationButtonModule(
                       borderColor: Color(0xFF502371),
                       buttonColor: Color(0xFF502371),
@@ -167,17 +166,39 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       buttonTextColor: Colors.white,
                       onTap: forgotPassword,
                     ),
-                    SizedBox(
-                        height: MediaQuery.sizeOf(context).height * 0.025),
+                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
                     OperationButtonModule(
                       borderColor: Color(0xFF502371),
                       buttonColor: Color(0xFFEBE4E4),
                       buttonText: 'Back to login',
                       buttonTextColor: Color(0xFF502371),
-                      onTap: () {},
+                      onTap: () {Navigator.pushReplacement(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: Duration(milliseconds: 250),
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) =>
+                              LogIn(),
+                          transitionsBuilder: (context, animation,
+                              secondaryAnimation, child) {
+                            const begin = Offset(1.0, 0.0); // from right
+                            const end = Offset.zero;
+                            return SlideTransition(
+                              position: animation.drive(
+                                Tween(
+                                  begin: begin,
+                                  end: end,
+                                ).chain(
+                                  CurveTween(curve: Curves.ease),
+                                ),
+                              ),
+                              child: child,
+                            );
+                          },
+                        ),
+                      );},
                     ),
-                    SizedBox(
-                        height: MediaQuery.sizeOf(context).height * 0.03),
+                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
                   ],
                 ),
               ),
