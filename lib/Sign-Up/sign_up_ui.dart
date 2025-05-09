@@ -2,6 +2,7 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Modules/authentication_button_module.dart';
 import 'package:untitled/Modules/drop_down_list_module.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
@@ -122,7 +123,7 @@ class _SignUpState extends State<SignUp> {
       String phone = "+${selectedPhoneCountry!.phoneCode}$phoneNumber";
       String country = selectedCountry!.name;
 
-      try{
+      try {
         final response = await SignUpApi.signupUser(
           username: userName,
           email: email,
@@ -138,31 +139,92 @@ class _SignUpState extends State<SignUp> {
         bool success = response['success'];
         String message = response['message'];
 
+        if (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                message,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: 'Inder',
+                ),
+              ),
+              backgroundColor: Colors.green,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              duration: Duration(seconds: 5),
+            ),
+          );
+
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              transitionDuration: Duration(milliseconds: 300),
+              pageBuilder: (context, animation, secondaryAnimation) => LogIn(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                const begin = Offset(1.0, 0.0); // from right
+                const end = Offset.zero;
+                return SlideTransition(
+                  position: animation.drive(
+                    Tween(
+                      begin: begin,
+                      end: end,
+                    ).chain(
+                      CurveTween(curve: Curves.ease),
+                    ),
+                  ),
+                  child: child,
+                );
+              },
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                message,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: 'Inder',
+                ),
+              ),
+              backgroundColor: Color(0xFFB9433E),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              duration: Duration(seconds: 5),
+            ),
+          );
+        }
+      } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              message,
-              style: TextStyle(color: Colors.white),
+              "Signup error: $e",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontFamily: 'Inder',
+              ),
             ),
-            backgroundColor: success ? Colors.green : Color(0xFFB9433E),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            duration: Duration(seconds: 3),
-          ),
-        );
-      }catch(e){
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("Signup error: $e"),
             backgroundColor: Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
             behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10,),
+            margin: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 20,
+            ),
+            duration: Duration(seconds: 5),
           ),
         );
       }
@@ -496,6 +558,33 @@ class _SignUpState extends State<SignUp> {
                           buttonText: 'Sign Up',
                           buttonTextColor: Colors.white),
                       AuthenticationButtonModule(
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              PageRouteBuilder(
+                                transitionDuration: Duration(milliseconds: 300),
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) =>
+                                        LogIn(),
+                                transitionsBuilder: (context, animation,
+                                    secondaryAnimation, child) {
+                                  const begin = Offset(1.0, 0.0); // from right
+                                  const end = Offset.zero;
+                                  return SlideTransition(
+                                    position: animation.drive(
+                                      Tween(
+                                        begin: begin,
+                                        end: end,
+                                      ).chain(
+                                        CurveTween(curve: Curves.ease),
+                                      ),
+                                    ),
+                                    child: child,
+                                  );
+                                },
+                              ),
+                            );
+                          },
                           conditionOperation: 'Login',
                           conditionQeustion: 'Already have an account?  '),
                     ],

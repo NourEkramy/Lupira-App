@@ -7,6 +7,7 @@ import 'package:untitled/Modules/authentication_button_module.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Modules/user_credentials_card_module.dart';
+import 'package:untitled/Sign-Up/sign_up_ui.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
@@ -18,7 +19,6 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-
   final _formKey = GlobalKey<FormBuilderState>();
 
   void logIn() async {
@@ -27,7 +27,7 @@ class _LogInState extends State<LogIn> {
 
       String email = values['Email'];
 
-      try{
+      try {
         final response = await LogInApi.logInUser(
           email: email,
           password: values['Password'],
@@ -36,31 +36,74 @@ class _LogInState extends State<LogIn> {
         bool success = response['success'];
         String message = response['message'];
 
+        if (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                message,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: 'Inder',
+                ),
+              ),
+              backgroundColor: Colors.green,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 20,
+              ),
+              duration: Duration(seconds: 5),
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                message,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: 'Inder',
+                ),
+              ),
+              backgroundColor: Color(0xFFB9433E),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 20,
+              ),
+              duration: Duration(seconds: 5),
+            ),
+          );
+        }
+      } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              message,
-              style: TextStyle(color: Colors.white),
+              "Login error: $e",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontFamily: 'Inder',
+              ),
             ),
-            backgroundColor: success ? Colors.green : Color(0xFFB9433E),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            duration: Duration(seconds: 3),
-          ),
-        );
-      }catch(e){
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("Login error: $e"),
             backgroundColor: Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
             behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10,),
+            margin: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 20,
+            ),
+            duration: Duration(seconds: 5),
           ),
         );
       }
@@ -122,7 +165,8 @@ class _LogInState extends State<LogIn> {
                         borderColor: Color(0xFFDEDAE0),
                         backgroundColor: Color(0xFFDEDAE0),
                       ),
-                      SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
+                      SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.01),
                       Container(
                         alignment: Alignment.centerRight,
                         child: RichText(
@@ -139,7 +183,8 @@ class _LogInState extends State<LogIn> {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      SizedBox(height: MediaQuery.sizeOf(context).height * 0.045),
+                      SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.045),
                       OperationButtonModule(
                         borderColor: Color(0xFF502371),
                         buttonColor: Color(0xFF502371),
@@ -148,8 +193,36 @@ class _LogInState extends State<LogIn> {
                         onTap: logIn,
                       ),
                       AuthenticationButtonModule(
-                          conditionOperation: 'Sign Up',
-                          conditionQeustion: "Don't have an account?  "),
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            PageRouteBuilder(
+                              transitionDuration: Duration(milliseconds: 250),
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      SignUp(),
+                              transitionsBuilder: (context, animation,
+                                  secondaryAnimation, child) {
+                                const begin = Offset(1.0, 0.0); // from right
+                                const end = Offset.zero;
+                                return SlideTransition(
+                                  position: animation.drive(
+                                    Tween(
+                                      begin: begin,
+                                      end: end,
+                                    ).chain(
+                                      CurveTween(curve: Curves.ease),
+                                    ),
+                                  ),
+                                  child: child,
+                                );
+                              },
+                            ),
+                          );
+                        },
+                        conditionOperation: 'Sign Up',
+                        conditionQeustion: "Don't have an account?  ",
+                      ),
                     ],
                   ),
                 ),
