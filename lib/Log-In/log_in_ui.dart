@@ -50,15 +50,12 @@ class _LogInState extends State<LogIn> {
           Navigator.pushReplacement(
             context,
             PageRouteBuilder(
-              transitionDuration:
-              Duration(milliseconds: 250),
-              pageBuilder: (context, animation,
-                  secondaryAnimation) =>
+              transitionDuration: Duration(milliseconds: 250),
+              pageBuilder: (context, animation, secondaryAnimation) =>
                   BaseScreen(),
-              transitionsBuilder: (context, animation,
-                  secondaryAnimation, child) {
-                const begin =
-                Offset(1.0, 0.0); // from right
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                const begin = Offset(1.0, 0.0); // from right
                 const end = Offset.zero;
                 return SlideTransition(
                   position: animation.drive(
@@ -73,7 +70,8 @@ class _LogInState extends State<LogIn> {
                 );
               },
             ),
-          );        } else {
+          );
+        } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(

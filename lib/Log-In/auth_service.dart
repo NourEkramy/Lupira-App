@@ -22,6 +22,5 @@ class AuthService {
     await prefs.remove('username');
     await prefs.remove('email');
     await prefs.remove('loginTime');
-
   }
 }

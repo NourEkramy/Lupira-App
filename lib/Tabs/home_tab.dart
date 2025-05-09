@@ -19,10 +19,11 @@ class HomeTab extends StatelessWidget {
           children: [
             DetectionCardModule(
               mainTitle: 'Quick Detection',
-              subtitle: 'Free lupus detection', onTap: () {  },
+              subtitle: 'Free lupus detection',
+              onTap: () {},
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8,bottom: 3),
+              padding: const EdgeInsets.only(left: 8, bottom: 3),
               child: Text(
                 'Learn More',
                 style: TextStyle(
@@ -38,9 +39,12 @@ class HomeTab extends StatelessWidget {
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.2), // Shadow color with opacity
-                    spreadRadius: 0, // Spread of the shadow
-                    blurRadius: 8, // Softness of the shadow
+                    color: Colors.black.withOpacity(0.2),
+                    // Shadow color with opacity
+                    spreadRadius: 0,
+                    // Spread of the shadow
+                    blurRadius: 8,
+                    // Softness of the shadow
                     offset: const Offset(0, 4), // Position of the shadow (X, Y)
                   ),
                 ],
@@ -66,7 +70,8 @@ class HomeTab extends StatelessWidget {
                             fontFamily: 'Inder',
                           ),
                         ),
-                        SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
+                        SizedBox(
+                            height: MediaQuery.sizeOf(context).height * 0.01),
                         Text(
                           'Learn more about description, symptoms and tips of lupus',
                           style: TextStyle(
@@ -86,9 +91,12 @@ class HomeTab extends StatelessWidget {
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.2), // Shadow color with opacity
-                    spreadRadius: 0, // Spread of the shadow
-                    blurRadius: 8, // Softness of the shadow
+                    color: Colors.black.withOpacity(0.2),
+                    // Shadow color with opacity
+                    spreadRadius: 0,
+                    // Spread of the shadow
+                    blurRadius: 8,
+                    // Softness of the shadow
                     offset: const Offset(0, 4), // Position of the shadow (X, Y)
                   ),
                 ],
@@ -126,7 +134,8 @@ class HomeTab extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
+                        SizedBox(
+                            height: MediaQuery.sizeOf(context).height * 0.01),
                         Text(
                           'Discover who we are and what we do?',
                           style: TextStyle(
