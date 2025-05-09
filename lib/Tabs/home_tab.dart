@@ -105,26 +105,26 @@ class HomeTab extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         RichText(
-                            text: TextSpan(
-                          text: 'About ',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 21,
-                            color: Color(0xFF4B4A4C),
-                            fontFamily: 'Inder',
-                          ),
-                          children: [
-                            TextSpan(
-                              text: 'Lupira',
-                              style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 21,
-                                color: Color(0xFF502371),
-                                fontFamily: 'BerkshireSwash',
-                              ),
+                          text: TextSpan(
+                            text: 'About ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 21,
+                              color: Color(0xFF4B4A4C),
+                              fontFamily: 'Inder',
                             ),
-                          ],
-                        ),
+                            children: [
+                              TextSpan(
+                                text: 'Lupira',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 21,
+                                  color: Color(0xFF502371),
+                                  fontFamily: 'BerkshireSwash',
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
                         Text(
