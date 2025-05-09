@@ -1,9 +1,12 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:uni_links3/uni_links.dart';
+import 'package:untitled/BaseScreen/base_screen.dart';
+import 'package:untitled/Log-In/auth_service.dart';
 import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Password/reset_password.dart';
+import 'Password/forgot_password.dart';
+import 'Sign-Up/sign_up_ui.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +29,18 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     initDeepLink();
+    checkLoginStatus();
+  }
+
+  Future<void> checkLoginStatus() async {
+    bool isLoggedIn = await AuthService.isTokenValid();
+    if (!isLoggedIn) {
+      // Token is expired or not found, log the user out
+      await AuthService.logout();
+      Navigator.pushReplacementNamed(context, LogIn.routName);
+    } else {
+      Navigator.pushReplacementNamed(context, BaseScreen.routeName);
+    }
   }
 
   void initDeepLink() async {
@@ -104,6 +119,9 @@ class _MyAppState extends State<MyApp> {
           final token = ModalRoute.of(context)?.settings.arguments as String;
           return ResetPassword(token: token);
         },
+        ForgotPassword.routName: (context) => ForgotPassword(),
+        SignUp.routName: (context) => SignUp(),
+        BaseScreen.routeName: (context) => BaseScreen(),
       },
     );
   }

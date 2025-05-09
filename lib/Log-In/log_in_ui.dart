@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/BaseScreen/base_screen.dart';
 import 'package:untitled/Log-In/log_in_api.dart';
 import 'package:untitled/Modules/authentication_button_module.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
@@ -38,6 +40,13 @@ class _LogInState extends State<LogIn> {
         String message = response['message'];
 
         if (success) {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString('token', response['data']['token']);
+          await prefs.setString(
+              'username', response['data']['user']['username']);
+          await prefs.setString('email', email);
+          await prefs.setString('loginTime', DateTime.now().toIso8601String());
+
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -60,7 +69,33 @@ class _LogInState extends State<LogIn> {
               duration: Duration(seconds: 5),
             ),
           );
-        } else {
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              transitionDuration:
+              Duration(milliseconds: 250),
+              pageBuilder: (context, animation,
+                  secondaryAnimation) =>
+                  BaseScreen(),
+              transitionsBuilder: (context, animation,
+                  secondaryAnimation, child) {
+                const begin =
+                Offset(1.0, 0.0); // from right
+                const end = Offset.zero;
+                return SlideTransition(
+                  position: animation.drive(
+                    Tween(
+                      begin: begin,
+                      end: end,
+                    ).chain(
+                      CurveTween(curve: Curves.ease),
+                    ),
+                  ),
+                  child: child,
+                );
+              },
+            ),
+          );        } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(

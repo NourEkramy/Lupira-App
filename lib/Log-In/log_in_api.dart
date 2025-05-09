@@ -23,22 +23,10 @@ class LogInApi{
       body: body,
     );
 
-    final decoded = jsonDecode(response.body);
-
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      try {
-        return {
-          'success': true,
-          'message': decoded['message'] ?? 'Login successful',
-        };
-      } catch (e) {
-        throw FormatException("Invalid JSON format: ${response.body}");
-      }
+    if (response.statusCode == 201) {
+        return jsonDecode(response.body);
     } else {
-      return {
-        'success': false,
-        'message': decoded['error'] ?? 'Login failed',
-      };
+      throw Exception('Login failed ${response.body}');
     }
   }
 }
