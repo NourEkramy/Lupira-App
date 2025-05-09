@@ -2,13 +2,17 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Modules/user_credentials_card_module.dart';
 import 'package:untitled/Password/reset_password_api.dart';
 
 class ResetPassword extends StatefulWidget {
-  const ResetPassword({Key? key}) : super(key: key);
+  String token;
+
+  ResetPassword({Key? key, required this.token}) : super(key: key);
+
 
   static const String routName = "ResetPassword";
 
@@ -48,8 +52,7 @@ class _ResetPasswordState extends State<ResetPassword> {
 
       try {
         final response = await ResetPasswordApi.resetPassword(
-          token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMjAsImlhdCI6MTc0NTkzODE4MywiZXhwIjoxNzQ1OTQxNzgzfQ.OhvabFu1dXGTEvS7ieMZrVWdvMyB3tFppi9WtzEUes8",
+          token: widget.token,
           newPassword: values['newPassword'],
           confirmPassword: values['confirmNewPassword'],
         );
@@ -75,6 +78,34 @@ class _ResetPasswordState extends State<ResetPassword> {
               behavior: SnackBarBehavior.floating,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               duration: Duration(seconds: 5),
+            ),
+          );
+
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              transitionDuration:
+              Duration(milliseconds: 250),
+              pageBuilder: (context, animation,
+                  secondaryAnimation) =>
+                  LogIn(),
+              transitionsBuilder: (context, animation,
+                  secondaryAnimation, child) {
+                const begin =
+                Offset(1.0, 0.0); // from right
+                const end = Offset.zero;
+                return SlideTransition(
+                  position: animation.drive(
+                    Tween(
+                      begin: begin,
+                      end: end,
+                    ).chain(
+                      CurveTween(curve: Curves.ease),
+                    ),
+                  ),
+                  child: child,
+                );
+              },
             ),
           );
         } else {
