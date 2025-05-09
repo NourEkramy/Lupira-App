@@ -57,25 +57,58 @@ class _ResetPasswordState extends State<ResetPassword> {
         bool success = response['success'];
         String message = response['message'];
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              message,
-              style: TextStyle(color: Colors.white),
+        if (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                message,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: 'Inder',
+                ),
+              ),
+              backgroundColor: Colors.green,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              duration: Duration(seconds: 5),
             ),
-            backgroundColor: success ? Colors.green : Color(0xFFB9433E),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                message,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: 'Inder',
+                ),
+              ),
+              backgroundColor: Color(0xFFB9433E),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              duration: Duration(seconds: 5),
             ),
-            behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            duration: Duration(seconds: 3),
-          ),
-        );
+          );
+        }
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text("Error: $e"),
+            content: Text(
+              "Error: $e",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontFamily: 'Inder',
+              ),
+            ),
             backgroundColor: Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -83,8 +116,9 @@ class _ResetPasswordState extends State<ResetPassword> {
             behavior: SnackBarBehavior.floating,
             margin: EdgeInsets.symmetric(
               horizontal: 20,
-              vertical: 10,
+              vertical: 20,
             ),
+            duration: Duration(seconds: 5),
           ),
         );
       }
