@@ -7,7 +7,7 @@ import 'package:untitled/Tabs/settings_tabs.dart';
 import 'package:untitled/BaseScreen/base_screen_logic.dart';
 
 class BaseScreen extends StatelessWidget {
-  static const String routeName = "BaseScreen";
+  static const String routName = "BaseScreen";
 
   final List<Widget> tabs = [
     HomeTab(),

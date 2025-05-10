@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uni_links3/uni_links.dart';
+import 'package:untitled/About-Lupira/about_lupira.dart';
 import 'package:untitled/BaseScreen/base_screen.dart';
 import 'package:untitled/Log-In/auth_service.dart';
 import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Password/reset_password.dart';
+import 'BaseScreen/base_screen_logic.dart';
 import 'Password/forgot_password.dart';
 import 'Sign-Up/sign_up_ui.dart';
 
@@ -39,7 +42,7 @@ class _MyAppState extends State<MyApp> {
       await AuthService.logout();
       Navigator.pushReplacementNamed(context, LogIn.routName);
     } else {
-      Navigator.pushReplacementNamed(context, BaseScreen.routeName);
+      Navigator.pushReplacementNamed(context, BaseScreen.routName);
     }
   }
 
@@ -109,20 +112,28 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: _navigatorKey,
-      debugShowCheckedModeBanner: false,
-      initialRoute: LogIn.routName,
-      routes: {
-        LogIn.routName: (context) => LogIn(),
-        '/reset-password': (context) {
-          final token = ModalRoute.of(context)?.settings.arguments as String;
-          return ResetPassword(token: token);
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<BaseScreenCubit>(
+          create: (context) => BaseScreenCubit(),
+        ),
+      ],
+      child: MaterialApp(
+        navigatorKey: _navigatorKey,
+        debugShowCheckedModeBanner: false,
+        initialRoute: LogIn.routName,
+        routes: {
+          LogIn.routName: (context) => LogIn(),
+          '/reset-password': (context) {
+            final token = ModalRoute.of(context)?.settings.arguments as String;
+            return ResetPassword(token: token);
+          },
+          ForgotPassword.routName: (context) => ForgotPassword(),
+          SignUp.routName: (context) => SignUp(),
+          BaseScreen.routName: (context) => BaseScreen(),
+          AboutLupira.routName: (context) => AboutLupira(),
         },
-        ForgotPassword.routName: (context) => ForgotPassword(),
-        SignUp.routName: (context) => SignUp(),
-        BaseScreen.routeName: (context) => BaseScreen(),
-      },
+      ),
     );
   }
 }
