@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
 import 'package:untitled/Modules/report_card_module.dart';
+import '../Bottom Sheets/prerequisites_bottom_sheet.dart';
 import '../Detection Details/detection_details_screen.dart';
 import '../Detection-History/detection_history.dart';
 import '../Detection/detection_api.dart';
@@ -24,11 +26,11 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
   }
 
   Future<void> fetchData() async {
-    const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjY4ODc1OCwiZXhwIjoxNzQ3MjkzNTU4fQ.tkRDftMFDYeTAHSgsML6MogudZYrLUUmoPcPYsxAXgU";
+    final prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
 
     try {
-      final response = await HistoryApi.fetchHistory(token);
+      final response = await HistoryApi.fetchHistory(token!);
 
       if (response['success'] == true) {
         setState(() {
@@ -77,7 +79,15 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
             ),
             DetectionCardModule(
               mainTitle: "Start Lupus Detection",
-              onTap: () {},
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (BuildContext context){
+                    return PrerequisitesBottomSheet();
+                  },
+                );
+              },
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -164,7 +174,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                       reportResult: historyData[index]['resultLabel'],
                     );
                   },
-                  itemCount: 5,
+                  itemCount: historyData.length > 5 ? 5 : historyData.length,
                 ),
               ),
           ],

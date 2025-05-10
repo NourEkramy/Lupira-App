@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'detection_result_screen.dart';
 import '../Layout/main_layout.dart';
 import '../Models/detection_questions_model.dart';
@@ -25,8 +26,6 @@ class _DetectionScreenState extends State<DetectionScreen> {
   List<int> startIndexes = [];
   Map<String, bool> hasError = {};
   bool hasErrorLoadingQuestions = false;
-  String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjczMjUzOSwiZXhwIjoxNzQ3MzM3MzM5fQ.x5FME22WT3HYMfkDunRMB2BxeJ5Vh8pIkB9T5MHo0mA";
 
   @override
   void initState() {
@@ -53,8 +52,11 @@ class _DetectionScreenState extends State<DetectionScreen> {
   }
 
   Future<void> _loadQuestions() async {
+    final prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+
     List<Questions> fetchedQuestions =
-        await QuestionsServices.getQuestions(token);
+        await QuestionsServices.getQuestions(token!);
     setState(() {
       if (fetchedQuestions.isEmpty) {
         hasErrorLoadingQuestions = true;
@@ -75,6 +77,8 @@ class _DetectionScreenState extends State<DetectionScreen> {
   }
 
   Future<void> _nextPage() async {
+    final prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
     final currentQuestions = pages[_currentPage];
     bool hasAnyError = false;
 
@@ -133,7 +137,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
 
       try {
         dynamic responseData = await QuestionsServices.sendAndDetect(
-          token: token,
+          token: token!,
           body: requestBody,
         );
         if (responseData['success'] == true) {

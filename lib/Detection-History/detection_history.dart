@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Detection/detection_api.dart';
 import 'package:untitled/Layout/main_layout.dart';
 import 'package:untitled/Modules/report_card_module.dart';
@@ -25,11 +26,11 @@ class _DetectionHistoryState extends State<DetectionHistory> {
   }
 
   Future<void> fetchData() async {
-    const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjY4ODc1OCwiZXhwIjoxNzQ3MjkzNTU4fQ.tkRDftMFDYeTAHSgsML6MogudZYrLUUmoPcPYsxAXgU";
+    final prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
 
     try {
-      final response = await HistoryApi.fetchHistory(token);
+      final response = await HistoryApi.fetchHistory(token!);
 
       if (response['success'] == true) {
         setState(() {

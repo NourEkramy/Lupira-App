@@ -3,6 +3,8 @@ import 'package:untitled/About-Lupira/about_lupira.dart';
 import 'package:untitled/Layout/main_layout.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
 
+import '../Bottom Sheets/prerequisites_bottom_sheet.dart';
+
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
 
@@ -22,7 +24,15 @@ class HomeTab extends StatelessWidget {
             DetectionCardModule(
               mainTitle: 'Quick Detection',
               subtitle: 'Free lupus detection',
-              onTap: () {},
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (BuildContext context) {
+                    return PrerequisitesBottomSheet();
+                  },
+                );
+              },
             ),
             Padding(
               padding: const EdgeInsets.only(left: 8, bottom: 3),
