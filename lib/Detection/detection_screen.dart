@@ -55,7 +55,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
     final prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
 
-    List<Questions> fetchedQuestions = await QuestionsServices.getQuestions('');
+    List<Questions> fetchedQuestions = await QuestionsServices.getQuestions(token!);
     setState(() {
       if (fetchedQuestions.isEmpty) {
         hasErrorLoadingQuestions = true;
