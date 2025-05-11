@@ -83,7 +83,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                 showModalBottomSheet(
                   context: context,
                   isScrollControlled: true,
-                  builder: (BuildContext context){
+                  builder: (BuildContext context) {
                     return PrerequisitesBottomSheet();
                   },
                 );
@@ -149,7 +149,21 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
             if (isLoading)
               Center(child: CircularProgressIndicator())
             else if (historyData.isEmpty)
-              Text("No history available.")
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 8,
+                  ),
+                  child: Text(
+                    "No history available",
+                    style: TextStyle(
+                      color: Color(0xFF4B4A4C),
+                      fontFamily: 'Inder',
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              )
             else
               SizedBox(
                 child: ListView.builder(
@@ -157,7 +171,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return ReportCardModule(
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(

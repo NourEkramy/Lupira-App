@@ -58,29 +58,49 @@ class _DetectionHistoryState extends State<DetectionHistory> {
         right: 13,
         top: 30,
       ),
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return ReportCardModule(
-            onTap: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MainLayout(
-                    child: DetectionDetailsScreen(
-                      detectionData: historyData[index],
+      child: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : historyData.isEmpty
+              ? Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 8,
                     ),
-                    title: 'Detection Details',
+                    child: Text(
+                      "No history available",
+                      style: TextStyle(
+                        color: Color(0xFF4B4A4C),
+                        fontFamily: 'Inder',
+                        fontSize: 20,
+                      ),
+                    ),
                   ),
+                )
+              : ListView.builder(
+                  itemBuilder: (context, index) {
+                    return ReportCardModule(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MainLayout(
+                              child: DetectionDetailsScreen(
+                                detectionData: historyData[index],
+                              ),
+                              title: 'Detection Details',
+                            ),
+                          ),
+                        );
+                      },
+                      reportDate:
+                          historyData[index]['date']?.substring(0, 10) ??
+                              'Unknown date',
+                      reportResult:
+                          historyData[index]['resultLabel'] ?? 'No result',
+                    );
+                  },
+                  itemCount: historyData.length,
                 ),
-              );
-            },
-            reportDate: historyData[index]['date']?.substring(0, 10) ??
-                'Unknown date',
-            reportResult: historyData[index]['resultLabel'] ?? 'No result',
-          );
-        },
-        itemCount: historyData.length,
-      ),
     );
   }
 }
