@@ -78,6 +78,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
   Future<void> _nextPage() async {
     final prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
+
     final currentQuestions = pages[_currentPage];
     bool hasAnyError = false;
 

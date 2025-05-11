@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Modules/settings_options_module.dart';
 import 'package:untitled/Password/Change%20Password/change_password.dart';
 import 'package:untitled/Profile/profile.dart';
-
+import '../../BottomSheets/Delete Account/delete_account_bottom_sheet.dart';
 import '../Layout/main_layout.dart';
 
-class SettingsTabs extends StatelessWidget {
+class SettingsTabs extends StatefulWidget {
+  SettingsTabs({super.key});
+
+  @override
+  State<SettingsTabs> createState() => _SettingsTabsState();
+}
+
+class _SettingsTabsState extends State<SettingsTabs> {
   final List<String> optionIcons = [
     'assets/images/man 2.png',
     'assets/images/password-lock 1.png',
@@ -30,37 +38,53 @@ class SettingsTabs extends StatelessWidget {
     Color(0xFFD6101D),
   ];
 
-  SettingsTabs({super.key});
+  void _showDeleteAccountBottomSheet(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return DeleteAccountBottomSheet(
+            token: token!,
+          );
+        },
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     List<VoidCallback> optionActions = [
-      () {Navigator.push(
-        context,
-        PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 250),
-          pageBuilder: (context, animation, secondaryAnimation) => MainLayout(
-            title: 'Profile',
-            child: Profile(),
-          ),
-          transitionsBuilder:
-              (context, animation, secondaryAnimation, child) {
-            const begin = Offset(1.0, 0.0); // from right
-            const end = Offset.zero;
-            return SlideTransition(
-              position: animation.drive(
-                Tween(
-                  begin: begin,
-                  end: end,
-                ).chain(
-                  CurveTween(curve: Curves.ease),
+      () {
+        Navigator.push(
+          context,
+          PageRouteBuilder(
+            transitionDuration: Duration(milliseconds: 250),
+            pageBuilder: (context, animation, secondaryAnimation) => MainLayout(
+              title: 'Profile',
+              child: Profile(),
+            ),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              const begin = Offset(1.0, 0.0); // from right
+              const end = Offset.zero;
+              return SlideTransition(
+                position: animation.drive(
+                  Tween(
+                    begin: begin,
+                    end: end,
+                  ).chain(
+                    CurveTween(curve: Curves.ease),
+                  ),
                 ),
-              ),
-              child: child,
-            );
-          },
-        ),
-      );},
+                child: child,
+              );
+            },
+          ),
+        );
+      },
       () {
         Navigator.push(
           context,
@@ -90,7 +114,11 @@ class SettingsTabs extends StatelessWidget {
         );
       },
       () {},
-      () {},
+      () {
+        setState(() {
+          _showDeleteAccountBottomSheet(context);
+        });
+      },
       () {},
     ];
 

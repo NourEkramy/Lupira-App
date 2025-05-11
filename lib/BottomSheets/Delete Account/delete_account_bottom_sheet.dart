@@ -1,25 +1,89 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/BottomSheets/delete_account_api.dart';
+import 'package:untitled/BottomSheets/Delete%20Account/delete_account_api.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
+import 'package:untitled/Sign-Up/sign_up_ui.dart';
 
 class DeleteAccountBottomSheet extends StatelessWidget {
-  const DeleteAccountBottomSheet({super.key});
+  String token;
+
+  DeleteAccountBottomSheet({super.key, required this.token});
 
   Future<void> _deleteAccount(BuildContext context) async {
-    String token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1MjAsImlhdCI6MTc0NTI2MjY3MSwiZXhwIjoxNzQ1MjY2MjcxfQ.EUeJ_kPUdwuhcZ25W8LHIttBSKfRVENcoeTwSNyQgaw";
 
     bool success = await DeleteAccountApi.deleteAccount(token);
 
     if (success) {
-      Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Account deleted successfully.')),
+        SnackBar(
+          content: Text(
+            'Account deleted successfuly',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontFamily: 'Inder',
+            ),
+          ),
+          backgroundColor: Colors.green,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 20,
+          ),
+          duration: Duration(seconds: 5),
+        ),
       );
+
+      Navigator.pushReplacement(
+        context,
+        PageRouteBuilder(
+          transitionDuration: Duration(milliseconds: 250),
+          pageBuilder: (context, animation, secondaryAnimation) => SignUp(),
+          transitionsBuilder:
+              (context, animation, secondaryAnimation, child) {
+            const begin = Offset(1.0, 0.0); // from right
+            const end = Offset.zero;
+            return SlideTransition(
+              position: animation.drive(
+                Tween(
+                  begin: begin,
+                  end: end,
+                ).chain(
+                  CurveTween(curve: Curves.ease),
+                ),
+              ),
+              child: child,
+            );
+          },
+        ),
+      );
+
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to delete account.')),
+        SnackBar(
+          content: Text(
+            'Failed to delete account',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontFamily: 'Inder',
+            ),
+          ),
+          backgroundColor: Color(0xFFB9433E),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 20,
+          ),
+          duration: Duration(seconds: 5),
+        ),
       );
+      Navigator.pop(context);
     }
   }
 
@@ -69,7 +133,9 @@ class DeleteAccountBottomSheet extends StatelessWidget {
                       fontSize: 24,
                     ),
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.07),
+                  SizedBox(height: MediaQuery
+                      .sizeOf(context)
+                      .height * 0.07),
                   OperationButtonModule(
                     borderColor: Color(0xFF502371),
                     buttonColor: Color(0xFF502371),
@@ -79,7 +145,9 @@ class DeleteAccountBottomSheet extends StatelessWidget {
                       Navigator.pop(context);
                     },
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
+                  SizedBox(height: MediaQuery
+                      .sizeOf(context)
+                      .height * 0.025),
                   OperationButtonModule(
                     borderColor: Color(0xFFD6101D),
                     buttonColor: Color(0xFFEBE4E4),
@@ -89,7 +157,9 @@ class DeleteAccountBottomSheet extends StatelessWidget {
                       _deleteAccount(context);
                     },
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.015),
+                  SizedBox(height: MediaQuery
+                      .sizeOf(context)
+                      .height * 0.015),
                 ],
               ),
             )
