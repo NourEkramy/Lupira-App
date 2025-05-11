@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../BaseScreen/Layout/main_layout.dart';
 import 'detection_result_screen.dart';
-import '../Layout/main_layout.dart';
 import '../Models/detection_questions_model.dart';
 import '../Modules/question_module.dart';
 import 'detection_screen_api.dart';

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/Detection/detection_api.dart';
-import 'package:untitled/Layout/main_layout.dart';
+import 'package:untitled/Detection/Detection-History/detection_history_api.dart';
 import 'package:untitled/Modules/report_card_module.dart';
-
-import '../Detection Details/detection_details_screen.dart';
+import '../../BaseScreen/Layout/main_layout.dart';
+import 'detection_details_screen.dart';
 
 class DetectionHistory extends StatefulWidget {
   static const String routeName = "DetectionHistory";

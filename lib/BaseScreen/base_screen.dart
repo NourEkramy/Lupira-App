@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled/Layout/main_layout.dart';
-import 'package:untitled/Tabs/diagnosis_tab.dart';
-import 'package:untitled/Tabs/home_tab.dart';
-import 'package:untitled/Tabs/settings_tabs.dart';
 import 'package:untitled/BaseScreen/base_screen_logic.dart';
+import 'Layout/main_layout.dart';
+import 'Tabs/diagnosis_tab.dart';
+import 'Tabs/home_tab.dart';
+import 'Tabs/settings_tabs.dart';
 
 class BaseScreen extends StatelessWidget {
   static const String routName = "BaseScreen";

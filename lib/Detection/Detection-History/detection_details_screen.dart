@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../Detection/detection_api.dart';
 
 class DetectionDetailsScreen extends StatefulWidget {
   final Map<String, dynamic> detectionData;
