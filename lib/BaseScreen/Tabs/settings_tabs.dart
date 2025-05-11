@@ -33,8 +33,7 @@ class SettingsTabs extends StatelessWidget {
     List<VoidCallback> optionActions = [
           () {},
           () {},
-          () {
-        },
+          () {},
           () {},
           () {},
     ];
