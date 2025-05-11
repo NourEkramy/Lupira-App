@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/Modules/settings_options_module.dart';
+import 'package:untitled/Password/Change%20Password/change_password.dart';
+
+import '../Layout/main_layout.dart';
 
 class SettingsTabs extends StatelessWidget {
   final List<String> optionIcons = [
@@ -31,11 +34,38 @@ class SettingsTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<VoidCallback> optionActions = [
-          () {},
-          () {},
-          () {},
-          () {},
-          () {},
+      () {},
+      () {
+        Navigator.push(
+          context,
+          PageRouteBuilder(
+            transitionDuration: Duration(milliseconds: 250),
+            pageBuilder: (context, animation, secondaryAnimation) => MainLayout(
+              title: 'Change Password',
+              child: ChangePassword(),
+            ),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              const begin = Offset(1.0, 0.0); // from right
+              const end = Offset.zero;
+              return SlideTransition(
+                position: animation.drive(
+                  Tween(
+                    begin: begin,
+                    end: end,
+                  ).chain(
+                    CurveTween(curve: Curves.ease),
+                  ),
+                ),
+                child: child,
+              );
+            },
+          ),
+        );
+      },
+      () {},
+      () {},
+      () {},
     ];
 
     return Padding(

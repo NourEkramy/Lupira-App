@@ -6,9 +6,10 @@ import 'package:untitled/About-Lupira/about_lupira.dart';
 import 'package:untitled/BaseScreen/base_screen.dart';
 import 'package:untitled/Log-In/auth_service.dart';
 import 'package:untitled/Log-In/log_in_ui.dart';
-import 'package:untitled/Password/reset_password.dart';
+import 'package:untitled/Password/Change%20Password/change_password.dart';
+import 'package:untitled/Password/Reset%20Password/reset_password.dart';
 import 'BaseScreen/base_screen_logic.dart';
-import 'Password/forgot_password.dart';
+import 'Password/Forgot Password/forgot_password.dart';
 import 'Sign-Up/sign_up_ui.dart';
 import 'package:untitled/BaseScreen/base_screen.dart';
 
@@ -133,6 +134,7 @@ class _MyAppState extends State<MyApp> {
           SignUp.routName: (context) => SignUp(),
           BaseScreen.routName: (context) => BaseScreen(),
           AboutLupira.routName: (context) => AboutLupira(),
+          ChangePassword.routName: (context) => ChangePassword(),
         },
       ),
     );

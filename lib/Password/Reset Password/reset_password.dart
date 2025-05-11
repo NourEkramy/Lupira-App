@@ -6,7 +6,7 @@ import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Modules/user_credentials_card_module.dart';
-import 'package:untitled/Password/reset_password_api.dart';
+import 'package:untitled/Password/Reset%20Password/reset_password_api.dart';
 
 class ResetPassword extends StatefulWidget {
   String token;

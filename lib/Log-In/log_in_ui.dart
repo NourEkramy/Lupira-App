@@ -9,7 +9,7 @@ import 'package:untitled/Modules/authentication_button_module.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Modules/user_credentials_card_module.dart';
-import 'package:untitled/Password/forgot_password.dart';
+import 'package:untitled/Password/Forgot%20Password/forgot_password.dart';
 import 'package:untitled/Sign-Up/sign_up_ui.dart';
 
 class LogIn extends StatefulWidget {

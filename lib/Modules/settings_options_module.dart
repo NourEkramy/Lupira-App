@@ -4,7 +4,7 @@ class SettingsOptionsModule extends StatelessWidget {
   String optionIcon;
   String optionText;
   Color optionTextColor;
-  Function optionAction;
+  VoidCallback optionAction;
 
   SettingsOptionsModule({super.key, required this.optionAction, required this.optionTextColor, required this.optionIcon, required this.optionText});
 
@@ -12,7 +12,7 @@ class SettingsOptionsModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       GestureDetector(
-        onTap: optionAction(),
+        onTap: optionAction,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 35,vertical: 13),
           child: Row(
