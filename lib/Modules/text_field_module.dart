@@ -18,23 +18,23 @@ class TextFieldModule extends StatelessWidget {
   VoidCallback? onTap;
   List<FormFieldValidator<String>>? validators;
   String name;
+  String? initialProfileData;
 
-  TextFieldModule(
-      {super.key,
-      required this.name,
-      this.validators,
-      required this.hintTextTitle,
-      required this.textFieldTitle,
-      required this.hintTextColor,
-      required this.titelTextColor,
-      required this.borderColor,
-      required this.backgroundColor,
-      // required this.textController,
-      required this.textFieldType,
-      this.obscureText = false,
-      this.isReadOnly = false,
-      this.onTap,
-      this.suffix});
+  TextFieldModule({super.key,
+    required this.name,
+    this.validators,
+    required this.hintTextTitle,
+    required this.textFieldTitle,
+    required this.hintTextColor,
+    required this.titelTextColor,
+    required this.borderColor,
+    required this.backgroundColor,
+    required this.textFieldType,
+    this.initialProfileData,
+    this.obscureText = false,
+    this.isReadOnly = false,
+    this.onTap,
+    this.suffix});
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +54,7 @@ class TextFieldModule extends StatelessWidget {
         FormBuilderTextField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           onTap: onTap,
+          initialValue: initialProfileData,
           readOnly: isReadOnly,
           obscureText: obscureText,
           // controller: textController,

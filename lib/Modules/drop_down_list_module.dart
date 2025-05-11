@@ -13,6 +13,8 @@ class DropDownListModule extends StatelessWidget {
   String name;
   List<FormFieldValidator<String>>? validators;
   ValueChanged<String?>? onChanged;
+  String? initialProfileChoice;
+  bool isReadOnly;
 
   DropDownListModule({
     super.key,
@@ -24,6 +26,8 @@ class DropDownListModule extends StatelessWidget {
     required this.borderColor,
     required this.text,
     required this.backgroundColor,
+    this.isReadOnly=true,
+    this.initialProfileChoice,
     this.validators,
     this.onChanged,
   });
@@ -44,6 +48,8 @@ class DropDownListModule extends StatelessWidget {
         ),
         SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
         FormBuilderDropdown<String>(
+          enabled: !isReadOnly,
+          initialValue: initialProfileChoice,
           dropdownColor: Color(0xFFDEDAE0),
           decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(

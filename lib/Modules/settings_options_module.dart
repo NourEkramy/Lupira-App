@@ -6,15 +6,21 @@ class SettingsOptionsModule extends StatelessWidget {
   Color optionTextColor;
   VoidCallback optionAction;
 
-  SettingsOptionsModule({super.key, required this.optionAction, required this.optionTextColor, required this.optionIcon, required this.optionText});
+  SettingsOptionsModule({
+    super.key,
+    required this.optionAction,
+    required this.optionTextColor,
+    required this.optionIcon,
+    required this.optionText,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      GestureDetector(
-        onTap: optionAction,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 35,vertical: 13),
+    return GestureDetector(
+      onTap: optionAction,
+      child: Column(children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 35, vertical: 13),
           child: Row(
             children: [
               Image.asset(optionIcon),
@@ -30,8 +36,11 @@ class SettingsOptionsModule extends StatelessWidget {
             ],
           ),
         ),
-      ),
-      Divider(thickness: 1,color: Color(0xFFABABAB),),
-    ]);
+        Divider(
+          thickness: 1,
+          color: Color(0xFFABABAB),
+        ),
+      ]),
+    );
   }
 }
