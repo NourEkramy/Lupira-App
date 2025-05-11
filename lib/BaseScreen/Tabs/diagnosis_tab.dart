@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
 import 'package:untitled/Modules/report_card_module.dart';
-import '../../Bottom Sheets/prerequisites_bottom_sheet.dart';
 import '../../Detection/Detection-History/detection_details_screen.dart';
 import '../../Detection/Detection-History/detection_history.dart';
 import '../../Detection/Detection-History/detection_history_api.dart';
+import '../../Modules/prerequisites_bottom_sheet.dart';
 import '../Layout/main_layout.dart';
 
 class DiagnosisTab extends StatefulWidget {

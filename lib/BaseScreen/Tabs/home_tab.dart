@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/About-Lupira/about_lupira.dart';
 import 'package:untitled/Lupus%20Articles/lupus_articles.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
-import '../../Bottom Sheets/prerequisites_bottom_sheet.dart';
+import '../../Modules/prerequisites_bottom_sheet.dart';
 import '../Layout/main_layout.dart';
 
 class HomeTab extends StatelessWidget {

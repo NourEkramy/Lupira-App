@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../Bottom Sheets/explanation_bottom_sheet.dart';
+import 'explanation_bottom_sheet.dart';
 
 class QuestionModule extends StatelessWidget {
   final String question;
