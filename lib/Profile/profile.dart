@@ -1,8 +1,8 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Modules/drop_down_list_module.dart';
 import 'package:untitled/Profile/profile_api.dart';
 import '../Models/user_profile_data_model.dart';
@@ -23,8 +23,6 @@ class _ProfileState extends State<Profile> {
   bool isLoading = true;
   bool isEditable = false;
   bool isPhoneEditable = false;
-  String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMxMjAsImlhdCI6MTc0NjU0NTk4NywiZXhwIjoxNzQ2NTQ5NTg3fQ.KOlfmbVyXBHMPTRjtsJIRarfr4Ma0nI02YXlLiVSwtA";
   String? selectedCountry;
   String? selectedGender;
   String? selectedEthnicity;
@@ -68,7 +66,10 @@ class _ProfileState extends State<Profile> {
 
   Future<void> loadProfile() async {
     try {
-      final data = await ProfileApi.fetchProfile(token);
+      final prefs = await SharedPreferences.getInstance();
+      var token = prefs.getString('token');
+
+      final data = await ProfileApi.fetchProfile(token!);
 
       if (data != null && data.data != null) {
         setState(() {
@@ -106,6 +107,9 @@ class _ProfileState extends State<Profile> {
       });
 
       try {
+        final prefs = await SharedPreferences.getInstance();
+        var token = prefs.getString('token');
+
         final response = await ProfileApi.applyProfileEdits(
           token: token ?? '',
           country: selectedCountry ?? '',
@@ -120,8 +124,6 @@ class _ProfileState extends State<Profile> {
         bool success = response['success'];
         String message = response['message'];
 
-        print('status: $success');
-        print('message: $message');
         if (success) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -164,7 +166,6 @@ class _ProfileState extends State<Profile> {
           );
         }
 
-        print('Form Values: $values');
       } catch (e) {
         setState(() {
           isUpdating = false;
@@ -225,40 +226,40 @@ class _ProfileState extends State<Profile> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Center(
-                          child: Stack(
-                            alignment: Alignment.bottomRight,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: Color(0xFFABABAB),
-                                    width: 3,
-                                  ),
-                                ),
-                                child: CircleAvatar(
-                                  radius: 65,
-                                  backgroundColor: Colors.transparent,
-                                  child: Icon(
-                                    Icons.person,
-                                    color: Color(0xFFABABAB),
-                                    size: 125,
-                                  ),
-                                ),
-                              ),
-                              CircleAvatar(
-                                radius: 18,
-                                backgroundColor: Color(0xFFD9D9D9),
-                                child: Icon(
-                                  Icons.edit,
-                                  size: 22,
-                                  color: Color(0xFFABABAB),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // Center(
+                        //   child: Stack(
+                        //     alignment: Alignment.bottomRight,
+                        //     children: [
+                        //       Container(
+                        //         decoration: BoxDecoration(
+                        //           shape: BoxShape.circle,
+                        //           border: Border.all(
+                        //             color: Color(0xFFABABAB),
+                        //             width: 3,
+                        //           ),
+                        //         ),
+                        //         child: CircleAvatar(
+                        //           radius: 65,
+                        //           backgroundColor: Colors.transparent,
+                        //           child: Icon(
+                        //             Icons.person,
+                        //             color: Color(0xFFABABAB),
+                        //             size: 125,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       CircleAvatar(
+                        //         radius: 18,
+                        //         backgroundColor: Color(0xFFD9D9D9),
+                        //         child: Icon(
+                        //           Icons.edit,
+                        //           size: 22,
+                        //           color: Color(0xFFABABAB),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                         ListView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
@@ -511,7 +512,9 @@ class _ProfileState extends State<Profile> {
                                   },
                                   child: Container(
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: 12, vertical: 16,),
+                                      horizontal: 12,
+                                      vertical: 16,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: Color(0xFFDEDAE0),
                                       borderRadius: BorderRadius.circular(10),
