@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ArticleCardModule extends StatelessWidget {
-  String websiteName, articleName, articleDate, articleImage;
+  String websiteName, articleName, articleImage;
   VoidCallback redirectFunction;
 
   ArticleCardModule(
       {super.key,
-      required this.articleDate,
       required this.articleImage,
       required this.articleName,
       required this.websiteName,
@@ -43,7 +42,7 @@ class ArticleCardModule extends StatelessWidget {
                   height: MediaQuery.of(context).size.height*0.3,
                   fit: BoxFit.fill,
                   errorBuilder: (context, error, stackTrace) {
-                    return Text('Image failed to load');
+                    return Center(child: Image.asset('assets/images/no_image.png'));
                   },
                 ),
               ),
@@ -65,7 +64,7 @@ class ArticleCardModule extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(
-                left: 4.0,
+                left: 8.0,
               ),
               child: Text(
                 articleName,
@@ -77,20 +76,7 @@ class ArticleCardModule extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: 8.0,
-              ),
-              child: Text(
-                articleDate,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontFamily: 'Inder',
-                  color: Color(0xFF817F82),
-                ),
-              ),
-            ),
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
+            SizedBox(height: MediaQuery.sizeOf(context).height * 0.015),
           ],
         ),
       ),
