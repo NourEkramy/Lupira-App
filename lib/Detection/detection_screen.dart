@@ -55,8 +55,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
     final prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
 
-    List<Questions> fetchedQuestions =
-        await QuestionsServices.getQuestions(token!);
+    List<Questions> fetchedQuestions = await QuestionsServices.getQuestions('');
     setState(() {
       if (fetchedQuestions.isEmpty) {
         hasErrorLoadingQuestions = true;
@@ -120,7 +119,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
 
       for (var entry in answers.entries) {
         final question = questionsList.firstWhere(
-              (q) => q.sId == entry.key,
+          (q) => q.sId == entry.key,
         );
 
         if (entry.value != null && entry.value!.isNotEmpty) {
@@ -197,12 +196,12 @@ class _DetectionScreenState extends State<DetectionScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-              radius: 90,
+              radius: 75,
               backgroundColor: Color(0xffDDBCC3),
               child: ImageIcon(
-                AssetImage("assets/images/warning_positive_result.png"),
+                AssetImage("assets/images/error.png"),
                 color: Color(0xffD6101D),
-                size: 125,
+                size: 95,
               ),
             ),
             SizedBox(
@@ -212,7 +211,10 @@ class _DetectionScreenState extends State<DetectionScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
                 "Questions unavailable !\n Please try again later",
-                style: TextStyle(fontFamily: "Inder",fontSize: 25, color: Color(0xffD6101D)),
+                style: TextStyle(
+                    fontFamily: "Inder",
+                    fontSize: 22,
+                    color: Color(0xffD6101D)),
                 textAlign: TextAlign.center,
               ),
             ),
