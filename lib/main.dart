@@ -10,6 +10,7 @@ import 'package:untitled/Password/reset_password.dart';
 import 'BaseScreen/base_screen_logic.dart';
 import 'Password/forgot_password.dart';
 import 'Sign-Up/sign_up_ui.dart';
+import 'package:untitled/BaseScreen/base_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

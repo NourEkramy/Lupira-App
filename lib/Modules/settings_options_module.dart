@@ -34,5 +34,28 @@ class SettingsOptionsModule extends StatelessWidget {
         Divider(thickness: 1,color: Color(0xFFABABAB),),
       ]),
     );
+    return Column(children: [
+      GestureDetector(
+        onTap: optionAction(),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 35,vertical: 13),
+          child: Row(
+            children: [
+              Image.asset(optionIcon),
+              SizedBox(width: MediaQuery.sizeOf(context).width * 0.065),
+              Text(
+                optionText,
+                style: TextStyle(
+                  color: optionTextColor,
+                  fontFamily: 'Inder',
+                  fontSize: 24,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      Divider(thickness: 1,color: Color(0xFFABABAB),),
+    ]);
   }
 }
