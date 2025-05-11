@@ -99,7 +99,7 @@ class _LogInState extends State<LogIn> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              "Login error: $e",
+              "$e",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,

@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class LogInApi{
+class LogInApi {
   static Future<Map<String, dynamic>> logInUser({
     required String email,
     required String password,
@@ -22,11 +22,15 @@ class LogInApi{
       headers: headers,
       body: body,
     );
+    var decoded = jsonDecode(response.body);
 
     if (response.statusCode == 201) {
-        return jsonDecode(response.body);
+      return decoded;
     } else {
-      throw Exception('Login failed ${response.body}');
+      return {
+        'success': false,
+        'message': decoded['error'] ?? 'Unknown error',
+      };
     }
   }
 }
