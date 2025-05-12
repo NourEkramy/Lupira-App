@@ -124,151 +124,154 @@ class _LogInState extends State<LogIn> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: UserCredentialsCardModule(
-        cardBody: FormBuilder(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.04),
-              Text(
-                'Login',
-                style: TextStyle(
-                  fontSize: 55,
-                  fontFamily: 'Alegreya',
-                  color: Color(0xFF49146D),
-                ),
-              ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      TextFieldModule(
-                        name: 'Email',
-                        validators: [
-                          FormBuilderValidators.required(
-                              errorText: 'Email is required'),
-                          FormBuilderValidators.email(
-                              errorText: 'Please enter a valid email address!'),
-                        ],
-                        textFieldType: TextInputType.text,
-                        hintTextTitle: 'Enter email',
-                        textFieldTitle: 'Email',
-                        hintTextColor: Color(0xFFABABAB),
-                        titelTextColor: Color(0xFF817F82),
-                        borderColor: Color(0xFFDEDAE0),
-                        backgroundColor: Color(0xFFDEDAE0),
-                      ),
-                      TextFieldModule(
-                        name: 'Password',
-                        validators: [
-                          FormBuilderValidators.required(
-                              errorText: 'Password is required'),
-                        ],
-                        textFieldType: TextInputType.visiblePassword,
-                        obscureText: true,
-                        hintTextTitle: 'Enter password',
-                        textFieldTitle: 'Password',
-                        hintTextColor: Color(0xFFABABAB),
-                        titelTextColor: Color(0xFF817F82),
-                        borderColor: Color(0xFFDEDAE0),
-                        backgroundColor: Color(0xFFDEDAE0),
-                      ),
-                      SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.01),
-                      Container(
-                        alignment: Alignment.centerRight,
-                        child: RichText(
-                          text: TextSpan(
-                            text: 'Forgot Password?',
-                            style: TextStyle(
-                              fontSize: 17,
-                              color: Color(0xFF502371),
-                              fontFamily: 'Inder',
-                              decoration: TextDecoration.underline,
-                            ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  PageRouteBuilder(
-                                    transitionDuration:
-                                        Duration(milliseconds: 250),
-                                    pageBuilder: (context, animation,
-                                            secondaryAnimation) =>
-                                        ForgotPassword(),
-                                    transitionsBuilder: (context, animation,
-                                        secondaryAnimation, child) {
-                                      const begin =
-                                          Offset(1.0, 0.0); // from right
-                                      const end = Offset.zero;
-                                      return SlideTransition(
-                                        position: animation.drive(
-                                          Tween(
-                                            begin: begin,
-                                            end: end,
-                                          ).chain(
-                                            CurveTween(curve: Curves.ease),
-                                          ),
-                                        ),
-                                        child: child,
-                                      );
-                                    },
-                                  ),
-                                );
-                              },
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.045),
-                      OperationButtonModule(
-                        borderColor: Color(0xFF502371),
-                        buttonColor: Color(0xFF502371),
-                        buttonText: 'Login',
-                        buttonTextColor: Colors.white,
-                        onTap: logIn,
-                      ),
-                      AuthenticationButtonModule(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            PageRouteBuilder(
-                              transitionDuration: Duration(milliseconds: 250),
-                              pageBuilder:
-                                  (context, animation, secondaryAnimation) =>
-                                      SignUp(),
-                              transitionsBuilder: (context, animation,
-                                  secondaryAnimation, child) {
-                                const begin = Offset(1.0, 0.0); // from right
-                                const end = Offset.zero;
-                                return SlideTransition(
-                                  position: animation.drive(
-                                    Tween(
-                                      begin: begin,
-                                      end: end,
-                                    ).chain(
-                                      CurveTween(curve: Curves.ease),
-                                    ),
-                                  ),
-                                  child: child,
-                                );
-                              },
-                            ),
-                          );
-                        },
-                        conditionOperation: 'Sign Up',
-                        conditionQeustion: "Don't have an account?  ",
-                      ),
-                    ],
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        body: UserCredentialsCardModule(
+          cardBody: FormBuilder(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: MediaQuery.sizeOf(context).height * 0.04),
+                Text(
+                  'Login',
+                  style: TextStyle(
+                    fontSize: 55,
+                    fontFamily: 'Alegreya',
+                    color: Color(0xFF49146D),
                   ),
                 ),
-              ),
-            ],
+                SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        TextFieldModule(
+                          name: 'Email',
+                          validators: [
+                            FormBuilderValidators.required(
+                                errorText: 'Email is required'),
+                            FormBuilderValidators.email(
+                                errorText: 'Please enter a valid email address!'),
+                          ],
+                          textFieldType: TextInputType.text,
+                          hintTextTitle: 'Enter email',
+                          textFieldTitle: 'Email',
+                          hintTextColor: Color(0xFFABABAB),
+                          titelTextColor: Color(0xFF817F82),
+                          borderColor: Color(0xFFDEDAE0),
+                          backgroundColor: Color(0xFFDEDAE0),
+                        ),
+                        TextFieldModule(
+                          name: 'Password',
+                          validators: [
+                            FormBuilderValidators.required(
+                                errorText: 'Password is required'),
+                          ],
+                          textFieldType: TextInputType.visiblePassword,
+                          obscureText: true,
+                          hintTextTitle: 'Enter password',
+                          textFieldTitle: 'Password',
+                          hintTextColor: Color(0xFFABABAB),
+                          titelTextColor: Color(0xFF817F82),
+                          borderColor: Color(0xFFDEDAE0),
+                          backgroundColor: Color(0xFFDEDAE0),
+                        ),
+                        SizedBox(
+                            height: MediaQuery.sizeOf(context).height * 0.01),
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: RichText(
+                            text: TextSpan(
+                              text: 'Forgot Password?',
+                              style: TextStyle(
+                                fontSize: 17,
+                                color: Color(0xFF502371),
+                                fontFamily: 'Inder',
+                                decoration: TextDecoration.underline,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    PageRouteBuilder(
+                                      transitionDuration:
+                                          Duration(milliseconds: 250),
+                                      pageBuilder: (context, animation,
+                                              secondaryAnimation) =>
+                                          ForgotPassword(),
+                                      transitionsBuilder: (context, animation,
+                                          secondaryAnimation, child) {
+                                        const begin =
+                                            Offset(1.0, 0.0); // from right
+                                        const end = Offset.zero;
+                                        return SlideTransition(
+                                          position: animation.drive(
+                                            Tween(
+                                              begin: begin,
+                                              end: end,
+                                            ).chain(
+                                              CurveTween(curve: Curves.ease),
+                                            ),
+                                          ),
+                                          child: child,
+                                        );
+                                      },
+                                    ),
+                                  );
+                                },
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        SizedBox(
+                            height: MediaQuery.sizeOf(context).height * 0.045),
+                        OperationButtonModule(
+                          borderColor: Color(0xFF502371),
+                          buttonColor: Color(0xFF502371),
+                          buttonText: 'Login',
+                          buttonTextColor: Colors.white,
+                          onTap: logIn,
+                        ),
+                        AuthenticationButtonModule(
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              PageRouteBuilder(
+                                transitionDuration: Duration(milliseconds: 250),
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) =>
+                                        SignUp(),
+                                transitionsBuilder: (context, animation,
+                                    secondaryAnimation, child) {
+                                  const begin = Offset(1.0, 0.0); // from right
+                                  const end = Offset.zero;
+                                  return SlideTransition(
+                                    position: animation.drive(
+                                      Tween(
+                                        begin: begin,
+                                        end: end,
+                                      ).chain(
+                                        CurveTween(curve: Curves.ease),
+                                      ),
+                                    ),
+                                    child: child,
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                          conditionOperation: 'Sign Up',
+                          conditionQeustion: "Don't have an account?  ",
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

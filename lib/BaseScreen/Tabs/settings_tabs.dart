@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/BottomSheets/logout_bottom_sheet.dart';
+import 'package:untitled/Log-In/auth_service.dart';
 import 'package:untitled/Modules/settings_options_module.dart';
 import 'package:untitled/Password/Change%20Password/change_password.dart';
 import 'package:untitled/Profile/profile.dart';
@@ -49,6 +51,17 @@ class _SettingsTabsState extends State<SettingsTabs> {
           return DeleteAccountBottomSheet(
             token: token!,
           );
+        },
+      );
+    });
+  }
+
+  void _logOutBottomSheet(BuildContext context) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return LogoutBottomSheet();
         },
       );
     });
@@ -119,7 +132,11 @@ class _SettingsTabsState extends State<SettingsTabs> {
           _showDeleteAccountBottomSheet(context);
         });
       },
-      () {},
+      () {
+        setState(() {
+          _logOutBottomSheet(context);
+        });
+      },
     ];
 
     return Padding(

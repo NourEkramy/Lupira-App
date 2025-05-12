@@ -1,89 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/BottomSheets/Delete%20Account/delete_account_api.dart';
+import 'package:untitled/Log-In/auth_service.dart';
+import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Sign-Up/sign_up_ui.dart';
 
-class DeleteAccountBottomSheet extends StatelessWidget {
-  String token;
-
-  DeleteAccountBottomSheet({super.key, required this.token});
-
-  Future<void> _deleteAccount(BuildContext context) async {
-    bool success = await DeleteAccountApi.deleteAccount(token);
-
-    if (success) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Account deleted successfuly',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontFamily: 'Inder',
-            ),
-          ),
-          backgroundColor: Colors.green,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 20,
-          ),
-          duration: Duration(seconds: 5),
-        ),
-      );
-
-      Navigator.pushAndRemoveUntil(
-        context,
-        PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 250),
-          pageBuilder: (context, animation, secondaryAnimation) => SignUp(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            const begin = Offset(1.0, 0.0); // from right
-            const end = Offset.zero;
-            return SlideTransition(
-              position: animation.drive(
-                Tween(
-                  begin: begin,
-                  end: end,
-                ).chain(
-                  CurveTween(curve: Curves.ease),
-                ),
-              ),
-              child: child,
-            );
-          },
-        ),
-        (route) => false,
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Failed to delete account',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontFamily: 'Inder',
-            ),
-          ),
-          backgroundColor: Color(0xFFB9433E),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 20,
-          ),
-          duration: Duration(seconds: 5),
-        ),
-      );
-      Navigator.pop(context);
-    }
-  }
+class LogoutBottomSheet extends StatelessWidget {
+  LogoutBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +34,7 @@ class DeleteAccountBottomSheet extends StatelessWidget {
               ),
               child: Text(
                 textAlign: TextAlign.center,
-                'Delete account',
+                'Log out',
                 style: TextStyle(
                   color: Color(0xFF3D1A57),
                   fontSize: 32,
@@ -124,7 +47,7 @@ class DeleteAccountBottomSheet extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Are you sure that you want to delete your account?',
+                    'Are you sure that you want to log out of your account?',
                     style: TextStyle(
                       fontFamily: 'Inder',
                       color: Color(0xFF4B4A4C),
@@ -145,10 +68,36 @@ class DeleteAccountBottomSheet extends StatelessWidget {
                   OperationButtonModule(
                     borderColor: Color(0xFFD6101D),
                     buttonColor: Color(0xFFEBE4E4),
-                    buttonText: 'Delete account',
+                    buttonText: 'Log out',
                     buttonTextColor: Color(0xFFD6101D),
                     onTap: () {
-                      _deleteAccount(context);
+                      AuthService.logout();
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: Duration(milliseconds: 250),
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) =>
+                                  LogIn(),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            const begin = Offset(1.0, 0.0); // from right
+                            const end = Offset.zero;
+                            return SlideTransition(
+                              position: animation.drive(
+                                Tween(
+                                  begin: begin,
+                                  end: end,
+                                ).chain(
+                                  CurveTween(curve: Curves.ease),
+                                ),
+                              ),
+                              child: child,
+                            );
+                          },
+                        ),
+                        (route) => false,
+                      );
                     },
                   ),
                   SizedBox(height: MediaQuery.sizeOf(context).height * 0.015),
