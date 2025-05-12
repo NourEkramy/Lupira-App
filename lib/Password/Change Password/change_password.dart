@@ -172,12 +172,14 @@ class _ChangePasswordState extends State<ChangePassword> {
                 buttonText: 'Forgot password',
                 buttonTextColor: Color(0xFF502371),
                 onTap: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     PageRouteBuilder(
                       transitionDuration: Duration(milliseconds: 250),
                       pageBuilder: (context, animation, secondaryAnimation) =>
-                          ForgotPassword(),
+                          ForgotPassword(
+                        isChangingPassword: true,
+                      ),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         const begin = Offset(1.0, 0.0); // from right

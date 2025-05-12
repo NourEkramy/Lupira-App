@@ -6,6 +6,7 @@ import 'package:untitled/Modules/settings_options_module.dart';
 import 'package:untitled/Password/Change%20Password/change_password.dart';
 import 'package:untitled/Profile/profile.dart';
 import '../../BottomSheets/Delete Account/delete_account_bottom_sheet.dart';
+import '../../BottomSheets/language_bottom_sheet.dart';
 import '../Layout/main_layout.dart';
 
 class SettingsTabs extends StatefulWidget {
@@ -39,6 +40,17 @@ class _SettingsTabsState extends State<SettingsTabs> {
     Color(0xFF4B4A4C),
     Color(0xFFD6101D),
   ];
+
+  void _showLanguageBottomSheet(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return LanguageBottomSheet();
+        },
+      );
+    });
+  }
 
   void _showDeleteAccountBottomSheet(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
@@ -126,7 +138,11 @@ class _SettingsTabsState extends State<SettingsTabs> {
           ),
         );
       },
-      () {},
+      () {
+        setState(() {
+          _showLanguageBottomSheet(context);
+        });
+      },
       () {
         setState(() {
           _showDeleteAccountBottomSheet(context);

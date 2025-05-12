@@ -4,11 +4,15 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Modules/user_credentials_card_module.dart';
+import 'package:untitled/Password/Change%20Password/change_password.dart';
+import '../../BaseScreen/Layout/main_layout.dart';
 import '../../Log-In/log_in_ui.dart';
 import 'forgot_password_api.dart';
 
 class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({Key? key}) : super(key: key);
+  bool isChangingPassword;
+
+  ForgotPassword({Key? key, this.isChangingPassword = false}) : super(key: key);
 
   static const String routName = "ForgotPassword";
 
@@ -69,7 +73,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           setState(() {
             codeState = 500;
           });
-      }catch (e) {
+      } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -170,33 +174,41 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     OperationButtonModule(
                       borderColor: Color(0xFF502371),
                       buttonColor: Color(0xFFEBE4E4),
-                      buttonText: 'Back to login',
+                      buttonText:
+                          widget.isChangingPassword ? 'Back' : 'Back to login',
                       buttonTextColor: Color(0xFF502371),
-                      onTap: () {Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          transitionDuration: Duration(milliseconds: 250),
-                          pageBuilder:
-                              (context, animation, secondaryAnimation) =>
-                              LogIn(),
-                          transitionsBuilder: (context, animation,
-                              secondaryAnimation, child) {
-                            const begin = Offset(1.0, 0.0); // from right
-                            const end = Offset.zero;
-                            return SlideTransition(
-                              position: animation.drive(
-                                Tween(
-                                  begin: begin,
-                                  end: end,
-                                ).chain(
-                                  CurveTween(curve: Curves.ease),
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            transitionDuration: Duration(milliseconds: 250),
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    widget.isChangingPassword
+                                        ? MainLayout(
+                                            title: 'Change Password',
+                                            child: ChangePassword(),
+                                          )
+                                        : LogIn(),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              const begin = Offset(1.0, 0.0); // from right
+                              const end = Offset.zero;
+                              return SlideTransition(
+                                position: animation.drive(
+                                  Tween(
+                                    begin: begin,
+                                    end: end,
+                                  ).chain(
+                                    CurveTween(curve: Curves.ease),
+                                  ),
                                 ),
-                              ),
-                              child: child,
-                            );
-                          },
-                        ),
-                      );},
+                                child: child,
+                              );
+                            },
+                          ),
+                        );
+                      },
                     ),
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
                   ],

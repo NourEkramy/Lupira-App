@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:ui';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uni_links3/uni_links.dart';
 import 'package:untitled/About-Lupira/about_lupira.dart';
 import 'package:untitled/BaseScreen/base_screen.dart';
@@ -12,11 +15,24 @@ import 'BaseScreen/base_screen_logic.dart';
 import 'Password/Forgot Password/forgot_password.dart';
 import 'Profile/profile.dart';
 import 'Sign-Up/sign_up_ui.dart';
-import 'package:untitled/BaseScreen/base_screen.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  await EasyLocalization.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  final savedLangCode = prefs.getString('selected_language') ??
+      PlatformDispatcher.instance.locale.languageCode;
+  final initialLocale = Locale(savedLangCode);
+
+  runApp(
+    EasyLocalization(
+      supportedLocales: [Locale('en'), Locale('ar')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      startLocale: initialLocale,
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -43,9 +59,17 @@ class _MyAppState extends State<MyApp> {
     if (!isLoggedIn) {
       // Token is expired or not found, log the user out
       await AuthService.logout();
-      Navigator.pushReplacementNamed(context, LogIn.routName);
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LogIn(),
+          ));
     } else {
-      Navigator.pushReplacementNamed(context, BaseScreen.routName);
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BaseScreen(),
+          ));
     }
   }
 
@@ -122,6 +146,9 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         navigatorKey: _navigatorKey,
         debugShowCheckedModeBanner: false,
         initialRoute: LogIn.routName,
