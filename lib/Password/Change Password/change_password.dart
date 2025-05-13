@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -14,31 +15,31 @@ class ChangePassword extends StatefulWidget {
   static List<Map<String, dynamic>> textfields = [
     {
       'validators': [
-        FormBuilderValidators.required(errorText: 'Old password is required')
+        FormBuilderValidators.required(errorText: 'oldPaswwordRequired'.tr())
       ],
       'name': 'oldPassword',
-      'title': 'Old password',
-      'hint': 'Enter old password',
+      'title': 'oldPassword'.tr(),
+      'hint': 'enterOldPassword'.tr(),
     },
     {
       'name': 'newPassword',
-      'title': 'New password',
-      'hint': 'Enter new password',
+      'title': 'newPassword'.tr(),
+      'hint': 'enterNewPassword'.tr(),
       'validators': [
-        FormBuilderValidators.required(errorText: 'New password is required'),
+        FormBuilderValidators.required(errorText: 'oldPasswordRequired'.tr()),
         FormBuilderValidators.minLength(8,
-            errorText: 'Password must be at least 8 characters long!'),
+            errorText: 'passwordValidLength'.tr()),
         FormBuilderValidators.match(
           RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$'),
           errorText:
-              'Password must include at least one lowercase letter, one uppercase letter, one number, and one special character!',
+              'passwordRules'.tr(),
         ),
       ],
     },
     {
       'name': 'confirmNewPassword',
-      'title': 'Confirm password',
-      'hint': 'Enter password',
+      'title': 'confirmPassword'.tr(),
+      'hint': 'enterPassword'.tr(),
     },
   ];
 
@@ -87,7 +88,7 @@ class _ChangePasswordState extends State<ChangePassword> {
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text("Error: $e"),
+            content: Text("$e"),
             backgroundColor: Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -115,7 +116,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             children: [
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
               Text(
-                'The password must be different than before',
+                'diffPassword'.tr(),
                 style: TextStyle(
                   color: Color(0xFF4B4A4C),
                   fontSize: 24,
@@ -134,9 +135,9 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 final password = _formKey
                                     .currentState?.fields['newPassword']?.value;
                                 if (val == null || val.isEmpty)
-                                  return 'Please confirm your password';
+                                  return 'confirmPasswordRequired'.tr();
                                 if (val != password)
-                                  return 'Passwords do not match';
+                                  return 'noMatchPassword'.tr();
                                 return null;
                               }
                             ]
@@ -161,7 +162,7 @@ class _ChangePasswordState extends State<ChangePassword> {
               OperationButtonModule(
                 borderColor: Color(0xFF502371),
                 buttonColor: Color(0xFF502371),
-                buttonText: 'Change password',
+                buttonText: 'changePassword'.tr(),
                 buttonTextColor: Color(0xFFFFFFFF),
                 onTap: changePassword,
               ),
@@ -169,7 +170,7 @@ class _ChangePasswordState extends State<ChangePassword> {
               OperationButtonModule(
                 borderColor: Color(0xFF502371),
                 buttonColor: Color(0xFFDEDAE0),
-                buttonText: 'Forgot password',
+                buttonText: 'forgotPassword'.tr(),
                 buttonTextColor: Color(0xFF502371),
                 onTap: () {
                   Navigator.pushReplacement(

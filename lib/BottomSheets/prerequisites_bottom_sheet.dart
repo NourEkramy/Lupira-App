@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:untitled/BottomSheets/explanation_bottom_sheet.dart';
 import '../BaseScreen/Layout/main_layout.dart';
 import '../Detection/detection_screen.dart';
 
@@ -22,7 +24,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
           context,
           MaterialPageRoute(
             builder: (context) => MainLayout(
-              title: "Detection",
+              title: "detection".tr(),
               child: DetectionScreen(),
             ),
           ),
@@ -60,7 +62,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
             width: double.infinity,
             child: Text(
               textAlign: TextAlign.center,
-              'Prerequisites',
+              'prerequisites'.tr(),
               style: TextStyle(
                 color: Color(0xFF3D1A57),
                 fontSize: 32,
@@ -80,7 +82,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "The following tests are mandatory:",
+                        "followingMandatory".tr(),
                         style: TextStyle(
                           fontSize: 22,
                           fontFamily: 'Inder',
@@ -185,7 +187,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                         ),
                       ),
                       Text(
-                        "The following tests are optional:",
+                        "followingOptional".tr(),
                         style: TextStyle(
                           fontSize: 22,
                           fontFamily: 'Inder',
@@ -235,7 +237,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                         initialValue: false,
                         validator: (value) {
                           if (value != true) {
-                            return 'Please confirm to start detection';
+                            return 'confirmStartDetection'.tr();
                           }
                           return null;
                         },
@@ -261,7 +263,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        'I have read and understood the prerequisites.',
+                                        'understoodPrerequisites'.tr(),
                                         style: TextStyle(
                                           fontFamily: 'Inder',
                                           fontSize: 16,
@@ -292,7 +294,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                             0.01,
                                       ),
                                       Text(
-                                        "Please confirm to start detection",
+                                        "confirmStartDetection".tr(),
                                         style: TextStyle(
                                           color: Color(0xffD6101D),
                                           fontFamily: "Inder",
@@ -325,7 +327,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                   Navigator.pop(context);
                                 },
                                 child: Text(
-                                  "Close",
+                                  "close".tr(),
                                   style: TextStyle(
                                     color: Color(0xffD6101D),
                                     fontFamily: "Inder",
@@ -347,7 +349,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                   ),
                                 ),
                                 child: Text(
-                                  "Start",
+                                  "start".tr(),
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontFamily: "Inder",

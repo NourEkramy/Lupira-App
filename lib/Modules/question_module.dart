@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/BottomSheets/language_bottom_sheet.dart';
 import '../BottomSheets/explanation_bottom_sheet.dart';
 
 class QuestionModule extends StatelessWidget {
@@ -123,7 +125,7 @@ class QuestionModule extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.01,
                   ),
                   Text(
-                    "Please choose one answer",
+                    "chooseAnswer".tr(),
                     style: TextStyle(
                       color: Color(0xFFB9433E),
                       fontFamily: "Inder",

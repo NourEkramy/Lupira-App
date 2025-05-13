@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -111,8 +112,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.06),
               Text(
                 (codeState == 200 || codeState == 500)
-                    ? 'Verification email'
-                    : 'Forgot password?',
+                    ? 'verfEmail'.tr()
+                    : 'forgotPasswordLink'.tr(),
                 style: TextStyle(
                   fontSize: 43,
                   fontFamily: 'Alegreya',
@@ -123,7 +124,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               Text(
                 (codeState == 200 || codeState == 500)
                     ? message
-                    : 'Enter your Email account to reset password',
+                    : 'enterResetEmail'.tr(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
@@ -148,13 +149,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       name: 'Email',
                       validators: [
                         FormBuilderValidators.required(
-                            errorText: 'Email is required'),
+                            errorText: 'emailRequired'.tr()),
                         FormBuilderValidators.email(
-                            errorText: 'Please enter a valid email address!'),
+                            errorText: 'emailValidRequired'.tr()),
                       ],
                       textFieldType: TextInputType.emailAddress,
-                      hintTextTitle: 'Enter Email',
-                      textFieldTitle: 'Email',
+                      hintTextTitle: 'enterEmail'.tr(),
+                      textFieldTitle: 'email'.tr(),
                       hintTextColor: Color(0xFFABABAB),
                       titelTextColor: Color(0xFF817F82),
                       borderColor: Color(0xFFDEDAE0),
@@ -165,8 +166,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       borderColor: Color(0xFF502371),
                       buttonColor: Color(0xFF502371),
                       buttonText: (codeState == 200 || codeState == 500)
-                          ? 'Resend email'
-                          : 'Send verification email',
+                          ? 'resendEmail'.tr()
+                          : 'sendVerificatoin'.tr(),
                       buttonTextColor: Colors.white,
                       onTap: forgotPassword,
                     ),
@@ -175,7 +176,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       borderColor: Color(0xFF502371),
                       buttonColor: Color(0xFFEBE4E4),
                       buttonText:
-                          widget.isChangingPassword ? 'Back' : 'Back to login',
+                          widget.isChangingPassword ? 'back'.tr() : 'backLogin'.tr(),
                       buttonTextColor: Color(0xFF502371),
                       onTap: () {
                         Navigator.pushReplacement(
@@ -186,7 +187,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 (context, animation, secondaryAnimation) =>
                                     widget.isChangingPassword
                                         ? MainLayout(
-                                            title: 'Change Password',
+                                            title: 'changePassword'.tr(),
                                             child: ChangePassword(),
                                           )
                                         : LogIn(),

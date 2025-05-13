@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
@@ -63,12 +64,12 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(
                 left: 10,
               ),
               child: Text(
-                "Detection",
+                "detection".tr(),
                 style: TextStyle(
                   color: Color(0xFF3D1A57),
                   fontFamily: "Inder",
@@ -78,7 +79,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
               ),
             ),
             DetectionCardModule(
-              mainTitle: "Start Lupus Detection",
+              mainTitle: "startDetection".tr(),
               onTap: () {
                 showModalBottomSheet(
                   context: context,
@@ -97,8 +98,8 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Detection history",
+                  Text(
+                    "detectionHistory".tr(),
                     style: TextStyle(
                       color: Color(0xFF3D1A57),
                       fontFamily: "Inder",
@@ -112,7 +113,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => MainLayout(
-                            title: "History",
+                            title: "history".tr(),
                             child: DetectionHistory(),
                           ),
                           settings: RouteSettings(
@@ -121,10 +122,10 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                         ),
                       );
                     },
-                    child: const Row(
+                    child: Row(
                       children: [
                         Text(
-                          "See more",
+                          "seeMore".tr(),
                           style: TextStyle(
                             color: Color(0xFF744199),
                             fontFamily: "Inder",
@@ -155,7 +156,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                     top: 8,
                   ),
                   child: Text(
-                    "No history available",
+                    "noHistory".tr(),
                     style: TextStyle(
                       color: Color(0xFF4B4A4C),
                       fontFamily: 'Inder',
@@ -179,7 +180,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                               child: DetectionDetailsScreen(
                                 detectionData: historyData[index],
                               ),
-                              title: 'Detection Details',
+                              title: 'detectionDetails'.tr(),
                             ),
                           ),
                         );

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/BottomSheets/Delete%20Account/delete_account_api.dart';
 import 'package:untitled/Log-In/auth_service.dart';
@@ -34,7 +35,7 @@ class LogoutBottomSheet extends StatelessWidget {
               ),
               child: Text(
                 textAlign: TextAlign.center,
-                'Log out',
+                'logout'.tr(),
                 style: TextStyle(
                   color: Color(0xFF3D1A57),
                   fontSize: 32,
@@ -47,7 +48,7 @@ class LogoutBottomSheet extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Are you sure that you want to log out of your account?',
+                    'logoutQuestion'.tr(),
                     style: TextStyle(
                       fontFamily: 'Inder',
                       color: Color(0xFF4B4A4C),
@@ -58,7 +59,7 @@ class LogoutBottomSheet extends StatelessWidget {
                   OperationButtonModule(
                     borderColor: Color(0xFF502371),
                     buttonColor: Color(0xFF502371),
-                    buttonText: 'Cancel',
+                    buttonText: 'cancel'.tr(),
                     buttonTextColor: Color(0xFFFFFFFF),
                     onTap: () {
                       Navigator.pop(context);
@@ -68,7 +69,7 @@ class LogoutBottomSheet extends StatelessWidget {
                   OperationButtonModule(
                     borderColor: Color(0xFFD6101D),
                     buttonColor: Color(0xFFEBE4E4),
-                    buttonText: 'Log out',
+                    buttonText: 'logout'.tr(),
                     buttonTextColor: Color(0xFFD6101D),
                     onTap: () {
                       AuthService.logout();

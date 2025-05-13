@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/About-Lupira/about_lupira.dart';
+import 'package:untitled/BaseScreen/Tabs/settings_tabs.dart';
 import 'package:untitled/Lupus%20Articles/lupus_articles.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
 import '../../BottomSheets/prerequisites_bottom_sheet.dart';
@@ -22,8 +24,8 @@ class HomeTab extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             DetectionCardModule(
-              mainTitle: 'Quick Detection',
-              subtitle: 'Free lupus detection',
+              mainTitle: 'quickDetection'.tr(),
+              subtitle: 'freeDetection'.tr(),
               onTap: () {
                 showModalBottomSheet(
                   context: context,
@@ -37,7 +39,7 @@ class HomeTab extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 8, bottom: 3),
               child: Text(
-                'Learn More',
+                'learnMore'.tr(),
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 24,
@@ -55,7 +57,7 @@ class HomeTab extends StatelessWidget {
                     transitionDuration: Duration(milliseconds: 250),
                     pageBuilder: (context, animation, secondaryAnimation) =>
                         MainLayout(
-                          title: 'Lupus Articles',
+                          title: 'articles'.tr(),
                           child: LupusArticles(),
                         ),
                     transitionsBuilder:
@@ -105,7 +107,7 @@ class HomeTab extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Lupus Articles',
+                            'articles'.tr(),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 21,
@@ -116,7 +118,7 @@ class HomeTab extends StatelessWidget {
                           SizedBox(
                               height: MediaQuery.sizeOf(context).height * 0.01),
                           Text(
-                            'Learn more about description, symptoms and tips of lupus',
+                            'learnLupus'.tr(),
                             style: TextStyle(
                               fontSize: 17,
                               color: Color(0xFF817F82),
@@ -139,7 +141,7 @@ class HomeTab extends StatelessWidget {
                     transitionDuration: Duration(milliseconds: 250),
                     pageBuilder: (context, animation, secondaryAnimation) =>
                         MainLayout(
-                      title: 'About ',
+                      title: 'about'.tr(),
                       appName: 'Lupira',
                       child: AboutLupira(),
                     ),
@@ -190,7 +192,7 @@ class HomeTab extends StatelessWidget {
                         children: [
                           RichText(
                             text: TextSpan(
-                              text: 'About ',
+                              text: 'about'.tr(),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 21,
@@ -213,7 +215,7 @@ class HomeTab extends StatelessWidget {
                           SizedBox(
                               height: MediaQuery.sizeOf(context).height * 0.01),
                           Text(
-                            'Discover who we are and what we do?',
+                            'discover'.tr(),
                             style: TextStyle(
                               fontSize: 17,
                               color: Color(0xFF817F82),

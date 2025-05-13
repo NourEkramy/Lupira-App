@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -136,7 +137,7 @@ class _LogInState extends State<LogIn> {
               children: [
                 SizedBox(height: MediaQuery.sizeOf(context).height * 0.04),
                 Text(
-                  'Login',
+                  "login".tr(),
                   style: TextStyle(
                     fontSize: 55,
                     fontFamily: 'Alegreya',
@@ -149,31 +150,31 @@ class _LogInState extends State<LogIn> {
                     child: Column(
                       children: [
                         TextFieldModule(
-                          name: 'Email',
+                          name: "email".tr(),
                           validators: [
                             FormBuilderValidators.required(
-                                errorText: 'Email is required'),
+                                errorText: "emailRequired".tr()),
                             FormBuilderValidators.email(
-                                errorText: 'Please enter a valid email address!'),
+                                errorText: "emailValidRequired".tr()),
                           ],
                           textFieldType: TextInputType.text,
-                          hintTextTitle: 'Enter email',
-                          textFieldTitle: 'Email',
+                          hintTextTitle: "enterEmail".tr(),
+                          textFieldTitle: "email".tr(),
                           hintTextColor: Color(0xFFABABAB),
                           titelTextColor: Color(0xFF817F82),
                           borderColor: Color(0xFFDEDAE0),
                           backgroundColor: Color(0xFFDEDAE0),
                         ),
                         TextFieldModule(
-                          name: 'Password',
+                          name: "password".tr(),
                           validators: [
                             FormBuilderValidators.required(
-                                errorText: 'Password is required'),
+                                errorText: "passwordRequired".tr()),
                           ],
                           textFieldType: TextInputType.visiblePassword,
                           obscureText: true,
-                          hintTextTitle: 'Enter password',
-                          textFieldTitle: 'Password',
+                          hintTextTitle: "enterPassword".tr(),
+                          textFieldTitle: "password".tr(),
                           hintTextColor: Color(0xFFABABAB),
                           titelTextColor: Color(0xFF817F82),
                           borderColor: Color(0xFFDEDAE0),
@@ -185,7 +186,7 @@ class _LogInState extends State<LogIn> {
                           alignment: Alignment.centerRight,
                           child: RichText(
                             text: TextSpan(
-                              text: 'Forgot Password?',
+                              text: "forgotPasswordLink".tr(),
                               style: TextStyle(
                                 fontSize: 17,
                                 color: Color(0xFF502371),
@@ -231,7 +232,7 @@ class _LogInState extends State<LogIn> {
                         OperationButtonModule(
                           borderColor: Color(0xFF502371),
                           buttonColor: Color(0xFF502371),
-                          buttonText: 'Login',
+                          buttonText: "login".tr(),
                           buttonTextColor: Colors.white,
                           onTap: logIn,
                         ),
@@ -263,8 +264,8 @@ class _LogInState extends State<LogIn> {
                               ),
                             );
                           },
-                          conditionOperation: 'Sign Up',
-                          conditionQeustion: "Don't have an account?  ",
+                          conditionOperation: "signup".tr(),
+                          conditionQeustion: "noAccount".tr(),
                         ),
                       ],
                     ),

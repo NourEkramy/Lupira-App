@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/BaseScreen/Tabs/diagnosis_tab.dart';
 
 class AboutLupira extends StatelessWidget {
   AboutLupira({super.key});
@@ -25,8 +27,8 @@ class AboutLupira extends StatelessWidget {
               ),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
               Text(
-                """Lupira is a medical mobile application designed to assist in the early detection of lupus, an autoimmune disease that causes widespread inflammation and damage to various body systems. By analyzing real-life scenarios and using an AI-powered model trained on symptoms and lab results, Lupira provides users with a reliable diagnosis tool.\nAdditionally, the app educates users about lupus, its symptoms, and its impact, empowering individuals with knowledge to better manage their health.""",
-                style: TextStyle(
+                "aboutLupiraParagraph".tr(),
+              style: TextStyle(
                   fontSize: 22,
                   color: Color(0xFF817F82),
                 ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 
@@ -12,9 +13,9 @@ class DetectionDetailsScreen extends StatefulWidget {
 
 class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
   String _getTitleForIndex(int questionIndex) {
-    if (questionIndex == 0) return "ANA test presence";
-    if (questionIndex == 1) return "Symptoms";
-    if (questionIndex == 17) return "Laboratory Tests";
+    if (questionIndex == 0) return "anaTest".tr();
+    if (questionIndex == 1) return "symptoms".tr();
+    if (questionIndex == 17) return "labTests".tr();
     return '';
   }
 
@@ -22,7 +23,7 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
   Widget build(BuildContext context) {
     final responses = widget.detectionData['responses'] as List? ?? [];
     final resultLabel =
-        widget.detectionData['resultLabel'] as String? ?? 'No result';
+        widget.detectionData['resultLabel'] as String? ?? 'noResult'.tr();
     String? lastTitle;
 
     return Column(
@@ -41,7 +42,7 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
                 Expanded(
                   child: Text(
                     overflow: TextOverflow.visible,
-                    'Result: $resultLabel',
+                    'result'.tr()+resultLabel,
                     style: TextStyle(
                       fontSize: 22,
                       color: Color(0xFF3D1A57),
@@ -92,7 +93,7 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
                       left: 8,
                     ),
                     child: Text(
-                      item['question']?.toString() ?? 'Unknown question',
+                      item['question']?.toString() ?? 'unknownQuestion'.tr(),
                       style: TextStyle(
                         fontSize: 18,
                         fontFamily: 'Inder',
@@ -104,7 +105,7 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
                   Padding(
                     padding: const EdgeInsets.only(top: 6, bottom: 8, left: 14),
                     child: Text(
-                      'Answer: ${item['answer']?.toString() ?? 'No answer provided'}',
+                      'answer'.tr()+"${item['answer']?.toString() ?? 'noAnswerProvided'.tr()}",
                       style: TextStyle(
                         fontSize: 16,
                         color: Color(0xFF3D1A57),

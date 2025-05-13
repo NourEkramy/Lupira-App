@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/BottomSheets/logout_bottom_sheet.dart';
@@ -116,7 +117,7 @@ class _SettingsTabsState extends State<SettingsTabs> {
           PageRouteBuilder(
             transitionDuration: Duration(milliseconds: 250),
             pageBuilder: (context, animation, secondaryAnimation) => MainLayout(
-              title: 'Change Password',
+              title: 'changePassword'.tr(),
               child: ChangePassword(),
             ),
             transitionsBuilder:

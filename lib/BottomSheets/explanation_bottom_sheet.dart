@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/BottomSheets/language_bottom_sheet.dart';
 
 class ExplanationBottomSheet extends StatelessWidget {
   String explanation;
@@ -37,7 +39,7 @@ class ExplanationBottomSheet extends StatelessWidget {
             width: double.infinity,
             child: Text(
               textAlign: TextAlign.center,
-              'Explanation',
+              'explanation'.tr(),
               style: TextStyle(
                 color: Color(0xFF3D1A57),
                 fontSize: 32,
@@ -52,7 +54,7 @@ class ExplanationBottomSheet extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "What does it mean?",
+                  "whatMeans".tr(),
                   style: TextStyle(
                     fontFamily: "Inder",
                     fontSize: 24,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -19,23 +20,23 @@ class ResetPassword extends StatefulWidget {
   static List<Map<String, dynamic>> textfields = [
     {
       'name': 'newPassword',
-      'title': 'New password',
-      'hint': 'Enter new password',
+      'title': 'newPassword'.tr(),
+      'hint': 'enterNewPassword'.tr(),
       'validators': [
-        FormBuilderValidators.required(errorText: 'New password is required'),
+        FormBuilderValidators.required(errorText: 'newPasswordRequired'.tr()),
         FormBuilderValidators.minLength(8,
-            errorText: 'Password must be at least 8 characters long!'),
+            errorText: 'passwordValidLength'.tr()),
         FormBuilderValidators.match(
           RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$'),
           errorText:
-              'Password must include at least one lowercase letter, one uppercase letter, one number, and one special character!',
+              'passwordRules'.tr(),
         ),
       ],
     },
     {
       'name': 'confirmNewPassword',
-      'title': 'Confirm password',
-      'hint': 'Enter password',
+      'title': 'confirmPassword'.tr(),
+      'hint': 'enterPassword'.tr(),
     },
   ];
 
@@ -133,7 +134,7 @@ class _ResetPasswordState extends State<ResetPassword> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              "Error: $e",
+              "$e",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -167,7 +168,7 @@ class _ResetPasswordState extends State<ResetPassword> {
             children: [
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.098),
               Text(
-                'Reset password',
+                'resetPassword'.tr(),
                 style: TextStyle(
                   fontSize: 43,
                   fontFamily: 'Alegreya',
@@ -176,7 +177,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.003),
               Text(
-                'The password must be different than before',
+                'diffPassword'.tr(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
@@ -202,9 +203,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                                         final password = _formKey.currentState
                                             ?.fields['newPassword']?.value;
                                         if (val == null || val.isEmpty)
-                                          return 'Please confirm your password';
+                                          return 'confirmPasswordRequired'.tr();
                                         if (val != password)
-                                          return 'Passwords do not match';
+                                          return 'noMatchPassword'.tr();
                                         return null;
                                       }
                                     ]
@@ -231,7 +232,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                           onTap: resetPassword,
                           borderColor: Color(0xFF502371),
                           buttonColor: Color(0xFF502371),
-                          buttonText: 'Reset password',
+                          buttonText: 'resetPassword'.tr(),
                           buttonTextColor: Colors.white),
                       SizedBox(
                           height: MediaQuery.sizeOf(context).height * 0.025),

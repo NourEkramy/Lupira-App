@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/Modules/article_card_module.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -50,7 +51,7 @@ class LupusArticles extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
-                      "Error loading articles!",
+                      "articlesError".tr(),
                       style: TextStyle(
                           fontFamily: "Inder",
                           fontSize: 22,
@@ -68,7 +69,7 @@ class LupusArticles extends StatelessWidget {
                   top: 8,
                 ),
                 child: Text(
-                  "No articles found",
+                  "noArticles".tr(),
                   style: TextStyle(
                     color: Color(0xFF4B4A4C),
                     fontFamily: 'Inder',

@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/BottomSheets/language_bottom_sheet.dart';
 import 'package:untitled/Detection/Detection-History/detection_history_api.dart';
 import 'package:untitled/Modules/report_card_module.dart';
 import '../../BaseScreen/Layout/main_layout.dart';
@@ -66,7 +68,7 @@ class _DetectionHistoryState extends State<DetectionHistory> {
                       top: 8,
                     ),
                     child: Text(
-                      "No history available",
+                      "noHistory".tr(),
                       style: TextStyle(
                         color: Color(0xFF4B4A4C),
                         fontFamily: 'Inder',
@@ -86,16 +88,16 @@ class _DetectionHistoryState extends State<DetectionHistory> {
                               child: DetectionDetailsScreen(
                                 detectionData: historyData[index],
                               ),
-                              title: 'Detection Details',
+                              title: 'detectionDetails'.tr(),
                             ),
                           ),
                         );
                       },
                       reportDate:
                           historyData[index]['date']?.substring(0, 10) ??
-                              'Unknown date',
+                              'unknownData'.tr(),
                       reportResult:
-                          historyData[index]['resultLabel'] ?? 'No result',
+                          historyData[index]['resultLabel'] ?? 'noResult'.tr(),
                     );
                   },
                   itemCount: historyData.length,

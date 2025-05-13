@@ -1,7 +1,9 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:untitled/BottomSheets/language_bottom_sheet.dart';
 import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Modules/authentication_button_module.dart';
 import 'package:untitled/Modules/drop_down_list_module.dart';
@@ -31,35 +33,33 @@ class _SignUpState extends State<SignUp> {
   List<Map<String, dynamic>> textFields = [
     {
       'validators': [
-        FormBuilderValidators.required(errorText: 'Username is required'),
+        FormBuilderValidators.required(errorText: "usernameRequired".tr()),
         FormBuilderValidators.minLength(5,
-            errorText: 'Username must be at least 5 characters long!'),
+            errorText: "usernameCharLength".tr()),
         FormBuilderValidators.match(
           RegExp(r'^[a-zA-Z0-9._]+$'),
-          errorText:
-              'Username can only contain letters, numbers, periods, and underscores!',
+          errorText: "validUsername".tr(),
         ),
       ],
-      'name': 'Username',
-      'title': 'Username',
-      'hint': 'Enter username',
+      'name': "Username",
+      'title': "username".tr(),
+      'hint': "enterUsername".tr(),
     },
     {
       'validators': [
-        FormBuilderValidators.required(errorText: 'Email is required'),
-        FormBuilderValidators.email(
-            errorText: 'Please enter a valid email address!'),
+        FormBuilderValidators.required(errorText: "emailRequired".tr()),
+        FormBuilderValidators.email(errorText: "emailValidRequired".tr()),
       ],
       'name': 'Email',
-      'title': 'Email',
+      'title': 'email'.tr(),
       'hint': 'useremail@placeholder.com',
       'keyboardType': TextInputType.emailAddress,
     },
     {
       'validators': [
-        FormBuilderValidators.required(errorText: 'Password is required'),
+        FormBuilderValidators.required(errorText: "passwordRequired".tr()),
         FormBuilderValidators.minLength(8,
-            errorText: 'Password must be at least 8 characters long!'),
+            errorText: "passwordValidLength".tr()),
         FormBuilderValidators.match(
           RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$'),
           errorText:
@@ -67,22 +67,22 @@ class _SignUpState extends State<SignUp> {
         ),
       ],
       'name': 'Password',
-      'title': 'Password',
-      'hint': 'Enter password',
+      'title': "password".tr(),
+      'hint': "enterPassword".tr(),
       'keyboardType': TextInputType.visiblePassword,
     },
     {
       'name': 'Confirm password',
-      'title': 'Confirm password',
-      'hint': 'Enter password',
+      'title': "confirmPassword".tr(),
+      'hint': 'enterPassword'.tr(),
       'keyboardType': TextInputType.visiblePassword,
     },
     {
       'validators': [
-        FormBuilderValidators.required(errorText: 'Date of birth is required'),
+        FormBuilderValidators.required(errorText: "DOBrequired".tr()),
       ],
       'name': 'Date of birth',
-      'title': 'Date of birth',
+      'title': "dateOfBirth".tr(),
       'hint': 'DD/MM/YYYY',
       'suffix': Icon(
         Icons.calendar_today_outlined,
@@ -92,11 +92,11 @@ class _SignUpState extends State<SignUp> {
     },
     {
       'validators': [
-        FormBuilderValidators.required(errorText: 'Phone is required'),
+        FormBuilderValidators.required(errorText: "phoneRequired".tr()),
       ],
       'name': 'Phone',
-      'title': 'Phone',
-      'hint': 'Enter phone number',
+      'title': 'phone'.tr(),
+      'hint': "enterPhone".tr(),
       'keyboardType': TextInputType.phone,
     },
   ];
@@ -208,7 +208,7 @@ class _SignUpState extends State<SignUp> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              "Signup error: $e",
+              "$e",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -242,7 +242,7 @@ class _SignUpState extends State<SignUp> {
             children: [
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
               Text(
-                'Sign Up',
+                'signup'.tr(),
                 style: TextStyle(
                   fontSize: 48,
                   fontFamily: 'Alegreya',
@@ -268,9 +268,9 @@ class _SignUpState extends State<SignUp> {
                                         final password = _formKey.currentState
                                             ?.fields['Password']?.value;
                                         if (val == null || val.isEmpty)
-                                          return 'Please confirm your password';
+                                          return "confirmPasswordRequired".tr();
                                         if (val != password)
-                                          return 'Passwords do not match';
+                                          return "noMatchPassword".tr();
                                         return null;
                                       }
                                     ]
@@ -283,10 +283,10 @@ class _SignUpState extends State<SignUp> {
                               name: 'Phone',
                               validator: FormBuilderValidators.compose([
                                 FormBuilderValidators.required(
-                                    errorText: 'Please enter the phone number'),
+                                    errorText: "phoneRequiredError".tr()),
                                 FormBuilderValidators.match(
                                     RegExp(r'^\d{6,15}$'),
-                                    errorText: 'Enter a valid phone number'),
+                                    errorText: "phoneValid".tr()),
                               ]),
                               builder: (FormFieldState<String?> field) {
                                 final hasError = field.hasError;
@@ -421,17 +421,17 @@ class _SignUpState extends State<SignUp> {
                         itemCount: textFields.length,
                       ),
                       DropDownListModule(
-                        options: ['Male', 'Female'],
+                        options: ["male".tr(), "female".tr()],
                         hintColor: Color(0xFFABABAB),
                         hintText: 'Select gender',
                         textColor: Color(0xFF817F82),
                         borderColor: Colors.transparent,
-                        text: 'Gender',
+                        text: 'gender'.tr(),
                         backgroundColor: Color(0xFFDEDAE0),
                         name: 'Gender',
                         validators: [
                           FormBuilderValidators.required(
-                              errorText: 'Please select a gender')
+                              errorText: "genderRequired".tr())
                         ],
                         onChanged: (value) {
                           setState(() {
@@ -445,13 +445,13 @@ class _SignUpState extends State<SignUp> {
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         name: 'country',
                         validator: FormBuilderValidators.required(
-                            errorText: 'Please select a country'),
+                            errorText: "countryRequired".tr()),
                         builder: (FormFieldState<Country?> field) {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Country',
+                                "country".tr(),
                                 style: TextStyle(
                                   fontFamily: 'Inder',
                                   fontSize: 18,
@@ -476,7 +476,9 @@ class _SignUpState extends State<SignUp> {
                                 },
                                 child: Container(
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: 12, vertical: 16),
+                                    horizontal: 12,
+                                    vertical: 16,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Color(0xFFDEDAE0),
                                     borderRadius: BorderRadius.circular(10),
@@ -492,7 +494,7 @@ class _SignUpState extends State<SignUp> {
                                     children: [
                                       Text(
                                         selectedCountry?.name ??
-                                            'Select country',
+                                            "selectCountry".tr(),
                                         style: TextStyle(
                                           fontSize: 16,
                                           fontFamily: 'Inder',
@@ -524,24 +526,24 @@ class _SignUpState extends State<SignUp> {
                       ),
                       DropDownListModule(
                         options: [
-                          'Asian or Pacific Islander',
-                          'Black or African American',
-                          'Hispanic or Latino',
-                          'Native American or Alaskan Native',
-                          'White or Caucasian',
-                          'Multoracial or Biracial',
-                          'A race/ethnicity not listed here'
+                          "ethnicityOption1",
+                          "ethnicityOption2",
+                          "ethnicityOption3",
+                          "ethnicityOption4",
+                          "ethnicityOption5",
+                          "ethnicityOption6",
+                          "ethnicityOption7"
                         ],
                         hintColor: Color(0xFFABABAB),
-                        hintText: 'Select ethnicity',
+                        hintText: 'selectEthnicity'.tr(),
                         textColor: Color(0xFF817F82),
                         borderColor: Colors.transparent,
-                        text: 'Ethnicity',
+                        text: 'ethnicity'.tr(),
                         backgroundColor: Color(0xFFDEDAE0),
                         name: 'Ethnicity',
                         validators: [
                           FormBuilderValidators.required(
-                              errorText: 'Please select a country')
+                              errorText: "ethnicityRequired".tr())
                         ],
                         onChanged: (value) {
                           setState(() {
@@ -555,7 +557,7 @@ class _SignUpState extends State<SignUp> {
                           onTap: signUp,
                           borderColor: Color(0xFF49146D),
                           buttonColor: Color(0xFF49146D),
-                          buttonText: 'Sign Up',
+                          buttonText: "signup".tr(),
                           buttonTextColor: Colors.white),
                       AuthenticationButtonModule(
                           onTap: () {
@@ -585,8 +587,8 @@ class _SignUpState extends State<SignUp> {
                               ),
                             );
                           },
-                          conditionOperation: 'Login',
-                          conditionQeustion: 'Already have an account?  '),
+                          conditionOperation: "login".tr(),
+                          conditionQeustion: "haveAccount".tr()),
                     ],
                   ),
                 ),

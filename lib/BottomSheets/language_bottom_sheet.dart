@@ -45,7 +45,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
             width: double.infinity,
             child: Text(
               textAlign: TextAlign.center,
-              'Select a langauge',
+              'selectLanguage'.tr(),
               style: TextStyle(
                 color: Color(0xFF3D1A57),
                 fontSize: 32,
@@ -83,7 +83,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
                   ),
                   SizedBox(width: MediaQuery.sizeOf(context).width * 0.02),
                   Text(
-                    'Arabic',
+                    'arabic'.tr(),
                     style: TextStyle(
                       color: Color(0xFF4B4A4C),
                       fontFamily: 'Inder',
@@ -124,7 +124,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
                   ),
                   SizedBox(width: MediaQuery.sizeOf(context).width * 0.02),
                   Text(
-                    'English',
+                    'english'.tr(),
                     style: TextStyle(
                       color: Color(0xFF4B4A4C),
                       fontFamily: 'Inder',

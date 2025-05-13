@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/BottomSheets/language_bottom_sheet.dart';
 
 class DetectionResultScreen extends StatelessWidget {
   const DetectionResultScreen({super.key});
@@ -36,7 +38,7 @@ class DetectionResultScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.025,
           ),
           Text(
-            "Detection Result",
+            "detectionResult".tr(),
             style: TextStyle(
               fontFamily: "Inder",
               fontSize: 30,
@@ -80,7 +82,7 @@ class DetectionResultScreen extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.05,
                       ),
                       Text(
-                        "Next step",
+                        "nextStep".tr(),
                         style: TextStyle(
                           fontFamily: "Inder",
                           fontSize: 24,
@@ -94,7 +96,7 @@ class DetectionResultScreen extends StatelessWidget {
                     height: MediaQuery.of(context).size.height * 0.01,
                   ),
                   Text(
-                    "We strongly recommend consulting a healthcare professional for further evaluation and guidance",
+                    "recommendConsulting".tr(),
                     style: TextStyle(
                       fontFamily: "Inder",
                       fontSize: 20,

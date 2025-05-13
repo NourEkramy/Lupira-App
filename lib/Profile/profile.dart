@@ -1,8 +1,10 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/BottomSheets/language_bottom_sheet.dart';
 import 'package:untitled/Modules/drop_down_list_module.dart';
 import 'package:untitled/Profile/profile_api.dart';
 import '../Models/user_profile_data_model.dart';
@@ -33,28 +35,26 @@ class _ProfileState extends State<Profile> {
     {
       'validators': [
         FormBuilderValidators.minLength(5,
-            errorText: 'Username must be at least 5 characters long!'),
+            errorText: "usernameCharLength".tr()),
         FormBuilderValidators.match(
           RegExp(r'^[a-zA-Z0-9._]+$'),
-          errorText:
-              'Username can only contain letters, numbers, periods, and underscores!',
+          errorText: "validUsername".tr(),
         ),
       ],
-      'title': 'Username',
+      'title': "username".tr(),
     },
     {
       'validators': [
-        FormBuilderValidators.email(
-            errorText: 'Please enter a valid email address!'),
+        FormBuilderValidators.email(errorText: "emailValidRequired".tr()),
       ],
-      'title': 'Email',
+      'title': "email".tr(),
     },
     {
-      'title': 'Date of birth',
+      'title': "dateOfBirth".tr(),
       'suffix': Icon(Icons.calendar_today_outlined),
     },
     {
-      'title': 'Phone',
+      'title': "phone".tr(),
     },
   ];
 
@@ -165,14 +165,13 @@ class _ProfileState extends State<Profile> {
             ),
           );
         }
-
       } catch (e) {
         setState(() {
           isUpdating = false;
         });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text("Updating data error: $e"),
+            content: Text("$e"),
             backgroundColor: Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -193,61 +192,237 @@ class _ProfileState extends State<Profile> {
     var hintData;
     return isLoading
         ? Center(
-      child: CircularProgressIndicator(),
-    )
+            child: CircularProgressIndicator(),
+          )
         : SingleChildScrollView(
-      child: FormBuilder(
-        key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 8,
-            right: 8,
-            top: 32,
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    var textField = textFields[index];
-                    if (index == 0)
-                      hintData = profileData?.data?.username;
-                    else if (index == 1)
-                      hintData = profileData?.data?.email;
-                    else if (index == 2)
-                      hintData = profileData?.data?.dateOfBirth;
-                    else
-                      hintData = profileData?.data?.phoneNumber;
+            child: FormBuilder(
+              key: _formKey,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: 8,
+                  right: 8,
+                  top: 32,
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          var textField = textFields[index];
+                          if (index == 0)
+                            hintData = profileData?.data?.username;
+                          else if (index == 1)
+                            hintData = profileData?.data?.email;
+                          else if (index == 2)
+                            hintData = profileData?.data?.dateOfBirth;
+                          else
+                            hintData = profileData?.data?.phoneNumber;
 
-                    if (index == 3 && (isEditable && isPhoneEditable)) {
-                      return FormBuilderField<String>(
-                        autovalidateMode:
-                        AutovalidateMode.onUserInteraction,
-                        name: 'Phone',
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                              errorText:
-                              'Please enter the phone number'),
-                          FormBuilderValidators.match(
-                              RegExp(r'^\d{6,15}$'),
-                              errorText: 'Enter a valid phone number'),
-                        ]),
-                        builder: (FormFieldState<String?> field) {
-                          final hasError = field.hasError;
+                          if (index == 3 && (isEditable && isPhoneEditable)) {
+                            return FormBuilderField<String>(
+                              autovalidateMode:
+                                  AutovalidateMode.onUserInteraction,
+                              name: 'Phone',
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(
+                                    errorText: "phoneRequiredError".tr()),
+                                FormBuilderValidators.match(
+                                    RegExp(r'^\d{6,15}$'),
+                                    errorText: "phoneValid".tr()),
+                              ]),
+                              builder: (FormFieldState<String?> field) {
+                                final hasError = field.hasError;
 
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                        height:
+                                            MediaQuery.sizeOf(context).height *
+                                                0.02),
+                                    Text(
+                                      textField['title'],
+                                      style: TextStyle(
+                                        fontFamily: 'Inder',
+                                        fontSize: 18,
+                                        color: Color(0xFF4B4A4C),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                        height:
+                                            MediaQuery.sizeOf(context).height *
+                                                0.005),
+                                    GestureDetector(
+                                      onTap: () {
+                                        showCountryPicker(
+                                          context: context,
+                                          showPhoneCode: true,
+                                          onSelect: (Country country) {
+                                            setState(() {
+                                              selectedPhoneCountry = country;
+                                            });
+                                          },
+                                        );
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 3,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFDEDAE0),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          border: Border.all(
+                                            color: hasError
+                                                ? Color(0xFFB9433E)
+                                                : Color(0xFFABABAB),
+                                          ),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              selectedPhoneCountry != null
+                                                  ? '+${selectedPhoneCountry!.phoneCode}'
+                                                  : 'Code',
+                                              style: TextStyle(
+                                                fontFamily: 'Inder',
+                                                color:
+                                                    selectedPhoneCountry != null
+                                                        ? Color(0xFF4B4A4C)
+                                                        : Color(0xFF817F82),
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                            SizedBox(width: 8),
+                                            Container(
+                                              width: 1,
+                                              height: 24,
+                                              color: Color(0xFF4B4A4C),
+                                            ),
+                                            SizedBox(width: 8),
+                                            Expanded(
+                                              child: TextField(
+                                                keyboardType:
+                                                    textField['keyboardType'],
+                                                onChanged: field.didChange,
+                                                style: TextStyle(
+                                                  color: Color(0xFF4B4A4C),
+                                                  fontFamily: 'Inder',
+                                                ),
+                                                decoration: InputDecoration(
+                                                  border: InputBorder.none,
+                                                  hintText: textField['hint'],
+                                                  hintStyle: TextStyle(
+                                                    color: Color(0xFFABABAB),
+                                                    fontFamily: 'Inder',
+                                                  ),
+                                                  // errorText removed here
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    if (hasError)
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 6, left: 12),
+                                        child: Text(
+                                          field.errorText ?? '',
+                                          style: TextStyle(
+                                            color: Color(0xFFB9433E),
+                                            fontSize: 12,
+                                            fontFamily: 'Inder',
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
+
+                          return TextFieldModule(
+                            textFieldType: null,
+                            name: textField['title'],
+                            validators: textField['validators'],
+                            textFieldTitle: textField['title'],
+                            hintTextTitle: '',
+                            initialProfileData: hintData ?? '',
+                            isReadOnly: !isEditable,
+                            hintTextColor: Color(0xFF4B4A4C),
+                            titelTextColor: Color(0xFF4B4A4C),
+                            borderColor: Color(0xFFABABAB),
+                            backgroundColor: Color(0xFFDEDAE0),
+                            suffix: textField['suffix'],
+                            onTap: () {
+                              if (index == 2) {
+                                selectDate();
+                              }
+                              if (index == 3) {
+                                setState(() {
+                                  isPhoneEditable = true;
+                                  if (!isEditable) {
+                                    isEditable = true;
+                                  }
+                                });
+                              } else if (!isEditable) {
+                                setState(() {
+                                  isEditable = true;
+                                });
+                              }
+                            },
+                          );
+                        },
+                        itemCount: textFields.length,
+                      ),
+                      SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.01),
+                      GestureDetector(
+                        onTap: () {
+                          if (!isEditable) {
+                            setState(() {
+                              isEditable = true;
+                            });
+                          }
+                        },
+                        child: AbsorbPointer(
+                          absorbing: !isEditable,
+                          child: DropDownListModule(
+                            isReadOnly: !isEditable,
+                            initialProfileChoice: profileData?.data?.gender,
+                            name: "Gender",
+                            options: ["male".tr(), "female".tr()],
+                            hintColor: Color(0xFF4B4A4C),
+                            hintText: "selectGender".tr(),
+                            textColor: Color(0xFF4B4A4C),
+                            borderColor: Color(0xFFABABAB),
+                            text: "gender".tr(),
+                            backgroundColor: Colors.transparent,
+                            onChanged: (value) {
+                              setState(() {
+                                selectedGender = value;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.03),
+                      FormBuilderField<Country>(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        name: 'country',
+                        builder: (FormFieldState<Country?> field) {
                           return Column(
-                            crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                  height: MediaQuery.sizeOf(context)
-                                      .height *
-                                      0.02),
                               Text(
-                                textField['title'],
+                                "country".tr(),
                                 style: TextStyle(
                                   fontFamily: 'Inder',
                                   fontSize: 18,
@@ -255,336 +430,156 @@ class _ProfileState extends State<Profile> {
                                 ),
                               ),
                               SizedBox(
-                                  height: MediaQuery.sizeOf(context)
-                                      .height *
+                                  height: MediaQuery.sizeOf(context).height *
                                       0.005),
                               GestureDetector(
                                 onTap: () {
-                                  showCountryPicker(
-                                    context: context,
-                                    showPhoneCode: true,
-                                    onSelect: (Country country) {
-                                      setState(() {
-                                        selectedPhoneCountry = country;
-                                      });
-                                    },
-                                  );
+                                  if (!isEditable) {
+                                    setState(() {
+                                      isEditable = true;
+                                    });
+                                  }
+                                  if (isEditable) {
+                                    setState(() {
+                                      showCountryPicker(
+                                        context: context,
+                                        onSelect: (Country country) {
+                                          field.didChange(country); // important
+                                          setState(() {
+                                            selectedCountry = country
+                                                .name; // optional for display
+                                          });
+                                        },
+                                      );
+                                    });
+                                  }
                                 },
                                 child: Container(
                                   padding: EdgeInsets.symmetric(
                                     horizontal: 12,
-                                    vertical: 3,
+                                    vertical: 16,
                                   ),
                                   decoration: BoxDecoration(
                                     color: Color(0xFFDEDAE0),
-                                    borderRadius:
-                                    BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
-                                      color: hasError
+                                      color: field.hasError
                                           ? Color(0xFFB9433E)
                                           : Color(0xFFABABAB),
                                     ),
                                   ),
                                   child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        selectedPhoneCountry != null
-                                            ? '+${selectedPhoneCountry!.phoneCode}'
-                                            : 'Code',
+                                        selectedCountry ?? "selectCountry".tr(),
                                         style: TextStyle(
-                                          fontFamily: 'Inder',
-                                          color: selectedPhoneCountry !=
-                                              null
-                                              ? Color(0xFF4B4A4C)
-                                              : Color(0xFF817F82),
                                           fontSize: 16,
+                                          fontFamily: 'Inder',
+                                          color: selectedCountry == null
+                                              ? Color(0xFF817F82)
+                                              : Color(0xFF4B4A4C),
                                         ),
                                       ),
-                                      SizedBox(width: 8),
-                                      Container(
-                                        width: 1,
-                                        height: 24,
-                                        color: Color(0xFF4B4A4C),
-                                      ),
-                                      SizedBox(width: 8),
-                                      Expanded(
-                                        child: TextField(
-                                          keyboardType:
-                                          textField['keyboardType'],
-                                          onChanged: field.didChange,
-                                          style: TextStyle(
-                                            color: Color(0xFF4B4A4C),
-                                            fontFamily: 'Inder',
-                                          ),
-                                          decoration: InputDecoration(
-                                            border: InputBorder.none,
-                                            hintText: textField['hint'],
-                                            hintStyle: TextStyle(
-                                              color: Color(0xFFABABAB),
-                                              fontFamily: 'Inder',
-                                            ),
-                                            // errorText removed here
-                                          ),
-                                        ),
+                                      Icon(
+                                        Icons.arrow_drop_down,
+                                        color: Color(0xFF606060),
                                       ),
                                     ],
                                   ),
                                 ),
                               ),
-                              if (hasError)
+                              if (field.hasError)
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 6, left: 12),
+                                  padding: EdgeInsets.only(top: 5, left: 8),
                                   child: Text(
                                     field.errorText ?? '',
                                     style: TextStyle(
                                       color: Color(0xFFB9433E),
                                       fontSize: 12,
-                                      fontFamily: 'Inder',
                                     ),
                                   ),
                                 ),
                             ],
                           );
                         },
-                      );
-                    }
-
-                    return TextFieldModule(
-                      textFieldType: null,
-                      name: textField['title'],
-                      validators: textField['validators'],
-                      textFieldTitle: textField['title'],
-                      hintTextTitle: '',
-                      initialProfileData: hintData ?? '',
-                      isReadOnly: !isEditable,
-                      hintTextColor: Color(0xFF4B4A4C),
-                      titelTextColor: Color(0xFF4B4A4C),
-                      borderColor: Color(0xFFABABAB),
-                      backgroundColor: Color(0xFFDEDAE0),
-                      suffix: textField['suffix'],
-                      onTap: () {
-                        if (index == 2) {
-                          selectDate();
-                        }
-                        if (index == 3) {
-                          setState(() {
-                            isPhoneEditable = true;
-                            if (!isEditable) {
+                      ),
+                      SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.01),
+                      GestureDetector(
+                        onTap: () {
+                          if (!isEditable) {
+                            setState(() {
                               isEditable = true;
-                            }
-                          });
-                        } else if (!isEditable) {
-                          setState(() {
-                            isEditable = true;
-                          });
-                        }
-                      },
-                    );
-                  },
-                  itemCount: textFields.length,
-                ),
-                SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.01),
-                GestureDetector(
-                  onTap: () {
-                    if (!isEditable) {
-                      setState(() {
-                        isEditable = true;
-                      });
-                    }
-                  },
-                  child: AbsorbPointer(
-                    absorbing: !isEditable,
-                    child: DropDownListModule(
-                      isReadOnly: !isEditable,
-                      initialProfileChoice: profileData?.data?.gender,
-                      name: 'Gender',
-                      options: ['Male', 'Female'],
-                      hintColor: Color(0xFF4B4A4C),
-                      hintText: 'Select Gender',
-                      textColor: Color(0xFF4B4A4C),
-                      borderColor: Color(0xFFABABAB),
-                      text: 'Gender',
-                      backgroundColor: Colors.transparent,
-                      onChanged: (value) {
-                        setState(() {
-                          selectedGender = value;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-                SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.03),
-                FormBuilderField<Country>(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  name: 'country',
-                  builder: (FormFieldState<Country?> field) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Country',
-                          style: TextStyle(
-                            fontFamily: 'Inder',
-                            fontSize: 18,
-                            color: Color(0xFF4B4A4C),
+                            });
+                          }
+                        },
+                        child: AbsorbPointer(
+                          absorbing: !isEditable,
+                          child: DropDownListModule(
+                            isReadOnly: !isEditable,
+                            initialProfileChoice: profileData?.data?.ethnicity,
+                            name: "Ethnicity",
+                            options: [
+                              "ethnicityOption1".tr(),
+                              "ethnicityOption2".tr(),
+                              "ethnicityOption3".tr(),
+                              "ethnicityOption4".tr(),
+                              "ethnicityOption5".tr(),
+                              "ethnicityOption6".tr(),
+                              "ethnicityOption7".tr(),
+                            ],
+                            hintColor: Color(0xFF4B4A4C),
+                            hintText: "selectEthnicity".tr(),
+                            textColor: Color(0xFF4B4A4C),
+                            borderColor: Color(0xFFABABAB),
+                            text: "ethnicity".tr(),
+                            backgroundColor: Colors.transparent,
+                            onChanged: (value) {
+                              setState(() {
+                                selectedEthnicity = value;
+                              });
+                            },
                           ),
                         ),
-                        SizedBox(
-                            height: MediaQuery.sizeOf(context).height *
-                                0.005),
-                        GestureDetector(
-                          onTap: () {
-                            if (!isEditable) {
-                              setState(() {
-                                isEditable = true;
-                              });
-                            }
-                            if (isEditable) {
-                              setState(() {
-                                showCountryPicker(
-                                  context: context,
-                                  onSelect: (Country country) {
-                                    field.didChange(
-                                        country); // important
-                                    setState(() {
-                                      selectedCountry = country
-                                          .name; // optional for display
-                                    });
-                                  },
-                                );
-                              });
-                            }
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 16,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFDEDAE0),
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                color: field.hasError
-                                    ? Color(0xFFB9433E)
-                                    : Color(0xFFABABAB),
+                      ),
+                      SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.035),
+                      if (isEditable && !isUpdating)
+                        Center(
+                          child: ElevatedButton(
+                            onPressed: updateProfile,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFF49146D),
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                  color: Color(0xFF49146D),
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
                               ),
                             ),
-                            child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  selectedCountry ?? 'Select country',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Inder',
-                                    color: selectedCountry == null
-                                        ? Color(0xFF817F82)
-                                        : Color(0xFF4B4A4C),
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.arrow_drop_down,
-                                  color: Color(0xFF606060),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        if (field.hasError)
-                          Padding(
-                            padding: EdgeInsets.only(top: 5, left: 8),
                             child: Text(
-                              field.errorText ?? '',
+                              "saveChanges".tr(),
                               style: TextStyle(
-                                color: Color(0xFFB9433E),
-                                fontSize: 12,
+                                color: Colors.white,
+                                fontFamily: 'Inder',
+                                fontSize: 18,
                               ),
                             ),
                           ),
-                      ],
-                    );
-                  },
-                ),
-                SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.01),
-                GestureDetector(
-                  onTap: () {
-                    if (!isEditable) {
-                      setState(() {
-                        isEditable = true;
-                      });
-                    }
-                  },
-                  child: AbsorbPointer(
-                    absorbing: !isEditable,
-                    child: DropDownListModule(
-                      isReadOnly: !isEditable,
-                      initialProfileChoice:
-                      profileData?.data?.ethnicity,
-                      name: 'Ethnicity',
-                      options: [
-                        'Asian or Pacific Islander',
-                        'Black or African American',
-                        'Hispanic or Latino',
-                        'Native American or Alaskan Native',
-                        'White or Caucasian',
-                        'Multoracial or Biracial',
-                        'A race/ethnicity not listed here'
-                      ],
-                      hintColor: Color(0xFF4B4A4C),
-                      hintText: 'Select Ethnicity',
-                      textColor: Color(0xFF4B4A4C),
-                      borderColor: Color(0xFFABABAB),
-                      text: 'Ethnicity',
-                      backgroundColor: Colors.transparent,
-                      onChanged: (value) {
-                        setState(() {
-                          selectedEthnicity = value;
-                        });
-                      },
-                    ),
+                        )
+                      else
+                        SizedBox(),
+                      SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.02),
+                    ],
                   ),
                 ),
-                SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.035),
-                if (isEditable && !isUpdating)
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: updateProfile,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF49146D),
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            color: Color(0xFF49146D),
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      child: Text(
-                        'Save changes',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Inder',
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                  )
-                else
-                  SizedBox(),
-                SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.02),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
   }
 
   Future<void> selectDate() async {

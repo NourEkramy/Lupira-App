@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../BaseScreen/Layout/main_layout.dart';
@@ -70,9 +71,9 @@ class _DetectionScreenState extends State<DetectionScreen> {
   }
 
   String _getTitleForIndex(int questionIndex) {
-    if (questionIndex == 0) return "ANA test presence";
-    if (questionIndex >= 1 && questionIndex <= 16) return "Symptoms";
-    return "Laboratory Tests";
+    if (questionIndex == 0) return "anaTest".tr();
+    if (questionIndex >= 1 && questionIndex <= 16) return "symptoms".tr();
+    return "labTest".tr();
   }
 
   Future<void> _nextPage() async {
@@ -146,7 +147,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
             context,
             MaterialPageRoute(
               builder: (context) => MainLayout(
-                title: "Detection Result",
+                title: "detectionResult".tr(),
                 child: DetectionResultScreen(),
               ),
               settings: RouteSettings(
@@ -160,12 +161,12 @@ class _DetectionScreenState extends State<DetectionScreen> {
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-                content: Text(responseData['message'] ?? "Diagnosis failed")),
+                content: Text(responseData['message'] ?? "diagnosisFailed".tr())),
           );
         }
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Error: ${e.toString()}")),
+          SnackBar(content: Text("${e.toString()}")),
         );
       }
     }
@@ -211,7 +212,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                "Questions unavailable !\n Please try again later",
+                "questionUnavailable".tr()+"\n"+"tryAgain".tr(),
                 style: TextStyle(
                     fontFamily: "Inder",
                     fontSize: 22,
@@ -276,7 +277,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
                     children: [
                       Text(
                         _getTitleForIndex(startIndexes[_currentPage]),
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: "Inder",
                           fontSize: 26,
                           fontWeight: FontWeight.w700,
@@ -331,8 +332,8 @@ class _DetectionScreenState extends State<DetectionScreen> {
                                                   .width *
                                               0.02,
                                         ),
-                                        const Text(
-                                          "Back",
+                                        Text(
+                                          "back".tr(),
                                           style: TextStyle(
                                             color: Color(0xff9166B0),
                                             fontFamily: "Inder",
@@ -342,22 +343,22 @@ class _DetectionScreenState extends State<DetectionScreen> {
                                       ],
                                     ),
                                   )
-                                : const SizedBox(),
+                                : SizedBox(),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.27,
                               child: ElevatedButton(
                                 onPressed: _nextPage,
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFF502371),
+                                  backgroundColor: Color(0xFF502371),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0),
                                   ),
                                 ),
                                 child: Text(
                                   _currentPage == pages.length - 1
-                                      ? "Submit"
-                                      : "Next",
-                                  style: const TextStyle(
+                                      ? "submit".tr()
+                                      : "next".tr(),
+                                  style: TextStyle(
                                     color: Colors.white,
                                     fontFamily: "Inder",
                                     fontSize: 19,
