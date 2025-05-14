@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import 'package:untitled/About-Lupira/about_lupira.dart';
-import 'package:untitled/BaseScreen/Tabs/settings_tabs.dart';
 import 'package:untitled/Lupus%20Articles/lupus_articles.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
 import '../../BottomSheets/prerequisites_bottom_sheet.dart';
@@ -14,11 +14,11 @@ class HomeTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.only(
-          left: 14,
-          right: 14,
-          top: 40,
-          bottom: 25,
+        padding: EdgeInsets.only(
+          left: 3.3.w,
+          right: 3.3.w,
+          top: 4.6.h,
+          bottom: 3.1.h,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +37,7 @@ class HomeTab extends StatelessWidget {
               },
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8, bottom: 3),
+              padding: EdgeInsets.only(left: 2.w, bottom: 0.4.h),
               child: Text(
                 'learnMore'.tr(),
                 style: TextStyle(
@@ -48,7 +48,7 @@ class HomeTab extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.015),
+            SizedBox(height: 1.5.h),
             GestureDetector(
               onTap: (){
                 Navigator.push(
@@ -62,7 +62,7 @@ class HomeTab extends StatelessWidget {
                         ),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
-                      const begin = Offset(1.0, 0.0); // from right
+                      var begin = Offset(0.25.w, 0.0); // from right
                       const end = Offset.zero;
                       return SlideTransition(
                         position: animation.drive(
@@ -88,20 +88,20 @@ class HomeTab extends StatelessWidget {
                       // Shadow color with opacity
                       spreadRadius: 0,
                       // Spread of the shadow
-                      blurRadius: 8,
+                      blurRadius: 2.w,
                       // Softness of the shadow
-                      offset: const Offset(0, 4), // Position of the shadow (X, Y)
+                      offset: Offset(0, 0.5.h), // Position of the shadow (X, Y)
                     ),
                   ],
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(2.6.w),
                   color: Color(0xFFD2CFD3),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding: EdgeInsets.symmetric(horizontal: 2.8.w, vertical: 0.9.h),
                 child: Row(
                   children: [
                     Image.asset(
                         'assets/images/info_about_lupus-removebg-preview (1) 1.png'),
-                    SizedBox(width: MediaQuery.sizeOf(context).width * 0.065),
+                    SizedBox(width: 6.5.w),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,7 +116,7 @@ class HomeTab extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                              height: MediaQuery.sizeOf(context).height * 0.01),
+                              height: 1.h),
                           Text(
                             'learnLupus'.tr(),
                             style: TextStyle(
@@ -132,7 +132,7 @@ class HomeTab extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.035),
+            SizedBox(height: 3.5.h),
             GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -147,7 +147,7 @@ class HomeTab extends StatelessWidget {
                     ),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
-                      const begin = Offset(1.0, 0.0); // from right
+                      var begin = Offset(0.25.w, 0.0); // from right
                       const end = Offset.zero;
                       return SlideTransition(
                         position: animation.drive(
@@ -172,20 +172,20 @@ class HomeTab extends StatelessWidget {
                       // Shadow color with opacity
                       spreadRadius: 0,
                       // Spread of the shadow
-                      blurRadius: 8,
+                      blurRadius: 2.w,
                       // Softness of the shadow
                       offset:
-                          const Offset(0, 4), // Position of the shadow (X, Y)
+                        Offset(0, 0.5.h), // Position of the shadow (X, Y)
                     ),
                   ],
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(2.6.w),
                   color: Color(0xFFD2CFD3),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding: EdgeInsets.symmetric(horizontal: 2.8.w, vertical: 0.9.h),
                 child: Row(
                   children: [
                     Image.asset('assets/images/about image.png'),
-                    SizedBox(width: MediaQuery.sizeOf(context).width * 0.065),
+                    SizedBox(width: 6.5.w),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -213,7 +213,7 @@ class HomeTab extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                              height: MediaQuery.sizeOf(context).height * 0.01),
+                              height: 1.h),
                           Text(
                             'discover'.tr(),
                             style: TextStyle(

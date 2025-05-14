@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 
 class DetectionDetailsScreen extends StatefulWidget {
@@ -30,15 +31,15 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
       children: [
         Center(
           child: Container(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(3.8.w),
             child: Row(
               children: [
                 Icon(
                   Icons.assignment,
                   color: Color(0xFF744199),
-                  size: 28,
+                  size: 21.sp,
                 ),
-                SizedBox(width: 10),
+                SizedBox(width: 2.4.w),
                 Expanded(
                   child: Text(
                     overflow: TextOverflow.visible,
@@ -58,10 +59,10 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
         Expanded(
           child: ListView.builder(
             padding: EdgeInsets.only(
-              left: 16,
-              right: 16,
-              top: 10,
-              bottom: 16,
+              left: 3.8.w,
+              right: 3.8.w,
+              top: 1.2.h,
+              bottom: 1.8.h,
             ),
             itemCount: responses.length,
             itemBuilder: (context, index) {
@@ -72,8 +73,8 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
                   if (_getTitleForIndex(index) != '') ...[
                     Padding(
                       padding: EdgeInsets.only(
-                        top: 16,
-                        bottom: 14,
+                        top: 1.8.h,
+                        bottom: 1.6.h,
                       ),
                       child: Text(
                         _getTitleForIndex(index),
@@ -87,10 +88,10 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
                     ),
                   ],
                   Padding(
-                    padding: const EdgeInsets.only(
-                      top: 8,
-                      bottom: 6,
-                      left: 8,
+                    padding: EdgeInsets.only(
+                      top: 1.h,
+                      bottom: 0.7.h,
+                      left: 2.w,
                     ),
                     child: Text(
                       item['question']?.toString() ?? 'unknownQuestion'.tr(),
@@ -101,9 +102,9 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 1.2.h),
                   Padding(
-                    padding: const EdgeInsets.only(top: 6, bottom: 8, left: 14),
+                    padding: EdgeInsets.only(top: 0.7.h, bottom: 1.h, left: 3.5.w),
                     child: Text(
                       'answer'.tr()+"${item['answer']?.toString() ?? 'noAnswerProvided'.tr()}",
                       style: TextStyle(
@@ -113,7 +114,7 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 1.h),
                   Divider(
                     color: Color(0xFFABABAB),
                   ),

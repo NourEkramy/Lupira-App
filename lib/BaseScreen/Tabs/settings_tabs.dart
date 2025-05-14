@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 import 'package:untitled/BottomSheets/logout_bottom_sheet.dart';
-import 'package:untitled/Log-In/auth_service.dart';
 import 'package:untitled/Modules/settings_options_module.dart';
 import 'package:untitled/Password/Change%20Password/change_password.dart';
 import 'package:untitled/Profile/profile.dart';
@@ -157,9 +157,9 @@ class _SettingsTabsState extends State<SettingsTabs> {
     ];
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 18,
-        vertical: 50,
+      padding: EdgeInsets.symmetric(
+        horizontal: 4.4.w,
+        vertical: 5.7.h,
       ),
       child: ListView.builder(
         itemBuilder: (BuildContext context, int index) {
@@ -170,7 +170,7 @@ class _SettingsTabsState extends State<SettingsTabs> {
             optionText: optionTexts[index],
           );
         },
-        itemCount: 5,
+        itemCount: optionActions.length,
       ),
     );
   }

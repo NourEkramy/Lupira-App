@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Password/Forgot%20Password/forgot_password.dart';
@@ -78,10 +79,10 @@ class _ChangePasswordState extends State<ChangePassword> {
             ),
             backgroundColor: success ? Colors.green : Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(2.8.w),
             ),
             behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            margin: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
             duration: Duration(seconds: 3),
           ),
         );
@@ -91,12 +92,12 @@ class _ChangePasswordState extends State<ChangePassword> {
             content: Text("$e"),
             backgroundColor: Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(2.8.w),
             ),
             behavior: SnackBarBehavior.floating,
             margin: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 10,
+              horizontal: 2.w,
+              vertical: 2.h,
             ),
           ),
         );
@@ -108,13 +109,13 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(3.7.w),
         child: FormBuilder(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
+              SizedBox(height: 2.5.h),
               Text(
                 'diffPassword'.tr(),
                 style: TextStyle(
@@ -158,7 +159,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 },
                 itemCount: 3,
               ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.07),
+              SizedBox(height: 7.h),
               OperationButtonModule(
                 borderColor: Color(0xFF502371),
                 buttonColor: Color(0xFF502371),
@@ -166,7 +167,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 buttonTextColor: Color(0xFFFFFFFF),
                 onTap: changePassword,
               ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
+              SizedBox(height: 3.h),
               OperationButtonModule(
                 borderColor: Color(0xFF502371),
                 buttonColor: Color(0xFFDEDAE0),
@@ -183,7 +184,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                       ),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
-                        const begin = Offset(1.0, 0.0); // from right
+                        var begin = Offset(0.25, 0.0); // from right
                         const end = Offset.zero;
                         return SlideTransition(
                           position: animation.drive(

@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:sizer/sizer.dart';
 import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
@@ -13,7 +14,6 @@ class ResetPassword extends StatefulWidget {
   String token;
 
   ResetPassword({Key? key, required this.token}) : super(key: key);
-
 
   static const String routName = "ResetPassword";
 
@@ -28,8 +28,7 @@ class ResetPassword extends StatefulWidget {
             errorText: 'passwordValidLength'.tr()),
         FormBuilderValidators.match(
           RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$'),
-          errorText:
-              'passwordRules'.tr(),
+          errorText: 'passwordRules'.tr(),
         ),
       ],
     },
@@ -74,10 +73,10 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
               backgroundColor: Colors.green,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(2.8.w),
               ),
               behavior: SnackBarBehavior.floating,
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              margin: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
               duration: Duration(seconds: 5),
             ),
           );
@@ -85,15 +84,11 @@ class _ResetPasswordState extends State<ResetPassword> {
           Navigator.pushReplacement(
             context,
             PageRouteBuilder(
-              transitionDuration:
-              Duration(milliseconds: 250),
-              pageBuilder: (context, animation,
-                  secondaryAnimation) =>
-                  LogIn(),
-              transitionsBuilder: (context, animation,
-                  secondaryAnimation, child) {
-                const begin =
-                Offset(1.0, 0.0); // from right
+              transitionDuration: Duration(milliseconds: 250),
+              pageBuilder: (context, animation, secondaryAnimation) => LogIn(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                var begin = Offset(0.25, 0.0); // from right
                 const end = Offset.zero;
                 return SlideTransition(
                   position: animation.drive(
@@ -122,10 +117,10 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
               backgroundColor: Color(0xFFB9433E),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(2.8.w),
               ),
               behavior: SnackBarBehavior.floating,
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              margin: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
               duration: Duration(seconds: 5),
             ),
           );
@@ -143,12 +138,12 @@ class _ResetPasswordState extends State<ResetPassword> {
             ),
             backgroundColor: Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(2.8.w),
             ),
             behavior: SnackBarBehavior.floating,
             margin: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 20,
+              horizontal: 2.w,
+              vertical: 2.h,
             ),
             duration: Duration(seconds: 5),
           ),
@@ -166,7 +161,7 @@ class _ResetPasswordState extends State<ResetPassword> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.098),
+              SizedBox(height: 9.8.h),
               Text(
                 'resetPassword'.tr(),
                 style: TextStyle(
@@ -175,7 +170,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   color: Color(0xFF49146D),
                 ),
               ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.003),
+              SizedBox(height: 0.3.h),
               Text(
                 'diffPassword'.tr(),
                 textAlign: TextAlign.center,
@@ -185,7 +180,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   color: Color(0xFF817F82),
                 ),
               ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
+              SizedBox(height: 2.h),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -226,8 +221,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         },
                         itemCount: 2,
                       ),
-                      SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.04),
+                      SizedBox(height: 4.h),
                       OperationButtonModule(
                           onTap: resetPassword,
                           borderColor: Color(0xFF502371),
@@ -235,7 +229,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                           buttonText: 'resetPassword'.tr(),
                           buttonTextColor: Colors.white),
                       SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.025),
+                        height: 2.5.h,
+                      ),
                     ],
                   ),
                 ),

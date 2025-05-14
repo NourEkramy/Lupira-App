@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class DetectionCardModule extends StatelessWidget {
   String mainTitle;
@@ -18,27 +19,22 @@ class DetectionCardModule extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width * 0.95,
-          height: MediaQuery.of(context).size.height * 0.224,
+          width: 95.w,
+          height: 22.4.h,
           decoration: BoxDecoration(
             color: const Color(0xFFCABDD3),
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(2.6.w),
           ),
-          padding: const EdgeInsets.only(
-            right: 20.0,
-            top: 20.0,
-            bottom: 20.0,
-            left: 20.0,
-          ),
-          margin: const EdgeInsets.only(
-            top: 6,
-            right: 4,
-            bottom: 40,
+          padding: EdgeInsets.all(5.w),
+          margin: EdgeInsets.only(
+            top: 0.8.h,
+            right: 1.w,
+            bottom: 4.6.h,
           ),
           child: Row(
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.5,
+                width: 50.w,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -63,20 +59,20 @@ class DetectionCardModule extends StatelessWidget {
                             ),
                           )
                         : SizedBox(),
-                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
+                    SizedBox(height: 1.h),
                     ElevatedButton(
                       onPressed: onTap,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFCABDD3),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 25,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 6.w,
                         ),
                         shape: RoundedRectangleBorder(
-                          side: const BorderSide(
+                          side: BorderSide(
                             color: Color(0xFF502371),
-                            width: 2,
+                            width: 0.5.w,
                           ),
-                          borderRadius: BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(2.6.w),
                         ),
                       ),
                       child: const Text(
@@ -96,8 +92,8 @@ class DetectionCardModule extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: -10,
-          right: -15,
+          top: -1.1.h,
+          right: -3.6.w,
           child: Image.asset("assets/images/detection image.png"),
         ),
       ],

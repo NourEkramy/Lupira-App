@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:sizer/sizer.dart';
 
 class TextFieldModule extends StatelessWidget {
   String textFieldTitle;
@@ -11,7 +12,6 @@ class TextFieldModule extends StatelessWidget {
   Color borderColor;
   Color backgroundColor;
   Widget? suffix;
-  // TextEditingController textController;
   TextInputType? textFieldType;
   bool obscureText;
   bool isReadOnly;
@@ -41,7 +41,7 @@ class TextFieldModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
+        SizedBox(height: 3.h),
         Text(
           textFieldTitle,
           style: TextStyle(
@@ -50,7 +50,7 @@ class TextFieldModule extends StatelessWidget {
             color: titelTextColor,
           ),
         ),
-        SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
+        SizedBox(height: 0.5.h),
         FormBuilderTextField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           onTap: onTap,
@@ -70,13 +70,13 @@ class TextFieldModule extends StatelessWidget {
             hintText: hintTextTitle,
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: borderColor),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+                borderRadius: BorderRadius.all(Radius.circular(2.6.w))),
             enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: borderColor),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+                borderRadius: BorderRadius.all(Radius.circular(2.6.w))),
             border: OutlineInputBorder(
                 borderSide: BorderSide(color: borderColor),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+                borderRadius: BorderRadius.all(Radius.circular(2.6.w))),
             hintStyle: TextStyle(
               fontSize: 16,
               fontFamily: 'Inder',

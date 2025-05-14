@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
 import 'package:untitled/Modules/report_card_module.dart';
 import '../../BottomSheets/prerequisites_bottom_sheet.dart';
@@ -55,18 +56,18 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.only(
-          left: 10,
-          right: 10,
-          top: 25,
-          bottom: 10,
+        padding: EdgeInsets.only(
+          left: 2.4.w,
+          right: 2.4.w,
+          top: 2.9.h,
+          bottom: 1.2.h,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: EdgeInsets.only(
-                left: 10,
+                left: 2.4.w,
               ),
               child: Text(
                 "detection".tr(),
@@ -91,9 +92,9 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
               },
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 10,
-                bottom: 15,
+              padding: EdgeInsets.only(
+                left: 2.4.w,
+                bottom: 1.7.h,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -134,12 +135,12 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                           ),
                         ),
                         SizedBox(
-                          width: 5,
+                          width: 1.1.w,
                         ),
                         Icon(
                           Icons.arrow_forward_ios_sharp,
                           color: Color(0xff744199),
-                          size: 17,
+                          size: 16.sp,
                         ),
                       ],
                     ),
@@ -148,12 +149,17 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
               ),
             ),
             if (isLoading)
-              Center(child: CircularProgressIndicator())
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 1.h,
+                ),
+                child: Center(child: CircularProgressIndicator()),
+              )
             else if (historyData.isEmpty)
               Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 8,
+                  padding: EdgeInsets.only(
+                    top: 1.h,
                   ),
                   child: Text(
                     "noHistory".tr(),

@@ -47,6 +47,7 @@ dependencies:
   uni_links3: ^0.5.3
   shared_preferences: ^2.5.3
   easy_localization: ^3.0.7+1
+  sizer: ^3.0.4
 
 dev_dependencies:
   flutter_test:

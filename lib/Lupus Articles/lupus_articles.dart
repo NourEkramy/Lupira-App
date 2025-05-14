@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import 'package:untitled/Modules/article_card_module.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../Models/article_model.dart';
 import '../Modules/article_card_shimmer_module.dart';
 import 'aricles_services.dart';
@@ -16,9 +16,9 @@ class LupusArticles extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        left: 15,
-        right: 15,
-        top: 36,
+        left: 3.6.w,
+        right: 3.6.w,
+        top: 3.8.h,
       ),
       child: FutureBuilder<List<ArticleModel>>(
         future: ArticlesServices.getLupusArticles(),
@@ -37,19 +37,19 @@ class LupusArticles extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
-                    radius: 75,
+                    radius: 8.6.h,
                     backgroundColor: Color(0xffDDBCC3),
                     child: ImageIcon(
                       AssetImage("assets/images/error.png"),
                       color: Color(0xffD6101D),
-                      size: 95,
+                      size: 39.sp,
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.025,
+                    height: 2.5.h,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    padding: EdgeInsets.symmetric(horizontal: 2.2.w),
                     child: Text(
                       "articlesError".tr(),
                       style: TextStyle(
@@ -65,8 +65,8 @@ class LupusArticles extends StatelessWidget {
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Center(
               child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 8,
+                padding: EdgeInsets.only(
+                  top: 1.h,
                 ),
                 child: Text(
                   "noArticles".tr(),
@@ -95,7 +95,7 @@ class LupusArticles extends StatelessWidget {
                       },
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.02,
+                      height: 2.h,
                     )
                   ],
                 );

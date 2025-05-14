@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 import 'package:untitled/BaseScreen/base_screen.dart';
 import 'package:untitled/Log-In/log_in_api.dart';
 import 'package:untitled/Modules/authentication_button_module.dart';
@@ -56,7 +57,7 @@ class _LogInState extends State<LogIn> {
                   BaseScreen(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                const begin = Offset(1.0, 0.0); // from right
+                var begin = Offset(0.25.w, 0.0); // from right
                 const end = Offset.zero;
                 return SlideTransition(
                   position: animation.drive(
@@ -85,12 +86,12 @@ class _LogInState extends State<LogIn> {
               ),
               backgroundColor: Color(0xFFB9433E),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(2.8.w),
               ),
               behavior: SnackBarBehavior.floating,
               margin: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 20,
+                horizontal: 2.w,
+                vertical: 2.h,
               ),
               duration: Duration(seconds: 5),
             ),
@@ -109,12 +110,12 @@ class _LogInState extends State<LogIn> {
             ),
             backgroundColor: Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(2.8.w),
             ),
             behavior: SnackBarBehavior.floating,
             margin: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 20,
+              horizontal: 2.w,
+              vertical: 2.h,
             ),
             duration: Duration(seconds: 5),
           ),
@@ -135,7 +136,7 @@ class _LogInState extends State<LogIn> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: MediaQuery.sizeOf(context).height * 0.04),
+                SizedBox(height: 4.h),
                 Text(
                   "login".tr(),
                   style: TextStyle(
@@ -144,7 +145,7 @@ class _LogInState extends State<LogIn> {
                     color: Color(0xFF49146D),
                   ),
                 ),
-                SizedBox(height: MediaQuery.sizeOf(context).height * 0.005),
+                SizedBox(height: 0.5.h),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -181,7 +182,7 @@ class _LogInState extends State<LogIn> {
                           backgroundColor: Color(0xFFDEDAE0),
                         ),
                         SizedBox(
-                            height: MediaQuery.sizeOf(context).height * 0.01),
+                            height: 1.h),
                         Container(
                           alignment: Alignment.centerRight,
                           child: RichText(
@@ -205,8 +206,8 @@ class _LogInState extends State<LogIn> {
                                           ForgotPassword(),
                                       transitionsBuilder: (context, animation,
                                           secondaryAnimation, child) {
-                                        const begin =
-                                            Offset(1.0, 0.0); // from right
+                                        var begin =
+                                            Offset(0.25.w, 0.0); // from right
                                         const end = Offset.zero;
                                         return SlideTransition(
                                           position: animation.drive(
@@ -228,7 +229,7 @@ class _LogInState extends State<LogIn> {
                           ),
                         ),
                         SizedBox(
-                            height: MediaQuery.sizeOf(context).height * 0.045),
+                            height: 4.5.h),
                         OperationButtonModule(
                           borderColor: Color(0xFF502371),
                           buttonColor: Color(0xFF502371),
@@ -247,7 +248,7 @@ class _LogInState extends State<LogIn> {
                                         SignUp(),
                                 transitionsBuilder: (context, animation,
                                     secondaryAnimation, child) {
-                                  const begin = Offset(1.0, 0.0); // from right
+                                  var begin = Offset(0.25.w, 0.0); // from right
                                   const end = Offset.zero;
                                   return SlideTransition(
                                     position: animation.drive(
@@ -265,7 +266,7 @@ class _LogInState extends State<LogIn> {
                             );
                           },
                           conditionOperation: "signup".tr(),
-                          conditionQeustion: "noAccount".tr(),
+                          conditionQuestion: "noAccount".tr(),
                         ),
                       ],
                     ),

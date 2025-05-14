@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sizer/sizer.dart';
 
 class ArticleCardShimmerModule extends StatelessWidget {
   const ArticleCardShimmerModule({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width * 0.9;
-    double height = MediaQuery.of(context).size.height * 0.3;
+    double width = 90.w;
+    double height = 30.h;
     return Container(
       width: width,
-      margin: EdgeInsets.symmetric(vertical: 8),
+      margin: EdgeInsets.symmetric(vertical: 1.h),
       decoration: BoxDecoration(
         color: Color(0xFFD2CFD3),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(2.6.w),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,8 +22,8 @@ class ArticleCardShimmerModule extends StatelessWidget {
           // Image shimmer
           ClipRRect(
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
+              topLeft: Radius.circular(2.6.w),
+              topRight: Radius.circular(2.6.w),
             ),
             child: Shimmer.fromColors(
               baseColor: Colors.grey.shade300,
@@ -34,36 +35,36 @@ class ArticleCardShimmerModule extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
+          SizedBox(height: 1.h),
           // Website name shimmer
           Padding(
-            padding: const EdgeInsets.only(left: 8.0),
+            padding: EdgeInsets.only(left: 2.w),
             child: Shimmer.fromColors(
               baseColor: Colors.grey.shade300,
               highlightColor: Colors.grey.shade100,
               child: Container(
-                height: 14,
-                width: 100,
+                height: 1.7.h,
+                width: 25.w,
                 color: Colors.white,
               ),
             ),
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 0.6.h),
           // Article name shimmer
           Padding(
-            padding: const EdgeInsets.only(left: 4.0),
+            padding: EdgeInsets.only(left: 1.1.w),
             child: Shimmer.fromColors(
               baseColor: Colors.grey.shade300,
               highlightColor: Colors.grey.shade100,
               child: Container(
-                height: 20,
-                width: 200,
+                height: 2.5.h,
+                width: 50.w,
                 color: Colors.white,
               ),
             ),
           ),
-          SizedBox(height: 5),
-          SizedBox(height: MediaQuery.sizeOf(context).height * 0.015),
+          SizedBox(height: 0.6.h),
+          SizedBox(height: 1.5.h),
         ],
       ),
     );

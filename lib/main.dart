@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 import 'package:uni_links3/uni_links.dart';
 import 'package:untitled/About-Lupira/about_lupira.dart';
 import 'package:untitled/BaseScreen/base_screen.dart';
@@ -145,25 +146,29 @@ class _MyAppState extends State<MyApp> {
           create: (context) => BaseScreenCubit(),
         ),
       ],
-      child: MaterialApp(
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        navigatorKey: _navigatorKey,
-        debugShowCheckedModeBanner: false,
-        initialRoute: LogIn.routName,
-        routes: {
-          LogIn.routName: (context) => LogIn(),
-          '/reset-password': (context) {
-            final token = ModalRoute.of(context)?.settings.arguments as String;
-            return ResetPassword(token: token);
-          },
-          ForgotPassword.routName: (context) => ForgotPassword(),
-          SignUp.routName: (context) => SignUp(),
-          BaseScreen.routName: (context) => BaseScreen(),
-          AboutLupira.routName: (context) => AboutLupira(),
-          ChangePassword.routName: (context) => ChangePassword(),
-          Profile.routName: (context) => Profile(),
+      child: Sizer(
+        builder: (BuildContext , Orientation , ScreenType ) {
+          return MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            navigatorKey: _navigatorKey,
+            debugShowCheckedModeBanner: false,
+            initialRoute: LogIn.routName,
+            routes: {
+              LogIn.routName: (context) => LogIn(),
+              '/reset-password': (context) {
+                final token = ModalRoute.of(context)?.settings.arguments as String;
+                return ResetPassword(token: token);
+              },
+              ForgotPassword.routName: (context) => ForgotPassword(),
+              SignUp.routName: (context) => SignUp(),
+              BaseScreen.routName: (context) => BaseScreen(),
+              AboutLupira.routName: (context) => AboutLupira(),
+              ChangePassword.routName: (context) => ChangePassword(),
+              Profile.routName: (context) => Profile(),
+            },
+          );
         },
       ),
     );

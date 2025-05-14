@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:untitled/BottomSheets/language_bottom_sheet.dart';
+import 'package:sizer/sizer.dart';
 import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Modules/authentication_button_module.dart';
 import 'package:untitled/Modules/drop_down_list_module.dart';
@@ -22,7 +22,6 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  // final List<TextEditingController> controllers = [];
   final _formKey = GlobalKey<FormBuilderState>();
 
   Country? selectedCountry;
@@ -152,10 +151,13 @@ class _SignUpState extends State<SignUp> {
               ),
               backgroundColor: Colors.green,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(2.8.w),
               ),
               behavior: SnackBarBehavior.floating,
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              margin: EdgeInsets.symmetric(
+                horizontal: 2.w,
+                vertical: 2.h,
+              ),
               duration: Duration(seconds: 5),
             ),
           );
@@ -163,11 +165,11 @@ class _SignUpState extends State<SignUp> {
           Navigator.pushReplacement(
             context,
             PageRouteBuilder(
-              transitionDuration: Duration(milliseconds: 300),
+              transitionDuration: Duration(milliseconds: 250),
               pageBuilder: (context, animation, secondaryAnimation) => LogIn(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                const begin = Offset(1.0, 0.0); // from right
+                var begin = Offset(0.25.w, 0.0); // from right
                 const end = Offset.zero;
                 return SlideTransition(
                   position: animation.drive(
@@ -196,10 +198,13 @@ class _SignUpState extends State<SignUp> {
               ),
               backgroundColor: Color(0xFFB9433E),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(2.8.w),
               ),
               behavior: SnackBarBehavior.floating,
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              margin: EdgeInsets.symmetric(
+                horizontal: 2.w,
+                vertical: 2.h,
+              ),
               duration: Duration(seconds: 5),
             ),
           );
@@ -217,12 +222,12 @@ class _SignUpState extends State<SignUp> {
             ),
             backgroundColor: Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(2.8.w),
             ),
             behavior: SnackBarBehavior.floating,
             margin: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 20,
+              horizontal: 2.w,
+              vertical: 2.h,
             ),
             duration: Duration(seconds: 5),
           ),
@@ -240,7 +245,7 @@ class _SignUpState extends State<SignUp> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
+              SizedBox(height: 5.h),
               Text(
                 'signup'.tr(),
                 style: TextStyle(
@@ -249,7 +254,7 @@ class _SignUpState extends State<SignUp> {
                   color: Color(0xFF49146D),
                 ),
               ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
+              SizedBox(height: 1.h),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -294,10 +299,7 @@ class _SignUpState extends State<SignUp> {
                                 return Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SizedBox(
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                0.02),
+                                    SizedBox(height: 2.h),
                                     Text(
                                       textField['title'],
                                       style: TextStyle(
@@ -306,10 +308,7 @@ class _SignUpState extends State<SignUp> {
                                         color: Color(0xFF817F82),
                                       ),
                                     ),
-                                    SizedBox(
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                0.005),
+                                    SizedBox(height: 0.5.h),
                                     GestureDetector(
                                       onTap: () {
                                         showCountryPicker(
@@ -324,7 +323,9 @@ class _SignUpState extends State<SignUp> {
                                       },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: 12, vertical: 3),
+                                          horizontal: 2.8.w,
+                                          vertical: 0.4.h,
+                                        ),
                                         decoration: BoxDecoration(
                                           color: Color(0xFFDEDAE0),
                                           borderRadius:
@@ -333,7 +334,7 @@ class _SignUpState extends State<SignUp> {
                                             color: hasError
                                                 ? Color(0xFFB9433E)
                                                 : Colors.transparent,
-                                            width: 1.5,
+                                            width: 0.3.w,
                                           ),
                                         ),
                                         child: Row(
@@ -351,13 +352,17 @@ class _SignUpState extends State<SignUp> {
                                                 fontSize: 16,
                                               ),
                                             ),
-                                            SizedBox(width: 8),
+                                            SizedBox(
+                                              width: 2.w,
+                                            ),
                                             Container(
-                                              width: 1,
-                                              height: 24,
+                                              width: 0.2.w,
+                                              height: 3.h,
                                               color: Colors.grey,
                                             ),
-                                            SizedBox(width: 8),
+                                            SizedBox(
+                                              width: 2.w,
+                                            ),
                                             Expanded(
                                               child: TextField(
                                                 keyboardType:
@@ -384,8 +389,8 @@ class _SignUpState extends State<SignUp> {
                                     ),
                                     if (hasError)
                                       Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 6, left: 12),
+                                        padding: EdgeInsets.only(
+                                            top: 0.5.h, left: 2.8.w),
                                         child: Text(
                                           field.errorText ?? '',
                                           style: TextStyle(
@@ -404,7 +409,6 @@ class _SignUpState extends State<SignUp> {
                             validators: customValidator,
                             onTap: index == 4 ? selectDate : null,
                             isReadOnly: textField['isReadOnly'] ?? false,
-                            // textController: controllers[index],
                             textFieldType: textField['keyboardType'],
                             obscureText: textField['keyboardType'] ==
                                 TextInputType.visiblePassword,
@@ -421,11 +425,12 @@ class _SignUpState extends State<SignUp> {
                         itemCount: textFields.length,
                       ),
                       DropDownListModule(
+                        isReadOnly: false,
                         options: ["male".tr(), "female".tr()],
                         hintColor: Color(0xFFABABAB),
                         hintText: 'Select gender',
                         textColor: Color(0xFF817F82),
-                        borderColor: Colors.transparent,
+                        borderColor: Color(0xFFDEDAE0),
                         text: 'gender'.tr(),
                         backgroundColor: Color(0xFFDEDAE0),
                         name: 'Gender',
@@ -440,7 +445,8 @@ class _SignUpState extends State<SignUp> {
                         },
                       ),
                       SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.02),
+                        height: 2.h,
+                      ),
                       FormBuilderField<Country>(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         name: 'country',
@@ -459,8 +465,8 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                               SizedBox(
-                                  height: MediaQuery.sizeOf(context).height *
-                                      0.005),
+                                height: 0.5.h,
+                              ),
                               GestureDetector(
                                 onTap: () {
                                   showCountryPicker(
@@ -476,8 +482,8 @@ class _SignUpState extends State<SignUp> {
                                 },
                                 child: Container(
                                   padding: EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 16,
+                                    horizontal: 2.8.w,
+                                    vertical: 1.8.h,
                                   ),
                                   decoration: BoxDecoration(
                                     color: Color(0xFFDEDAE0),
@@ -513,7 +519,10 @@ class _SignUpState extends State<SignUp> {
                               ),
                               if (field.hasError)
                                 Padding(
-                                  padding: EdgeInsets.only(top: 5, left: 8),
+                                  padding: EdgeInsets.only(
+                                    top: 0.6.h,
+                                    left: 2.w,
+                                  ),
                                   child: Text(
                                     field.errorText ?? '',
                                     style: TextStyle(
@@ -525,19 +534,20 @@ class _SignUpState extends State<SignUp> {
                         },
                       ),
                       DropDownListModule(
+                        isReadOnly: false,
                         options: [
-                          "ethnicityOption1",
-                          "ethnicityOption2",
-                          "ethnicityOption3",
-                          "ethnicityOption4",
-                          "ethnicityOption5",
-                          "ethnicityOption6",
-                          "ethnicityOption7"
+                          "ethnicityOption1".tr(),
+                          "ethnicityOption2".tr(),
+                          "ethnicityOption3".tr(),
+                          "ethnicityOption4".tr(),
+                          "ethnicityOption5".tr(),
+                          "ethnicityOption6".tr(),
+                          "ethnicityOption7".tr()
                         ],
                         hintColor: Color(0xFFABABAB),
                         hintText: 'selectEthnicity'.tr(),
                         textColor: Color(0xFF817F82),
-                        borderColor: Colors.transparent,
+                        borderColor: Color(0xFFDEDAE0),
                         text: 'ethnicity'.tr(),
                         backgroundColor: Color(0xFFDEDAE0),
                         name: 'Ethnicity',
@@ -551,8 +561,7 @@ class _SignUpState extends State<SignUp> {
                           });
                         },
                       ),
-                      SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.05),
+                      SizedBox(height: 5.h),
                       OperationButtonModule(
                           onTap: signUp,
                           borderColor: Color(0xFF49146D),
@@ -570,7 +579,7 @@ class _SignUpState extends State<SignUp> {
                                         LogIn(),
                                 transitionsBuilder: (context, animation,
                                     secondaryAnimation, child) {
-                                  const begin = Offset(1.0, 0.0); // from right
+                                  var begin = Offset(0.25.w, 0.0); // from right
                                   const end = Offset.zero;
                                   return SlideTransition(
                                     position: animation.drive(
@@ -588,7 +597,7 @@ class _SignUpState extends State<SignUp> {
                             );
                           },
                           conditionOperation: "login".tr(),
-                          conditionQeustion: "haveAccount".tr()),
+                          conditionQuestion: "haveAccount".tr()),
                     ],
                   ),
                 ),

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import 'package:untitled/BaseScreen/Tabs/diagnosis_tab.dart';
 
 class AboutLupira extends StatelessWidget {
@@ -11,7 +12,7 @@ class AboutLupira extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
+        padding: EdgeInsets.symmetric(horizontal: 2.8.w),
         child: Center(
           child: Column(
             children: [
@@ -25,7 +26,7 @@ class AboutLupira extends StatelessWidget {
                   color: Color(0xFF502371),
                 ),
               ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
+              SizedBox(height: 3.h),
               Text(
                 "aboutLupiraParagraph".tr(),
               style: TextStyle(

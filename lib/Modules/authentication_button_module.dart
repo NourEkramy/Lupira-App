@@ -1,26 +1,27 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class AuthenticationButtonModule extends StatelessWidget {
-  String conditionQeustion;
+  String conditionQuestion;
   String conditionOperation;
   VoidCallback onTap;
 
   AuthenticationButtonModule(
       {super.key,
       required this.conditionOperation,
-      required this.conditionQeustion,
+      required this.conditionQuestion,
       required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
+        SizedBox(height: 5.h),
         Center(
           child: RichText(
             text: TextSpan(
-              text: conditionQeustion,
+              text: conditionQuestion,
               style: TextStyle(
                 fontSize: 15,
                 color: Color(0xFF817F82),
@@ -41,12 +42,12 @@ class AuthenticationButtonModule extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
+        SizedBox(height: 3.h),
         Row(
           children: [
             Expanded(child: Divider()),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              padding: EdgeInsets.symmetric(horizontal: 2.w),
               child: Text(
                 'OR',
                 style: TextStyle(
@@ -61,24 +62,23 @@ class AuthenticationButtonModule extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
+        SizedBox(height: 3.h),
         ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
             backgroundColor: Color(0xFFDEDAE0),
             foregroundColor: Colors.white,
-            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+            padding: EdgeInsets.symmetric(vertical: 1.8.h, horizontal: 4.w),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(2.6.w),
             ),
-            minimumSize: Size(double.infinity, 50),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset('assets/images/google_logo 1.png'),
               SizedBox(
-                width: MediaQuery.sizeOf(context).width * 0.026,
+                width: 2.6.w,
               ),
               Text(
                 'Continue with Google',
@@ -91,24 +91,23 @@ class AuthenticationButtonModule extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
+        SizedBox(height: 2.5.h),
         ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
             backgroundColor: Color(0xFFDEDAE0),
             foregroundColor: Colors.white,
-            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+            padding: EdgeInsets.symmetric(vertical: 1.8.h, horizontal: 4.w),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(2.6.w),
             ),
-            minimumSize: Size(double.infinity, 50),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset('assets/images/facebook_logo 1.png'),
               SizedBox(
-                width: MediaQuery.sizeOf(context).width * 0.024,
+                width: 2.4.w,
               ),
               Text(
                 'Continue with Facebook',
@@ -121,7 +120,7 @@ class AuthenticationButtonModule extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: MediaQuery.sizeOf(context).height * 0.055),
+        SizedBox(height: 5.5.h),
       ],
     );
   }

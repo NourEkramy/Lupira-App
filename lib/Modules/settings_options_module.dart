@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class SettingsOptionsModule extends StatelessWidget {
   String optionIcon;
@@ -20,11 +21,11 @@ class SettingsOptionsModule extends StatelessWidget {
       onTap: optionAction,
       child: Column(children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 35, vertical: 13),
+          padding: EdgeInsets.symmetric(horizontal: 8.4.w, vertical: 1.5.h),
           child: Row(
             children: [
               Image.asset(optionIcon),
-              SizedBox(width: MediaQuery.sizeOf(context).width * 0.065),
+              SizedBox(width: 6.5.w),
               Text(
                 optionText,
                 style: TextStyle(
@@ -37,7 +38,7 @@ class SettingsOptionsModule extends StatelessWidget {
           ),
         ),
         Divider(
-          thickness: 1,
+          thickness: 0.3.w,
           color: Color(0xFFABABAB),
         ),
       ]),

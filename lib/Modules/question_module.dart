@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/BottomSheets/language_bottom_sheet.dart';
+import 'package:sizer/sizer.dart';
 import '../BottomSheets/explanation_bottom_sheet.dart';
 
 class QuestionModule extends StatelessWidget {
@@ -24,9 +24,9 @@ class QuestionModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8.0,
-        vertical: 10.0,
+      padding: EdgeInsets.symmetric(
+        horizontal: 2.w,
+        vertical: 1.2.h,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +37,7 @@ class QuestionModule extends StatelessWidget {
               Expanded(
                 child: Container(
                   margin: EdgeInsets.only(
-                    bottom: 8.0,
+                    bottom: 0.9.h,
                   ),
                   child: Text(
                     question,
@@ -60,12 +60,12 @@ class QuestionModule extends StatelessWidget {
                 },
                 child: Padding(
                   padding: EdgeInsets.only(
-                    top: 6.0,
+                    top: 0.7.h,
                   ),
                   child: Icon(
                     Icons.info_outlined,
                     color: Color(0xff744199),
-                    size: 28,
+                    size: 21.3.sp,
                   ),
                 ),
               ),
@@ -75,7 +75,7 @@ class QuestionModule extends StatelessWidget {
             return ListTile(
               dense: true,
               contentPadding: EdgeInsets.zero,
-              visualDensity: const VisualDensity(
+              visualDensity: VisualDensity(
                 horizontal: -4,
                 vertical: -4,
               ),
@@ -105,7 +105,7 @@ class QuestionModule extends StatelessWidget {
             );
           }),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.01,
+            height: 1.h,
           ),
           const Divider(
             color: Color(0xffABABAB),
@@ -113,7 +113,7 @@ class QuestionModule extends StatelessWidget {
           if (hasError)
             Container(
               margin: EdgeInsets.symmetric(
-                vertical: 5,
+                vertical: 0.6.h,
               ),
               child: Row(
                 children: [
@@ -122,7 +122,7 @@ class QuestionModule extends StatelessWidget {
                     color: Color(0xFFB9433E),
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.01,
+                    width: 1.w,
                   ),
                   Text(
                     "chooseAnswer".tr(),

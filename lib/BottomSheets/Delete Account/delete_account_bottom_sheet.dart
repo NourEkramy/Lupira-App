@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import 'package:untitled/BottomSheets/Delete%20Account/delete_account_api.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Sign-Up/sign_up_ui.dart';
@@ -24,12 +26,12 @@ class DeleteAccountBottomSheet extends StatelessWidget {
           ),
           backgroundColor: Colors.green,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(2.8.w),
           ),
           behavior: SnackBarBehavior.floating,
           margin: EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 20,
+            horizontal: 2.w,
+            vertical: 2.h,
           ),
           duration: Duration(seconds: 5),
         ),
@@ -41,7 +43,7 @@ class DeleteAccountBottomSheet extends StatelessWidget {
           transitionDuration: Duration(milliseconds: 250),
           pageBuilder: (context, animation, secondaryAnimation) => SignUp(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            const begin = Offset(1.0, 0.0); // from right
+            var begin = Offset(0.25, 0.0); // from right
             const end = Offset.zero;
             return SlideTransition(
               position: animation.drive(
@@ -62,7 +64,7 @@ class DeleteAccountBottomSheet extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'Failed to delete account',
+            'accountDeleteError'.tr(),
             style: TextStyle(
               color: Colors.white,
               fontSize: 16,
@@ -71,12 +73,12 @@ class DeleteAccountBottomSheet extends StatelessWidget {
           ),
           backgroundColor: Color(0xFFB9433E),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(2.8.w),
           ),
           behavior: SnackBarBehavior.floating,
           margin: EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 20,
+            horizontal: 2.w,
+            vertical: 2.h,
           ),
           duration: Duration(seconds: 5),
         ),
@@ -88,11 +90,11 @@ class DeleteAccountBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      insetPadding: EdgeInsets.symmetric(horizontal: 15),
+      insetPadding: EdgeInsets.symmetric(horizontal: 3.6.w),
       child: Container(
         decoration: BoxDecoration(
           color: Color(0xFFEBE4E4),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(4.4.w),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -100,18 +102,18 @@ class DeleteAccountBottomSheet extends StatelessWidget {
             Container(
               width: double.infinity,
               padding: EdgeInsets.symmetric(
-                vertical: 10,
+                vertical: 1.2.h,
               ),
               decoration: BoxDecoration(
                 color: Color(0xFFDEDAE0),
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
+                  topLeft: Radius.circular(4.4.w),
+                  topRight: Radius.circular(4.4.w),
                 ),
               ),
               child: Text(
                 textAlign: TextAlign.center,
-                'Delete account',
+                'deleteAccount'.tr(),
                 style: TextStyle(
                   color: Color(0xFF3D1A57),
                   fontSize: 32,
@@ -120,38 +122,38 @@ class DeleteAccountBottomSheet extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(14.0),
+              padding: EdgeInsets.all(3.5.w),
               child: Column(
                 children: [
                   Text(
-                    'Are you sure that you want to delete your account?',
+                    'deleteQuestion'.tr(),
                     style: TextStyle(
                       fontFamily: 'Inder',
                       color: Color(0xFF4B4A4C),
                       fontSize: 24,
                     ),
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.07),
+                  SizedBox(height: 7.h),
                   OperationButtonModule(
                     borderColor: Color(0xFF502371),
                     buttonColor: Color(0xFF502371),
-                    buttonText: 'Cancel',
+                    buttonText: 'cancel'.tr(),
                     buttonTextColor: Color(0xFFFFFFFF),
                     onTap: () {
                       Navigator.pop(context);
                     },
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
+                  SizedBox(height: 2.5.h),
                   OperationButtonModule(
                     borderColor: Color(0xFFD6101D),
                     buttonColor: Color(0xFFEBE4E4),
-                    buttonText: 'Delete account',
+                    buttonText: 'deleteAccount'.tr(),
                     buttonTextColor: Color(0xFFD6101D),
                     onTap: () {
                       _deleteAccount(context);
                     },
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.015),
+                  SizedBox(height: 1.5.h),
                 ],
               ),
             ),

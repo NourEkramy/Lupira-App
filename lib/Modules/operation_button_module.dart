@@ -1,27 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class OperationButtonModule extends StatelessWidget {
-
   Color borderColor;
   Color buttonColor;
   Color buttonTextColor;
   String buttonText;
   VoidCallback onTap;
 
-  OperationButtonModule({super.key, required this.borderColor, required this.buttonColor, required this.buttonText, required this.buttonTextColor, required this.onTap});
+  OperationButtonModule({
+    super.key,
+    required this.borderColor,
+    required this.buttonColor,
+    required this.buttonText,
+    required this.buttonTextColor,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return  ElevatedButton(
+    return ElevatedButton(
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
         backgroundColor: buttonColor,
-        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+        padding: EdgeInsets.symmetric(vertical: 1.8.h, horizontal: 8.w),
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: borderColor, width: 2,),
-          borderRadius: BorderRadius.circular(10.0),
+          side: BorderSide(
+            color: borderColor,
+            width: 0.5.w,
+          ),
+          borderRadius: BorderRadius.circular(2.6.w),
         ),
-        minimumSize: Size(double.infinity, 50),
+        minimumSize: Size(double.infinity, 5.7.h),
       ),
       child: Text(
         buttonText,

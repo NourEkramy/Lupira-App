@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 import '../BaseScreen/Layout/main_layout.dart';
 import 'detection_result_screen.dart';
 import '../Models/detection_questions_model.dart';
@@ -198,19 +199,19 @@ class _DetectionScreenState extends State<DetectionScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-              radius: 75,
+              radius: 8.6.h,
               backgroundColor: Color(0xffDDBCC3),
               child: ImageIcon(
                 AssetImage("assets/images/error.png"),
                 color: Color(0xffD6101D),
-                size: 95,
+                size: 39.sp,
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.025,
+              height: 2.5.h,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: 2.2.w),
               child: Text(
                 "questionUnavailable".tr()+"\n"+"tryAgain".tr(),
                 style: TextStyle(
@@ -226,10 +227,10 @@ class _DetectionScreenState extends State<DetectionScreen> {
     }
 
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 18.0,
-        left: 18.0,
-        right: 18.0,
+      padding: EdgeInsets.only(
+        top: 2.1.h,
+        left: 4.4.w,
+        right: 4.4.w,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -244,14 +245,14 @@ class _DetectionScreenState extends State<DetectionScreen> {
                 ),
               ),
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.03,
+                width: 3.w,
               ),
               Expanded(
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.014,
+                  height: 1.4.h,
                   child: LinearProgressIndicator(
                     value: _progress,
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(4.4.w),
                     backgroundColor: const Color(0xffC5C3C6),
                     valueColor: const AlwaysStoppedAnimation<Color>(
                       Color(0xFF9D82AF),
@@ -262,7 +263,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
             ],
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
+            height: 3.h,
           ),
           Expanded(
             child: PageView.builder(
@@ -309,10 +310,10 @@ class _DetectionScreenState extends State<DetectionScreen> {
                         );
                       }),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.005,
+                        height: 0.5.h,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: EdgeInsets.symmetric(horizontal: 2.4.w),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -321,16 +322,13 @@ class _DetectionScreenState extends State<DetectionScreen> {
                                     onTap: _prevPage,
                                     child: Row(
                                       children: [
-                                        const Icon(
+                                        Icon(
                                           Icons.arrow_back_ios_outlined,
                                           color: Color(0xff9166B0),
-                                          size: 17,
+                                          size: 16.sp,
                                         ),
                                         SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.02,
+                                          width: 2.w,
                                         ),
                                         Text(
                                           "back".tr(),
@@ -345,13 +343,13 @@ class _DetectionScreenState extends State<DetectionScreen> {
                                   )
                                 : SizedBox(),
                             SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.27,
+                              width: 27.w,
                               child: ElevatedButton(
                                 onPressed: _nextPage,
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color(0xFF502371),
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderRadius: BorderRadius.circular(2.6.w),
                                   ),
                                 ),
                                 child: Text(
@@ -370,7 +368,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.014,
+                        height: 1.4.h,
                       ),
                     ],
                   ),

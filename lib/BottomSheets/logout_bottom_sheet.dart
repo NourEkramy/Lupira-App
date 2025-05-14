@@ -1,10 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/BottomSheets/Delete%20Account/delete_account_api.dart';
+import 'package:sizer/sizer.dart';
 import 'package:untitled/Log-In/auth_service.dart';
 import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
-import 'package:untitled/Sign-Up/sign_up_ui.dart';
 
 class LogoutBottomSheet extends StatelessWidget {
   LogoutBottomSheet({super.key});
@@ -12,11 +11,11 @@ class LogoutBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      insetPadding: EdgeInsets.symmetric(horizontal: 15),
+      insetPadding: EdgeInsets.symmetric(horizontal: 3.6.w),
       child: Container(
         decoration: BoxDecoration(
           color: Color(0xFFEBE4E4),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(4.4.w),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -24,13 +23,13 @@ class LogoutBottomSheet extends StatelessWidget {
             Container(
               width: double.infinity,
               padding: EdgeInsets.symmetric(
-                vertical: 10,
+                vertical: 1.2.h,
               ),
               decoration: BoxDecoration(
                 color: Color(0xFFDEDAE0),
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
+                  topLeft: Radius.circular(4.4.w),
+                  topRight: Radius.circular(4.4.w),
                 ),
               ),
               child: Text(
@@ -44,7 +43,7 @@ class LogoutBottomSheet extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(14.0),
+              padding: EdgeInsets.all(3.4.w),
               child: Column(
                 children: [
                   Text(
@@ -55,7 +54,7 @@ class LogoutBottomSheet extends StatelessWidget {
                       fontSize: 24,
                     ),
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.07),
+                  SizedBox(height: 7.h),
                   OperationButtonModule(
                     borderColor: Color(0xFF502371),
                     buttonColor: Color(0xFF502371),
@@ -65,7 +64,7 @@ class LogoutBottomSheet extends StatelessWidget {
                       Navigator.pop(context);
                     },
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.025),
+                  SizedBox(height: 2.5.h),
                   OperationButtonModule(
                     borderColor: Color(0xFFD6101D),
                     buttonColor: Color(0xFFEBE4E4),
@@ -82,7 +81,7 @@ class LogoutBottomSheet extends StatelessWidget {
                                   LogIn(),
                           transitionsBuilder:
                               (context, animation, secondaryAnimation, child) {
-                            const begin = Offset(1.0, 0.0); // from right
+                            var begin = Offset(0.25.w, 0.0); // from right
                             const end = Offset.zero;
                             return SlideTransition(
                               position: animation.drive(
@@ -101,7 +100,7 @@ class LogoutBottomSheet extends StatelessWidget {
                       );
                     },
                   ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.015),
+                  SizedBox(height: 1.5.h),
                 ],
               ),
             ),

@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:untitled/BottomSheets/explanation_bottom_sheet.dart';
+import 'package:sizer/sizer.dart';
 import '../BaseScreen/Layout/main_layout.dart';
 import '../Detection/detection_screen.dart';
 
@@ -36,12 +36,12 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.9,
+      height: 90.h,
       decoration: BoxDecoration(
         color: Color(0xFFEBE4E4),
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(4.4.w),
+          topRight: Radius.circular(4.4.w),
         ),
       ),
       width: double.infinity,
@@ -50,13 +50,13 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
         children: [
           Container(
             padding: EdgeInsets.symmetric(
-              vertical: 10,
+              vertical: 1.2.h,
             ),
             decoration: BoxDecoration(
               color: Color(0xFFDEDAE0),
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
+                topLeft: Radius.circular(4.4.w),
+                topRight: Radius.circular(4.4.w),
               ),
             ),
             width: double.infinity,
@@ -70,13 +70,13 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
               ),
             ),
           ),
-          SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
+          SizedBox(height: 3.h),
           Expanded(
             child: SingleChildScrollView(
               child: FormBuilder(
                 key: _formKey,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: EdgeInsets.symmetric(horizontal: 2.8.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
@@ -90,17 +90,17 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                          left: 16,
-                          top: 12,
-                          bottom: 10,
+                        padding: EdgeInsets.only(
+                          left: 3.8.w,
+                          top: 1.4.h,
+                          bottom: 1.2.h,
                         ),
                         child: RichText(
                           text: TextSpan(
                             children: [
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 7),
+                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• Anti-nuclear Antibody (ANA)",
                                     style: TextStyle(
@@ -112,7 +112,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                               ),
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 7),
+                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• Complete Blood Count (CBC)",
                                     style: TextStyle(
@@ -124,7 +124,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                               ),
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 7),
+                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• Direct antiglobulin (direct coombs) test",
                                     style: TextStyle(
@@ -136,7 +136,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                               ),
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 7),
+                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• Urine test",
                                     style: TextStyle(
@@ -148,7 +148,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                               ),
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 7),
+                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• Solid phase enzyme-linked immunosorbent assay",
                                     style: TextStyle(
@@ -160,7 +160,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                               ),
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 7),
+                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• CH50, CH100, Total complement test",
                                     style: TextStyle(
@@ -172,7 +172,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                               ),
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 7),
+                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• Kidney biopsy",
                                     style: TextStyle(
@@ -195,17 +195,17 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                          left: 16,
-                          top: 12,
-                          bottom: 10,
+                        padding: EdgeInsets.only(
+                          left: 3.8.w,
+                          top: 1.4.h,
+                          bottom: 1.1.h,
                         ),
                         child: RichText(
                           text: TextSpan(
                             children: [
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 7),
+                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• PTT, LA-sensitive PTT or dilute Russell viper venom test",
                                     style: TextStyle(
@@ -217,7 +217,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                               ),
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 7),
+                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• Chest X-ray or Ultrasound or computed tomography (CT)",
                                     style: TextStyle(
@@ -246,9 +246,9 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 10,
-                                  bottom: 6,
+                                padding: EdgeInsets.only(
+                                  top: 1.1.h,
+                                  bottom: 0.7.h,
                                 ),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -259,7 +259,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                         field.didChange(value);
                                       },
                                       materialTapTargetSize:
-                                      MaterialTapTargetSize.shrinkWrap,
+                                          MaterialTapTargetSize.shrinkWrap,
                                     ),
                                     Expanded(
                                       child: Text(
@@ -277,21 +277,19 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                               if (field.hasError)
                                 Container(
                                   margin: EdgeInsets.only(
-                                    right: 10,
-                                    left: 10,
-                                    bottom: 10,
+                                    right: 2.4.w,
+                                    left: 2.4.w,
+                                    bottom: 1.1.h,
                                   ),
                                   child: Row(
                                     children: [
                                       Icon(
                                         Icons.error_outline,
                                         color: Color(0xffD6101D),
-                                        size: 20,
+                                        size: 18.sp,
                                       ),
                                       SizedBox(
-                                        width:
-                                        MediaQuery.of(context).size.width *
-                                            0.01,
+                                        width: 1.w,
                                       ),
                                       Text(
                                         "confirmStartDetection".tr(),
@@ -309,23 +307,29 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                         },
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 6),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 2.4.w,
+                          vertical: 0.7.h,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 28,vertical: 5,),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Color(0xffD6101D),width: 2,
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 6.7.w,
+                                  vertical: 0.6.h,
                                 ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Color(0xffD6101D),
+                                    width: 0.5.w,
+                                  ),
+                                  borderRadius: BorderRadius.circular(2.6.w),
+                                ),
                                 child: Text(
                                   "close".tr(),
                                   style: TextStyle(
@@ -337,7 +341,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                               ),
                             ),
                             SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.27,
+                              width: 27.w,
                               child: ElevatedButton(
                                 onPressed: () {
                                   startDetection();
@@ -345,7 +349,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xFF502371),
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderRadius: BorderRadius.circular(2.6.w),
                                   ),
                                 ),
                                 child: Text(
@@ -362,7 +366,8 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                         ),
                       ),
                       SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.03),
+                        height: 3.h,
+                      ),
                     ],
                   ),
                 ),

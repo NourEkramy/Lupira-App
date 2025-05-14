@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/BottomSheets/language_bottom_sheet.dart';
+import 'package:sizer/sizer.dart';
 
 class ExplanationBottomSheet extends StatelessWidget {
   String explanation;
@@ -16,8 +16,8 @@ class ExplanationBottomSheet extends StatelessWidget {
       decoration: BoxDecoration(
         color: Color(0xFFEBE4E4),
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(4.4.w),
+          topRight: Radius.circular(4.4.w),
         ),
       ),
       width: double.infinity,
@@ -27,13 +27,13 @@ class ExplanationBottomSheet extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.symmetric(
-              vertical: 10,
+              vertical: 1.2.h,
             ),
             decoration: BoxDecoration(
               color: Color(0xFFDEDAE0),
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
+                topLeft: Radius.circular(4.4.w),
+                topRight: Radius.circular(4.4.w),
               ),
             ),
             width: double.infinity,
@@ -47,9 +47,9 @@ class ExplanationBottomSheet extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
+          SizedBox(height: 3.h),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.0),
+            padding: EdgeInsets.symmetric(horizontal: 3.6.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -61,7 +61,7 @@ class ExplanationBottomSheet extends StatelessWidget {
                     color: Color(0xff4B4A4C),
                   ),
                 ),
-                SizedBox(height: MediaQuery.sizeOf(context).height * 0.013),
+                SizedBox(height: 1.3.h),
                 Text(
                   explanation,
                   style: TextStyle(
@@ -70,7 +70,7 @@ class ExplanationBottomSheet extends StatelessWidget {
                     color: Color(0xff4B4A4C),
                   ),
                 ),
-                SizedBox(height: MediaQuery.sizeOf(context).height * 0.07),
+                SizedBox(height: 7.h),
               ],
             ),
           ),

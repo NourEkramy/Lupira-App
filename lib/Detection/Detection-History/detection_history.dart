@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/BottomSheets/language_bottom_sheet.dart';
+import 'package:sizer/sizer.dart';
 import 'package:untitled/Detection/Detection-History/detection_history_api.dart';
 import 'package:untitled/Modules/report_card_module.dart';
 import '../../BaseScreen/Layout/main_layout.dart';
@@ -54,18 +54,18 @@ class _DetectionHistoryState extends State<DetectionHistory> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 13,
-        right: 13,
-        top: 30,
+      padding: EdgeInsets.only(
+        left: 2.9.w,
+        right: 2.9.w,
+        top: 3.5.h,
       ),
       child: isLoading
           ? Center(child: CircularProgressIndicator())
           : historyData.isEmpty
               ? Center(
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 8,
+                    padding: EdgeInsets.only(
+                      top: 2.h,
                     ),
                     child: Text(
                       "noHistory".tr(),

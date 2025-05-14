@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class ArticleCardModule extends StatelessWidget {
   String websiteName, articleName, articleImage;
@@ -16,10 +17,10 @@ class ArticleCardModule extends StatelessWidget {
     return GestureDetector(
       onTap: redirectFunction,
       child: Container(
-        width: MediaQuery.of(context).size.width*0.9,
+        width: 90.w,
         decoration: BoxDecoration(
           color: Color(0xFFD2CFD3),
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(2.6.w),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,19 +28,19 @@ class ArticleCardModule extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
+                  topLeft: Radius.circular(2.6.w),
+                  topRight: Radius.circular(2.6.w),
                 ),
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
+                  topLeft: Radius.circular(2.6.w),
+                  topRight: Radius.circular(2.6.w),
                 ),
                 child: Image.network(
                   articleImage,
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height*0.3,
+                  height: 30.h,
                   fit: BoxFit.fill,
                   errorBuilder: (context, error, stackTrace) {
                     return Center(child: Image.asset('assets/images/no_image.png'));
@@ -47,10 +48,10 @@ class ArticleCardModule extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
+            SizedBox(height: 1.h),
             Padding(
               padding: EdgeInsets.only(
-                left: 8.0,
+                left: 2.w,
               ),
               child: Text(
                 websiteName,
@@ -64,7 +65,7 @@ class ArticleCardModule extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(
-                left: 8.0,
+                left: 2.w,
               ),
               child: Text(
                 articleName,
@@ -76,7 +77,7 @@ class ArticleCardModule extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.015),
+            SizedBox(height: 1.5.h),
           ],
         ),
       ),

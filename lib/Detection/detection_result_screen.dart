@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/BottomSheets/language_bottom_sheet.dart';
+import 'package:sizer/sizer.dart';
 
 class DetectionResultScreen extends StatelessWidget {
   const DetectionResultScreen({super.key});
@@ -11,31 +11,31 @@ class DetectionResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var data = ModalRoute.of(context)?.settings.arguments as dynamic;
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(2.4.w),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           data['code'] == 1
               ? CircleAvatar(
-                  radius: 90,
+                  radius: 10.3.h,
                   backgroundColor: Color(0xffDDBCC3),
                   child: ImageIcon(
                     AssetImage("assets/images/warning_positive_result.png"),
                     color: Color(0xffD6101D),
-                    size: 125,
+                    size: 100.sp,
                   ),
                 )
               : CircleAvatar(
-                  radius: 90,
+                  radius: 10.3.h,
                   backgroundColor: Color(0xffC2D0D0),
                   child: ImageIcon(
                     AssetImage("assets/images/negative_result.png"),
                     color: Color(0xff209872),
-                    size: 160,
+                    size: 51.sp,
                   ),
                 ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.025,
+            height: 2.5.h,
           ),
           Text(
             "detectionResult".tr(),
@@ -46,10 +46,10 @@ class DetectionResultScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
+            height: 3.h,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(horizontal: 4.8.w),
             child: Text(
               data['result'],
               textAlign: TextAlign.center,
@@ -61,17 +61,17 @@ class DetectionResultScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.06,
+            height: 6.h,
           ),
           if (data['code'] == 1)
             Container(
               padding: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 20,
+                horizontal: 4.8.w,
+                vertical: 2.3.h,
               ),
               decoration: BoxDecoration(
                 color: Color(0xffCABDD3),
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(3.w),
               ),
               child: Column(
                 children: [
@@ -79,7 +79,7 @@ class DetectionResultScreen extends StatelessWidget {
                     children: [
                       Image.asset("assets/images/phonendoscope.png"),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.05,
+                        width: 5.w,
                       ),
                       Text(
                         "nextStep".tr(),
@@ -93,7 +93,7 @@ class DetectionResultScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
+                    height: 1.h,
                   ),
                   Text(
                     "recommendConsulting".tr(),

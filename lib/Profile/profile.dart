@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/BottomSheets/language_bottom_sheet.dart';
+import 'package:sizer/sizer.dart';
 import 'package:untitled/Modules/drop_down_list_module.dart';
 import 'package:untitled/Profile/profile_api.dart';
 import '../Models/user_profile_data_model.dart';
@@ -133,10 +133,10 @@ class _ProfileState extends State<Profile> {
               ),
               backgroundColor: success ? Colors.green : Color(0xFFB9433E),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(2.8.w),
               ),
               behavior: SnackBarBehavior.floating,
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              margin: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
               duration: Duration(seconds: 3),
             ),
           );
@@ -155,12 +155,12 @@ class _ProfileState extends State<Profile> {
               content: Text(message),
               backgroundColor: Color(0xFFB9433E),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(2.8.w),
               ),
               behavior: SnackBarBehavior.floating,
               margin: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 10,
+                horizontal: 2.w,
+                vertical: 2.h,
               ),
             ),
           );
@@ -174,12 +174,12 @@ class _ProfileState extends State<Profile> {
             content: Text("$e"),
             backgroundColor: Color(0xFFB9433E),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(2.8.w),
             ),
             behavior: SnackBarBehavior.floating,
             margin: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 10,
+              horizontal: 2.w,
+              vertical: 2.h,
             ),
           ),
         );
@@ -198,10 +198,10 @@ class _ProfileState extends State<Profile> {
             child: FormBuilder(
               key: _formKey,
               child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 8,
-                  right: 8,
-                  top: 32,
+                padding: EdgeInsets.only(
+                  left: 2.w,
+                  right: 2.w,
+                  top: 2.h,
                 ),
                 child: SingleChildScrollView(
                   child: Column(
@@ -240,9 +240,8 @@ class _ProfileState extends State<Profile> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                0.02),
+                                      height: 2.h,
+                                    ),
                                     Text(
                                       textField['title'],
                                       style: TextStyle(
@@ -252,9 +251,8 @@ class _ProfileState extends State<Profile> {
                                       ),
                                     ),
                                     SizedBox(
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                0.005),
+                                      height: 0.5.h,
+                                    ),
                                     GestureDetector(
                                       onTap: () {
                                         showCountryPicker(
@@ -269,13 +267,13 @@ class _ProfileState extends State<Profile> {
                                       },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(
-                                          horizontal: 12,
-                                          vertical: 3,
+                                          horizontal: 2.8.w,
+                                          vertical: 0.4.h,
                                         ),
                                         decoration: BoxDecoration(
                                           color: Color(0xFFDEDAE0),
                                           borderRadius:
-                                              BorderRadius.circular(10),
+                                              BorderRadius.circular(2.6.w),
                                           border: Border.all(
                                             color: hasError
                                                 ? Color(0xFFB9433E)
@@ -297,13 +295,13 @@ class _ProfileState extends State<Profile> {
                                                 fontSize: 16,
                                               ),
                                             ),
-                                            SizedBox(width: 8),
+                                            SizedBox(width: 2.w),
                                             Container(
-                                              width: 1,
-                                              height: 24,
+                                              width: 0.2.w,
+                                              height: 2.8.h,
                                               color: Color(0xFF4B4A4C),
                                             ),
-                                            SizedBox(width: 8),
+                                            SizedBox(width: 2.w),
                                             Expanded(
                                               child: TextField(
                                                 keyboardType:
@@ -330,8 +328,10 @@ class _ProfileState extends State<Profile> {
                                     ),
                                     if (hasError)
                                       Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 6, left: 12),
+                                        padding: EdgeInsets.only(
+                                          top: 0.6.h,
+                                          left: 2.6.w,
+                                        ),
                                         child: Text(
                                           field.errorText ?? '',
                                           style: TextStyle(
@@ -381,8 +381,7 @@ class _ProfileState extends State<Profile> {
                         },
                         itemCount: textFields.length,
                       ),
-                      SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.01),
+                      SizedBox(height: 1.h),
                       GestureDetector(
                         onTap: () {
                           if (!isEditable) {
@@ -413,7 +412,8 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.03),
+                        height: 3.h,
+                      ),
                       FormBuilderField<Country>(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         name: 'country',
@@ -430,8 +430,8 @@ class _ProfileState extends State<Profile> {
                                 ),
                               ),
                               SizedBox(
-                                  height: MediaQuery.sizeOf(context).height *
-                                      0.005),
+                                height: 0.5.h,
+                              ),
                               GestureDetector(
                                 onTap: () {
                                   if (!isEditable) {
@@ -456,12 +456,12 @@ class _ProfileState extends State<Profile> {
                                 },
                                 child: Container(
                                   padding: EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 16,
+                                    horizontal: 2.8.w,
+                                    vertical: 1.8.h,
                                   ),
                                   decoration: BoxDecoration(
                                     color: Color(0xFFDEDAE0),
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(2.4.w),
                                     border: Border.all(
                                       color: field.hasError
                                           ? Color(0xFFB9433E)
@@ -492,7 +492,8 @@ class _ProfileState extends State<Profile> {
                               ),
                               if (field.hasError)
                                 Padding(
-                                  padding: EdgeInsets.only(top: 5, left: 8),
+                                  padding:
+                                      EdgeInsets.only(top: 0.6.h, left: 2.w),
                                   child: Text(
                                     field.errorText ?? '',
                                     style: TextStyle(
@@ -506,7 +507,8 @@ class _ProfileState extends State<Profile> {
                         },
                       ),
                       SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.01),
+                        height: 1.h,
+                      ),
                       GestureDetector(
                         onTap: () {
                           if (!isEditable) {
@@ -545,7 +547,8 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.035),
+                        height: 3.5.h,
+                      ),
                       if (isEditable && !isUpdating)
                         Center(
                           child: ElevatedButton(
@@ -555,9 +558,9 @@ class _ProfileState extends State<Profile> {
                               shape: RoundedRectangleBorder(
                                 side: BorderSide(
                                   color: Color(0xFF49146D),
-                                  width: 2,
+                                  width: 0.5.w,
                                 ),
-                                borderRadius: BorderRadius.circular(10.0),
+                                borderRadius: BorderRadius.circular(2.4.w),
                               ),
                             ),
                             child: Text(
@@ -573,7 +576,8 @@ class _ProfileState extends State<Profile> {
                       else
                         SizedBox(),
                       SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.02),
+                        height: 2.h,
+                      ),
                     ],
                   ),
                 ),
