@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../Models/user_profile_data_model.dart';
@@ -69,15 +70,15 @@ class ProfileApi {
       try {
         return {
           'success': true,
-          'message': decoded['message'] ?? 'Data updated successfully',
+          'message': decoded['message'] ?? 'dataUpdateSuccess'.tr(),
         };
       } catch (e) {
-        throw FormatException("Invalid JSON format: ${response.body}");
+        throw FormatException("${response.body}");
       }
     } else {
       return {
         'success': false,
-        'message': decoded['error'] ?? 'Failed to update data',
+        'message': decoded['error'] ?? 'dataUpdateFailed'.tr(),
       };
     }
   }

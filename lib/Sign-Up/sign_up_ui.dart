@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/colors_format.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Modules/authentication_button_module.dart';
 import 'package:untitled/Modules/drop_down_list_module.dart';
@@ -85,7 +87,7 @@ class _SignUpState extends State<SignUp> {
       'hint': 'DD/MM/YYYY',
       'suffix': Icon(
         Icons.calendar_today_outlined,
-        color: Color(0xFF606060),
+        color: ColorsFormat.suffixColor,
       ),
       'isReadOnly': true,
     },
@@ -143,10 +145,8 @@ class _SignUpState extends State<SignUp> {
             SnackBar(
               content: Text(
                 message,
-                style: TextStyle(
+                style: TextStyleFormat.snackBarMessage.copyWith(
                   color: Colors.white,
-                  fontSize: 16,
-                  fontFamily: 'Inder',
                 ),
               ),
               backgroundColor: Colors.green,
@@ -188,15 +188,11 @@ class _SignUpState extends State<SignUp> {
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(
-                message,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontFamily: 'Inder',
-                ),
-              ),
-              backgroundColor: Color(0xFFB9433E),
+              content: Text(message,
+                  style: TextStyleFormat.snackBarMessage.copyWith(
+                    color: Colors.white,
+                  )),
+              backgroundColor: ColorsFormat.darckRedError,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(2.8.w),
               ),
@@ -214,13 +210,11 @@ class _SignUpState extends State<SignUp> {
           SnackBar(
             content: Text(
               "$e",
-              style: TextStyle(
+              style: TextStyleFormat.snackBarMessage.copyWith(
                 color: Colors.white,
-                fontSize: 16,
-                fontFamily: 'Inder',
               ),
             ),
-            backgroundColor: Color(0xFFB9433E),
+            backgroundColor: ColorsFormat.darckRedError,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(2.8.w),
             ),
@@ -248,10 +242,8 @@ class _SignUpState extends State<SignUp> {
               SizedBox(height: 5.h),
               Text(
                 'signup'.tr(),
-                style: TextStyle(
-                  fontSize: 48,
-                  fontFamily: 'Alegreya',
-                  color: Color(0xFF49146D),
+                style: TextStyleFormat.pageTitle.copyWith(
+                  color: ColorsFormat.pageTitlePurble,
                 ),
               ),
               SizedBox(height: 1.h),
@@ -290,8 +282,9 @@ class _SignUpState extends State<SignUp> {
                                 FormBuilderValidators.required(
                                     errorText: "phoneRequiredError".tr()),
                                 FormBuilderValidators.match(
-                                    RegExp(r'^\d{6,15}$'),
-                                    errorText: "phoneValid".tr()),
+                                  RegExp(r'^\d{6,15}$'),
+                                  errorText: "phoneValid".tr(),
+                                ),
                               ]),
                               builder: (FormFieldState<String?> field) {
                                 final hasError = field.hasError;
@@ -302,10 +295,9 @@ class _SignUpState extends State<SignUp> {
                                     SizedBox(height: 2.h),
                                     Text(
                                       textField['title'],
-                                      style: TextStyle(
-                                        fontFamily: 'Inder',
-                                        fontSize: 18,
-                                        color: Color(0xFF817F82),
+                                      style: TextStyleFormat.textFieldStyle
+                                          .copyWith(
+                                        color: ColorsFormat.titleColor,
                                       ),
                                     ),
                                     SizedBox(height: 0.5.h),
@@ -327,12 +319,12 @@ class _SignUpState extends State<SignUp> {
                                           vertical: 0.4.h,
                                         ),
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFDEDAE0),
+                                          color: ColorsFormat.border_backgroundWhiteColor,
                                           borderRadius:
-                                              BorderRadius.circular(10),
+                                              BorderRadius.circular(2.6.w),
                                           border: Border.all(
                                             color: hasError
-                                                ? Color(0xFFB9433E)
+                                                ? ColorsFormat.darckRedError
                                                 : Colors.transparent,
                                             width: 0.3.w,
                                           ),
@@ -342,14 +334,13 @@ class _SignUpState extends State<SignUp> {
                                             Text(
                                               selectedPhoneCountry != null
                                                   ? '+${selectedPhoneCountry!.phoneCode}'
-                                                  : 'Code',
-                                              style: TextStyle(
-                                                fontFamily: 'Inder',
+                                                  : 'code'.tr(),
+                                              style: TextStyleFormat.textFieldStyle
+                                                  .copyWith(
                                                 color:
-                                                    selectedPhoneCountry != null
-                                                        ? Color(0xFF817F82)
-                                                        : Color(0xFFABABAB),
-                                                fontSize: 16,
+                                                selectedPhoneCountry != null
+                                                    ? ColorsFormat.titleColor
+                                                    : ColorsFormat.hintColor,
                                               ),
                                             ),
                                             SizedBox(
@@ -368,16 +359,16 @@ class _SignUpState extends State<SignUp> {
                                                 keyboardType:
                                                     textField['keyboardType'],
                                                 onChanged: field.didChange,
-                                                style: TextStyle(
-                                                  color: Color(0xFF817F82),
-                                                  fontFamily: 'Inder',
+                                                style: TextStyleFormat.textFieldStyle
+                                                    .copyWith(
+                                                  color: ColorsFormat.titleColor,
                                                 ),
                                                 decoration: InputDecoration(
                                                   border: InputBorder.none,
                                                   hintText: textField['hint'],
-                                                  hintStyle: TextStyle(
-                                                    color: Color(0xFFABABAB),
-                                                    fontFamily: 'Inder',
+                                                  hintStyle: TextStyleFormat.textFieldStyle
+                                                      .copyWith(
+                                                    color: ColorsFormat.hintColor,
                                                   ),
                                                   // errorText removed here
                                                 ),
@@ -393,10 +384,9 @@ class _SignUpState extends State<SignUp> {
                                             top: 0.5.h, left: 2.8.w),
                                         child: Text(
                                           field.errorText ?? '',
-                                          style: TextStyle(
-                                            color: Color(0xFFB9433E),
-                                            fontSize: 12,
-                                            fontFamily: 'Inder',
+                                          style: TextStyleFormat.textFieldError
+                                              .copyWith(
+                                            color: ColorsFormat.darckRedError,
                                           ),
                                         ),
                                       ),
@@ -414,10 +404,11 @@ class _SignUpState extends State<SignUp> {
                                 TextInputType.visiblePassword,
                             textFieldTitle: textField['title'],
                             hintTextTitle: textField['hint'],
-                            hintTextColor: Color(0xFFABABAB),
-                            titelTextColor: Color(0xFF817F82),
+                            hintTextColor: ColorsFormat.hintColor,
+                            titelTextColor: ColorsFormat.titleColor,
                             borderColor: Colors.transparent,
-                            backgroundColor: Color(0xFFDEDAE0),
+                            backgroundColor:
+                                ColorsFormat.border_backgroundWhiteColor,
                             suffix: textField['suffix'],
                             name: textField['name'],
                           );
@@ -427,12 +418,13 @@ class _SignUpState extends State<SignUp> {
                       DropDownListModule(
                         isReadOnly: false,
                         options: ["male".tr(), "female".tr()],
-                        hintColor: Color(0xFFABABAB),
-                        hintText: 'Select gender',
-                        textColor: Color(0xFF817F82),
-                        borderColor: Color(0xFFDEDAE0),
+                        hintColor: ColorsFormat.hintColor,
+                        hintText: 'selectGender'.tr(),
+                        textColor: ColorsFormat.titleColor,
+                        borderColor: ColorsFormat.border_backgroundWhiteColor,
                         text: 'gender'.tr(),
-                        backgroundColor: Color(0xFFDEDAE0),
+                        backgroundColor:
+                            ColorsFormat.border_backgroundWhiteColor,
                         name: 'Gender',
                         validators: [
                           FormBuilderValidators.required(
@@ -458,10 +450,9 @@ class _SignUpState extends State<SignUp> {
                             children: [
                               Text(
                                 "country".tr(),
-                                style: TextStyle(
-                                  fontFamily: 'Inder',
-                                  fontSize: 18,
-                                  color: Color(0xFF817F82),
+                                style: TextStyleFormat.textFieldStyle
+                                    .copyWith(
+                                  color: ColorsFormat.titleColor,
                                 ),
                               ),
                               SizedBox(
@@ -486,11 +477,12 @@ class _SignUpState extends State<SignUp> {
                                     vertical: 1.8.h,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Color(0xFFDEDAE0),
+                                    color: ColorsFormat
+                                        .border_backgroundWhiteColor,
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
                                       color: field.hasError
-                                          ? Color(0xFFB9433E)
+                                          ? ColorsFormat.darckRedError
                                           : Colors.transparent,
                                     ),
                                   ),
@@ -501,17 +493,16 @@ class _SignUpState extends State<SignUp> {
                                       Text(
                                         selectedCountry?.name ??
                                             "selectCountry".tr(),
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'Inder',
+                                        style: TextStyleFormat.textFieldStyle
+                                            .copyWith(
                                           color: selectedCountry == null
-                                              ? Color(0xFFABABAB)
-                                              : Color(0xFF817F82),
+                                              ? ColorsFormat.hintColor
+                                              : ColorsFormat.titleColor,
                                         ),
                                       ),
                                       Icon(
                                         Icons.arrow_drop_down,
-                                        color: Color(0xFF606060),
+                                        color: ColorsFormat.suffixColor,
                                       ),
                                     ],
                                   ),
@@ -525,8 +516,10 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                   child: Text(
                                     field.errorText ?? '',
-                                    style: TextStyle(
-                                        color: Color(0xFFB9433E), fontSize: 12),
+                                    style: TextStyleFormat.textFieldError
+                                        .copyWith(
+                                      color: ColorsFormat.darckRedError,
+                                    ),
                                   ),
                                 ),
                             ],
@@ -544,12 +537,13 @@ class _SignUpState extends State<SignUp> {
                           "ethnicityOption6".tr(),
                           "ethnicityOption7".tr()
                         ],
-                        hintColor: Color(0xFFABABAB),
+                        hintColor: ColorsFormat.hintColor,
                         hintText: 'selectEthnicity'.tr(),
-                        textColor: Color(0xFF817F82),
-                        borderColor: Color(0xFFDEDAE0),
+                        textColor: ColorsFormat.titleColor,
+                        borderColor: ColorsFormat.border_backgroundWhiteColor,
                         text: 'ethnicity'.tr(),
-                        backgroundColor: Color(0xFFDEDAE0),
+                        backgroundColor:
+                            ColorsFormat.border_backgroundWhiteColor,
                         name: 'Ethnicity',
                         validators: [
                           FormBuilderValidators.required(
@@ -563,11 +557,12 @@ class _SignUpState extends State<SignUp> {
                       ),
                       SizedBox(height: 5.h),
                       OperationButtonModule(
-                          onTap: signUp,
-                          borderColor: Color(0xFF49146D),
-                          buttonColor: Color(0xFF49146D),
-                          buttonText: "signup".tr(),
-                          buttonTextColor: Colors.white),
+                        onTap: signUp,
+                        borderColor: ColorsFormat.button_linksColor,
+                        buttonColor: ColorsFormat.button_linksColor,
+                        buttonText: "signup".tr(),
+                        buttonTextColor: Colors.white,
+                      ),
                       AuthenticationButtonModule(
                           onTap: () {
                             Navigator.pushReplacement(

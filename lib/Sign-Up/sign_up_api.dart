@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -43,15 +44,15 @@ class SignUpApi {
       try {
         return {
           'success': true,
-          'message': decoded['message'] ?? 'Sign up successful',
+          'message': decoded['message'] ?? 'signupSuccess'.tr(),
         };
       } catch (e) {
-        throw FormatException("Invalid JSON format: ${response.body}");
+        throw FormatException("${response.body}");
       }
     } else {
       return {
         'success': false,
-        'message': decoded['error'] ?? 'Sign Up failed',
+        'message': decoded['error'] ?? 'signupFailed'.tr(),
       };
     }
   }

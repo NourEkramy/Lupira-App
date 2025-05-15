@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:untitled/BaseScreen/base_screen_logic.dart';
+import 'package:untitled/Formating/text_style_format.dart';
+import '../../Formating/colors_format.dart';
 
 class MainLayout extends StatelessWidget {
   Widget child;
@@ -22,7 +24,7 @@ class MainLayout extends StatelessWidget {
     return BlocBuilder<BaseScreenCubit, BaseScreenState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: Color(0xFFDEDAE0),
+          backgroundColor: ColorsFormat.border_backgroundWhiteColor,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             leading: Builder(
@@ -47,24 +49,23 @@ class MainLayout extends StatelessWidget {
               borderRadius:
                   BorderRadius.vertical(bottom: Radius.circular(2.6.w)),
             ),
-            backgroundColor: Color(0xFF744199),
+            backgroundColor: ColorsFormat.gradientPruble,
             title: Center(
               child: RichText(
                 text: TextSpan(
                   text: title,
-                  style: TextStyle(
+                  style: TextStyleFormat.passwordPageTitle.copyWith(
                     fontSize: 40,
-                    fontFamily: 'Alegreya',
-                    color: Color(0xFFEBE4E4),
+                    color: ColorsFormat.credentialsCardColor,
                   ),
                   children: appName != null
                       ? [
                           TextSpan(
                             text: appName,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 40,
                               fontFamily: 'BerkshireSwash',
-                              color: Color(0xFFEBE4E4),
+                              color: ColorsFormat.credentialsCardColor,
                             ),
                           ),
                         ]
@@ -81,7 +82,8 @@ class MainLayout extends StatelessWidget {
                       topLeft: Radius.circular(4.4.w),
                       topRight: Radius.circular(4.4.w),
                     ),
-                    border: Border.all(color: Color(0xFFABABAB), width: 0.2.w),
+                    border:
+                        Border.all(color: ColorsFormat.hintColor, width: 0.2.w),
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(
@@ -89,16 +91,13 @@ class MainLayout extends StatelessWidget {
                       topRight: Radius.circular(4.4.w),
                     ),
                     child: BottomNavigationBar(
-                      selectedLabelStyle: TextStyle(
-                        fontFamily: "Inder",
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      selectedLabelStyle: TextStyleFormat.snackBarMessage
+                          .copyWith(fontWeight: FontWeight.w500),
                       selectedIconTheme: IconThemeData(size: 22.sp),
                       unselectedIconTheme: IconThemeData(size: 22.sp),
-                      backgroundColor: Color(0xffEBE4E4),
-                      selectedItemColor: Color(0xFF3D1A57),
-                      unselectedItemColor: Color(0xFFABABAB),
+                      backgroundColor: ColorsFormat.credentialsCardColor,
+                      selectedItemColor: ColorsFormat.darckPruble,
+                      unselectedItemColor: ColorsFormat.hintColor,
                       showUnselectedLabels: false,
                       currentIndex: state.selectedTabIndex,
                       onTap: (index) {

@@ -8,6 +8,7 @@ import 'package:untitled/Password/Change%20Password/change_password.dart';
 import 'package:untitled/Profile/profile.dart';
 import '../../BottomSheets/Delete Account/delete_account_bottom_sheet.dart';
 import '../../BottomSheets/language_bottom_sheet.dart';
+import '../../Formating/colors_format.dart';
 import '../Layout/main_layout.dart';
 
 class SettingsTabs extends StatefulWidget {
@@ -35,11 +36,11 @@ class _SettingsTabsState extends State<SettingsTabs> {
   ];
 
   final List<Color> optionTextColors = [
-    Color(0xFF4B4A4C),
-    Color(0xFF4B4A4C),
-    Color(0xFF4B4A4C),
-    Color(0xFF4B4A4C),
-    Color(0xFFD6101D),
+    ColorsFormat.text_dividerColor,
+    ColorsFormat.text_dividerColor,
+    ColorsFormat.text_dividerColor,
+    ColorsFormat.text_dividerColor,
+    ColorsFormat.lightRedError,
   ];
 
   void _showLanguageBottomSheet(BuildContext context) {
@@ -95,7 +96,7 @@ class _SettingsTabsState extends State<SettingsTabs> {
             ),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
-              const begin = Offset(1.0, 0.0); // from right
+              var begin = Offset(0.25.w, 0.0); // from right
               const end = Offset.zero;
               return SlideTransition(
                 position: animation.drive(
@@ -124,7 +125,7 @@ class _SettingsTabsState extends State<SettingsTabs> {
             ),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
-              const begin = Offset(1.0, 0.0); // from right
+              var begin = Offset(0.25.w, 0.0); // from right
               const end = Offset.zero;
               return SlideTransition(
                 position: animation.drive(

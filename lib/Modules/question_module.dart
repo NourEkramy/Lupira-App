@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 import '../BottomSheets/explanation_bottom_sheet.dart';
+import '../Formating/colors_format.dart';
 
 class QuestionModule extends StatelessWidget {
   final String question;
@@ -41,11 +43,8 @@ class QuestionModule extends StatelessWidget {
                   ),
                   child: Text(
                     question,
-                    style: const TextStyle(
-                      fontFamily: "Inder",
-                      fontSize: 18,
-                      color: Color(0xff4B4A4C),
-                    ),
+                    style: TextStyleFormat.textFieldStyle
+                        .copyWith(color: ColorsFormat.text_dividerColor),
                   ),
                 ),
               ),
@@ -54,7 +53,9 @@ class QuestionModule extends StatelessWidget {
                   showModalBottomSheet(
                     context: context,
                     builder: (BuildContext context) {
-                      return ExplanationBottomSheet(explanation: explanationText,);
+                      return ExplanationBottomSheet(
+                        explanation: explanationText,
+                      );
                     },
                   );
                 },
@@ -64,7 +65,7 @@ class QuestionModule extends StatelessWidget {
                   ),
                   child: Icon(
                     Icons.info_outlined,
-                    color: Color(0xff744199),
+                    color: ColorsFormat.gradientPruble,
                     size: 21.3.sp,
                   ),
                 ),
@@ -81,24 +82,21 @@ class QuestionModule extends StatelessWidget {
               ),
               title: Text(
                 option,
-                style: const TextStyle(
-                  fontFamily: "Inder",
-                  fontSize: 18,
-                  color: Color(0xff4B4A4C),
-                ),
+                style: TextStyleFormat.textFieldStyle
+                    .copyWith(color: ColorsFormat.text_dividerColor),
               ),
               leading: Radio<String>(
                 value: option,
                 groupValue: selectedValue,
-                activeColor: const Color(0xFF9166B0),
+                activeColor: ColorsFormat.indecatorPurble,
                 fillColor: WidgetStateColor.resolveWith((states) {
                   if (hasError) {
-                    return const Color(0xFFB9433E);
+                    return ColorsFormat.darckRedError;
                   }
                   if (states.contains(WidgetState.selected)) {
-                    return const Color(0xFF9166B0);
+                    return ColorsFormat.indecatorPurble;
                   }
-                  return const Color(0xff817F82);
+                  return ColorsFormat.titleColor;
                 }),
                 onChanged: onChanged,
               ),
@@ -107,8 +105,8 @@ class QuestionModule extends StatelessWidget {
           SizedBox(
             height: 1.h,
           ),
-          const Divider(
-            color: Color(0xffABABAB),
+          Divider(
+            color: ColorsFormat.hintColor,
           ),
           if (hasError)
             Container(
@@ -119,18 +117,15 @@ class QuestionModule extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.error_outlined,
-                    color: Color(0xFFB9433E),
+                    color: ColorsFormat.darckRedError,
                   ),
                   SizedBox(
                     width: 1.w,
                   ),
                   Text(
                     "chooseAnswer".tr(),
-                    style: TextStyle(
-                      color: Color(0xFFB9433E),
-                      fontFamily: "Inder",
-                      fontSize: 16,
-                    ),
+                    style: TextStyleFormat.snackBarMessage
+                        .copyWith(color: ColorsFormat.darckRedError),
                   ),
                 ],
               ),

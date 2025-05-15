@@ -1,10 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 import '../Models/article_model.dart';
 
 class ArticlesServices {
-  //https://www.googleapis.com/customsearch/v1?q=lupus&key=$apiKey&cx=$cx&num=10
   static const String apiKey = "AIzaSyB-BNZyBvaZz4axUvlD4yhLXI1fZ3r2iR8";
   static const String cx = "078ee4e86cd144663";
 

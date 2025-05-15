@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -20,10 +21,10 @@ class HistoryApi {
         final jsonData = jsonDecode(response.body);
         return jsonData;
       } else {
-        throw Exception("Failed to fetch history data ${response.statusCode}");
+        throw Exception("failedFetchHistory".tr() + "${response.statusCode}");
       }
     } catch (e) {
-      throw Exception("Failed to fetch history data ${e}");
+      throw Exception("failedFetchHistory".tr() + "${e}");
     }
   }
 }

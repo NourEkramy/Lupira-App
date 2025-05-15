@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -29,7 +30,7 @@ class LogInApi {
     } else {
       return {
         'success': false,
-        'message': decoded['error'] ?? 'Unknown error',
+        'message': decoded['error'] ?? 'unknownError'.tr(),
       };
     }
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/colors_format.dart';
 
 class ArticleCardShimmerModule extends StatelessWidget {
   const ArticleCardShimmerModule({super.key});
@@ -13,7 +14,7 @@ class ArticleCardShimmerModule extends StatelessWidget {
       width: width,
       margin: EdgeInsets.symmetric(vertical: 1.h),
       decoration: BoxDecoration(
-        color: Color(0xFFD2CFD3),
+        color: ColorsFormat.shimmerCard,
         borderRadius: BorderRadius.circular(2.6.w),
       ),
       child: Column(

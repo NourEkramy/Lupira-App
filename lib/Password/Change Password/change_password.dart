@@ -4,10 +4,11 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Password/Forgot%20Password/forgot_password.dart';
-
+import '../../Formating/colors_format.dart';
 import 'change_password_api.dart';
 
 class ChangePassword extends StatefulWidget {
@@ -32,8 +33,7 @@ class ChangePassword extends StatefulWidget {
             errorText: 'passwordValidLength'.tr()),
         FormBuilderValidators.match(
           RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$'),
-          errorText:
-              'passwordRules'.tr(),
+          errorText: 'passwordRules'.tr(),
         ),
       ],
     },
@@ -77,7 +77,8 @@ class _ChangePasswordState extends State<ChangePassword> {
               message,
               style: TextStyle(color: Colors.white),
             ),
-            backgroundColor: success ? Colors.green : Color(0xFFB9433E),
+            backgroundColor:
+                success ? Colors.green : ColorsFormat.darckRedError,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(2.8.w),
             ),
@@ -90,7 +91,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text("$e"),
-            backgroundColor: Color(0xFFB9433E),
+            backgroundColor: ColorsFormat.darckRedError,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(2.8.w),
             ),
@@ -118,11 +119,7 @@ class _ChangePasswordState extends State<ChangePassword> {
               SizedBox(height: 2.5.h),
               Text(
                 'diffPassword'.tr(),
-                style: TextStyle(
-                  color: Color(0xFF4B4A4C),
-                  fontSize: 24,
-                  fontFamily: 'Inder',
-                ),
+                style: TextStyleFormat.passwordSubTitle.copyWith(color: ColorsFormat.text_dividerColor),
               ),
               ListView.builder(
                 shrinkWrap: true,
@@ -150,9 +147,9 @@ class _ChangePasswordState extends State<ChangePassword> {
                     validators: customValidator,
                     textFieldTitle: textField['title'],
                     hintTextTitle: textField['hint'],
-                    hintTextColor: Color(0xFF817F82),
-                    titelTextColor: Color(0xFF4B4A4C),
-                    borderColor: Color(0xFFABABAB),
+                    hintTextColor: ColorsFormat.titleColor,
+                    titelTextColor: ColorsFormat.text_dividerColor,
+                    borderColor: ColorsFormat.hintColor,
                     backgroundColor: Colors.transparent,
                     textFieldType: TextInputType.visiblePassword,
                   );
@@ -161,18 +158,18 @@ class _ChangePasswordState extends State<ChangePassword> {
               ),
               SizedBox(height: 7.h),
               OperationButtonModule(
-                borderColor: Color(0xFF502371),
-                buttonColor: Color(0xFF502371),
+                borderColor: ColorsFormat.button_linksColor,
+                buttonColor: ColorsFormat.button_linksColor,
                 buttonText: 'changePassword'.tr(),
-                buttonTextColor: Color(0xFFFFFFFF),
+                buttonTextColor: Colors.white,
                 onTap: changePassword,
               ),
               SizedBox(height: 3.h),
               OperationButtonModule(
-                borderColor: Color(0xFF502371),
-                buttonColor: Color(0xFFDEDAE0),
+                borderColor: ColorsFormat.button_linksColor,
+                buttonColor: ColorsFormat.border_backgroundWhiteColor,
                 buttonText: 'forgotPassword'.tr(),
-                buttonTextColor: Color(0xFF502371),
+                buttonTextColor: ColorsFormat.button_linksColor,
                 onTap: () {
                   Navigator.pushReplacement(
                     context,
@@ -184,7 +181,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                       ),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
-                        var begin = Offset(0.25, 0.0); // from right
+                        var begin = Offset(0.25.w, 0.0); // from right
                         const end = Offset.zero;
                         return SlideTransition(
                           position: animation.drive(

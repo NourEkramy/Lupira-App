@@ -2,12 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
 import 'package:untitled/Modules/report_card_module.dart';
 import '../../BottomSheets/prerequisites_bottom_sheet.dart';
 import '../../Detection/Detection-History/detection_details_screen.dart';
 import '../../Detection/Detection-History/detection_history.dart';
 import '../../Detection/Detection-History/detection_history_api.dart';
+import '../../Formating/colors_format.dart';
 import '../Layout/main_layout.dart';
 
 class DiagnosisTab extends StatefulWidget {
@@ -71,10 +73,8 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
               ),
               child: Text(
                 "detection".tr(),
-                style: TextStyle(
-                  color: Color(0xFF3D1A57),
-                  fontFamily: "Inder",
-                  fontSize: 24,
+                style: TextStyleFormat.passwordSubTitle.copyWith(
+                  color: ColorsFormat.darckPruble,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -101,10 +101,8 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                 children: [
                   Text(
                     "detectionHistory".tr(),
-                    style: TextStyle(
-                      color: Color(0xFF3D1A57),
-                      fontFamily: "Inder",
-                      fontSize: 24,
+                    style: TextStyleFormat.passwordSubTitle.copyWith(
+                      color: ColorsFormat.darckPruble,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -128,11 +126,9 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                       children: [
                         Text(
                           "seeMore".tr(),
-                          style: TextStyle(
-                            color: Color(0xFF744199),
-                            fontFamily: "Inder",
-                            fontSize: 16,
+                          style: TextStyleFormat.snackBarMessage.copyWith(
                             fontWeight: FontWeight.bold,
+                            color: ColorsFormat.gradientPruble,
                           ),
                         ),
                         SizedBox(
@@ -140,7 +136,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                         ),
                         Icon(
                           Icons.arrow_forward_ios_sharp,
-                          color: Color(0xff744199),
+                          color: ColorsFormat.gradientPruble,
                           size: 16.sp,
                         ),
                       ],
@@ -154,7 +150,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                 padding: EdgeInsets.only(
                   top: 1.h,
                 ),
-                child: Center(child: CircularProgressIndicator()),
+                child: const Center(child: CircularProgressIndicator()),
               )
             else if (historyData.isEmpty)
               Center(
@@ -164,11 +160,8 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                   ),
                   child: Text(
                     "noHistory".tr(),
-                    style: TextStyle(
-                      color: Color(0xFF4B4A4C),
-                      fontFamily: 'Inder',
-                      fontSize: 18,
-                    ),
+                    style: TextStyleFormat.textFieldStyle
+                        .copyWith(color: ColorsFormat.text_dividerColor),
                   ),
                 ),
               )

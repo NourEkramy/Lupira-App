@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
+import '../Formating/colors_format.dart';
 
 class ReportCardModule extends StatelessWidget {
   String reportDate;
@@ -19,7 +21,7 @@ class ReportCardModule extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xffD2CFD3),
+          color: ColorsFormat.articleCardColor,
           borderRadius: BorderRadius.circular(2.6.w),
           boxShadow: [
             BoxShadow(
@@ -49,20 +51,16 @@ class ReportCardModule extends StatelessWidget {
               children: [
                 Text(
                   reportResult,
-                  style: const TextStyle(
-                    color: Color(0xFF4B4A4C),
-                    fontFamily: "Inder",
-                    fontSize: 20,
+                  style: TextStyleFormat.passwordPageSubTitle.copyWith(
                     fontWeight: FontWeight.bold,
+                    color: ColorsFormat.text_dividerColor,
                   ),
                 ),
                 Text(
                   reportDate,
-                  style: const TextStyle(
-                    color: Color(0xFF817F82),
-                    fontFamily: "Inder",
-                    fontSize: 18,
+                  style: TextStyleFormat.textFieldStyle.copyWith(
                     fontWeight: FontWeight.w400,
+                    color: ColorsFormat.titleColor,
                   ),
                 ),
               ],

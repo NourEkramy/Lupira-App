@@ -1,17 +1,21 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/colors_format.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 
 class AuthenticationButtonModule extends StatelessWidget {
   String conditionQuestion;
   String conditionOperation;
   VoidCallback onTap;
 
-  AuthenticationButtonModule(
-      {super.key,
-      required this.conditionOperation,
-      required this.conditionQuestion,
-      required this.onTap});
+  AuthenticationButtonModule({
+    super.key,
+    required this.conditionOperation,
+    required this.conditionQuestion,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +26,16 @@ class AuthenticationButtonModule extends StatelessWidget {
           child: RichText(
             text: TextSpan(
               text: conditionQuestion,
-              style: TextStyle(
+              style: TextStyleFormat.snackBarMessage.copyWith(
                 fontSize: 15,
-                color: Color(0xFF817F82),
-                fontFamily: 'Inder',
+                color: ColorsFormat.titleColor,
               ),
               children: [
                 TextSpan(
                   text: conditionOperation,
-                  style: TextStyle(
+                  style: TextStyleFormat.snackBarMessage.copyWith(
                     fontSize: 15,
-                    color: Color(0xFF502371),
-                    fontFamily: 'Inder',
+                    color: ColorsFormat.button_linksColor,
                     decoration: TextDecoration.underline,
                   ),
                   recognizer: TapGestureRecognizer()..onTap = onTap,
@@ -50,11 +52,8 @@ class AuthenticationButtonModule extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 2.w),
               child: Text(
                 'OR',
-                style: TextStyle(
-                  color: Color(0xFF817F82),
-                  fontFamily: 'Inder',
-                  fontSize: 16,
-                ),
+                style: TextStyleFormat.snackBarMessage
+                    .copyWith(color: ColorsFormat.titleColor),
               ),
             ),
             Expanded(
@@ -66,7 +65,7 @@ class AuthenticationButtonModule extends StatelessWidget {
         ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFFDEDAE0),
+            backgroundColor: ColorsFormat.border_backgroundWhiteColor,
             foregroundColor: Colors.white,
             padding: EdgeInsets.symmetric(vertical: 1.8.h, horizontal: 4.w),
             shape: RoundedRectangleBorder(
@@ -81,12 +80,9 @@ class AuthenticationButtonModule extends StatelessWidget {
                 width: 2.6.w,
               ),
               Text(
-                'Continue with Google',
-                style: TextStyle(
-                  color: Color(0xFF817F82),
-                  fontFamily: 'Inder',
-                  fontSize: 18,
-                ),
+                'googleAuth'.tr(),
+                style: TextStyleFormat.textFieldStyle
+                    .copyWith(color: ColorsFormat.titleColor),
               ),
             ],
           ),
@@ -95,7 +91,7 @@ class AuthenticationButtonModule extends StatelessWidget {
         ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFFDEDAE0),
+            backgroundColor: ColorsFormat.border_backgroundWhiteColor,
             foregroundColor: Colors.white,
             padding: EdgeInsets.symmetric(vertical: 1.8.h, horizontal: 4.w),
             shape: RoundedRectangleBorder(
@@ -110,12 +106,9 @@ class AuthenticationButtonModule extends StatelessWidget {
                 width: 2.4.w,
               ),
               Text(
-                'Continue with Facebook',
-                style: TextStyle(
-                  color: Color(0xFF817F82),
-                  fontFamily: 'Inder',
-                  fontSize: 18,
-                ),
+                'facebookAuth'.tr(),
+                style: TextStyleFormat.textFieldStyle
+                    .copyWith(color: ColorsFormat.titleColor),
               ),
             ],
           ),

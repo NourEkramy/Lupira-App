@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:http/http.dart' as http;
 
 class ChangePasswordApi {
@@ -36,15 +37,15 @@ class ChangePasswordApi {
       try {
         return {
           'success': true,
-          'message': decoded['message'] ?? 'Password updated successfully',
+          'message': decoded['message'] ?? 'passwordUpdateSuccess'.tr(),
         };
       } catch (e) {
-        throw FormatException("Invalid JSON format: ${response.body}");
+        throw FormatException("${response.body}");
       }
     } else {
       return {
         'success': false,
-        'message': decoded['error'] ?? 'Old password is incorrect',
+        'message': decoded['error'] ?? 'passwordUpdateFailed'.tr(),
       };
     }
   }

@@ -1,9 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 import 'package:untitled/Log-In/auth_service.dart';
 import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
+import '../Formating/colors_format.dart';
 
 class LogoutBottomSheet extends StatelessWidget {
   LogoutBottomSheet({super.key});
@@ -14,7 +16,7 @@ class LogoutBottomSheet extends StatelessWidget {
       insetPadding: EdgeInsets.symmetric(horizontal: 3.6.w),
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0xFFEBE4E4),
+          color: ColorsFormat.credentialsCardColor,
           borderRadius: BorderRadius.circular(4.4.w),
         ),
         child: Column(
@@ -26,7 +28,7 @@ class LogoutBottomSheet extends StatelessWidget {
                 vertical: 1.2.h,
               ),
               decoration: BoxDecoration(
-                color: Color(0xFFDEDAE0),
+                color: ColorsFormat.border_backgroundWhiteColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(4.4.w),
                   topRight: Radius.circular(4.4.w),
@@ -35,11 +37,8 @@ class LogoutBottomSheet extends StatelessWidget {
               child: Text(
                 textAlign: TextAlign.center,
                 'logout'.tr(),
-                style: TextStyle(
-                  color: Color(0xFF3D1A57),
-                  fontSize: 32,
-                  fontFamily: 'Inder',
-                ),
+                style: TextStyleFormat.bottomSheetTitle
+                    .copyWith(color: ColorsFormat.darckPruble),
               ),
             ),
             Padding(
@@ -48,28 +47,25 @@ class LogoutBottomSheet extends StatelessWidget {
                 children: [
                   Text(
                     'logoutQuestion'.tr(),
-                    style: TextStyle(
-                      fontFamily: 'Inder',
-                      color: Color(0xFF4B4A4C),
-                      fontSize: 24,
-                    ),
+                    style: TextStyleFormat.passwordSubTitle
+                        .copyWith(color: ColorsFormat.text_dividerColor),
                   ),
                   SizedBox(height: 7.h),
                   OperationButtonModule(
-                    borderColor: Color(0xFF502371),
-                    buttonColor: Color(0xFF502371),
+                    borderColor: ColorsFormat.border_backgroundWhiteColor,
+                    buttonColor: ColorsFormat.border_backgroundWhiteColor,
                     buttonText: 'cancel'.tr(),
-                    buttonTextColor: Color(0xFFFFFFFF),
+                    buttonTextColor: Colors.white,
                     onTap: () {
                       Navigator.pop(context);
                     },
                   ),
                   SizedBox(height: 2.5.h),
                   OperationButtonModule(
-                    borderColor: Color(0xFFD6101D),
-                    buttonColor: Color(0xFFEBE4E4),
+                    borderColor: ColorsFormat.lightRedError,
+                    buttonColor: ColorsFormat.credentialsCardColor,
                     buttonText: 'logout'.tr(),
-                    buttonTextColor: Color(0xFFD6101D),
+                    buttonTextColor: ColorsFormat.lightRedError,
                     onTap: () {
                       AuthService.logout();
                       Navigator.pushAndRemoveUntil(

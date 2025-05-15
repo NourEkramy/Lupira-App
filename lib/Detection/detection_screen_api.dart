@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:http/http.dart' as http;
 import '../Models/detection_questions_model.dart';
 
@@ -29,7 +30,7 @@ class QuestionsServices {
         return [];
       }
     } catch (e) {
-      throw Exception("There an error $e");
+      throw Exception("$e");
     }
   }
 
@@ -52,7 +53,7 @@ class QuestionsServices {
     if (response.statusCode == 201) {
       return jsonDecode(response.body);
     } else {
-      throw Exception('Failed to submit diagnosis: ${response.statusCode}');
+      throw Exception('failedSubmit'.tr() + '${response.statusCode}');
     }
   }
 }

@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
+import '../Formating/colors_format.dart';
 
 class ExplanationBottomSheet extends StatelessWidget {
   String explanation;
@@ -14,7 +16,7 @@ class ExplanationBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xFFEBE4E4),
+        color: ColorsFormat.credentialsCardColor,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(4.4.w),
           topRight: Radius.circular(4.4.w),
@@ -30,7 +32,7 @@ class ExplanationBottomSheet extends StatelessWidget {
               vertical: 1.2.h,
             ),
             decoration: BoxDecoration(
-              color: Color(0xFFDEDAE0),
+              color: ColorsFormat.border_backgroundWhiteColor,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(4.4.w),
                 topRight: Radius.circular(4.4.w),
@@ -40,11 +42,8 @@ class ExplanationBottomSheet extends StatelessWidget {
             child: Text(
               textAlign: TextAlign.center,
               'explanation'.tr(),
-              style: TextStyle(
-                color: Color(0xFF3D1A57),
-                fontSize: 32,
-                fontFamily: 'Inder',
-              ),
+              style: TextStyleFormat.bottomSheetTitle
+                  .copyWith(color: ColorsFormat.darckPruble),
             ),
           ),
           SizedBox(height: 3.h),
@@ -55,20 +54,14 @@ class ExplanationBottomSheet extends StatelessWidget {
               children: [
                 Text(
                   "whatMeans".tr(),
-                  style: TextStyle(
-                    fontFamily: "Inder",
-                    fontSize: 24,
-                    color: Color(0xff4B4A4C),
-                  ),
+                  style: TextStyleFormat.passwordSubTitle
+                      .copyWith(color: ColorsFormat.text_dividerColor),
                 ),
                 SizedBox(height: 1.3.h),
                 Text(
                   explanation,
-                  style: TextStyle(
-                    fontFamily: "Inder",
-                    fontSize: 20,
-                    color: Color(0xff4B4A4C),
-                  ),
+                  style: TextStyleFormat.passwordPageSubTitle
+                      .copyWith(color: ColorsFormat.text_dividerColor),
                 ),
                 SizedBox(height: 7.h),
               ],

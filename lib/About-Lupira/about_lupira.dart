@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/colors_format.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 
 class AboutLupira extends StatelessWidget {
   AboutLupira({super.key});
@@ -22,16 +24,14 @@ class AboutLupira extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 55,
                   fontFamily: 'BerkshireSwash',
-                  color: Color(0xFF502371),
+                  color: ColorsFormat.button_linksColor,
                 ),
               ),
               SizedBox(height: 3.h),
               Text(
                 "aboutLupiraParagraph".tr(),
-              style: TextStyle(
-                  fontSize: 22,
-                  color: Color(0xFF817F82),
-                ),
+                style: TextStyleFormat.notFountText
+                    .copyWith(color: ColorsFormat.titleColor),
                 textAlign: TextAlign.center,
               ),
             ],

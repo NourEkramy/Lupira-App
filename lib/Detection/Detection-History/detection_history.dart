@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:untitled/Detection/Detection-History/detection_history_api.dart';
+import 'package:untitled/Formating/colors_format.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 import 'package:untitled/Modules/report_card_module.dart';
 import '../../BaseScreen/Layout/main_layout.dart';
 import 'detection_details_screen.dart';
@@ -69,10 +71,8 @@ class _DetectionHistoryState extends State<DetectionHistory> {
                     ),
                     child: Text(
                       "noHistory".tr(),
-                      style: TextStyle(
-                        color: Color(0xFF4B4A4C),
-                        fontFamily: 'Inder',
-                        fontSize: 20,
+                      style: TextStyleFormat.passwordPageSubTitle.copyWith(
+                        color: ColorsFormat.text_dividerColor,
                       ),
                     ),
                   ),

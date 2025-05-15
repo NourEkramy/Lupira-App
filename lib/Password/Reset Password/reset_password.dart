@@ -1,14 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Modules/user_credentials_card_module.dart';
 import 'package:untitled/Password/Reset%20Password/reset_password_api.dart';
+import '../../Formating/colors_format.dart';
 
 class ResetPassword extends StatefulWidget {
   String token;
@@ -65,11 +66,7 @@ class _ResetPasswordState extends State<ResetPassword> {
             SnackBar(
               content: Text(
                 message,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontFamily: 'Inder',
-                ),
+                style: TextStyleFormat.snackBarMessage.copyWith(color: Colors.white),
               ),
               backgroundColor: Colors.green,
               shape: RoundedRectangleBorder(
@@ -88,7 +85,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               pageBuilder: (context, animation, secondaryAnimation) => LogIn(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                var begin = Offset(0.25, 0.0); // from right
+                var begin = Offset(0.25.w, 0.0); // from right
                 const end = Offset.zero;
                 return SlideTransition(
                   position: animation.drive(
@@ -109,13 +106,9 @@ class _ResetPasswordState extends State<ResetPassword> {
             SnackBar(
               content: Text(
                 message,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontFamily: 'Inder',
-                ),
+                style: TextStyleFormat.snackBarMessage.copyWith(color: Colors.white),
               ),
-              backgroundColor: Color(0xFFB9433E),
+              backgroundColor: ColorsFormat.darckRedError,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(2.8.w),
               ),
@@ -130,13 +123,9 @@ class _ResetPasswordState extends State<ResetPassword> {
           SnackBar(
             content: Text(
               "$e",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontFamily: 'Inder',
-              ),
+              style: TextStyleFormat.snackBarMessage.copyWith(color: Colors.white),
             ),
-            backgroundColor: Color(0xFFB9433E),
+            backgroundColor: ColorsFormat.darckRedError,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(2.8.w),
             ),
@@ -164,21 +153,13 @@ class _ResetPasswordState extends State<ResetPassword> {
               SizedBox(height: 9.8.h),
               Text(
                 'resetPassword'.tr(),
-                style: TextStyle(
-                  fontSize: 43,
-                  fontFamily: 'Alegreya',
-                  color: Color(0xFF49146D),
-                ),
+                style: TextStyleFormat.passwordPageTitle.copyWith(color: ColorsFormat.pageTitlePurble),
               ),
               SizedBox(height: 0.3.h),
               Text(
                 'diffPassword'.tr(),
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'Inder',
-                  color: Color(0xFF817F82),
-                ),
+                style: TextStyleFormat.passwordPageSubTitle.copyWith(color: ColorsFormat.titleColor),
               ),
               SizedBox(height: 2.h),
               Expanded(
@@ -212,9 +193,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                             validators: customValidator,
                             textFieldTitle: textField['title'],
                             hintTextTitle: textField['hint'],
-                            hintTextColor: Color(0xFF817F82),
-                            titelTextColor: Color(0xFF4B4A4C),
-                            borderColor: Color(0xFFABABAB),
+                            hintTextColor: ColorsFormat.titleColor,
+                            titelTextColor: ColorsFormat.text_dividerColor,
+                            borderColor: ColorsFormat.hintColor,
                             backgroundColor: Colors.transparent,
                             textFieldType: TextInputType.visiblePassword,
                           );
@@ -223,11 +204,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                       ),
                       SizedBox(height: 4.h),
                       OperationButtonModule(
-                          onTap: resetPassword,
-                          borderColor: Color(0xFF502371),
-                          buttonColor: Color(0xFF502371),
-                          buttonText: 'resetPassword'.tr(),
-                          buttonTextColor: Colors.white),
+                        onTap: resetPassword,
+                        borderColor: ColorsFormat.button_linksColor,
+                        buttonColor: ColorsFormat.button_linksColor,
+                        buttonText: 'resetPassword'.tr(),
+                        buttonTextColor: Colors.white,
+                      ),
                       SizedBox(
                         height: 2.5.h,
                       ),

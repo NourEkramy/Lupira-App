@@ -2,9 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:untitled/About-Lupira/about_lupira.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 import 'package:untitled/Lupus%20Articles/lupus_articles.dart';
 import 'package:untitled/Modules/detection_card_module.dart';
 import '../../BottomSheets/prerequisites_bottom_sheet.dart';
+import '../../Formating/colors_format.dart';
 import '../Layout/main_layout.dart';
 
 class HomeTab extends StatelessWidget {
@@ -40,27 +42,25 @@ class HomeTab extends StatelessWidget {
               padding: EdgeInsets.only(left: 2.w, bottom: 0.4.h),
               child: Text(
                 'learnMore'.tr(),
-                style: TextStyle(
+                style: TextStyleFormat.passwordSubTitle.copyWith(
+                  color: ColorsFormat.button_linksColor,
                   fontWeight: FontWeight.w600,
-                  fontSize: 24,
-                  color: Color(0xFF502371),
-                  fontFamily: 'Inder',
                 ),
               ),
             ),
             SizedBox(height: 1.5.h),
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.push(
                   context,
                   PageRouteBuilder(
                     transitionDuration: Duration(milliseconds: 250),
                     pageBuilder: (context, animation, secondaryAnimation) =>
                         MainLayout(
-                          title: 'articles'.tr(),
-                          showBottomNav: false,
-                          child: LupusArticles(),
-                        ),
+                      title: 'articles'.tr(),
+                      showBottomNav: false,
+                      child: LupusArticles(),
+                    ),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       var begin = Offset(0.25.w, 0.0); // from right
@@ -79,7 +79,6 @@ class HomeTab extends StatelessWidget {
                     },
                   ),
                 );
-
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -95,9 +94,10 @@ class HomeTab extends StatelessWidget {
                     ),
                   ],
                   borderRadius: BorderRadius.circular(2.6.w),
-                  color: Color(0xFFD2CFD3),
+                  color: ColorsFormat.shimmerCard,
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 2.8.w, vertical: 0.9.h),
+                padding:
+                    EdgeInsets.symmetric(horizontal: 2.8.w, vertical: 0.9.h),
                 child: Row(
                   children: [
                     Image.asset(
@@ -116,8 +116,7 @@ class HomeTab extends StatelessWidget {
                               fontFamily: 'Inder',
                             ),
                           ),
-                          SizedBox(
-                              height: 1.h),
+                          SizedBox(height: 1.h),
                           Text(
                             'learnLupus'.tr(),
                             style: TextStyle(
@@ -176,14 +175,14 @@ class HomeTab extends StatelessWidget {
                       // Spread of the shadow
                       blurRadius: 2.w,
                       // Softness of the shadow
-                      offset:
-                        Offset(0, 0.5.h), // Position of the shadow (X, Y)
+                      offset: Offset(0, 0.5.h), // Position of the shadow (X, Y)
                     ),
                   ],
                   borderRadius: BorderRadius.circular(2.6.w),
-                  color: Color(0xFFD2CFD3),
+                  color: ColorsFormat.shimmerCard,
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 2.8.w, vertical: 0.9.h),
+                padding:
+                    EdgeInsets.symmetric(horizontal: 2.8.w, vertical: 0.9.h),
                 child: Row(
                   children: [
                     Image.asset('assets/images/about image.png'),
@@ -195,11 +194,11 @@ class HomeTab extends StatelessWidget {
                           RichText(
                             text: TextSpan(
                               text: 'about'.tr(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                              style:
+                                  TextStyleFormat.passwordPageSubTitle.copyWith(
                                 fontSize: 21,
-                                color: Color(0xFF4B4A4C),
-                                fontFamily: 'Inder',
+                                color: ColorsFormat.text_dividerColor,
+                                fontWeight: FontWeight.bold,
                               ),
                               children: [
                                 TextSpan(
@@ -207,21 +206,19 @@ class HomeTab extends StatelessWidget {
                                   style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontSize: 21,
-                                    color: Color(0xFF502371),
+                                    color: ColorsFormat.button_linksColor,
                                     fontFamily: 'BerkshireSwash',
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          SizedBox(
-                              height: 1.h),
+                          SizedBox(height: 1.h),
                           Text(
                             'discover'.tr(),
-                            style: TextStyle(
+                            style: TextStyleFormat.textFieldStyle.copyWith(
                               fontSize: 17,
-                              color: Color(0xFF817F82),
-                              fontFamily: 'Inder',
+                              color: ColorsFormat.titleColor,
                             ),
                           ),
                         ],

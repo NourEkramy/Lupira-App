@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 
 class TextFieldModule extends StatelessWidget {
   String textFieldTitle;
@@ -20,7 +20,8 @@ class TextFieldModule extends StatelessWidget {
   String name;
   String? initialProfileData;
 
-  TextFieldModule({super.key,
+  TextFieldModule({
+    super.key,
     required this.name,
     this.validators,
     required this.hintTextTitle,
@@ -34,7 +35,8 @@ class TextFieldModule extends StatelessWidget {
     this.obscureText = false,
     this.isReadOnly = false,
     this.onTap,
-    this.suffix});
+    this.suffix,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +46,7 @@ class TextFieldModule extends StatelessWidget {
         SizedBox(height: 3.h),
         Text(
           textFieldTitle,
-          style: TextStyle(
-            fontFamily: 'Inder',
-            fontSize: 18,
-            color: titelTextColor,
-          ),
+          style: TextStyleFormat.textFieldStyle.copyWith(color: titelTextColor),
         ),
         SizedBox(height: 0.5.h),
         FormBuilderTextField(
@@ -57,13 +55,9 @@ class TextFieldModule extends StatelessWidget {
           initialValue: initialProfileData,
           readOnly: isReadOnly,
           obscureText: obscureText,
-          // controller: textController,
           keyboardType: textFieldType,
-          style: TextStyle(
-            color: titelTextColor,
-            fontFamily: "Inder",
-            fontSize: 16,
-          ),
+          style:
+              TextStyleFormat.snackBarMessage.copyWith(color: titelTextColor),
           decoration: InputDecoration(
             errorMaxLines: 3,
             suffixIcon: suffix ?? SizedBox(),
@@ -77,11 +71,8 @@ class TextFieldModule extends StatelessWidget {
             border: OutlineInputBorder(
                 borderSide: BorderSide(color: borderColor),
                 borderRadius: BorderRadius.all(Radius.circular(2.6.w))),
-            hintStyle: TextStyle(
-              fontSize: 16,
-              fontFamily: 'Inder',
-              color: hintTextColor,
-            ),
+            hintStyle:
+                TextStyleFormat.snackBarMessage.copyWith(color: hintTextColor),
             filled: true,
             fillColor: backgroundColor,
           ),

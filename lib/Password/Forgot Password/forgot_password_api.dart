@@ -1,10 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ForgotPasswordApi {
   static Future<Map<String, dynamic>> forgotPassword({
     required String email,
-
   }) async {
     Uri url = Uri.parse("https://lupira.onrender.com/api/auth/password/forgot");
 
@@ -29,24 +29,23 @@ class ForgotPasswordApi {
         return {
           'success': true,
           'code': 200,
-          'message': decoded['message'] ?? 'Password reset email sent successfully. Please check your inbox.',
+          'message': decoded['message'] ?? 'passwordResetSent'.tr(),
         };
       } catch (e) {
-        throw FormatException("Invalid JSON format: ${response.body}");
+        throw FormatException("${response.body}");
       }
     } else {
       if (response.statusCode == 404) {
         return {
           'success': false,
           'code': 404,
-          'message': decoded['error'] ?? "User with this email does not exist.",
+          'message': decoded['error'] ?? "userExist".tr(),
         };
       } else {
         return {
           'success': false,
           'code': 500,
-          'message': decoded['error'] ??
-              "Failed to send reset email. Please try again.",
+          'message': decoded['error'] ?? "passwordResetFailed".tr(),
         };
       }
     }

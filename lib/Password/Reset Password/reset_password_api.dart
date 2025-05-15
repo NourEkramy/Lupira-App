@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -31,16 +32,15 @@ class ResetPasswordApi {
       try {
         return {
           'success': true,
-          'message': decoded['message'] ??
-              'Password reset successfully. You can now log in with your new password.',
+          'message': decoded['message'] ?? 'passwordResetSuccess'.tr(),
         };
       } catch (e) {
-        throw FormatException("Invalid JSON format: ${response.body}");
+        throw FormatException("${response.body}");
       }
     } else {
       return {
         'success': false,
-        'message': decoded['error'] ?? "User with this email does not exist.",
+        'message': decoded['error'] ?? "userExist".tr(),
       };
     }
   }

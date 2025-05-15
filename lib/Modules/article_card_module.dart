@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/colors_format.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 
 class ArticleCardModule extends StatelessWidget {
   String websiteName, articleName, articleImage;
@@ -19,7 +21,7 @@ class ArticleCardModule extends StatelessWidget {
       child: Container(
         width: 90.w,
         decoration: BoxDecoration(
-          color: Color(0xFFD2CFD3),
+          color: ColorsFormat.articleCardColor,
           borderRadius: BorderRadius.circular(2.6.w),
         ),
         child: Column(
@@ -43,7 +45,8 @@ class ArticleCardModule extends StatelessWidget {
                   height: 30.h,
                   fit: BoxFit.fill,
                   errorBuilder: (context, error, stackTrace) {
-                    return Center(child: Image.asset('assets/images/no_image.png'));
+                    return Center(
+                        child: Image.asset('assets/images/no_image.png'));
                   },
                 ),
               ),
@@ -55,11 +58,9 @@ class ArticleCardModule extends StatelessWidget {
               ),
               child: Text(
                 websiteName,
-                style: TextStyle(
-                  fontSize: 14,
+                style: TextStyleFormat.websiteName.copyWith(
+                  color: ColorsFormat.titleColor,
                   fontWeight: FontWeight.w500,
-                  fontFamily: 'Inder',
-                  color: Color(0xFF817F82),
                 ),
               ),
             ),
@@ -69,11 +70,9 @@ class ArticleCardModule extends StatelessWidget {
               ),
               child: Text(
                 articleName,
-                style: TextStyle(
-                  fontSize: 20,
+                style: TextStyleFormat.passwordPageSubTitle.copyWith(
+                  color: ColorsFormat.text_dividerColor,
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'Inder',
-                  color: Color(0xFF4B4A4C),
                 ),
               ),
             ),

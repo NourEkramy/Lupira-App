@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 
 class OperationButtonModule extends StatelessWidget {
   Color borderColor;
@@ -35,11 +36,8 @@ class OperationButtonModule extends StatelessWidget {
       ),
       child: Text(
         buttonText,
-        style: TextStyle(
-          color: buttonTextColor,
-          fontFamily: 'Inder',
-          fontSize: 20,
-        ),
+        style: TextStyleFormat.passwordPageSubTitle
+            .copyWith(color: buttonTextColor),
       ),
     );
   }

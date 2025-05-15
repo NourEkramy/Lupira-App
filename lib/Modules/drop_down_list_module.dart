@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
+import '../Formating/colors_format.dart';
 
 class DropDownListModule extends StatelessWidget {
   String text;
@@ -27,7 +29,7 @@ class DropDownListModule extends StatelessWidget {
     required this.borderColor,
     required this.text,
     required this.backgroundColor,
-    this.isReadOnly=true,
+    this.isReadOnly = true,
     this.initialProfileChoice,
     this.validators,
     this.onChanged,
@@ -41,17 +43,13 @@ class DropDownListModule extends StatelessWidget {
         SizedBox(height: 2.h),
         Text(
           text,
-          style: TextStyle(
-            fontFamily: 'Inder',
-            fontSize: 18,
-            color: textColor,
-          ),
+          style: TextStyleFormat.textFieldStyle.copyWith(color: textColor),
         ),
         SizedBox(height: 0.5.h),
         FormBuilderDropdown<String>(
           enabled: !isReadOnly,
           initialValue: initialProfileChoice,
-          dropdownColor: Color(0xFFDEDAE0),
+          dropdownColor: ColorsFormat.border_backgroundWhiteColor,
           decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: borderColor),
@@ -67,22 +65,15 @@ class DropDownListModule extends StatelessWidget {
           ),
           hint: Text(
             hintText,
-            style: TextStyle(
-              fontSize: 16,
-              fontFamily: 'Inder',
-              color: hintColor,
-            ),
+            style: TextStyleFormat.snackBarMessage.copyWith(color: hintColor),
           ),
           items: options.map((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: Text(
                 value,
-                style: TextStyle(
-                  fontFamily: 'Inder',
-                  fontSize: 16,
-                  color: textColor,
-                ),
+                style:
+                    TextStyleFormat.snackBarMessage.copyWith(color: textColor),
               ),
             );
           }).toList(),

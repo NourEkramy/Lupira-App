@@ -1,11 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 import 'package:untitled/Modules/article_card_module.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../Formating/colors_format.dart';
 import '../Models/article_model.dart';
 import '../Modules/article_card_shimmer_module.dart';
-import 'aricles_services.dart';
+import 'aricles_services_api.dart';
 
 class LupusArticles extends StatelessWidget {
   static const String routName = 'LupusArticles';
@@ -38,10 +40,10 @@ class LupusArticles extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 8.6.h,
-                    backgroundColor: Color(0xffDDBCC3),
+                    backgroundColor: ColorsFormat.lupusArticlesWhite,
                     child: ImageIcon(
                       AssetImage("assets/images/error.png"),
-                      color: Color(0xffD6101D),
+                      color: ColorsFormat.lightRedError,
                       size: 39.sp,
                     ),
                   ),
@@ -52,10 +54,8 @@ class LupusArticles extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 2.2.w),
                     child: Text(
                       "articlesError".tr(),
-                      style: TextStyle(
-                          fontFamily: "Inder",
-                          fontSize: 22,
-                          color: Color(0xffD6101D)),
+                      style: TextStyleFormat.notFountText
+                          .copyWith(color: ColorsFormat.lightRedError),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -70,11 +70,8 @@ class LupusArticles extends StatelessWidget {
                 ),
                 child: Text(
                   "noArticles".tr(),
-                  style: TextStyle(
-                    color: Color(0xFF4B4A4C),
-                    fontFamily: 'Inder',
-                    fontSize: 20,
-                  ),
+                  style: TextStyleFormat.passwordPageSubTitle
+                      .copyWith(color: ColorsFormat.text_dividerColor),
                 ),
               ),
             );
@@ -85,7 +82,8 @@ class LupusArticles extends StatelessWidget {
                 return Column(
                   children: [
                     ArticleCardModule(
-                      articleImage: article.image ?? "assets/images/no_image.png",
+                      articleImage:
+                          article.image ?? "assets/images/no_image.png",
                       articleName: article.title ?? "No title",
                       websiteName: article.website ?? "Unknown source",
                       redirectFunction: () {

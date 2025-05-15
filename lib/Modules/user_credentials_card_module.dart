@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import '../Formating/colors_format.dart';
 
 class UserCredentialsCardModule extends StatelessWidget {
   Widget cardBody;
@@ -13,12 +14,15 @@ class UserCredentialsCardModule extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF744199), Color(0xFFEBE4E4)],
+          colors: [
+            ColorsFormat.gradientPruble,
+            ColorsFormat.credentialsCardColor
+          ],
         ),
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0xFFEBE4E4),
+          color: ColorsFormat.credentialsCardColor,
           border: Border.all(
             color: Colors.transparent,
             width: 0.2.w,

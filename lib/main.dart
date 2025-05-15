@@ -80,14 +80,14 @@ class _MyAppState extends State<MyApp> {
       final initialLink = await getInitialLink();
       if (initialLink != null) handleLink(initialLink);
     } catch (e) {
-      _showError('Failed to process the initial link.');
+      _showError('failedProccessLink'.tr());
     }
 
     // Handle opened while app is running
     _sub = linkStream.listen((String? link) {
       if (link != null) handleLink(link);
     }, onError: (err) {
-      _showError('Failed to listen for deep links.');
+      _showError('failedListenLink'.tr());
     });
   }
 
@@ -106,13 +106,13 @@ class _MyAppState extends State<MyApp> {
             arguments: token,
           );
         } else {
-          _showError('Reset link is missing the token.');
+          _showError('resetMissingToken'.tr());
         }
       } else {
-        _showError('Invalid reset link format.');
+        _showError('invalidResetFormat'.tr());
       }
     } catch (e) {
-      _showError('Failed to process the reset link.');
+      _showError('failedProccessResetLink'.tr());
     }
   }
 
@@ -120,12 +120,12 @@ class _MyAppState extends State<MyApp> {
     showDialog(
       context: _navigatorKey.currentContext!,
       builder: (_) => AlertDialog(
-        title: const Text('Error'),
+        title: Text('error'.tr()),
         content: Text(message),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(_navigatorKey.currentContext!),
-            child: const Text('OK'),
+            child: Text('understood'.tr()),
           ),
         ],
       ),
@@ -147,7 +147,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: Sizer(
-        builder: (BuildContext , Orientation , ScreenType ) {
+        builder: (BuildContext, Orientation, ScreenType) {
           return MaterialApp(
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
@@ -158,7 +158,8 @@ class _MyAppState extends State<MyApp> {
             routes: {
               LogIn.routName: (context) => LogIn(),
               '/reset-password': (context) {
-                final token = ModalRoute.of(context)?.settings.arguments as String;
+                final token =
+                    ModalRoute.of(context)?.settings.arguments as String;
                 return ResetPassword(token: token);
               },
               ForgotPassword.routName: (context) => ForgotPassword(),

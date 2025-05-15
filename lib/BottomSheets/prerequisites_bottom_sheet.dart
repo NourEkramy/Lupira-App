@@ -2,8 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 import '../BaseScreen/Layout/main_layout.dart';
 import '../Detection/detection_screen.dart';
+import '../Formating/colors_format.dart';
 
 class PrerequisitesBottomSheet extends StatefulWidget {
   const PrerequisitesBottomSheet({super.key});
@@ -20,6 +22,8 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
       final values = _formKey.currentState!.value;
 
       if (values['agree']) {
+        Navigator.pop(context);
+
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -39,7 +43,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
     return Container(
       height: 90.h,
       decoration: BoxDecoration(
-        color: Color(0xFFEBE4E4),
+        color: ColorsFormat.credentialsCardColor,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(4.4.w),
           topRight: Radius.circular(4.4.w),
@@ -54,7 +58,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
               vertical: 1.2.h,
             ),
             decoration: BoxDecoration(
-              color: Color(0xFFDEDAE0),
+              color: ColorsFormat.border_backgroundWhiteColor,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(4.4.w),
                 topRight: Radius.circular(4.4.w),
@@ -64,11 +68,8 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
             child: Text(
               textAlign: TextAlign.center,
               'prerequisites'.tr(),
-              style: TextStyle(
-                color: Color(0xFF3D1A57),
-                fontSize: 32,
-                fontFamily: 'Inder',
-              ),
+              style: TextStyleFormat.bottomSheetTitle
+                  .copyWith(color: ColorsFormat.darckPruble),
             ),
           ),
           SizedBox(height: 3.h),
@@ -84,11 +85,8 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                     children: [
                       Text(
                         "followingMandatory".tr(),
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontFamily: 'Inder',
-                          color: Color(0xFF3D1A57),
-                        ),
+                        style: TextStyleFormat.notFountText
+                            .copyWith(color: ColorsFormat.darckPruble),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
@@ -101,85 +99,99 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                             children: [
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
+                                  padding:
+                                      EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• Anti-nuclear Antibody (ANA)",
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontFamily: 'Inder',
-                                        color: Color(0xFF4b4a4c)),
+                                    style:
+                                        TextStyleFormat.textFieldStyle.copyWith(
+                                      color: ColorsFormat.text_dividerColor,
+                                      fontSize: 17,
+                                    ),
                                   ),
                                 ),
                               ),
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
+                                  padding:
+                                      EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• Complete Blood Count (CBC)",
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontFamily: 'Inder',
-                                        color: Color(0xFF4b4a4c)),
+                                    style:
+                                        TextStyleFormat.textFieldStyle.copyWith(
+                                      color: ColorsFormat.text_dividerColor,
+                                      fontSize: 17,
+                                    ),
                                   ),
                                 ),
                               ),
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
+                                  padding:
+                                      EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• Direct antiglobulin (direct coombs) test",
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontFamily: 'Inder',
-                                        color: Color(0xFF4b4a4c)),
+                                    style:
+                                        TextStyleFormat.textFieldStyle.copyWith(
+                                      color: ColorsFormat.text_dividerColor,
+                                      fontSize: 17,
+                                    ),
                                   ),
                                 ),
                               ),
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
+                                  padding:
+                                      EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• Urine test",
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontFamily: 'Inder',
-                                        color: Color(0xFF4b4a4c)),
+                                    style:
+                                        TextStyleFormat.textFieldStyle.copyWith(
+                                      color: ColorsFormat.text_dividerColor,
+                                      fontSize: 17,
+                                    ),
                                   ),
                                 ),
                               ),
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
+                                  padding:
+                                      EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• Solid phase enzyme-linked immunosorbent assay",
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontFamily: 'Inder',
-                                        color: Color(0xFF4b4a4c)),
+                                    style:
+                                        TextStyleFormat.textFieldStyle.copyWith(
+                                      color: ColorsFormat.text_dividerColor,
+                                      fontSize: 17,
+                                    ),
                                   ),
                                 ),
                               ),
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
+                                  padding:
+                                      EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• CH50, CH100, Total complement test",
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontFamily: 'Inder',
-                                        color: Color(0xFF4b4a4c)),
+                                    style:
+                                        TextStyleFormat.textFieldStyle.copyWith(
+                                      color: ColorsFormat.text_dividerColor,
+                                      fontSize: 17,
+                                    ),
                                   ),
                                 ),
                               ),
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
+                                  padding:
+                                      EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• Kidney biopsy",
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontFamily: 'Inder',
-                                        color: Color(0xFF4b4a4c)),
+                                    style:
+                                        TextStyleFormat.textFieldStyle.copyWith(
+                                      color: ColorsFormat.text_dividerColor,
+                                      fontSize: 17,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -189,10 +201,8 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                       ),
                       Text(
                         "followingOptional".tr(),
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontFamily: 'Inder',
-                          color: Color(0xFF3D1A57),
+                        style: TextStyleFormat.notFountText.copyWith(
+                          color: ColorsFormat.darckPruble,
                         ),
                       ),
                       Padding(
@@ -206,25 +216,29 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                             children: [
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
+                                  padding:
+                                      EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• PTT, LA-sensitive PTT or dilute Russell viper venom test",
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontFamily: 'Inder',
-                                        color: Color(0xFF4b4a4c)),
+                                    style:
+                                        TextStyleFormat.textFieldStyle.copyWith(
+                                      color: ColorsFormat.text_dividerColor,
+                                      fontSize: 17,
+                                    ),
                                   ),
                                 ),
                               ),
                               WidgetSpan(
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 0.8.h),
+                                  padding:
+                                      EdgeInsets.symmetric(vertical: 0.8.h),
                                   child: Text(
                                     "• Chest X-ray or Ultrasound or computed tomography (CT)",
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontFamily: 'Inder',
-                                        color: Color(0xFF4b4a4c)),
+                                    style:
+                                        TextStyleFormat.textFieldStyle.copyWith(
+                                      color: ColorsFormat.text_dividerColor,
+                                      fontSize: 17,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -265,10 +279,10 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                     Expanded(
                                       child: Text(
                                         'understoodPrerequisites'.tr(),
-                                        style: TextStyle(
-                                          fontFamily: 'Inder',
-                                          fontSize: 16,
-                                          color: Color(0xFF3D1A57),
+                                        style: TextStyleFormat.snackBarMessage
+                                            .copyWith(
+                                          color: ColorsFormat.darckPruble,
+                                          fontSize: 17,
                                         ),
                                       ),
                                     ),
@@ -286,20 +300,18 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                     children: [
                                       Icon(
                                         Icons.error_outline,
-                                        color: Color(0xffD6101D),
+                                        color: ColorsFormat.lightRedError,
                                         size: 18.sp,
                                       ),
                                       SizedBox(
                                         width: 1.w,
                                       ),
-                                      Text(
-                                        "confirmStartDetection".tr(),
-                                        style: TextStyle(
-                                          color: Color(0xffD6101D),
-                                          fontFamily: "Inder",
-                                          fontSize: 15,
-                                        ),
-                                      ),
+                                      Text("confirmStartDetection".tr(),
+                                          style: TextStyleFormat.snackBarMessage
+                                              .copyWith(
+                                            color: ColorsFormat.lightRedError,
+                                            fontSize: 15,
+                                          )),
                                     ],
                                   ),
                                 )
@@ -326,16 +338,16 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                 ),
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                    color: Color(0xffD6101D),
+                                    color: ColorsFormat.lightRedError,
                                     width: 0.5.w,
                                   ),
                                   borderRadius: BorderRadius.circular(2.6.w),
                                 ),
                                 child: Text(
                                   "close".tr(),
-                                  style: TextStyle(
-                                    color: Color(0xffD6101D),
-                                    fontFamily: "Inder",
+                                  style:
+                                      TextStyleFormat.textFieldStyle.copyWith(
+                                    color: ColorsFormat.lightRedError,
                                     fontSize: 19,
                                   ),
                                 ),
@@ -348,16 +360,17 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                   startDetection();
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFF502371),
+                                  backgroundColor:
+                                      ColorsFormat.button_linksColor,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(2.6.w),
                                   ),
                                 ),
                                 child: Text(
                                   "start".tr(),
-                                  style: const TextStyle(
+                                  style:
+                                      TextStyleFormat.textFieldStyle.copyWith(
                                     color: Colors.white,
-                                    fontFamily: "Inder",
                                     fontSize: 19,
                                   ),
                                 ),

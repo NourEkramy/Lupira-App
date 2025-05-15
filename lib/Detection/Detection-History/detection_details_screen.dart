@@ -1,7 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-
+import 'package:untitled/Formating/text_style_format.dart';
+import '../../Formating/colors_format.dart';
 
 class DetectionDetailsScreen extends StatefulWidget {
   final Map<String, dynamic> detectionData;
@@ -36,19 +37,17 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
               children: [
                 Icon(
                   Icons.assignment,
-                  color: Color(0xFF744199),
+                  color: ColorsFormat.gradientPruble,
                   size: 21.sp,
                 ),
                 SizedBox(width: 2.4.w),
                 Expanded(
                   child: Text(
                     overflow: TextOverflow.visible,
-                    'result'.tr()+resultLabel,
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Color(0xFF3D1A57),
+                    'result'.tr() + resultLabel,
+                    style: TextStyleFormat.notFountText.copyWith(
+                      color: ColorsFormat.pageTitlePurble,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'Inder',
                     ),
                   ),
                 ),
@@ -78,11 +77,9 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
                       ),
                       child: Text(
                         _getTitleForIndex(index),
-                        style: TextStyle(
-                          fontSize: 20,
+                        style: TextStyleFormat.passwordPageSubTitle.copyWith(
+                          color: ColorsFormat.pageTitlePurble,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF3D1A57),
-                          fontFamily: 'Inder',
                         ),
                       ),
                     ),
@@ -95,28 +92,26 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
                     ),
                     child: Text(
                       item['question']?.toString() ?? 'unknownQuestion'.tr(),
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'Inder',
-                        color: Color(0xFF4B4A4C),
+                      style: TextStyleFormat.textFieldStyle.copyWith(
+                        color: ColorsFormat.text_dividerColor,
                       ),
                     ),
                   ),
                   SizedBox(height: 1.2.h),
                   Padding(
-                    padding: EdgeInsets.only(top: 0.7.h, bottom: 1.h, left: 3.5.w),
+                    padding:
+                        EdgeInsets.only(top: 0.7.h, bottom: 1.h, left: 3.5.w),
                     child: Text(
-                      'answer'.tr()+"${item['answer']?.toString() ?? 'noAnswerProvided'.tr()}",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Color(0xFF3D1A57),
-                        fontFamily: 'Inder',
+                      'answer'.tr() +
+                          "${item['answer']?.toString() ?? 'noAnswerProvided'.tr()}",
+                      style: TextStyleFormat.snackBarMessage.copyWith(
+                        color: ColorsFormat.darckPruble,
                       ),
                     ),
                   ),
                   SizedBox(height: 1.h),
                   Divider(
-                    color: Color(0xFFABABAB),
+                    color: ColorsFormat.hintColor,
                   ),
                 ],
               );

@@ -5,8 +5,10 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 import 'package:untitled/Modules/drop_down_list_module.dart';
 import 'package:untitled/Profile/profile_api.dart';
+import '../Formating/colors_format.dart';
 import '../Models/user_profile_data_model.dart';
 import '../Modules/text_field_module.dart';
 
@@ -131,7 +133,7 @@ class _ProfileState extends State<Profile> {
                 message,
                 style: TextStyle(color: Colors.white),
               ),
-              backgroundColor: success ? Colors.green : Color(0xFFB9433E),
+              backgroundColor: success ? Colors.green : ColorsFormat.darckRedError,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(2.8.w),
               ),
@@ -153,7 +155,7 @@ class _ProfileState extends State<Profile> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(message),
-              backgroundColor: Color(0xFFB9433E),
+              backgroundColor: ColorsFormat.darckRedError,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(2.8.w),
               ),
@@ -172,7 +174,7 @@ class _ProfileState extends State<Profile> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text("$e"),
-            backgroundColor: Color(0xFFB9433E),
+            backgroundColor: ColorsFormat.darckRedError,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(2.8.w),
             ),
@@ -244,10 +246,9 @@ class _ProfileState extends State<Profile> {
                                     ),
                                     Text(
                                       textField['title'],
-                                      style: TextStyle(
-                                        fontFamily: 'Inder',
-                                        fontSize: 18,
-                                        color: Color(0xFF4B4A4C),
+                                      style: TextStyleFormat.textFieldStyle
+                                          .copyWith(
+                                        color: ColorsFormat.text_dividerColor,
                                       ),
                                     ),
                                     SizedBox(
@@ -271,13 +272,13 @@ class _ProfileState extends State<Profile> {
                                           vertical: 0.4.h,
                                         ),
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFDEDAE0),
+                                          color: ColorsFormat.border_backgroundWhiteColor,
                                           borderRadius:
                                               BorderRadius.circular(2.6.w),
                                           border: Border.all(
                                             color: hasError
-                                                ? Color(0xFFB9433E)
-                                                : Color(0xFFABABAB),
+                                                ? ColorsFormat.darckRedError
+                                                : ColorsFormat.hintColor,
                                           ),
                                         ),
                                         child: Row(
@@ -285,21 +286,20 @@ class _ProfileState extends State<Profile> {
                                             Text(
                                               selectedPhoneCountry != null
                                                   ? '+${selectedPhoneCountry!.phoneCode}'
-                                                  : 'Code',
-                                              style: TextStyle(
-                                                fontFamily: 'Inder',
+                                                  : 'code'.tr(),
+                                              style: TextStyleFormat.textFieldStyle
+                                                  .copyWith(
                                                 color:
-                                                    selectedPhoneCountry != null
-                                                        ? Color(0xFF4B4A4C)
-                                                        : Color(0xFF817F82),
-                                                fontSize: 16,
+                                                selectedPhoneCountry != null
+                                                    ? Color(0xFF4B4A4C)
+                                                    : Color(0xFF817F82),
                                               ),
                                             ),
                                             SizedBox(width: 2.w),
                                             Container(
                                               width: 0.2.w,
                                               height: 2.8.h,
-                                              color: Color(0xFF4B4A4C),
+                                              color: ColorsFormat.text_dividerColor,
                                             ),
                                             SizedBox(width: 2.w),
                                             Expanded(
@@ -308,14 +308,14 @@ class _ProfileState extends State<Profile> {
                                                     textField['keyboardType'],
                                                 onChanged: field.didChange,
                                                 style: TextStyle(
-                                                  color: Color(0xFF4B4A4C),
+                                                  color: ColorsFormat.text_dividerColor,
                                                   fontFamily: 'Inder',
                                                 ),
                                                 decoration: InputDecoration(
                                                   border: InputBorder.none,
                                                   hintText: textField['hint'],
                                                   hintStyle: TextStyle(
-                                                    color: Color(0xFFABABAB),
+                                                    color: ColorsFormat.hintColor,
                                                     fontFamily: 'Inder',
                                                   ),
                                                   // errorText removed here
@@ -334,10 +334,9 @@ class _ProfileState extends State<Profile> {
                                         ),
                                         child: Text(
                                           field.errorText ?? '',
-                                          style: TextStyle(
-                                            color: Color(0xFFB9433E),
-                                            fontSize: 12,
-                                            fontFamily: 'Inder',
+                                          style: TextStyleFormat.textFieldStyle
+                                              .copyWith(
+                                            color: ColorsFormat.darckRedError,
                                           ),
                                         ),
                                       ),
@@ -397,10 +396,10 @@ class _ProfileState extends State<Profile> {
                             initialProfileChoice: profileData?.data?.gender,
                             name: "Gender",
                             options: ["male".tr(), "female".tr()],
-                            hintColor: Color(0xFF4B4A4C),
+                            hintColor: ColorsFormat.text_dividerColor,
                             hintText: "selectGender".tr(),
-                            textColor: Color(0xFF4B4A4C),
-                            borderColor: Color(0xFFABABAB),
+                            textColor: ColorsFormat.text_dividerColor,
+                            borderColor: ColorsFormat.hintColor,
                             text: "gender".tr(),
                             backgroundColor: Colors.transparent,
                             onChanged: (value) {
@@ -423,10 +422,9 @@ class _ProfileState extends State<Profile> {
                             children: [
                               Text(
                                 "country".tr(),
-                                style: TextStyle(
-                                  fontFamily: 'Inder',
-                                  fontSize: 18,
-                                  color: Color(0xFF4B4A4C),
+                                style: TextStyleFormat.textFieldStyle
+                                    .copyWith(
+                                  color: ColorsFormat.text_dividerColor,
                                 ),
                               ),
                               SizedBox(
@@ -460,12 +458,12 @@ class _ProfileState extends State<Profile> {
                                     vertical: 1.8.h,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Color(0xFFDEDAE0),
+                                    color: ColorsFormat.border_backgroundWhiteColor,
                                     borderRadius: BorderRadius.circular(2.4.w),
                                     border: Border.all(
                                       color: field.hasError
-                                          ? Color(0xFFB9433E)
-                                          : Color(0xFFABABAB),
+                                          ? ColorsFormat.darckRedError
+                                          : ColorsFormat.hintColor,
                                     ),
                                   ),
                                   child: Row(
@@ -474,17 +472,16 @@ class _ProfileState extends State<Profile> {
                                     children: [
                                       Text(
                                         selectedCountry ?? "selectCountry".tr(),
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'Inder',
+                                        style: TextStyleFormat.textFieldStyle
+                                            .copyWith(
                                           color: selectedCountry == null
-                                              ? Color(0xFF817F82)
-                                              : Color(0xFF4B4A4C),
+                                              ? ColorsFormat.titleColor
+                                              : ColorsFormat.text_dividerColor,
                                         ),
                                       ),
                                       Icon(
                                         Icons.arrow_drop_down,
-                                        color: Color(0xFF606060),
+                                        color: ColorsFormat.suffixColor,
                                       ),
                                     ],
                                   ),
@@ -496,10 +493,7 @@ class _ProfileState extends State<Profile> {
                                       EdgeInsets.only(top: 0.6.h, left: 2.w),
                                   child: Text(
                                     field.errorText ?? '',
-                                    style: TextStyle(
-                                      color: Color(0xFFB9433E),
-                                      fontSize: 12,
-                                    ),
+                                    style: TextStyleFormat.textFieldError.copyWith(color: ColorsFormat.darckRedError),
                                   ),
                                 ),
                             ],
@@ -532,10 +526,10 @@ class _ProfileState extends State<Profile> {
                               "ethnicityOption6".tr(),
                               "ethnicityOption7".tr(),
                             ],
-                            hintColor: Color(0xFF4B4A4C),
+                            hintColor: ColorsFormat.text_dividerColor,
                             hintText: "selectEthnicity".tr(),
-                            textColor: Color(0xFF4B4A4C),
-                            borderColor: Color(0xFFABABAB),
+                            textColor: ColorsFormat.text_dividerColor,
+                            borderColor: ColorsFormat.hintColor,
                             text: "ethnicity".tr(),
                             backgroundColor: Colors.transparent,
                             onChanged: (value) {
@@ -554,10 +548,10 @@ class _ProfileState extends State<Profile> {
                           child: ElevatedButton(
                             onPressed: updateProfile,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFF49146D),
+                              backgroundColor: ColorsFormat.button_linksColor,
                               shape: RoundedRectangleBorder(
                                 side: BorderSide(
-                                  color: Color(0xFF49146D),
+                                  color: ColorsFormat.button_linksColor,
                                   width: 0.5.w,
                                 ),
                                 borderRadius: BorderRadius.circular(2.4.w),
@@ -565,11 +559,7 @@ class _ProfileState extends State<Profile> {
                             ),
                             child: Text(
                               "saveChanges".tr(),
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Inder',
-                                fontSize: 18,
-                              ),
+                              style: TextStyleFormat.snackBarMessage.copyWith(color: Colors.white),
                             ),
                           ),
                         )

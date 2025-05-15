@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Modules/user_credentials_card_module.dart';
 import 'package:untitled/Password/Change%20Password/change_password.dart';
 import '../../BaseScreen/Layout/main_layout.dart';
+import '../../Formating/colors_format.dart';
 import '../../Log-In/log_in_ui.dart';
 import 'forgot_password_api.dart';
 
@@ -53,13 +55,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             SnackBar(
               content: Text(
                 message,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontFamily: 'Inder',
-                ),
+                style: TextStyleFormat.snackBarMessage
+                    .copyWith(color: Colors.white),
               ),
-              backgroundColor: Color(0xFFB9433E),
+              backgroundColor: ColorsFormat.darckRedError,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(2.8.w),
               ),
@@ -80,13 +79,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           SnackBar(
             content: Text(
               "$e",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontFamily: 'Inder',
-              ),
+              style:
+                  TextStyleFormat.snackBarMessage.copyWith(color: Colors.white),
             ),
-            backgroundColor: Color(0xFFB9433E),
+            backgroundColor: ColorsFormat.darckRedError,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(2.8.w),
             ),
@@ -115,11 +111,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 (codeState == 200 || codeState == 500)
                     ? 'verfEmail'.tr()
                     : 'forgotPasswordLink'.tr(),
-                style: TextStyle(
-                  fontSize: 43,
-                  fontFamily: 'Alegreya',
-                  color: Color(0xFF49146D),
-                ),
+                style: TextStyleFormat.passwordPageTitle
+                    .copyWith(color: ColorsFormat.pageTitlePurble),
               ),
               SizedBox(height: 0.3.h),
               Text(
@@ -127,11 +120,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     ? message
                     : 'enterResetEmail'.tr(),
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'Inder',
-                  color:
-                      codeState == 500 ? Color(0xFFB9433E) : Color(0xFF817F82),
+                style: TextStyleFormat.passwordPageSubTitle.copyWith(
+                  color: codeState == 500
+                      ? ColorsFormat.darckRedError
+                      : ColorsFormat.titleColor,
                 ),
               ),
               SizedBox(height: 0.3.h),
@@ -157,15 +149,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       textFieldType: TextInputType.emailAddress,
                       hintTextTitle: 'enterEmail'.tr(),
                       textFieldTitle: 'email'.tr(),
-                      hintTextColor: Color(0xFFABABAB),
-                      titelTextColor: Color(0xFF817F82),
-                      borderColor: Color(0xFFDEDAE0),
-                      backgroundColor: Color(0xFFDEDAE0),
+                      hintTextColor: ColorsFormat.hintColor,
+                      titelTextColor: ColorsFormat.titleColor,
+                      borderColor: ColorsFormat.border_backgroundWhiteColor,
+                      backgroundColor: ColorsFormat.border_backgroundWhiteColor,
                     ),
                     SizedBox(height: 4.5.h),
                     OperationButtonModule(
-                      borderColor: Color(0xFF502371),
-                      buttonColor: Color(0xFF502371),
+                      borderColor: ColorsFormat.button_linksColor,
+                      buttonColor: ColorsFormat.button_linksColor,
                       buttonText: (codeState == 200 || codeState == 500)
                           ? 'resendEmail'.tr()
                           : 'sendVerificatoin'.tr(),
@@ -174,12 +166,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     ),
                     SizedBox(height: 2.5.h),
                     OperationButtonModule(
-                      borderColor: Color(0xFF502371),
-                      buttonColor: Color(0xFFEBE4E4),
+                      borderColor: ColorsFormat.button_linksColor,
+                      buttonColor: ColorsFormat.border_backgroundWhiteColor,
                       buttonText: widget.isChangingPassword
                           ? 'back'.tr()
                           : 'backLogin'.tr(),
-                      buttonTextColor: Color(0xFF502371),
+                      buttonTextColor: ColorsFormat.button_linksColor,
                       onTap: () {
                         Navigator.pushReplacement(
                           context,

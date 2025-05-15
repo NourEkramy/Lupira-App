@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
+import '../Formating/colors_format.dart';
 
 class LanguageBottomSheet extends StatefulWidget {
   const LanguageBottomSheet({super.key});
@@ -22,7 +24,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xFFEBE4E4),
+        color: ColorsFormat.credentialsCardColor,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(4.4.w),
           topRight: Radius.circular(4.4.w),
@@ -37,7 +39,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
               vertical: 1.2.h,
             ),
             decoration: BoxDecoration(
-              color: Color(0xFFDEDAE0),
+              color: ColorsFormat.border_backgroundWhiteColor,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(4.4.w),
                 topRight: Radius.circular(4.4.w),
@@ -47,11 +49,8 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
             child: Text(
               textAlign: TextAlign.center,
               'selectLanguage'.tr(),
-              style: TextStyle(
-                color: Color(0xFF3D1A57),
-                fontSize: 32,
-                fontFamily: 'Inder',
-              ),
+              style: TextStyleFormat.bottomSheetTitle
+                  .copyWith(color: ColorsFormat.darckPruble),
             ),
           ),
           SizedBox(height: 3.h),
@@ -72,24 +71,21 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: context.locale == Locale("ar")
-                            ? Color(0xFFAF93BF)
-                            : Color(0xFF817F82),
+                            ? ColorsFormat.languagePurble
+                            : ColorsFormat.titleColor,
                         width: 0.5.w,
                       ),
                       borderRadius: BorderRadius.circular(20),
                       color: context.locale == Locale("ar")
-                          ? Color(0xFFAF93BF)
+                          ? ColorsFormat.languagePurble
                           : null,
                     ),
                   ),
                   SizedBox(width: 2.w),
                   Text(
                     'arabic'.tr(),
-                    style: TextStyle(
-                      color: Color(0xFF4B4A4C),
-                      fontFamily: 'Inder',
-                      fontSize: 24,
-                    ),
+                    style: TextStyleFormat.passwordSubTitle
+                        .copyWith(color: ColorsFormat.text_dividerColor),
                   ),
                 ],
               ),
@@ -113,24 +109,21 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: context.locale == Locale("en")
-                            ? Color(0xFFAF93BF)
-                            : Color(0xFF817F82),
+                            ? ColorsFormat.languagePurble
+                            : ColorsFormat.titleColor,
                         width: 0.5.w,
                       ),
                       borderRadius: BorderRadius.circular(4.4.w),
                       color: context.locale == Locale("en")
-                          ? Color(0xFFAF93BF)
+                          ? ColorsFormat.languagePurble
                           : null,
                     ),
                   ),
                   SizedBox(width: 2.w),
                   Text(
                     'english'.tr(),
-                    style: TextStyle(
-                      color: Color(0xFF4B4A4C),
-                      fontFamily: 'Inder',
-                      fontSize: 24,
-                    ),
+                    style: TextStyleFormat.passwordSubTitle
+                        .copyWith(color: ColorsFormat.text_dividerColor),
                   ),
                 ],
               ),

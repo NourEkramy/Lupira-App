@@ -1,5 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/colors_format.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 
 class DetectionCardModule extends StatelessWidget {
   String mainTitle;
@@ -22,7 +25,7 @@ class DetectionCardModule extends StatelessWidget {
           width: 95.w,
           height: 22.4.h,
           decoration: BoxDecoration(
-            color: const Color(0xFFCABDD3),
+            color: ColorsFormat.detectCardColor,
             borderRadius: BorderRadius.circular(2.6.w),
           ),
           padding: EdgeInsets.all(5.w),
@@ -41,20 +44,16 @@ class DetectionCardModule extends StatelessWidget {
                   children: [
                     Text(
                       mainTitle,
-                      style: const TextStyle(
-                        color: Color(0xFF3D1A57),
-                        fontFamily: "Inder",
-                        fontSize: 24,
+                      style: TextStyleFormat.passwordSubTitle.copyWith(
+                        color: ColorsFormat.darckPruble,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     subtitle != null
                         ? Text(
                             subtitle ?? "",
-                            style: const TextStyle(
-                              color: Color(0xFF3D1A57),
-                              fontFamily: "Inder",
-                              fontSize: 16,
+                            style: TextStyleFormat.snackBarMessage.copyWith(
+                              color: ColorsFormat.darckPruble,
                               fontWeight: FontWeight.w400,
                             ),
                           )
@@ -63,31 +62,30 @@ class DetectionCardModule extends StatelessWidget {
                     ElevatedButton(
                       onPressed: onTap,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFCABDD3),
+                        backgroundColor: ColorsFormat.detectCardColor,
                         padding: EdgeInsets.symmetric(
                           horizontal: 6.w,
                         ),
                         shape: RoundedRectangleBorder(
                           side: BorderSide(
-                            color: Color(0xFF502371),
+                            color: ColorsFormat.button_linksColor,
                             width: 0.5.w,
                           ),
                           borderRadius: BorderRadius.circular(2.6.w),
                         ),
                       ),
-                      child: const Text(
-                        "Start Now",
-                        style: TextStyle(
-                          color: Color(0xFF502371),
-                          fontFamily: 'Inder',
+                      child: Text(
+                        "startNow".tr(),
+                        style: TextStyleFormat.textFieldStyle.copyWith(
                           fontSize: 17,
+                          color: ColorsFormat.button_linksColor,
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(),
+              SizedBox(),
             ],
           ),
         ),

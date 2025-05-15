@@ -23,9 +23,12 @@ class BaseScreen extends StatelessWidget {
       create: (context) => BaseScreenCubit(),
       child: BlocBuilder<BaseScreenCubit, BaseScreenState>(
         builder: (context, state) {
-          return MainLayout(
-              child: tabs[state.selectedTabIndex],
-              title: appBarTitles[state.selectedTabIndex]);
+          return PopScope(
+            canPop: false,
+            child: MainLayout(
+                child: tabs[state.selectedTabIndex],
+                title: appBarTitles[state.selectedTabIndex]),
+          );
         },
       ),
     );

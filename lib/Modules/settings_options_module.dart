@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
+import '../Formating/colors_format.dart';
 
 class SettingsOptionsModule extends StatelessWidget {
   String optionIcon;
@@ -21,25 +23,25 @@ class SettingsOptionsModule extends StatelessWidget {
       onTap: optionAction,
       child: Column(children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.4.w, vertical: 1.5.h),
+          padding: EdgeInsets.symmetric(
+            horizontal: 8.4.w,
+            vertical: 1.5.h,
+          ),
           child: Row(
             children: [
               Image.asset(optionIcon),
               SizedBox(width: 6.5.w),
               Text(
                 optionText,
-                style: TextStyle(
-                  color: optionTextColor,
-                  fontFamily: 'Inder',
-                  fontSize: 24,
-                ),
+                style: TextStyleFormat.passwordSubTitle
+                    .copyWith(color: optionTextColor),
               ),
             ],
           ),
         ),
         Divider(
           thickness: 0.3.w,
-          color: Color(0xFFABABAB),
+          color: ColorsFormat.hintColor,
         ),
       ]),
     );

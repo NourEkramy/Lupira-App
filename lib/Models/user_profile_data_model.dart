@@ -46,7 +46,7 @@ class Data {
     email = json['email'];
     gender = json['gender'];
     country = json['country'];
-    dateOfBirth = json['DateOfBirth'].substring(0,10);
+    dateOfBirth = json['DateOfBirth'].substring(0, 10);
     phoneNumber = json['phoneNumber'];
     ethnicity = json['ethnicity'];
   }

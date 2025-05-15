@@ -6,6 +6,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:untitled/BaseScreen/base_screen.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 import 'package:untitled/Log-In/log_in_api.dart';
 import 'package:untitled/Modules/authentication_button_module.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
@@ -13,6 +14,7 @@ import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Modules/user_credentials_card_module.dart';
 import 'package:untitled/Password/Forgot%20Password/forgot_password.dart';
 import 'package:untitled/Sign-Up/sign_up_ui.dart';
+import '../Formating/colors_format.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
@@ -78,13 +80,10 @@ class _LogInState extends State<LogIn> {
             SnackBar(
               content: Text(
                 message,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontFamily: 'Inder',
-                ),
+                style: TextStyleFormat.snackBarMessage
+                    .copyWith(color: Colors.white),
               ),
-              backgroundColor: Color(0xFFB9433E),
+              backgroundColor: ColorsFormat.darckRedError,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(2.8.w),
               ),
@@ -102,13 +101,10 @@ class _LogInState extends State<LogIn> {
           SnackBar(
             content: Text(
               "$e",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontFamily: 'Inder',
-              ),
+              style:
+                  TextStyleFormat.snackBarMessage.copyWith(color: Colors.white),
             ),
-            backgroundColor: Color(0xFFB9433E),
+            backgroundColor: ColorsFormat.darckRedError,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(2.8.w),
             ),
@@ -139,10 +135,8 @@ class _LogInState extends State<LogIn> {
                 SizedBox(height: 4.h),
                 Text(
                   "login".tr(),
-                  style: TextStyle(
-                    fontSize: 55,
-                    fontFamily: 'Alegreya',
-                    color: Color(0xFF49146D),
+                  style: TextStyleFormat.pageTitle.copyWith(
+                    color: ColorsFormat.pageTitlePurble,
                   ),
                 ),
                 SizedBox(height: 0.5.h),
@@ -161,10 +155,11 @@ class _LogInState extends State<LogIn> {
                           textFieldType: TextInputType.text,
                           hintTextTitle: "enterEmail".tr(),
                           textFieldTitle: "email".tr(),
-                          hintTextColor: Color(0xFFABABAB),
-                          titelTextColor: Color(0xFF817F82),
-                          borderColor: Color(0xFFDEDAE0),
-                          backgroundColor: Color(0xFFDEDAE0),
+                          hintTextColor: ColorsFormat.hintColor,
+                          titelTextColor: ColorsFormat.titleColor,
+                          borderColor: ColorsFormat.border_backgroundWhiteColor,
+                          backgroundColor:
+                              ColorsFormat.border_backgroundWhiteColor,
                         ),
                         TextFieldModule(
                           name: "password".tr(),
@@ -176,23 +171,21 @@ class _LogInState extends State<LogIn> {
                           obscureText: true,
                           hintTextTitle: "enterPassword".tr(),
                           textFieldTitle: "password".tr(),
-                          hintTextColor: Color(0xFFABABAB),
-                          titelTextColor: Color(0xFF817F82),
-                          borderColor: Color(0xFFDEDAE0),
-                          backgroundColor: Color(0xFFDEDAE0),
+                          hintTextColor: ColorsFormat.hintColor,
+                          titelTextColor: ColorsFormat.titleColor,
+                          borderColor: ColorsFormat.border_backgroundWhiteColor,
+                          backgroundColor:
+                              ColorsFormat.border_backgroundWhiteColor,
                         ),
-                        SizedBox(
-                            height: 1.h),
+                        SizedBox(height: 1.h),
                         Container(
                           alignment: Alignment.centerRight,
                           child: RichText(
                             text: TextSpan(
                               text: "forgotPasswordLink".tr(),
-                              style: TextStyle(
-                                fontSize: 17,
-                                color: Color(0xFF502371),
-                                fontFamily: 'Inder',
+                              style: TextStyleFormat.textFieldStyle.copyWith(
                                 decoration: TextDecoration.underline,
+                                color: ColorsFormat.button_linksColor,
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
@@ -228,11 +221,10 @@ class _LogInState extends State<LogIn> {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        SizedBox(
-                            height: 4.5.h),
+                        SizedBox(height: 4.5.h),
                         OperationButtonModule(
-                          borderColor: Color(0xFF502371),
-                          buttonColor: Color(0xFF502371),
+                          borderColor: ColorsFormat.button_linksColor,
+                          buttonColor: ColorsFormat.button_linksColor,
                           buttonText: "login".tr(),
                           buttonTextColor: Colors.white,
                           onTap: logIn,

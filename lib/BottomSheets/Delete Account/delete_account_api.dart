@@ -1,7 +1,6 @@
 import 'package:http/http.dart' as http;
 
 class DeleteAccountApi {
-
   static Future<bool> deleteAccount(String token) async {
     final url = Uri.parse('https://lupira.onrender.com/api/auth/delete');
 
@@ -18,7 +17,6 @@ class DeleteAccountApi {
     if (response.statusCode == 200) {
       return true;
     } else {
-      print('Delete account failed: ${response.body}');
       return false;
     }
   }

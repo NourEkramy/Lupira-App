@@ -20,7 +20,9 @@ class ArticleModel {
       link: json["link"] ?? "",
       website: json["displayLink"] ?? "Unknown source",
       image: json["pagemap"]?["cse_image"]?[0]?["src"] ?? "",
-      publishedDate: json["pagemap"]?["metatags"]?[0]?["article:published_time"] ?? "Unknown date",
+      publishedDate: json["pagemap"]?["metatags"]?[0]
+              ?["article:published_time"] ??
+          "Unknown date",
     );
   }
 

@@ -2,7 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 import '../BaseScreen/Layout/main_layout.dart';
+import '../Formating/colors_format.dart';
 import 'detection_result_screen.dart';
 import '../Models/detection_questions_model.dart';
 import '../Modules/question_module.dart';
@@ -57,7 +59,8 @@ class _DetectionScreenState extends State<DetectionScreen> {
     final prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
 
-    List<Questions> fetchedQuestions = await QuestionsServices.getQuestions(token!);
+    List<Questions> fetchedQuestions =
+        await QuestionsServices.getQuestions(token!);
     setState(() {
       if (fetchedQuestions.isEmpty) {
         hasErrorLoadingQuestions = true;
@@ -163,7 +166,8 @@ class _DetectionScreenState extends State<DetectionScreen> {
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-                content: Text(responseData['message'] ?? "diagnosisFailed".tr())),
+                content:
+                    Text(responseData['message'] ?? "diagnosisFailed".tr())),
           );
         }
       } catch (e) {
@@ -201,10 +205,10 @@ class _DetectionScreenState extends State<DetectionScreen> {
           children: [
             CircleAvatar(
               radius: 8.6.h,
-              backgroundColor: Color(0xffDDBCC3),
+              backgroundColor: ColorsFormat.lupusArticlesWhite,
               child: ImageIcon(
                 AssetImage("assets/images/error.png"),
-                color: Color(0xffD6101D),
+                color: ColorsFormat.lightRedError,
                 size: 39.sp,
               ),
             ),
@@ -214,11 +218,9 @@ class _DetectionScreenState extends State<DetectionScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 2.2.w),
               child: Text(
-                "questionUnavailable".tr()+"\n"+"tryAgain".tr(),
-                style: TextStyle(
-                    fontFamily: "Inder",
-                    fontSize: 22,
-                    color: Color(0xffD6101D)),
+                "questionUnavailable".tr() + "\n" + "tryAgain".tr(),
+                style: TextStyleFormat.notFountText
+                    .copyWith(color: ColorsFormat.lightRedError),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -240,10 +242,8 @@ class _DetectionScreenState extends State<DetectionScreen> {
             children: [
               Text(
                 "${(_progress * 100).ceil()}%",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Color(0xff817F82),
-                ),
+                style: TextStyleFormat.passwordPageSubTitle
+                    .copyWith(color: ColorsFormat.titleColor),
               ),
               SizedBox(
                 width: 3.w,
@@ -254,9 +254,9 @@ class _DetectionScreenState extends State<DetectionScreen> {
                   child: LinearProgressIndicator(
                     value: _progress,
                     borderRadius: BorderRadius.circular(4.4.w),
-                    backgroundColor: const Color(0xffC5C3C6),
-                    valueColor: const AlwaysStoppedAnimation<Color>(
-                      Color(0xFF9D82AF),
+                    backgroundColor: Color(0xffC5C3C6),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      ColorsFormat.indecatorPurble,
                     ),
                   ),
                 ),
@@ -279,11 +279,10 @@ class _DetectionScreenState extends State<DetectionScreen> {
                     children: [
                       Text(
                         _getTitleForIndex(startIndexes[_currentPage]),
-                        style: TextStyle(
-                          fontFamily: "Inder",
-                          fontSize: 26,
+                        style: TextStyleFormat.passwordSubTitle.copyWith(
                           fontWeight: FontWeight.w700,
-                          color: Color(0xff3D1A57),
+                          color: ColorsFormat.darckPruble,
+                          fontSize: 26,
                         ),
                       ),
                       ...questions.where((question) {
@@ -333,9 +332,9 @@ class _DetectionScreenState extends State<DetectionScreen> {
                                         ),
                                         Text(
                                           "back".tr(),
-                                          style: TextStyle(
+                                          style: TextStyleFormat.textFieldStyle
+                                              .copyWith(
                                             color: Color(0xff9166B0),
-                                            fontFamily: "Inder",
                                             fontSize: 19,
                                           ),
                                         ),
@@ -348,7 +347,8 @@ class _DetectionScreenState extends State<DetectionScreen> {
                               child: ElevatedButton(
                                 onPressed: _nextPage,
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFF502371),
+                                  backgroundColor:
+                                      ColorsFormat.button_linksColor,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(2.6.w),
                                   ),
@@ -357,9 +357,9 @@ class _DetectionScreenState extends State<DetectionScreen> {
                                   _currentPage == pages.length - 1
                                       ? "submit".tr()
                                       : "next".tr(),
-                                  style: TextStyle(
+                                  style:
+                                      TextStyleFormat.textFieldStyle.copyWith(
                                     color: Colors.white,
-                                    fontFamily: "Inder",
                                     fontSize: 19,
                                   ),
                                 ),

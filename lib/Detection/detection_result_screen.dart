@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/Formating/colors_format.dart';
+import 'package:untitled/Formating/text_style_format.dart';
 
 class DetectionResultScreen extends StatelessWidget {
   const DetectionResultScreen({super.key});
@@ -21,7 +23,7 @@ class DetectionResultScreen extends StatelessWidget {
                   backgroundColor: Color(0xffDDBCC3),
                   child: ImageIcon(
                     AssetImage("assets/images/warning_positive_result.png"),
-                    color: Color(0xffD6101D),
+                    color: ColorsFormat.lightRedError,
                     size: 100.sp,
                   ),
                 )
@@ -39,10 +41,11 @@ class DetectionResultScreen extends StatelessWidget {
           ),
           Text(
             "detectionResult".tr(),
-            style: TextStyle(
-              fontFamily: "Inder",
+            style: TextStyleFormat.textFieldStyle.copyWith(
+              color: data['code'] == 1
+                  ? ColorsFormat.lightRedError
+                  : Color(0xff209872),
               fontSize: 30,
-              color: data['code'] == 1 ? Color(0xffD6101D) : Color(0xff209872),
             ),
           ),
           SizedBox(
@@ -53,10 +56,9 @@ class DetectionResultScreen extends StatelessWidget {
             child: Text(
               data['result'],
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: "Inder",
+              style: TextStyleFormat.passwordSubTitle.copyWith(
+                color: ColorsFormat.text_dividerColor,
                 fontSize: 27,
-                color: Color(0xff4B4A4C),
               ),
             ),
           ),
@@ -70,7 +72,7 @@ class DetectionResultScreen extends StatelessWidget {
                 vertical: 2.3.h,
               ),
               decoration: BoxDecoration(
-                color: Color(0xffCABDD3),
+                color: ColorsFormat.detectCardColor,
                 borderRadius: BorderRadius.circular(3.w),
               ),
               child: Column(
@@ -83,11 +85,9 @@ class DetectionResultScreen extends StatelessWidget {
                       ),
                       Text(
                         "nextStep".tr(),
-                        style: TextStyle(
-                          fontFamily: "Inder",
-                          fontSize: 24,
+                        style: TextStyleFormat.passwordSubTitle.copyWith(
                           fontWeight: FontWeight.w700,
-                          color: Color(0xff3D1A57),
+                          color: ColorsFormat.darckPruble,
                         ),
                       ),
                     ],
@@ -97,10 +97,8 @@ class DetectionResultScreen extends StatelessWidget {
                   ),
                   Text(
                     "recommendConsulting".tr(),
-                    style: TextStyle(
-                      fontFamily: "Inder",
-                      fontSize: 20,
-                      color: Color(0xff4B4A4C),
+                    style: TextStyleFormat.passwordPageSubTitle.copyWith(
+                      color: ColorsFormat.text_dividerColor,
                     ),
                   ),
                 ],
