@@ -239,7 +239,7 @@ class _SignUpState extends State<SignUp> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 5.h),
+              SizedBox(height: 5.5.h),
               Text(
                 'signup'.tr(),
                 style: TextStyleFormat.pageTitle.copyWith(

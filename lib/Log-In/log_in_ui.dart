@@ -132,7 +132,7 @@ class _LogInState extends State<LogIn> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 4.h),
+                SizedBox(height: 5.5.h),
                 Text(
                   "login".tr(),
                   style: TextStyleFormat.pageTitle.copyWith(
