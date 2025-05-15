@@ -150,6 +150,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
               builder: (context) => MainLayout(
                 title: "detectionResult".tr(),
                 child: DetectionResultScreen(),
+                showBottomNav: false,
               ),
               settings: RouteSettings(
                 arguments: {

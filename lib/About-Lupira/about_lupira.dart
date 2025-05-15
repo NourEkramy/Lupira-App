@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:untitled/BaseScreen/Tabs/diagnosis_tab.dart';
 
 class AboutLupira extends StatelessWidget {
   AboutLupira({super.key});

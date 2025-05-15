@@ -191,6 +191,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                         ? MainLayout(
                                             title: 'changePassword'.tr(),
                                             child: ChangePassword(),
+                                            showBottomNav: false,
                                           )
                                         : LogIn(),
                             transitionsBuilder: (context, animation,

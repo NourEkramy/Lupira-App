@@ -25,6 +25,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
           MaterialPageRoute(
             builder: (context) => MainLayout(
               title: "detection".tr(),
+              showBottomNav: false,
               child: DetectionScreen(),
             ),
           ),

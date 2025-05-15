@@ -90,6 +90,7 @@ class _SettingsTabsState extends State<SettingsTabs> {
             transitionDuration: Duration(milliseconds: 250),
             pageBuilder: (context, animation, secondaryAnimation) => MainLayout(
               title: 'Profile',
+              showBottomNav: false,
               child: Profile(),
             ),
             transitionsBuilder:
@@ -118,6 +119,7 @@ class _SettingsTabsState extends State<SettingsTabs> {
             transitionDuration: Duration(milliseconds: 250),
             pageBuilder: (context, animation, secondaryAnimation) => MainLayout(
               title: 'changePassword'.tr(),
+              showBottomNav: false,
               child: ChangePassword(),
             ),
             transitionsBuilder:

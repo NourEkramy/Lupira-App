@@ -58,6 +58,7 @@ class HomeTab extends StatelessWidget {
                     pageBuilder: (context, animation, secondaryAnimation) =>
                         MainLayout(
                           title: 'articles'.tr(),
+                          showBottomNav: false,
                           child: LupusArticles(),
                         ),
                     transitionsBuilder:
@@ -143,6 +144,7 @@ class HomeTab extends StatelessWidget {
                         MainLayout(
                       title: 'about'.tr(),
                       appName: 'Lupira',
+                      showBottomNav: false,
                       child: AboutLupira(),
                     ),
                     transitionsBuilder:

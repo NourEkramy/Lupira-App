@@ -89,6 +89,7 @@ class _DetectionHistoryState extends State<DetectionHistory> {
                                 detectionData: historyData[index],
                               ),
                               title: 'detectionDetails'.tr(),
+                              showBottomNav: false,
                             ),
                           ),
                         );

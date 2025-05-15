@@ -115,6 +115,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                         MaterialPageRoute(
                           builder: (context) => MainLayout(
                             title: "history".tr(),
+                            showBottomNav: false,
                             child: DetectionHistory(),
                           ),
                           settings: RouteSettings(
@@ -187,6 +188,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                                 detectionData: historyData[index],
                               ),
                               title: 'detectionDetails'.tr(),
+                              showBottomNav: false,
                             ),
                           ),
                         );
