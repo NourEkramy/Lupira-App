@@ -146,6 +146,7 @@
   "invalidResetFormat": "Invalid reset link format.",
   "failedProccessResetLink": "Failed to process the reset link.",
   "error": "Error",
-  "understood": "OK"
-
+  "understood": "OK",
+  "diagnosisPage": "Diagnosis",
+  "forgotPassword": "Forgot Password"
 }

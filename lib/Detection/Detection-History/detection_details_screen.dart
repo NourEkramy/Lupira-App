@@ -17,7 +17,7 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
   String _getTitleForIndex(int questionIndex) {
     if (questionIndex == 0) return "anaTest".tr();
     if (questionIndex == 1) return "symptoms".tr();
-    if (questionIndex == 17) return "labTests".tr();
+    if (questionIndex == 17) return "labTest".tr();
     return '';
   }
 

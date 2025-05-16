@@ -145,7 +145,7 @@ class _LogInState extends State<LogIn> {
                     child: Column(
                       children: [
                         TextFieldModule(
-                          name: "email".tr(),
+                          name: "Email",
                           validators: [
                             FormBuilderValidators.required(
                                 errorText: "emailRequired".tr()),
@@ -162,7 +162,7 @@ class _LogInState extends State<LogIn> {
                               ColorsFormat.border_backgroundWhiteColor,
                         ),
                         TextFieldModule(
-                          name: "password".tr(),
+                          name: "Password",
                           validators: [
                             FormBuilderValidators.required(
                                 errorText: "passwordRequired".tr()),

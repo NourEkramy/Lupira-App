@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:untitled/Formating/colors_format.dart';
 import 'package:untitled/Formating/text_style_format.dart';
+import 'dart:math' as math;
 
 class DetectionCardModule extends StatelessWidget {
   String mainTitle;
@@ -15,9 +16,9 @@ class DetectionCardModule extends StatelessWidget {
     required this.onTap,
     this.subtitle,
   });
-
   @override
   Widget build(BuildContext context) {
+    bool isArabic = context.locale.languageCode == 'ar';
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -28,7 +29,7 @@ class DetectionCardModule extends StatelessWidget {
             color: ColorsFormat.detectCardColor,
             borderRadius: BorderRadius.circular(2.6.w),
           ),
-          padding: EdgeInsets.all(5.w),
+          padding: EdgeInsets.all(isArabic ? 4.w : 5.w),
           margin: EdgeInsets.only(
             top: 0.8.h,
             right: 1.w,
@@ -64,7 +65,7 @@ class DetectionCardModule extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorsFormat.detectCardColor,
                         padding: EdgeInsets.symmetric(
-                          horizontal: 6.w,
+                          horizontal: isArabic ? 7.3.w : 6.w,
                         ),
                         shape: RoundedRectangleBorder(
                           side: BorderSide(
@@ -89,11 +90,21 @@ class DetectionCardModule extends StatelessWidget {
             ],
           ),
         ),
-        Positioned(
-          top: -1.1.h,
-          right: -3.6.w,
-          child: Image.asset("assets/images/detection image.png"),
-        ),
+        isArabic
+            ? Positioned(
+                top: -1.1.h,
+                left: -3.6.w, // moved from 'right' to 'left'
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.identity()..rotateY(math.pi),
+                  child: Image.asset("assets/images/detection image.png"),
+                ),
+              )
+            : Positioned(
+                top: -1.1.h,
+                right: -3.6.w,
+                child: Image.asset("assets/images/detection image.png"),
+              ),
       ],
     );
   }

@@ -4,10 +4,13 @@ import 'package:http/http.dart' as http;
 import '../Models/detection_questions_model.dart';
 
 class QuestionsServices {
-  static Future<List<Questions>> getQuestions(String token) async {
+  static Future<List<Questions>> getQuestions(String token, String language) async {
     Uri url = Uri.https(
       "lupira.onrender.com",
       "/api/diagnosis/questions",
+      {
+        "lang": language,
+      },
     );
 
     try {

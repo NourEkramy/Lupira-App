@@ -31,9 +31,11 @@ class _DetectionHistoryState extends State<DetectionHistory> {
   Future<void> fetchData() async {
     final prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
+    var language = prefs.getString('selected_language') ??
+        EasyLocalization.of(context)!.locale.languageCode;
 
     try {
-      final response = await HistoryApi.fetchHistory(token!);
+      final response = await HistoryApi.fetchHistory(token!, language);
 
       if (response['success'] == true) {
         setState(() {

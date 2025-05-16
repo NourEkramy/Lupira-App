@@ -52,8 +52,8 @@ class LogoutBottomSheet extends StatelessWidget {
                   ),
                   SizedBox(height: 7.h),
                   OperationButtonModule(
-                    borderColor: ColorsFormat.border_backgroundWhiteColor,
-                    buttonColor: ColorsFormat.border_backgroundWhiteColor,
+                    borderColor: ColorsFormat.button_linksColor,
+                    buttonColor: ColorsFormat.button_linksColor,
                     buttonText: 'cancel'.tr(),
                     buttonTextColor: Colors.white,
                     onTap: () {

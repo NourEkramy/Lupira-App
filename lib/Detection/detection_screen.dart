@@ -58,9 +58,11 @@ class _DetectionScreenState extends State<DetectionScreen> {
   Future<void> _loadQuestions() async {
     final prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
+    var language = prefs.getString('selected_language') ??
+        EasyLocalization.of(context)!.locale.languageCode;
 
     List<Questions> fetchedQuestions =
-        await QuestionsServices.getQuestions(token!);
+        await QuestionsServices.getQuestions(token!, language);
     setState(() {
       if (fetchedQuestions.isEmpty) {
         hasErrorLoadingQuestions = true;

@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class HistoryApi {
-  static Future<dynamic?> fetchHistory(String token) async {
-    final url = Uri.parse('https://lupira.onrender.com/api/diagnosis/history');
+  static Future<dynamic?> fetchHistory(String token, String language) async {
+    final url = Uri.parse('https://lupira.onrender.com/api/diagnosis/history?lang=$language');
 
     final headers = {
       "Authorization": "Bearer $token",

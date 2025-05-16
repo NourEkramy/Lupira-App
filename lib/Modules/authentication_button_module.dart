@@ -51,7 +51,7 @@ class AuthenticationButtonModule extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 2.w),
               child: Text(
-                'OR',
+                'or'.tr(),
                 style: TextStyleFormat.snackBarMessage
                     .copyWith(color: ColorsFormat.titleColor),
               ),

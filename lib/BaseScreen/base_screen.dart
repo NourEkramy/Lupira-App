@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/BaseScreen/base_screen_logic.dart';
@@ -15,7 +16,7 @@ class BaseScreen extends StatelessWidget {
     SettingsTabs(),
   ];
 
-  final List<String> appBarTitles = ["Lupira", "Diagnosis", "Settings"];
+  final List<String> appBarTitles = ["Lupira", "diagnosis".tr(), "settings".tr()];
 
   @override
   Widget build(BuildContext context) {

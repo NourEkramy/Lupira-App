@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/About-Lupira/about_lupira.dart';
 import 'package:untitled/BaseScreen/base_screen_logic.dart';
 import 'package:untitled/Formating/text_style_format.dart';
 import '../../Formating/colors_format.dart';
@@ -105,19 +107,19 @@ class MainLayout extends StatelessWidget {
                       },
                       items: [
                         BottomNavigationBarItem(
-                          label: "Home",
+                          label: "home".tr(),
                           icon: ImageIcon(
                             AssetImage("assets/images/home-button.png"),
                           ),
                         ),
                         BottomNavigationBarItem(
-                          label: "Diagnosis",
+                          label: "diagnosis".tr(),
                           icon: ImageIcon(
                             AssetImage("assets/images/diagnose.png"),
                           ),
                         ),
                         BottomNavigationBarItem(
-                          label: "Settings",
+                          label: "settings".tr(),
                           icon: Icon(Icons.settings),
                         ),
                       ],

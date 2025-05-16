@@ -28,11 +28,11 @@ class _SettingsTabsState extends State<SettingsTabs> {
   ];
 
   final List<String> optionTexts = [
-    'Profile',
-    'Change password',
-    'Language',
-    'Delete account',
-    'Log out'
+    'profile'.tr(),
+    'changePassword'.tr(),
+    'language'.tr(),
+    'deleteAccount'.tr(),
+    'logout'.tr()
   ];
 
   final List<Color> optionTextColors = [
@@ -90,7 +90,7 @@ class _SettingsTabsState extends State<SettingsTabs> {
           PageRouteBuilder(
             transitionDuration: Duration(milliseconds: 250),
             pageBuilder: (context, animation, secondaryAnimation) => MainLayout(
-              title: 'Profile',
+              title: 'profile'.tr(),
               showBottomNav: false,
               child: Profile(),
             ),

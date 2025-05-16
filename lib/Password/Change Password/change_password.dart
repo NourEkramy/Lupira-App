@@ -20,7 +20,7 @@ class ChangePassword extends StatefulWidget {
         FormBuilderValidators.required(errorText: 'oldPaswwordRequired'.tr())
       ],
       'name': 'oldPassword',
-      'title': 'oldPassword'.tr(),
+      'title': 'oldPaswword'.tr(),
       'hint': 'enterOldPassword'.tr(),
     },
     {
