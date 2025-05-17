@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:untitled/Formating/text_style_format.dart';
 import 'package:untitled/Modules/article_card_module.dart';
@@ -16,6 +17,8 @@ class LupusArticles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String language = context.locale.languageCode;
+
     return Padding(
       padding: EdgeInsets.only(
         left: 3.6.w,
@@ -23,7 +26,7 @@ class LupusArticles extends StatelessWidget {
         top: 3.8.h,
       ),
       child: FutureBuilder<List<ArticleModel>>(
-        future: ArticlesServices.getLupusArticles(),
+        future: ArticlesServices.getLupusArticles(language),
         builder: (context, snapshot) {
           var articles = snapshot.data ?? [];
           if (snapshot.connectionState == ConnectionState.waiting) {

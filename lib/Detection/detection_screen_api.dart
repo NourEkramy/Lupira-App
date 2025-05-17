@@ -39,9 +39,10 @@ class QuestionsServices {
 
   static Future<Map<String, dynamic>> sendAndDetect({
     required String token,
+    required String language,
     required Map<String, dynamic> body,
   }) async {
-    Uri url = Uri.parse("https://lupira.onrender.com/api/diagnosis/detection");
+    Uri url = Uri.parse("https://lupira.onrender.com/api/diagnosis/detection?lang=$language");
 
     final headers = {
       "Authorization": "Bearer $token",

@@ -85,6 +85,8 @@ class _DetectionScreenState extends State<DetectionScreen> {
   Future<void> _nextPage() async {
     final prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
+    var language = prefs.getString('selected_language') ??
+        EasyLocalization.of(context)!.locale.languageCode;
 
     final currentQuestions = pages[_currentPage];
     bool hasAnyError = false;
@@ -146,6 +148,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
         dynamic responseData = await QuestionsServices.sendAndDetect(
           token: token!,
           body: requestBody,
+          language: language,
         );
         if (responseData['success'] == true) {
           String result = responseData['data']['result'];

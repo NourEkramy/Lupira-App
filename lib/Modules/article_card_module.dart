@@ -53,8 +53,8 @@ class ArticleCardModule extends StatelessWidget {
             ),
             SizedBox(height: 1.h),
             Padding(
-              padding: EdgeInsets.only(
-                left: 2.w,
+              padding: EdgeInsets.symmetric(
+                horizontal: 2.w,
               ),
               child: Text(
                 websiteName,
@@ -65,8 +65,8 @@ class ArticleCardModule extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                left: 2.w,
+              padding: EdgeInsets.symmetric(
+                horizontal: 2.w,
               ),
               child: Text(
                 articleName,

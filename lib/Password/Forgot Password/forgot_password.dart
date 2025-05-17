@@ -100,6 +100,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   @override
   Widget build(BuildContext context) {
+    bool isArabic = context.locale.languageCode == 'ar';
     return Scaffold(
       body: UserCredentialsCardModule(
         cardBody: SingleChildScrollView(
@@ -112,12 +113,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     ? 'verfEmail'.tr()
                     : 'forgotPasswordLink'.tr(),
                 style: TextStyleFormat.passwordPageTitle
-                    .copyWith(color: ColorsFormat.pageTitlePurble),
+                    .copyWith(color: ColorsFormat.pageTitlePurble,fontSize: isArabic ? 40 : null,),
               ),
               SizedBox(height: 0.3.h),
               Text(
                 (codeState == 200 || codeState == 500)
-                    ? message
+                    ? "passwordReset".tr()
                     : 'enterResetEmail'.tr(),
                 textAlign: TextAlign.center,
                 style: TextStyleFormat.passwordPageSubTitle.copyWith(
@@ -167,7 +168,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     SizedBox(height: 2.5.h),
                     OperationButtonModule(
                       borderColor: ColorsFormat.button_linksColor,
-                      buttonColor: ColorsFormat.border_backgroundWhiteColor,
+                      buttonColor: ColorsFormat.credentialsCardColor,
                       buttonText: widget.isChangingPassword
                           ? 'back'.tr()
                           : 'backLogin'.tr(),
