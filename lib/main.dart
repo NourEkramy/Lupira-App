@@ -13,10 +13,10 @@ import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Password/Change%20Password/change_password.dart';
 import 'package:untitled/Password/Reset%20Password/reset_password.dart';
 import 'package:untitled/Splash-and-Main/splash_screen.dart';
-import '../BaseScreen/base_screen_logic.dart';
-import '../Password/Forgot Password/forgot_password.dart';
-import '../Profile/profile.dart';
-import '../Sign-Up/sign_up_ui.dart';
+import 'BaseScreen/base_screen_logic.dart';
+import 'Password/Forgot Password/forgot_password.dart';
+import 'Profile/profile.dart';
+import 'Sign-Up/sign_up_ui.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

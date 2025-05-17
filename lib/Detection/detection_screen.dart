@@ -121,7 +121,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
       });
       _pageController.animateToPage(
         _currentPage,
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 250),
         curve: Curves.easeInOut,
       );
     } else {
@@ -191,7 +191,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
       });
       _pageController.animateToPage(
         _currentPage,
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 250),
         curve: Curves.easeInOut,
       );
     }

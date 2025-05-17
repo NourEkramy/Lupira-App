@@ -149,5 +149,7 @@
   "understood": "OK",
   "diagnosisPage": "Diagnosis",
   "forgotPassword": "Forgot Password",
-  "accountDeletedSuccess": "Account deleted successfully"
+  "accountDeletedSuccess": "Account deleted successfully",
+  "confirmExit": "Confirm Exit",
+  "exitQuestion": "If you exit now answers won't be save, Are you sure?"
 }

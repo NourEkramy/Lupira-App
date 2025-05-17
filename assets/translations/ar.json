@@ -149,6 +149,7 @@
   "error": "خطأ",
   "understood": "فهمت",
   "forgotPassword": "نسيت كلمية المرور",
-  "accountDeletedSuccess": "تم حذف الحساب بنجاح"
-
+  "accountDeletedSuccess": "تم حذف الحساب بنجاح",
+  "confirmExit": "تاكيد الخروج",
+  "exitQuestion": "إذا خرجت الأن لن تحفظ الإجابات, هلأنت متأكد؟"
 }
