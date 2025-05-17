@@ -4,8 +4,8 @@ import 'dart:convert';
 import '../Models/user_profile_data_model.dart';
 
 class ProfileApi {
-  static Future<UserProfileDataModel?> fetchProfile(String token) async {
-    final url = Uri.parse('https://lupira.onrender.com/api/users/profile');
+  static Future<UserProfileDataModel?> fetchProfile(String token, String language) async {
+    final url = Uri.parse('https://lupira.onrender.com/api/users/profile?lang=$language');
 
     final headers = {
       "Authorization": "Bearer $token",

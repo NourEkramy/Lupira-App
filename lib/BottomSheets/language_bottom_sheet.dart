@@ -22,6 +22,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    bool isArabic = context.locale.languageCode == 'ar';
     return Container(
       decoration: BoxDecoration(
         color: ColorsFormat.credentialsCardColor,
@@ -62,7 +63,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
               Navigator.pop(context);
             },
             child: Padding(
-              padding: EdgeInsets.only(left: 6.w),
+              padding: EdgeInsets.symmetric(horizontal: 6.w),
               child: Row(
                 children: [
                   Container(
@@ -81,7 +82,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
                           : null,
                     ),
                   ),
-                  SizedBox(width: 2.w),
+                  SizedBox(width: isArabic ? 3.w : 2.w),
                   Text(
                     'arabic'.tr(),
                     style: TextStyleFormat.passwordSubTitle
@@ -100,7 +101,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
               Navigator.pop(context);
             },
             child: Padding(
-              padding: EdgeInsets.only(left: 6.w),
+              padding: EdgeInsets.symmetric(horizontal: 6.w),
               child: Row(
                 children: [
                   Container(
@@ -119,7 +120,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
                           : null,
                     ),
                   ),
-                  SizedBox(width: 2.w),
+                  SizedBox(width:  isArabic ? 3.w : 2.w),
                   Text(
                     'english'.tr(),
                     style: TextStyleFormat.passwordSubTitle

@@ -10,7 +10,7 @@
   "confirmPasswordRequired": "الرجاء تأكيد كلمة المرور",
   "confirmPassword": "تأكيد كلمة المرور",
   "resetPassword": "إعادة تعيين كلمة المرور",
-  "passwordReset": "تم إرسال رسالة إعادة تعيين كلمة المرور بنجاح. يُرجى التحقق من بريدك الإلكتروني.",
+  "passwordReset": "تم إرسال رابط إعادة التعيين إلى بريدك",
   "enterPassword": "أدخل كلمة المرور",
   "forgotPasswordLink": "هل نسيت كلمة المرور؟",
   "noMatchPassword": "كلمات المرور غير متطابقة",
@@ -63,7 +63,7 @@
   "enterResetEmail": "أدخل حسابك لإعادة تعيين كلمة المرور",
   "sendVerificatoin": "أرسل بريد إلكتروني للتحقق",
   "backLogin": "الرجوع إلى صفحة تسجيل الدخول",
-  "verfEmail": "البردي الإلكتروني للتحقق",
+  "verfEmail": "بريد التحقق",
   "resendEmail": "إعادة إرسال البريد الإلكتروني",
   "quickDetection": "الكشف سريعا",
   "freeDetection": "الكشف الذئبة المجاني",
@@ -85,7 +85,7 @@
   "seeMore": "انظر المزيد",
   "lupusSigns": "تم الكشف عن وجود الذئبة",
   "noLupusSigns": "لم يتم الكشف عن وجود الذئبة",
-  "profile": "الملف الشخصية",
+  "profile": "الملف الشخصي",
   "language": "اللغة",
   "deleteAccount": "حذف الحساب",
   "logout": "تسجيل الخروج",
@@ -98,8 +98,8 @@
   "prerequisites": "متطلبات",
   "start": "أبدأ",
   "close": "إغلاق",
-  "followingMandatory": ":التحاليل التالية إلزامية",
-  "followingOptional": ":التحاليل التالية اختيارية",
+  "followingMandatory": "التحاليل التالية إلزامية:",
+  "followingOptional": "التحاليل التالية اختيارية:",
   "understoodPrerequisites": "لقد قرأت وفهمت المتطلبات",
   "anaTest": "(ANA)تحليل وجود أجسام مضادة",
   "symptoms": "الأعراض",
@@ -148,5 +148,7 @@
   "failedProccessResetLink": ".فشل في معالجة رابط إعادة التعيين",
   "error": "خطأ",
   "understood": "فهمت",
-  "forgotPassword": "نسيت كلمية المرور"
+  "forgotPassword": "نسيت كلمية المرور",
+  "accountDeletedSuccess": "تم حذف الحساب بنجاح"
+
 }

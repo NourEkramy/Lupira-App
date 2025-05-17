@@ -50,7 +50,7 @@ class LogoutBottomSheet extends StatelessWidget {
                     style: TextStyleFormat.passwordSubTitle
                         .copyWith(color: ColorsFormat.text_dividerColor),
                   ),
-                  SizedBox(height: 7.h),
+                  SizedBox(height: 5.h),
                   OperationButtonModule(
                     borderColor: ColorsFormat.button_linksColor,
                     buttonColor: ColorsFormat.button_linksColor,

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:untitled/About-Lupira/about_lupira.dart';
 import 'package:untitled/Formating/text_style_format.dart';
@@ -10,10 +11,11 @@ import '../../Formating/colors_format.dart';
 import '../Layout/main_layout.dart';
 
 class HomeTab extends StatelessWidget {
-  const HomeTab({super.key});
+  HomeTab({super.key});
 
   @override
   Widget build(BuildContext context) {
+    bool isArabic = context.locale.languageCode == 'ar';
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.only(
@@ -116,7 +118,7 @@ class HomeTab extends StatelessWidget {
                               fontFamily: 'Inder',
                             ),
                           ),
-                          SizedBox(height: 1.h),
+                          SizedBox(height: isArabic ? 0.6.h : 1.h),
                           Text(
                             'learnLupus'.tr(),
                             style: TextStyle(
@@ -213,7 +215,7 @@ class HomeTab extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(height: 1.h),
+                          SizedBox(height: isArabic ? 0.6.h : 1.h),
                           Text(
                             'discover'.tr(),
                             style: TextStyleFormat.textFieldStyle.copyWith(

@@ -19,7 +19,7 @@ class DeleteAccountBottomSheet extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'Account deleted successfuly',
+            'accountDeletedSuccess'.tr(),
             style:
                 TextStyleFormat.snackBarMessage.copyWith(color: Colors.white),
           ),
@@ -123,7 +123,7 @@ class DeleteAccountBottomSheet extends StatelessWidget {
                     style: TextStyleFormat.passwordSubTitle
                         .copyWith(color: ColorsFormat.text_dividerColor),
                   ),
-                  SizedBox(height: 7.h),
+                  SizedBox(height: 5.h),
                   OperationButtonModule(
                     borderColor: ColorsFormat.button_linksColor,
                     buttonColor: ColorsFormat.button_linksColor,

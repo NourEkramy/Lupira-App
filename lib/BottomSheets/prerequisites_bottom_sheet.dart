@@ -40,6 +40,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    bool isArabic = context.locale.languageCode == 'ar';
     return Container(
       height: 90.h,
       decoration: BoxDecoration(
@@ -277,12 +278,15 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                           MaterialTapTargetSize.shrinkWrap,
                                     ),
                                     Expanded(
-                                      child: Text(
-                                        'understoodPrerequisites'.tr(),
-                                        style: TextStyleFormat.snackBarMessage
-                                            .copyWith(
-                                          color: ColorsFormat.darckPruble,
-                                          fontSize: 17,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(vertical: isArabic ? 7.0 : 0),
+                                        child: Text(
+                                          'understoodPrerequisites'.tr(),
+                                          style: TextStyleFormat.snackBarMessage
+                                              .copyWith(
+                                            color: ColorsFormat.darckPruble,
+                                            fontSize: 17,
+                                          ),
                                         ),
                                       ),
                                     ),

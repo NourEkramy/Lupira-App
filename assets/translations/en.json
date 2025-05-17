@@ -10,7 +10,7 @@
   "confirmPasswordRequired": "Please confirm password",
   "confirmPassword": "Confirm password",
   "resetPassword": "Reset Password",
-  "passwordReset": "Password reset email sent successfully. Please check your inbox.",
+  "passwordReset": "We've sent a reset email to your account.",
   "enterPassword": "Enter password",
   "forgotPasswordLink": "Forgot Password?",
   "noMatchPassword": "Passwords don't match",
@@ -148,5 +148,6 @@
   "error": "Error",
   "understood": "OK",
   "diagnosisPage": "Diagnosis",
-  "forgotPassword": "Forgot Password"
+  "forgotPassword": "Forgot Password",
+  "accountDeletedSuccess": "Account deleted successfully"
 }
