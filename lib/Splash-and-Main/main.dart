@@ -12,10 +12,11 @@ import 'package:untitled/Log-In/auth_service.dart';
 import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Password/Change%20Password/change_password.dart';
 import 'package:untitled/Password/Reset%20Password/reset_password.dart';
-import 'BaseScreen/base_screen_logic.dart';
-import 'Password/Forgot Password/forgot_password.dart';
-import 'Profile/profile.dart';
-import 'Sign-Up/sign_up_ui.dart';
+import 'package:untitled/Splash-and-Main/splash_screen.dart';
+import '../BaseScreen/base_screen_logic.dart';
+import '../Password/Forgot Password/forgot_password.dart';
+import '../Profile/profile.dart';
+import '../Sign-Up/sign_up_ui.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,26 +53,6 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     initDeepLink();
-    checkLoginStatus();
-  }
-
-  Future<void> checkLoginStatus() async {
-    bool isLoggedIn = await AuthService.isTokenValid();
-    if (!isLoggedIn) {
-      // Token is expired or not found, log the user out
-      await AuthService.logout();
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => LogIn(),
-          ));
-    } else {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => BaseScreen(),
-          ));
-    }
   }
 
   void initDeepLink() async {
@@ -154,8 +135,9 @@ class _MyAppState extends State<MyApp> {
             locale: context.locale,
             navigatorKey: _navigatorKey,
             debugShowCheckedModeBanner: false,
-            initialRoute: LogIn.routName,
+            initialRoute: SplashScreen.routName,
             routes: {
+              SplashScreen.routName: (context) => SplashScreen(),
               LogIn.routName: (context) => LogIn(),
               '/reset-password': (context) {
                 final token =
