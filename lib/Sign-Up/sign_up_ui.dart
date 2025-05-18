@@ -30,6 +30,7 @@ class _SignUpState extends State<SignUp> {
   Country? selectedPhoneCountry;
   String? selectedGender;
   String? selectedEthnicity;
+  bool _isLoading = false;
 
   List<Map<String, dynamic>> textFields = [
     {
@@ -114,6 +115,7 @@ class _SignUpState extends State<SignUp> {
 
   Future<void> signUp() async {
     if (_formKey.currentState?.saveAndValidate() ?? false) {
+      setState(() => _isLoading = true);
       final values = _formKey.currentState!.value;
 
       String userName = values['Username'];
@@ -161,6 +163,7 @@ class _SignUpState extends State<SignUp> {
               duration: Duration(seconds: 5),
             ),
           );
+          setState(() => _isLoading = false);
 
           Navigator.pushReplacement(
             context,
@@ -186,6 +189,7 @@ class _SignUpState extends State<SignUp> {
             ),
           );
         } else {
+          setState(() => _isLoading = false);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(message,
@@ -206,6 +210,7 @@ class _SignUpState extends State<SignUp> {
           );
         }
       } catch (e) {
+        setState(() => _isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -562,6 +567,15 @@ class _SignUpState extends State<SignUp> {
                         buttonColor: ColorsFormat.button_linksColor,
                         buttonText: "signup".tr(),
                         buttonTextColor: Colors.white,
+                        isLoading: _isLoading,
+                        loadingIndicator: SizedBox(
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 3.5.sp,
+                          ),
+                          height: 3.h,
+                          width: 6.w,
+                        ),
                       ),
                       AuthenticationButtonModule(
                           onTap: () {

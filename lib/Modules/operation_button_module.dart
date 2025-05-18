@@ -7,15 +7,19 @@ class OperationButtonModule extends StatelessWidget {
   Color buttonColor;
   Color buttonTextColor;
   String buttonText;
+  Widget? loadingIndicator;
+  bool isLoading;
   VoidCallback onTap;
 
   OperationButtonModule({
     super.key,
     required this.borderColor,
     required this.buttonColor,
-    required this.buttonText,
+    this.buttonText = "",
     required this.buttonTextColor,
     required this.onTap,
+    this.loadingIndicator,
+    this.isLoading = false,
   });
 
   @override
@@ -34,11 +38,13 @@ class OperationButtonModule extends StatelessWidget {
         ),
         minimumSize: Size(double.infinity, 5.7.h),
       ),
-      child: Text(
-        buttonText,
-        style: TextStyleFormat.passwordPageSubTitle
-            .copyWith(color: buttonTextColor),
-      ),
+      child: isLoading
+          ? loadingIndicator
+          : Text(
+              buttonText,
+              style: TextStyleFormat.passwordPageSubTitle
+                  .copyWith(color: buttonTextColor),
+            ),
     );
   }
 }

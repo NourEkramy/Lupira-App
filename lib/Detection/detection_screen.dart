@@ -30,6 +30,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
   List<int> startIndexes = [];
   Map<String, bool> hasError = {};
   bool hasErrorLoadingQuestions = false;
+  bool isSubmitting = false;
 
   @override
   void initState() {
@@ -125,6 +126,9 @@ class _DetectionScreenState extends State<DetectionScreen> {
         curve: Curves.easeInOut,
       );
     } else {
+      setState(() {
+        isSubmitting = true;
+      });
       final List<Map<String, dynamic>> formattedAnswers = [];
 
       for (var entry in answers.entries) {
@@ -150,6 +154,10 @@ class _DetectionScreenState extends State<DetectionScreen> {
           body: requestBody,
           language: language,
         );
+        setState(() {
+          isSubmitting = false;
+        });
+
         if (responseData['success'] == true) {
           String result = responseData['data']['result'];
           Navigator.pushReplacement(
@@ -176,6 +184,9 @@ class _DetectionScreenState extends State<DetectionScreen> {
           );
         }
       } catch (e) {
+        setState(() {
+          isSubmitting = false;
+        });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("${e.toString()}")),
         );
@@ -358,16 +369,25 @@ class _DetectionScreenState extends State<DetectionScreen> {
                                     borderRadius: BorderRadius.circular(2.6.w),
                                   ),
                                 ),
-                                child: Text(
-                                  _currentPage == pages.length - 1
-                                      ? "submit".tr()
-                                      : "next".tr(),
-                                  style:
-                                      TextStyleFormat.textFieldStyle.copyWith(
-                                    color: Colors.white,
-                                    fontSize: 17.5.sp,
-                                  ),
-                                ),
+                                child: isSubmitting
+                                    ? SizedBox(
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                          strokeWidth: 3.5.sp,
+                                        ),
+                                        height: 2.5.h,
+                                        width: 5.5.w,
+                                      )
+                                    : Text(
+                                        _currentPage == pages.length - 1
+                                            ? "submit".tr()
+                                            : "next".tr(),
+                                        style: TextStyleFormat.textFieldStyle
+                                            .copyWith(
+                                          color: Colors.white,
+                                          fontSize: 17.4.sp,
+                                        ),
+                                      ),
                               ),
                             ),
                           ],

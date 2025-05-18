@@ -26,10 +26,12 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
+  bool _isLoading = false;
   final _formKey = GlobalKey<FormBuilderState>();
 
   void logIn() async {
     if (_formKey.currentState?.saveAndValidate() ?? false) {
+      setState(() => _isLoading = true);
       final values = _formKey.currentState!.value;
 
       String email = values['Email'];
@@ -50,6 +52,7 @@ class _LogInState extends State<LogIn> {
               'username', response['data']['user']['username']);
           await prefs.setString('email', email);
           await prefs.setString('loginTime', DateTime.now().toIso8601String());
+          setState(() => _isLoading = false);
 
           Navigator.pushReplacement(
             context,
@@ -76,6 +79,7 @@ class _LogInState extends State<LogIn> {
             ),
           );
         } else {
+          setState(() => _isLoading = false);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -97,6 +101,7 @@ class _LogInState extends State<LogIn> {
           );
         }
       } catch (e) {
+        setState(() => _isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -227,6 +232,15 @@ class _LogInState extends State<LogIn> {
                           buttonColor: ColorsFormat.button_linksColor,
                           buttonText: "login".tr(),
                           buttonTextColor: Colors.white,
+                          isLoading: _isLoading,
+                          loadingIndicator: SizedBox(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 3.5.sp,
+                            ),
+                            height: 3.h,
+                            width: 6.w,
+                          ),
                           onTap: logIn,
                         ),
                         AuthenticationButtonModule(
