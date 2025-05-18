@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:untitled/About-Lupira/about_lupira.dart';
 import 'package:untitled/Formating/text_style_format.dart';
@@ -111,20 +110,19 @@ class HomeTab extends StatelessWidget {
                         children: [
                           Text(
                             'articles'.tr(),
-                            style: TextStyle(
+                            style:
+                            TextStyleFormat.passwordPageSubTitle.copyWith(
+                              fontSize: 19.sp,
+                              color: ColorsFormat.text_dividerColor,
                               fontWeight: FontWeight.bold,
-                              fontSize: 21,
-                              color: Color(0xFF4B4A4C),
-                              fontFamily: 'Inder',
                             ),
                           ),
                           SizedBox(height: isArabic ? 0.6.h : 1.h),
                           Text(
                             'learnLupus'.tr(),
-                            style: TextStyle(
-                              fontSize: 17,
-                              color: Color(0xFF817F82),
-                              fontFamily: 'Inder',
+                            style: TextStyleFormat.textFieldStyle.copyWith(
+                              fontSize: 16.sp,
+                              color: ColorsFormat.titleColor,
                             ),
                           ),
                         ],
@@ -198,7 +196,7 @@ class HomeTab extends StatelessWidget {
                               text: 'about'.tr(),
                               style:
                                   TextStyleFormat.passwordPageSubTitle.copyWith(
-                                fontSize: 21,
+                                fontSize: 19.sp,
                                 color: ColorsFormat.text_dividerColor,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -207,7 +205,7 @@ class HomeTab extends StatelessWidget {
                                   text: 'Lupira',
                                   style: TextStyle(
                                     fontWeight: FontWeight.normal,
-                                    fontSize: 21,
+                                    fontSize: 18.5.sp,
                                     color: ColorsFormat.button_linksColor,
                                     fontFamily: 'BerkshireSwash',
                                   ),
@@ -219,7 +217,7 @@ class HomeTab extends StatelessWidget {
                           Text(
                             'discover'.tr(),
                             style: TextStyleFormat.textFieldStyle.copyWith(
-                              fontSize: 17,
+                              fontSize: 16.sp,
                               color: ColorsFormat.titleColor,
                             ),
                           ),

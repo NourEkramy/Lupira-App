@@ -22,7 +22,7 @@ class AboutLupira extends StatelessWidget {
               Text(
                 'Lupira',
                 style: TextStyle(
-                  fontSize: 55,
+                  fontSize: 29.8.sp,
                   fontFamily: 'BerkshireSwash',
                   color: ColorsFormat.button_linksColor,
                 ),

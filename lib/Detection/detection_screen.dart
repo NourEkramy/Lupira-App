@@ -287,7 +287,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
                         style: TextStyleFormat.passwordSubTitle.copyWith(
                           fontWeight: FontWeight.w700,
                           color: ColorsFormat.darckPruble,
-                          fontSize: 26,
+                          fontSize: 20.5.sp,
                         ),
                       ),
                       ...questions.where((question) {
@@ -340,7 +340,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
                                           style: TextStyleFormat.textFieldStyle
                                               .copyWith(
                                             color: Color(0xff9166B0),
-                                            fontSize: 19,
+                                            fontSize: 17.5.sp,
                                           ),
                                         ),
                                       ],
@@ -365,7 +365,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
                                   style:
                                       TextStyleFormat.textFieldStyle.copyWith(
                                     color: Colors.white,
-                                    fontSize: 19,
+                                    fontSize: 17.5.sp,
                                   ),
                                 ),
                               ),

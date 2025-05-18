@@ -113,7 +113,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     ? 'verfEmail'.tr()
                     : 'forgotPasswordLink'.tr(),
                 style: TextStyleFormat.passwordPageTitle
-                    .copyWith(color: ColorsFormat.pageTitlePurble,fontSize: isArabic ? 40 : null,),
+                    .copyWith(color: ColorsFormat.pageTitlePurble,fontSize: isArabic ? 25.5.sp : null,),
               ),
               SizedBox(height: 0.3.h),
               Text(

@@ -70,7 +70,8 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
               textAlign: TextAlign.center,
               'prerequisites'.tr(),
               style: TextStyleFormat.bottomSheetTitle
-                  .copyWith(color: ColorsFormat.darckPruble),
+                  .copyWith(color: ColorsFormat.darckPruble,
+              ),
             ),
           ),
           SizedBox(height: 3.h),
@@ -107,7 +108,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                     style:
                                         TextStyleFormat.textFieldStyle.copyWith(
                                       color: ColorsFormat.text_dividerColor,
-                                      fontSize: 17,
+                                      fontSize: 16.5.sp,
                                     ),
                                   ),
                                 ),
@@ -121,7 +122,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                     style:
                                         TextStyleFormat.textFieldStyle.copyWith(
                                       color: ColorsFormat.text_dividerColor,
-                                      fontSize: 17,
+                                      fontSize: 16.5.sp,
                                     ),
                                   ),
                                 ),
@@ -135,7 +136,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                     style:
                                         TextStyleFormat.textFieldStyle.copyWith(
                                       color: ColorsFormat.text_dividerColor,
-                                      fontSize: 17,
+                                      fontSize: 16.5.sp,
                                     ),
                                   ),
                                 ),
@@ -149,7 +150,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                     style:
                                         TextStyleFormat.textFieldStyle.copyWith(
                                       color: ColorsFormat.text_dividerColor,
-                                      fontSize: 17,
+                                      fontSize: 16.5.sp,
                                     ),
                                   ),
                                 ),
@@ -163,7 +164,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                     style:
                                         TextStyleFormat.textFieldStyle.copyWith(
                                       color: ColorsFormat.text_dividerColor,
-                                      fontSize: 17,
+                                      fontSize: 16.5.sp,
                                     ),
                                   ),
                                 ),
@@ -177,7 +178,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                     style:
                                         TextStyleFormat.textFieldStyle.copyWith(
                                       color: ColorsFormat.text_dividerColor,
-                                      fontSize: 17,
+                                      fontSize: 16.5.sp,
                                     ),
                                   ),
                                 ),
@@ -191,7 +192,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                     style:
                                         TextStyleFormat.textFieldStyle.copyWith(
                                       color: ColorsFormat.text_dividerColor,
-                                      fontSize: 17,
+                                      fontSize: 16.5.sp,
                                     ),
                                   ),
                                 ),
@@ -224,7 +225,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                     style:
                                         TextStyleFormat.textFieldStyle.copyWith(
                                       color: ColorsFormat.text_dividerColor,
-                                      fontSize: 17,
+                                      fontSize: 16.5.sp,
                                     ),
                                   ),
                                 ),
@@ -238,7 +239,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                     style:
                                         TextStyleFormat.textFieldStyle.copyWith(
                                       color: ColorsFormat.text_dividerColor,
-                                      fontSize: 17,
+                                      fontSize: 16.5.sp,
                                     ),
                                   ),
                                 ),
@@ -285,7 +286,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                           style: TextStyleFormat.snackBarMessage
                                               .copyWith(
                                             color: ColorsFormat.darckPruble,
-                                            fontSize: 17,
+                                            fontSize: 16.5.sp,
                                           ),
                                         ),
                                       ),
@@ -314,7 +315,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                           style: TextStyleFormat.snackBarMessage
                                               .copyWith(
                                             color: ColorsFormat.lightRedError,
-                                            fontSize: 15,
+                                            fontSize: 15.2.sp,
                                           )),
                                     ],
                                   ),
@@ -337,7 +338,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                               },
                               child: Container(
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: 6.7.w,
+                                  horizontal: 7.6.w,
                                   vertical: 0.6.h,
                                 ),
                                 decoration: BoxDecoration(
@@ -352,7 +353,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                   style:
                                       TextStyleFormat.textFieldStyle.copyWith(
                                     color: ColorsFormat.lightRedError,
-                                    fontSize: 19,
+                                    fontSize: 17.5.sp,
                                   ),
                                 ),
                               ),
@@ -375,7 +376,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                   style:
                                       TextStyleFormat.textFieldStyle.copyWith(
                                     color: Colors.white,
-                                    fontSize: 19,
+                                    fontSize: 17.5.sp,
                                   ),
                                 ),
                               ),

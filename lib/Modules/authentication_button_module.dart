@@ -27,14 +27,14 @@ class AuthenticationButtonModule extends StatelessWidget {
             text: TextSpan(
               text: conditionQuestion,
               style: TextStyleFormat.snackBarMessage.copyWith(
-                fontSize: 15,
+                fontSize: 15.5.sp,
                 color: ColorsFormat.titleColor,
               ),
               children: [
                 TextSpan(
                   text: conditionOperation,
                   style: TextStyleFormat.snackBarMessage.copyWith(
-                    fontSize: 15,
+                    fontSize: 15.5.sp,
                     color: ColorsFormat.button_linksColor,
                     decoration: TextDecoration.underline,
                   ),

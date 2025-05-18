@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-import 'package:untitled/About-Lupira/about_lupira.dart';
 import 'package:untitled/BaseScreen/base_screen_logic.dart';
 import 'package:untitled/Formating/text_style_format.dart';
 import '../../Formating/colors_format.dart';
@@ -25,6 +24,7 @@ class MainLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BaseScreenCubit, BaseScreenState>(
       builder: (context, state) {
+        bool isArabic = context.locale.languageCode == 'ar';
         return Scaffold(
           backgroundColor: ColorsFormat.border_backgroundWhiteColor,
           appBar: AppBar(
@@ -45,6 +45,7 @@ class MainLayout extends StatelessWidget {
                     : SizedBox(); // No back button on the first screen
               },
             ),
+            centerTitle: true,
             elevation: 0,
             toolbarHeight: 8.6.h,
             shape: RoundedRectangleBorder(
@@ -52,27 +53,25 @@ class MainLayout extends StatelessWidget {
                   BorderRadius.vertical(bottom: Radius.circular(2.6.w)),
             ),
             backgroundColor: ColorsFormat.gradientPruble,
-            title: Center(
-              child: RichText(
-                text: TextSpan(
-                  text: title,
-                  style: TextStyleFormat.passwordPageTitle.copyWith(
-                    fontSize: 40,
-                    color: ColorsFormat.credentialsCardColor,
-                  ),
-                  children: appName != null
-                      ? [
-                          TextSpan(
-                            text: appName,
-                            style: TextStyle(
-                              fontSize: 40,
-                              fontFamily: 'BerkshireSwash',
-                              color: ColorsFormat.credentialsCardColor,
-                            ),
-                          ),
-                        ]
-                      : [],
+            title: RichText(
+              text: TextSpan(
+                text: title,
+                style: TextStyleFormat.passwordPageTitle.copyWith(
+                  fontSize: isArabic ? 25.sp : 26.sp,
+                  color: ColorsFormat.credentialsCardColor,
                 ),
+                children: appName != null
+                    ? [
+                        TextSpan(
+                          text: appName,
+                          style: TextStyle(
+                            fontSize: isArabic ? 25.sp : 26.sp,
+                            fontFamily: 'BerkshireSwash',
+                            color: ColorsFormat.credentialsCardColor,
+                          ),
+                        ),
+                      ]
+                    : [],
               ),
             ),
           ),

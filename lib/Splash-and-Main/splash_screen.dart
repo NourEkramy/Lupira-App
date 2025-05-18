@@ -59,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Text(
             'Lupira',
             style: TextStyle(
-              fontSize: 47,
+              fontSize: 28.sp,
               fontFamily: 'BerkshireSwash',
               color: ColorsFormat.button_linksColor,
             ),

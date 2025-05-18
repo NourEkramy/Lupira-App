@@ -16,6 +16,7 @@ class DetectionCardModule extends StatelessWidget {
     required this.onTap,
     this.subtitle,
   });
+
   @override
   Widget build(BuildContext context) {
     bool isArabic = context.locale.languageCode == 'ar';
@@ -78,7 +79,7 @@ class DetectionCardModule extends StatelessWidget {
                       child: Text(
                         "startNow".tr(),
                         style: TextStyleFormat.textFieldStyle.copyWith(
-                          fontSize: 17,
+                          fontSize: 16.sp,
                           color: ColorsFormat.button_linksColor,
                         ),
                       ),

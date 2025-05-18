@@ -1,53 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class TextStyleFormat {
-  static TextStyle snackBarMessage = const TextStyle(
-    fontSize: 16,
+  static TextStyle snackBarMessage = TextStyle(
+    fontSize: 16.sp,
     fontFamily: 'Inder',
   );
 
-  static TextStyle pageTitle = const TextStyle(
-    fontSize: 48,
+  static TextStyle pageTitle = TextStyle(
+    fontSize: 28.sp,
     fontFamily: 'Alegreya',
   );
 
-  static TextStyle passwordPageTitle = const TextStyle(
-    fontSize: 43,
+  static TextStyle passwordPageTitle = TextStyle(
+    fontSize: 26.3.sp,
     fontFamily: 'Alegreya',
   );
 
-  static TextStyle passwordPageSubTitle = const TextStyle(
-    fontSize: 20,
+  static TextStyle passwordPageSubTitle = TextStyle(
+    fontSize: 17.8.sp,
     fontFamily: 'Inder',
   );
 
-  static TextStyle textFieldStyle = const TextStyle(
-    fontSize: 18,
+  static TextStyle textFieldStyle = TextStyle(
+    fontSize: 17.sp,
     fontFamily: 'Inder',
   );
 
-  static TextStyle textFieldError = const TextStyle(
-    fontSize: 12,
+  static TextStyle textFieldError = TextStyle(
+    fontSize: 13.8.sp,
     fontFamily: 'Inder',
   );
 
-  static TextStyle passwordSubTitle = const TextStyle(
-    fontSize: 24,
+  static TextStyle passwordSubTitle = TextStyle(
+    fontSize: 19.4.sp,
     fontFamily: 'Inder',
   );
 
-  static TextStyle notFountText = const TextStyle(
-    fontSize: 22,
+  static TextStyle notFountText = TextStyle(
+    fontSize: 18.8.sp,
     fontFamily: 'Inder',
   );
 
-  static TextStyle websiteName = const TextStyle(
-    fontSize: 14,
+  static TextStyle websiteName = TextStyle(
+    fontSize: 15.sp,
     fontFamily: 'Inder',
   );
 
-  static TextStyle bottomSheetTitle = const TextStyle(
-    fontSize: 32,
+  static TextStyle bottomSheetTitle = TextStyle(
+    fontSize: 22.7.sp,
     fontFamily: 'Inder',
   );
 }

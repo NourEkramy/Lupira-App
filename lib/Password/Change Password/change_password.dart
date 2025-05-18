@@ -119,7 +119,8 @@ class _ChangePasswordState extends State<ChangePassword> {
               SizedBox(height: 2.5.h),
               Text(
                 'diffPassword'.tr(),
-                style: TextStyleFormat.passwordSubTitle.copyWith(color: ColorsFormat.text_dividerColor),
+                style: TextStyleFormat.passwordSubTitle.copyWith(color: ColorsFormat.text_dividerColor,
+                ),
               ),
               ListView.builder(
                 shrinkWrap: true,
