@@ -1,14 +1,13 @@
 import 'dart:async';
 import 'dart:ui';
+import 'package:app_links/app_links.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
-import 'package:uni_links3/uni_links.dart';
 import 'package:untitled/About-Lupira/about_lupira.dart';
 import 'package:untitled/BaseScreen/base_screen.dart';
-import 'package:untitled/Log-In/auth_service.dart';
 import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Password/Change%20Password/change_password.dart';
 import 'package:untitled/Password/Reset%20Password/reset_password.dart';
@@ -46,30 +45,33 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
-
+  late final AppLinks _appLinks;
   StreamSubscription? _sub;
 
   @override
   void initState() {
     super.initState();
-    initDeepLink();
+    initAppLinks();
   }
 
-  void initDeepLink() async {
-    // Handle cold start
-    try {
-      final initialLink = await getInitialLink();
-      if (initialLink != null) handleLink(initialLink);
-    } catch (e) {
-      _showError('failedProccessLink'.tr());
-    }
+  void initAppLinks() {
+    _appLinks = AppLinks();
 
-    // Handle opened while app is running
-    _sub = linkStream.listen((String? link) {
-      if (link != null) handleLink(link);
-    }, onError: (err) {
-      _showError('failedListenLink'.tr());
-    });
+    bool firstLinkHandled = false;
+
+    _appLinks.uriLinkStream.listen(
+          (Uri? uri) {
+        if (uri != null && !firstLinkHandled) {
+          firstLinkHandled = true;
+          handleLink(uri.toString());
+        } else if (uri != null) {
+          handleLink(uri.toString());
+        }
+      },
+      onError: (err) {
+        _showError('failedListenLink'.tr());
+      },
+    );
   }
 
   void handleLink(String link) {
