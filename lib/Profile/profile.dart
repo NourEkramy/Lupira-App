@@ -33,32 +33,6 @@ class _ProfileState extends State<Profile> {
   bool isUpdating = false;
   Country? selectedPhoneCountry;
 
-  static List<Map<String, dynamic>> textFields = [
-    {
-      'validators': [
-        FormBuilderValidators.minLength(5,
-            errorText: "usernameCharLength".tr()),
-        FormBuilderValidators.match(
-          RegExp(r'^[a-zA-Z0-9._]+$'),
-          errorText: "validUsername".tr(),
-        ),
-      ],
-      'title': "username".tr(),
-    },
-    {
-      'validators': [
-        FormBuilderValidators.email(errorText: "emailValidRequired".tr()),
-      ],
-      'title': "email".tr(),
-    },
-    {
-      'title': "dateOfBirth".tr(),
-      'suffix': Icon(Icons.calendar_today_outlined),
-    },
-    {
-      'title': "phone".tr(),
-    },
-  ];
 
   @override
   void initState() {
@@ -135,7 +109,8 @@ class _ProfileState extends State<Profile> {
                 message,
                 style: TextStyle(color: Colors.white),
               ),
-              backgroundColor: success ? Colors.green : ColorsFormat.darckRedError,
+              backgroundColor:
+                  success ? Colors.green : ColorsFormat.darckRedError,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(2.8.w),
               ),
@@ -191,8 +166,41 @@ class _ProfileState extends State<Profile> {
     }
   }
 
+  List<Map<String, dynamic>> getTextFields(BuildContext context) {
+    return [
+      {
+        'validators': [
+          FormBuilderValidators.minLength(
+            5,
+            errorText: "usernameCharLength".tr(),
+          ),
+          FormBuilderValidators.match(
+            RegExp(r'^[a-zA-Z0-9._]+$'),
+            errorText: "validUsername".tr(),
+          ),
+        ],
+        'title': "username".tr(),
+      },
+      {
+        'validators': [
+          FormBuilderValidators.email(errorText: "emailValidRequired".tr()),
+        ],
+        'title': "email".tr(),
+      },
+      {
+        'title': "dateOfBirth".tr(),
+        'suffix': Icon(Icons.calendar_today_outlined),
+      },
+      {
+        'title': "phone".tr(),
+      },
+    ];
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> textFields = getTextFields(context);
     var hintData;
     return isLoading
         ? Center(
@@ -274,7 +282,8 @@ class _ProfileState extends State<Profile> {
                                           vertical: 0.4.h,
                                         ),
                                         decoration: BoxDecoration(
-                                          color: ColorsFormat.border_backgroundWhiteColor,
+                                          color: ColorsFormat
+                                              .border_backgroundWhiteColor,
                                           borderRadius:
                                               BorderRadius.circular(2.6.w),
                                           border: Border.all(
@@ -289,19 +298,21 @@ class _ProfileState extends State<Profile> {
                                               selectedPhoneCountry != null
                                                   ? '+${selectedPhoneCountry!.phoneCode}'
                                                   : 'code'.tr(),
-                                              style: TextStyleFormat.textFieldStyle
+                                              style: TextStyleFormat
+                                                  .textFieldStyle
                                                   .copyWith(
                                                 color:
-                                                selectedPhoneCountry != null
-                                                    ? Color(0xFF4B4A4C)
-                                                    : Color(0xFF817F82),
+                                                    selectedPhoneCountry != null
+                                                        ? Color(0xFF4B4A4C)
+                                                        : Color(0xFF817F82),
                                               ),
                                             ),
                                             SizedBox(width: 2.w),
                                             Container(
                                               width: 0.2.w,
                                               height: 2.8.h,
-                                              color: ColorsFormat.text_dividerColor,
+                                              color: ColorsFormat
+                                                  .text_dividerColor,
                                             ),
                                             SizedBox(width: 2.w),
                                             Expanded(
@@ -310,14 +321,16 @@ class _ProfileState extends State<Profile> {
                                                     textField['keyboardType'],
                                                 onChanged: field.didChange,
                                                 style: TextStyle(
-                                                  color: ColorsFormat.text_dividerColor,
+                                                  color: ColorsFormat
+                                                      .text_dividerColor,
                                                   fontFamily: 'Inder',
                                                 ),
                                                 decoration: InputDecoration(
                                                   border: InputBorder.none,
                                                   hintText: textField['hint'],
                                                   hintStyle: TextStyle(
-                                                    color: ColorsFormat.hintColor,
+                                                    color:
+                                                        ColorsFormat.hintColor,
                                                     fontFamily: 'Inder',
                                                   ),
                                                   // errorText removed here
@@ -424,8 +437,7 @@ class _ProfileState extends State<Profile> {
                             children: [
                               Text(
                                 "country".tr(),
-                                style: TextStyleFormat.textFieldStyle
-                                    .copyWith(
+                                style: TextStyleFormat.textFieldStyle.copyWith(
                                   color: ColorsFormat.text_dividerColor,
                                 ),
                               ),
@@ -460,7 +472,8 @@ class _ProfileState extends State<Profile> {
                                     vertical: 1.8.h,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: ColorsFormat.border_backgroundWhiteColor,
+                                    color: ColorsFormat
+                                        .border_backgroundWhiteColor,
                                     borderRadius: BorderRadius.circular(2.4.w),
                                     border: Border.all(
                                       color: field.hasError
@@ -495,7 +508,9 @@ class _ProfileState extends State<Profile> {
                                       EdgeInsets.only(top: 0.6.h, left: 2.w),
                                   child: Text(
                                     field.errorText ?? '',
-                                    style: TextStyleFormat.textFieldError.copyWith(color: ColorsFormat.darckRedError),
+                                    style: TextStyleFormat.textFieldError
+                                        .copyWith(
+                                            color: ColorsFormat.darckRedError),
                                   ),
                                 ),
                             ],
@@ -561,7 +576,8 @@ class _ProfileState extends State<Profile> {
                             ),
                             child: Text(
                               "saveChanges".tr(),
-                              style: TextStyleFormat.snackBarMessage.copyWith(color: Colors.white),
+                              style: TextStyleFormat.snackBarMessage
+                                  .copyWith(color: Colors.white),
                             ),
                           ),
                         )

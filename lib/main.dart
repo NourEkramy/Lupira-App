@@ -54,18 +54,24 @@ class _MyAppState extends State<MyApp> {
     initAppLinks();
   }
 
-  void initAppLinks() {
+  void initAppLinks() async {
     _appLinks = AppLinks();
 
-    bool firstLinkHandled = false;
+    try {
+      // Handle the initial deep link (cold start)
+      final Uri? initialUri = await _appLinks.getInitialLink();
+      if (initialUri != null) {
+        handleLink(initialUri.toString());
+      }
+    } catch (e) {
+      _showError('failedInitialLink'.tr());
+    }
 
+    // Listen for future deep links
     _appLinks.uriLinkStream.listen(
           (Uri? uri) {
-        if (uri != null && !firstLinkHandled) {
-          firstLinkHandled = true;
-          handleLink(uri.toString());
-        } else if (uri != null) {
-          handleLink(uri.toString());
+        if (uri != null) {
+          handleLink(uri.toString()); // your existing logic
         }
       },
       onError: (err) {

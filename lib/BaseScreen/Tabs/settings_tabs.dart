@@ -27,13 +27,14 @@ class _SettingsTabsState extends State<SettingsTabs> {
     'assets/images/Icon (1).png'
   ];
 
-  final List<String> optionTexts = [
+  List<String> get optionTexts => [
     'profile'.tr(),
     'changePassword'.tr(),
     'language'.tr(),
     'deleteAccount'.tr(),
     'logout'.tr()
   ];
+
 
   final List<Color> optionTextColors = [
     ColorsFormat.text_dividerColor,
