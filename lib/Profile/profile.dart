@@ -472,7 +472,7 @@ class _ProfileState extends State<Profile> {
                                   decoration: BoxDecoration(
                                     color: ColorsFormat
                                         .border_backgroundWhiteColor,
-                                    borderRadius: BorderRadius.circular(2.4.w),
+                                    borderRadius: BorderRadius.circular(2.6.w),
                                     border: Border.all(
                                       color: field.hasError
                                           ? ColorsFormat.darckRedError
