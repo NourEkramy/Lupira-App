@@ -12,7 +12,7 @@ class ArticlesServices {
       "/customsearch/v1",
       {
         "key": apiKey,
-        "q": language=="ar" ? "الذئبةالحمراء" : "lupus",
+        "q": language == "ar" ? "الذئبةالحمراء" : "lupus",
         "cx": cx,
         "num": "10",
       },

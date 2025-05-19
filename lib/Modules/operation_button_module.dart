@@ -3,13 +3,13 @@ import 'package:sizer/sizer.dart';
 import 'package:untitled/Formating/text_style_format.dart';
 
 class OperationButtonModule extends StatelessWidget {
-  Color borderColor;
-  Color buttonColor;
-  Color buttonTextColor;
-  String buttonText;
-  Widget? loadingIndicator;
-  bool isLoading;
-  VoidCallback onTap;
+  final Color borderColor;
+  final Color buttonColor;
+  final Color buttonTextColor;
+  final String buttonText;
+  final Widget? loadingIndicator;
+  final bool isLoading;
+  final VoidCallback onTap;
 
   OperationButtonModule({
     super.key,

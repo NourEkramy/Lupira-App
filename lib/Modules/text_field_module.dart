@@ -5,20 +5,20 @@ import 'package:sizer/sizer.dart';
 import 'package:untitled/Formating/text_style_format.dart';
 
 class TextFieldModule extends StatelessWidget {
-  String textFieldTitle;
-  String hintTextTitle;
-  Color hintTextColor;
-  Color titelTextColor;
-  Color borderColor;
-  Color backgroundColor;
-  Widget? suffix;
-  TextInputType? textFieldType;
-  bool obscureText;
-  bool isReadOnly;
-  VoidCallback? onTap;
-  List<FormFieldValidator<String>>? validators;
-  String name;
-  String? initialProfileData;
+  final String textFieldTitle;
+  final String hintTextTitle;
+  final Color hintTextColor;
+  final Color titelTextColor;
+  final Color borderColor;
+  final Color backgroundColor;
+  final Widget? suffix;
+  final TextInputType? textFieldType;
+  final bool obscureText;
+  final bool isReadOnly;
+  final VoidCallback? onTap;
+  final List<FormFieldValidator<String>>? validators;
+  final String name;
+  final String? initialProfileData;
 
   TextFieldModule({
     super.key,

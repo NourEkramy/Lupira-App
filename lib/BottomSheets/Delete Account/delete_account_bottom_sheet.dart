@@ -8,7 +8,7 @@ import 'package:untitled/Sign-Up/sign_up_ui.dart';
 import '../../Formating/colors_format.dart';
 
 class DeleteAccountBottomSheet extends StatelessWidget {
-  String token;
+  final String token;
 
   DeleteAccountBottomSheet({super.key, required this.token});
 

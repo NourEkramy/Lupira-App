@@ -4,8 +4,8 @@ import 'package:untitled/Formating/colors_format.dart';
 import 'package:untitled/Formating/text_style_format.dart';
 
 class ArticleCardModule extends StatelessWidget {
-  String websiteName, articleName, articleImage;
-  VoidCallback redirectFunction;
+  final String websiteName, articleName, articleImage;
+  final VoidCallback redirectFunction;
 
   ArticleCardModule(
       {super.key,

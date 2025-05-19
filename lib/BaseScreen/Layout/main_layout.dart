@@ -8,11 +8,11 @@ import 'package:untitled/Formating/text_style_format.dart';
 import '../../Formating/colors_format.dart';
 
 class MainLayout extends StatelessWidget {
-  Widget child;
-  String title;
-  String? appName;
-  bool showBottomNav;
-  bool inDetectionScreen;
+  final Widget child;
+  final String title;
+  final String? appName;
+  final bool showBottomNav;
+  final bool inDetectionScreen;
 
   MainLayout({
     super.key,
@@ -45,9 +45,12 @@ class MainLayout extends StatelessWidget {
                     color: Colors.white,
                   ),
                   onPressed: () async {
-                    if(inDetectionScreen){
-                      showDialog(context: context, builder: (context) => ExitWithoutAnsweringBottomSheet(),);
-                    }else{
+                    if (inDetectionScreen) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => ExitWithoutAnsweringBottomSheet(),
+                      );
+                    } else {
                       Navigator.pop(context);
                     }
                   },

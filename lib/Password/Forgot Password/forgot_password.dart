@@ -14,7 +14,7 @@ import '../../Log-In/log_in_ui.dart';
 import 'forgot_password_api.dart';
 
 class ForgotPassword extends StatefulWidget {
-  bool isChangingPassword;
+  final bool isChangingPassword;
 
   ForgotPassword({Key? key, this.isChangingPassword = false}) : super(key: key);
 

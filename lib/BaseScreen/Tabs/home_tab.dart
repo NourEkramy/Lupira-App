@@ -111,7 +111,7 @@ class HomeTab extends StatelessWidget {
                           Text(
                             'articles'.tr(),
                             style:
-                            TextStyleFormat.passwordPageSubTitle.copyWith(
+                                TextStyleFormat.passwordPageSubTitle.copyWith(
                               fontSize: 19.sp,
                               color: ColorsFormat.text_dividerColor,
                               fontWeight: FontWeight.bold,

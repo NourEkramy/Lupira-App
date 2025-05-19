@@ -33,7 +33,6 @@ class _ProfileState extends State<Profile> {
   bool isUpdating = false;
   Country? selectedPhoneCountry;
 
-
   @override
   void initState() {
     super.initState();
@@ -91,12 +90,12 @@ class _ProfileState extends State<Profile> {
         final response = await ProfileApi.applyProfileEdits(
           token: token ?? '',
           country: selectedCountry ?? '',
-          dateOfBirth: dateOfBirth ?? '',
-          email: email ?? '',
+          dateOfBirth: dateOfBirth,
+          email: email,
           ethnicity: selectedEthnicity ?? '',
           gender: selectedGender ?? '',
-          phoneNumber: phone ?? '',
-          username: userName ?? '',
+          phoneNumber: phone,
+          username: userName,
         );
 
         bool success = response['success'];
@@ -196,7 +195,6 @@ class _ProfileState extends State<Profile> {
       },
     ];
   }
-
 
   @override
   Widget build(BuildContext context) {

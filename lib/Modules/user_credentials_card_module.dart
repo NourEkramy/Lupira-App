@@ -3,7 +3,7 @@ import 'package:sizer/sizer.dart';
 import '../Formating/colors_format.dart';
 
 class UserCredentialsCardModule extends StatelessWidget {
-  Widget cardBody;
+  final Widget cardBody;
 
   UserCredentialsCardModule({super.key, required this.cardBody});
 

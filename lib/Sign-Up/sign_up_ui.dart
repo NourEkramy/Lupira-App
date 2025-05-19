@@ -324,7 +324,8 @@ class _SignUpState extends State<SignUp> {
                                           vertical: 0.4.h,
                                         ),
                                         decoration: BoxDecoration(
-                                          color: ColorsFormat.border_backgroundWhiteColor,
+                                          color: ColorsFormat
+                                              .border_backgroundWhiteColor,
                                           borderRadius:
                                               BorderRadius.circular(2.6.w),
                                           border: Border.all(
@@ -340,10 +341,11 @@ class _SignUpState extends State<SignUp> {
                                               selectedPhoneCountry != null
                                                   ? '+${selectedPhoneCountry!.phoneCode}'
                                                   : 'code'.tr(),
-                                              style: TextStyleFormat.textFieldStyle
+                                              style: TextStyleFormat
+                                                  .textFieldStyle
                                                   .copyWith(
-                                                color:
-                                                selectedPhoneCountry != null
+                                                color: selectedPhoneCountry !=
+                                                        null
                                                     ? ColorsFormat.titleColor
                                                     : ColorsFormat.hintColor,
                                               ),
@@ -364,16 +366,20 @@ class _SignUpState extends State<SignUp> {
                                                 keyboardType:
                                                     textField['keyboardType'],
                                                 onChanged: field.didChange,
-                                                style: TextStyleFormat.textFieldStyle
+                                                style: TextStyleFormat
+                                                    .textFieldStyle
                                                     .copyWith(
-                                                  color: ColorsFormat.titleColor,
+                                                  color:
+                                                      ColorsFormat.titleColor,
                                                 ),
                                                 decoration: InputDecoration(
                                                   border: InputBorder.none,
                                                   hintText: textField['hint'],
-                                                  hintStyle: TextStyleFormat.textFieldStyle
+                                                  hintStyle: TextStyleFormat
+                                                      .textFieldStyle
                                                       .copyWith(
-                                                    color: ColorsFormat.hintColor,
+                                                    color:
+                                                        ColorsFormat.hintColor,
                                                   ),
                                                   // errorText removed here
                                                 ),
@@ -455,8 +461,7 @@ class _SignUpState extends State<SignUp> {
                             children: [
                               Text(
                                 "country".tr(),
-                                style: TextStyleFormat.textFieldStyle
-                                    .copyWith(
+                                style: TextStyleFormat.textFieldStyle.copyWith(
                                   color: ColorsFormat.titleColor,
                                 ),
                               ),
@@ -521,8 +526,8 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                   child: Text(
                                     field.errorText ?? '',
-                                    style: TextStyleFormat.textFieldError
-                                        .copyWith(
+                                    style:
+                                        TextStyleFormat.textFieldError.copyWith(
                                       color: ColorsFormat.darckRedError,
                                     ),
                                   ),

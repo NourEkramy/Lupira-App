@@ -6,9 +6,9 @@ import 'package:untitled/Formating/text_style_format.dart';
 import 'dart:math' as math;
 
 class DetectionCardModule extends StatelessWidget {
-  String mainTitle;
-  String? subtitle;
-  VoidCallback? onTap;
+  final String mainTitle;
+  final String? subtitle;
+  final VoidCallback? onTap;
 
   DetectionCardModule({
     super.key,

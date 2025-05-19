@@ -4,7 +4,8 @@ import 'package:http/http.dart' as http;
 import '../Models/detection_questions_model.dart';
 
 class QuestionsServices {
-  static Future<List<Questions>> getQuestions(String token, String language) async {
+  static Future<List<Questions>> getQuestions(
+      String token, String language) async {
     Uri url = Uri.https(
       "lupira.onrender.com",
       "/api/diagnosis/questions",
@@ -42,7 +43,8 @@ class QuestionsServices {
     required String language,
     required Map<String, dynamic> body,
   }) async {
-    Uri url = Uri.parse("https://lupira.onrender.com/api/diagnosis/detection?lang=$language");
+    Uri url = Uri.parse(
+        "https://lupira.onrender.com/api/diagnosis/detection?lang=$language");
 
     final headers = {
       "Authorization": "Bearer $token",

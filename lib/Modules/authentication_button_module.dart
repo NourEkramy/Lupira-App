@@ -6,9 +6,9 @@ import 'package:untitled/Formating/colors_format.dart';
 import 'package:untitled/Formating/text_style_format.dart';
 
 class AuthenticationButtonModule extends StatelessWidget {
-  String conditionQuestion;
-  String conditionOperation;
-  VoidCallback onTap;
+  final String conditionQuestion;
+  final String conditionOperation;
+  final VoidCallback onTap;
 
   AuthenticationButtonModule({
     super.key,

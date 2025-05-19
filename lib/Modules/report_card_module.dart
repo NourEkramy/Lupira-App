@@ -4,9 +4,9 @@ import 'package:untitled/Formating/text_style_format.dart';
 import '../Formating/colors_format.dart';
 
 class ReportCardModule extends StatelessWidget {
-  String reportDate;
-  String reportResult;
-  VoidCallback onTap;
+  final String reportDate;
+  final String reportResult;
+  final VoidCallback onTap;
 
   ReportCardModule({
     super.key,

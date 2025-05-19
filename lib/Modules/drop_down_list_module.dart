@@ -6,18 +6,18 @@ import 'package:untitled/Formating/text_style_format.dart';
 import '../Formating/colors_format.dart';
 
 class DropDownListModule extends StatelessWidget {
-  String text;
-  String hintText;
-  Color borderColor;
-  Color hintColor;
-  Color textColor;
-  Color backgroundColor;
-  List<String> options;
-  String name;
-  List<FormFieldValidator<String>>? validators;
-  ValueChanged<String?>? onChanged;
-  String? initialProfileChoice;
-  bool isReadOnly;
+  final String text;
+  final String hintText;
+  final Color borderColor;
+  final Color hintColor;
+  final Color textColor;
+  final Color backgroundColor;
+  final List<String> options;
+  final String name;
+  final List<FormFieldValidator<String>>? validators;
+  final ValueChanged<String?>? onChanged;
+  final String? initialProfileChoice;
+  final bool isReadOnly;
 
   DropDownListModule({
     super.key,

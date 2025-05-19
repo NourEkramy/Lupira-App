@@ -16,7 +16,11 @@ class BaseScreen extends StatelessWidget {
     SettingsTabs(),
   ];
 
-  final List<String> appBarTitles = ["Lupira", "diagnosis".tr(), "settings".tr()];
+  final List<String> appBarTitles = [
+    "Lupira",
+    "diagnosis".tr(),
+    "settings".tr()
+  ];
 
   @override
   Widget build(BuildContext context) {

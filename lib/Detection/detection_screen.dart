@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
-import 'package:untitled/BottomSheets/exit_without_answering_bottom_sheet.dart';
 import 'package:untitled/Formating/text_style_format.dart';
 import '../BaseScreen/Layout/main_layout.dart';
 import '../Formating/colors_format.dart';
@@ -349,8 +348,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
                                         ),
                                         Text(
                                           "back".tr(),
-                                          style: TextStyleFormat
-                                              .textFieldStyle
+                                          style: TextStyleFormat.textFieldStyle
                                               .copyWith(
                                             color: Color(0xff9166B0),
                                             fontSize: 17.5.sp,
@@ -368,8 +366,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
                                   backgroundColor:
                                       ColorsFormat.button_linksColor,
                                   shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.circular(2.6.w),
+                                    borderRadius: BorderRadius.circular(2.6.w),
                                   ),
                                 ),
                                 child: isSubmitting

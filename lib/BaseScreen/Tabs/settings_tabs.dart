@@ -28,13 +28,12 @@ class _SettingsTabsState extends State<SettingsTabs> {
   ];
 
   List<String> get optionTexts => [
-    'profile'.tr(),
-    'changePassword'.tr(),
-    'language'.tr(),
-    'deleteAccount'.tr(),
-    'logout'.tr()
-  ];
-
+        'profile'.tr(),
+        'changePassword'.tr(),
+        'language'.tr(),
+        'deleteAccount'.tr(),
+        'logout'.tr()
+      ];
 
   final List<Color> optionTextColors = [
     ColorsFormat.text_dividerColor,

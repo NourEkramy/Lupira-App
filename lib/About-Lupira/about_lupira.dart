@@ -17,8 +17,7 @@ class AboutLupira extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              Image.asset(
-                  'assets/images/Splash Icon.png'),
+              Image.asset('assets/images/Splash Icon.png'),
               Text(
                 'Lupira',
                 style: TextStyle(

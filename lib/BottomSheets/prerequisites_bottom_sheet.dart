@@ -6,7 +6,6 @@ import 'package:untitled/Formating/text_style_format.dart';
 import '../BaseScreen/Layout/main_layout.dart';
 import '../Detection/detection_screen.dart';
 import '../Formating/colors_format.dart';
-import 'exit_without_answering_bottom_sheet.dart';
 
 class PrerequisitesBottomSheet extends StatefulWidget {
   const PrerequisitesBottomSheet({super.key});

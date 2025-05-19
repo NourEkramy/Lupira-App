@@ -12,7 +12,7 @@ import 'package:untitled/Password/Reset%20Password/reset_password_api.dart';
 import '../../Formating/colors_format.dart';
 
 class ResetPassword extends StatefulWidget {
-  String token;
+  final String token;
 
   ResetPassword({Key? key, required this.token}) : super(key: key);
 

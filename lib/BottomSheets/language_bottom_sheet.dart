@@ -120,7 +120,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
                           : null,
                     ),
                   ),
-                  SizedBox(width:  isArabic ? 3.w : 2.w),
+                  SizedBox(width: isArabic ? 3.w : 2.w),
                   Text(
                     'english'.tr(),
                     style: TextStyleFormat.passwordSubTitle

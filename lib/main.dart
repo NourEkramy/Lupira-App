@@ -11,11 +11,11 @@ import 'package:untitled/BaseScreen/base_screen.dart';
 import 'package:untitled/Log-In/log_in_ui.dart';
 import 'package:untitled/Password/Change%20Password/change_password.dart';
 import 'package:untitled/Password/Reset%20Password/reset_password.dart';
-import 'package:untitled/Splash-and-Main/splash_screen.dart';
 import 'BaseScreen/base_screen_logic.dart';
 import 'Password/Forgot Password/forgot_password.dart';
 import 'Profile/profile.dart';
 import 'Sign-Up/sign_up_ui.dart';
+import 'Splash/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
 
     // Listen for future deep links
     _appLinks.uriLinkStream.listen(
-          (Uri? uri) {
+      (Uri? uri) {
         if (uri != null) {
           handleLink(uri.toString()); // your existing logic
         }

@@ -5,7 +5,7 @@ import 'package:untitled/Formating/text_style_format.dart';
 import '../Formating/colors_format.dart';
 
 class ExplanationBottomSheet extends StatelessWidget {
-  String explanation;
+  final String explanation;
 
   ExplanationBottomSheet({
     super.key,

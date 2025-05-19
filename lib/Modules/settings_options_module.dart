@@ -4,10 +4,10 @@ import 'package:untitled/Formating/text_style_format.dart';
 import '../Formating/colors_format.dart';
 
 class SettingsOptionsModule extends StatelessWidget {
-  String optionIcon;
-  String optionText;
-  Color optionTextColor;
-  VoidCallback optionAction;
+  final String optionIcon;
+  final String optionText;
+  final Color optionTextColor;
+  final VoidCallback optionAction;
 
   SettingsOptionsModule({
     super.key,

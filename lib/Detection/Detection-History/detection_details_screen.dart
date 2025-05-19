@@ -26,7 +26,6 @@ class _DetectionDetailsScreenState extends State<DetectionDetailsScreen> {
     final responses = widget.detectionData['responses'] as List? ?? [];
     final resultLabel =
         widget.detectionData['resultLabel'] as String? ?? 'noResult'.tr();
-    String? lastTitle;
 
     return Column(
       children: [
