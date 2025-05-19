@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:untitled/BaseScreen/base_screen_logic.dart';
+import 'package:untitled/BottomSheets/exit_without_answering_bottom_sheet.dart';
 import 'package:untitled/Formating/text_style_format.dart';
 import '../../Formating/colors_format.dart';
 
@@ -11,6 +12,7 @@ class MainLayout extends StatelessWidget {
   String title;
   String? appName;
   bool showBottomNav;
+  bool inDetectionScreen;
 
   MainLayout({
     super.key,
@@ -18,6 +20,7 @@ class MainLayout extends StatelessWidget {
     required this.title,
     this.appName,
     this.showBottomNav = true,
+    this.inDetectionScreen = false,
   });
 
   @override
@@ -31,18 +34,24 @@ class MainLayout extends StatelessWidget {
             automaticallyImplyLeading: false,
             leading: Builder(
               builder: (BuildContext context) {
-                return Navigator.canPop(context)
-                    ? IconButton(
-                        icon: Icon(
-                          Icons.arrow_back,
-                          size: 22.sp,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context); // Navigate back
-                        },
-                      )
-                    : SizedBox(); // No back button on the first screen
+                if (!Navigator.canPop(context)) {
+                  return SizedBox();
+                }
+
+                return IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    size: 22.sp,
+                    color: Colors.white,
+                  ),
+                  onPressed: () async {
+                    if(inDetectionScreen){
+                      showDialog(context: context, builder: (context) => ExitWithoutAnsweringBottomSheet(),);
+                    }else{
+                      Navigator.pop(context);
+                    }
+                  },
+                );
               },
             ),
             centerTitle: true,

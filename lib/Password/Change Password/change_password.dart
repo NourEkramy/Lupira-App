@@ -52,12 +52,17 @@ class ChangePassword extends StatefulWidget {
 
 class _ChangePasswordState extends State<ChangePassword> {
   final _formKey = GlobalKey<FormBuilderState>();
+  bool isLoading = false;
 
   Future<void> changePassword() async {
     if (_formKey.currentState?.saveAndValidate() ?? false) {
       final values = _formKey.currentState!.value;
 
       try {
+        setState(() {
+          isLoading = true;
+        });
+
         final prefs = await SharedPreferences.getInstance();
         var token = prefs.getString('token');
 
@@ -102,6 +107,10 @@ class _ChangePasswordState extends State<ChangePassword> {
             ),
           ),
         );
+      } finally {
+        setState(() {
+          isLoading = false;
+        });
       }
     }
   }
@@ -119,7 +128,8 @@ class _ChangePasswordState extends State<ChangePassword> {
               SizedBox(height: 2.5.h),
               Text(
                 'diffPassword'.tr(),
-                style: TextStyleFormat.passwordSubTitle.copyWith(color: ColorsFormat.text_dividerColor,
+                style: TextStyleFormat.passwordSubTitle.copyWith(
+                  color: ColorsFormat.text_dividerColor,
                 ),
               ),
               ListView.builder(
@@ -159,6 +169,15 @@ class _ChangePasswordState extends State<ChangePassword> {
               ),
               SizedBox(height: 7.h),
               OperationButtonModule(
+                isLoading: isLoading,
+                loadingIndicator: SizedBox(
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 3.5.sp,
+                  ),
+                  height: 3.h,
+                  width: 6.w,
+                ),
                 borderColor: ColorsFormat.button_linksColor,
                 buttonColor: ColorsFormat.button_linksColor,
                 buttonText: 'changePassword'.tr(),

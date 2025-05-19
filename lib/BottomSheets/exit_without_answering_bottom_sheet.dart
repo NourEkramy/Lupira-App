@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/BaseScreen/base_screen.dart';
 import 'package:untitled/Formating/text_style_format.dart';
 import 'package:untitled/Modules/operation_button_module.dart';
 import '../../Formating/colors_format.dart';
@@ -54,9 +55,7 @@ class ExitWithoutAnsweringBottomSheet extends StatelessWidget {
                     buttonColor: ColorsFormat.button_linksColor,
                     buttonText: 'cancel'.tr(),
                     buttonTextColor: Colors.white,
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
+                    onTap: () => Navigator.pop(context),
                   ),
                   SizedBox(height: 2.5.h),
                   OperationButtonModule(
@@ -64,8 +63,15 @@ class ExitWithoutAnsweringBottomSheet extends StatelessWidget {
                     buttonColor: ColorsFormat.credentialsCardColor,
                     buttonText: 'confirmExit'.tr(),
                     buttonTextColor: ColorsFormat.lightRedError,
-                    onTap: () {
-                    },
+                    onTap: () => Navigator.pushAndRemoveUntil(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 250),
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            BaseScreen(),
+                      ),
+                      (route) => false,
+                    ),
                   ),
                   SizedBox(height: 1.5.h),
                 ],

@@ -6,6 +6,7 @@ import 'package:untitled/Formating/text_style_format.dart';
 import '../BaseScreen/Layout/main_layout.dart';
 import '../Detection/detection_screen.dart';
 import '../Formating/colors_format.dart';
+import 'exit_without_answering_bottom_sheet.dart';
 
 class PrerequisitesBottomSheet extends StatefulWidget {
   const PrerequisitesBottomSheet({super.key});
@@ -28,6 +29,7 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
           context,
           MaterialPageRoute(
             builder: (context) => MainLayout(
+              inDetectionScreen: true,
               title: "detection".tr(),
               showBottomNav: false,
               child: DetectionScreen(),
@@ -69,8 +71,8 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
             child: Text(
               textAlign: TextAlign.center,
               'prerequisites'.tr(),
-              style: TextStyleFormat.bottomSheetTitle
-                  .copyWith(color: ColorsFormat.darckPruble,
+              style: TextStyleFormat.bottomSheetTitle.copyWith(
+                color: ColorsFormat.darckPruble,
               ),
             ),
           ),
@@ -280,7 +282,8 @@ class _PrerequisitesScreenState extends State<PrerequisitesBottomSheet> {
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsets.symmetric(vertical: isArabic ? 7.0 : 0),
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: isArabic ? 7.0 : 0),
                                         child: Text(
                                           'understoodPrerequisites'.tr(),
                                           style: TextStyleFormat.snackBarMessage

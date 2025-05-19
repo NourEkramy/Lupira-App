@@ -98,13 +98,21 @@ class DetectionCardModule extends StatelessWidget {
                 child: Transform(
                   alignment: Alignment.center,
                   transform: Matrix4.identity()..rotateY(math.pi),
-                  child: Image.asset("assets/images/detection image.png"),
+                  child: Image.asset(
+                    "assets/images/detection image.png",
+                    height: 25.h,
+                    width: 47.w,
+                  ),
                 ),
               )
             : Positioned(
                 top: -1.1.h,
                 right: -3.6.w,
-                child: Image.asset("assets/images/detection image.png"),
+                child: Image.asset(
+                  "assets/images/detection image.png",
+                  width: 47.w,
+                  height: 25.h,
+                ),
               ),
       ],
     );

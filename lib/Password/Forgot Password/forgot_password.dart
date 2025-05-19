@@ -25,6 +25,7 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
+  bool isLoading = false;
   final _formKey = GlobalKey<FormBuilderState>();
   var codeState;
   late String message;
@@ -34,6 +35,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       final values = _formKey.currentState!.value;
 
       String email = values['Email'];
+
+      setState(() {
+        isLoading = true;
+      });
 
       try {
         final response = await ForgotPasswordApi.forgotPassword(
@@ -94,6 +99,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             duration: Duration(seconds: 5),
           ),
         );
+      } finally {
+        setState(() {
+          isLoading = false;
+        });
       }
     }
   }
@@ -112,8 +121,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 (codeState == 200 || codeState == 500)
                     ? 'verfEmail'.tr()
                     : 'forgotPasswordLink'.tr(),
-                style: TextStyleFormat.passwordPageTitle
-                    .copyWith(color: ColorsFormat.pageTitlePurble,fontSize: isArabic ? 25.5.sp : null,),
+                style: TextStyleFormat.passwordPageTitle.copyWith(
+                  color: ColorsFormat.pageTitlePurble,
+                  fontSize: isArabic ? 25.5.sp : null,
+                ),
               ),
               SizedBox(height: 0.3.h),
               Text(
@@ -157,6 +168,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     ),
                     SizedBox(height: 4.5.h),
                     OperationButtonModule(
+                      isLoading: isLoading,
+                      loadingIndicator: SizedBox(
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 3.5.sp,
+                        ),
+                        height: 3.h,
+                        width: 6.w,
+                      ),
                       borderColor: ColorsFormat.button_linksColor,
                       buttonColor: ColorsFormat.button_linksColor,
                       buttonText: (codeState == 200 || codeState == 500)

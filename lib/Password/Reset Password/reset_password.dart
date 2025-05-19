@@ -45,11 +45,16 @@ class ResetPassword extends StatefulWidget {
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
+  bool isLoading = false;
   final _formKey = GlobalKey<FormBuilderState>();
 
   Future<void> resetPassword() async {
     if (_formKey.currentState?.saveAndValidate() ?? false) {
       final values = _formKey.currentState!.value;
+
+      setState(() {
+        isLoading = true;
+      });
 
       try {
         final response = await ResetPasswordApi.resetPassword(
@@ -66,7 +71,8 @@ class _ResetPasswordState extends State<ResetPassword> {
             SnackBar(
               content: Text(
                 message,
-                style: TextStyleFormat.snackBarMessage.copyWith(color: Colors.white),
+                style: TextStyleFormat.snackBarMessage
+                    .copyWith(color: Colors.white),
               ),
               backgroundColor: Colors.green,
               shape: RoundedRectangleBorder(
@@ -106,7 +112,8 @@ class _ResetPasswordState extends State<ResetPassword> {
             SnackBar(
               content: Text(
                 message,
-                style: TextStyleFormat.snackBarMessage.copyWith(color: Colors.white),
+                style: TextStyleFormat.snackBarMessage
+                    .copyWith(color: Colors.white),
               ),
               backgroundColor: ColorsFormat.darckRedError,
               shape: RoundedRectangleBorder(
@@ -123,7 +130,8 @@ class _ResetPasswordState extends State<ResetPassword> {
           SnackBar(
             content: Text(
               "$e",
-              style: TextStyleFormat.snackBarMessage.copyWith(color: Colors.white),
+              style:
+                  TextStyleFormat.snackBarMessage.copyWith(color: Colors.white),
             ),
             backgroundColor: ColorsFormat.darckRedError,
             shape: RoundedRectangleBorder(
@@ -137,6 +145,10 @@ class _ResetPasswordState extends State<ResetPassword> {
             duration: Duration(seconds: 5),
           ),
         );
+      } finally {
+        setState(() {
+          isLoading = false;
+        });
       }
     }
   }
@@ -153,13 +165,15 @@ class _ResetPasswordState extends State<ResetPassword> {
               SizedBox(height: 9.8.h),
               Text(
                 'resetPassword'.tr(),
-                style: TextStyleFormat.passwordPageTitle.copyWith(color: ColorsFormat.pageTitlePurble),
+                style: TextStyleFormat.passwordPageTitle
+                    .copyWith(color: ColorsFormat.pageTitlePurble),
               ),
               SizedBox(height: 0.3.h),
               Text(
                 'diffPassword'.tr(),
                 textAlign: TextAlign.center,
-                style: TextStyleFormat.passwordPageSubTitle.copyWith(color: ColorsFormat.titleColor),
+                style: TextStyleFormat.passwordPageSubTitle
+                    .copyWith(color: ColorsFormat.titleColor),
               ),
               SizedBox(height: 2.h),
               Expanded(
@@ -204,6 +218,15 @@ class _ResetPasswordState extends State<ResetPassword> {
                       ),
                       SizedBox(height: 4.h),
                       OperationButtonModule(
+                        isLoading: isLoading,
+                        loadingIndicator: SizedBox(
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 3.5.sp,
+                          ),
+                          height: 3.h,
+                          width: 6.w,
+                        ),
                         onTap: resetPassword,
                         borderColor: ColorsFormat.button_linksColor,
                         buttonColor: ColorsFormat.button_linksColor,
