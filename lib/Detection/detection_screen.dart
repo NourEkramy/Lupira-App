@@ -99,7 +99,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
         if (q.questionNumber == 20) {
           final q19 = questionsList.firstWhere((q) => q.questionNumber == 19);
           final q19Answer = answers[q19.sId];
-          if (q19Answer != 'Yes') {
+          if (q19Answer != 'Yes' && q19Answer != 'نعم') {
             continue; // Skip validation for Q20
           }
         }
@@ -304,12 +304,12 @@ class _DetectionScreenState extends State<DetectionScreen> {
                       ...questions.where((question) {
                         // Show question 20 only if question 19 was answered "Yes"
                         if (question.questionNumber == 20) {
-                          return answers.entries.any((entry) =>
-                              questionsList
-                                      .firstWhere((q) => q.sId == entry.key)
-                                      .questionNumber ==
-                                  19 &&
-                              entry.value == 'Yes');
+                          return answers.entries.any((entry) {
+                            final q = questionsList
+                                .firstWhere((q) => q.sId == entry.key);
+                            return q.questionNumber == 19 &&
+                                (entry.value == 'Yes' || entry.value == 'نعم');
+                          });
                         }
                         return true;
                       }).map((question) {
@@ -385,7 +385,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
                                         style: TextStyleFormat.textFieldStyle
                                             .copyWith(
                                           color: Colors.white,
-                                          fontSize: 17.4.sp,
+                                          fontSize: 17.sp,
                                         ),
                                       ),
                               ),
