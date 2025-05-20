@@ -385,7 +385,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
                                         style: TextStyleFormat.textFieldStyle
                                             .copyWith(
                                           color: Colors.white,
-                                          fontSize: 17.4.sp,
+                                          fontSize: 17.sp,
                                         ),
                                       ),
                               ),
