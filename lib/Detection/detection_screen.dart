@@ -305,7 +305,8 @@ class _DetectionScreenState extends State<DetectionScreen> {
                         // Show question 20 only if question 19 was answered "Yes"
                         if (question.questionNumber == 20) {
                           return answers.entries.any((entry) {
-                            final q = questionsList.firstWhere((q) => q.sId == entry.key);
+                            final q = questionsList
+                                .firstWhere((q) => q.sId == entry.key);
                             return q.questionNumber == 19 &&
                                 (entry.value == 'Yes' || entry.value == 'نعم');
                           });
