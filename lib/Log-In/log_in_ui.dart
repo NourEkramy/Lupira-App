@@ -194,7 +194,7 @@ class _LogInState extends State<LogIn> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  Navigator.pushReplacement(
+                                  Navigator.push(
                                     context,
                                     PageRouteBuilder(
                                       transitionDuration:
@@ -245,7 +245,7 @@ class _LogInState extends State<LogIn> {
                         ),
                         AuthenticationButtonModule(
                           onTap: () {
-                            Navigator.pushReplacement(
+                            Navigator.push(
                               context,
                               PageRouteBuilder(
                                 transitionDuration: Duration(milliseconds: 250),
