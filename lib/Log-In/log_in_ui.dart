@@ -245,13 +245,13 @@ class _LogInState extends State<LogIn> {
                         ),
                         AuthenticationButtonModule(
                           onTap: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               PageRouteBuilder(
                                 transitionDuration: Duration(milliseconds: 250),
                                 pageBuilder:
                                     (context, animation, secondaryAnimation) =>
-                                        SignUp(key: UniqueKey(),),
+                                        SignUp(),
                                 transitionsBuilder: (context, animation,
                                     secondaryAnimation, child) {
                                   var begin = Offset(0.25.w, 0.0); // from right

@@ -235,388 +235,409 @@ class _SignUpState extends State<SignUp> {
     }
   }
 
+
+  Future<bool> goToLogin(BuildContext context) async {
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (context) => LogIn(),
+    );
+    return result == true;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: UserCredentialsCardModule(
-        cardBody: FormBuilder(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 5.5.h),
-              Text(
-                'signup'.tr(),
-                style: TextStyleFormat.pageTitle.copyWith(
-                  color: ColorsFormat.pageTitlePurble,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (bool didPop, dynamic result) async {
+        if (didPop) return;
+
+        final shouldExit = await goToLogin(context);
+
+        if (context.mounted && shouldExit == true) {
+          Navigator.pop(context, result);
+        }
+      },
+      child: Scaffold(
+        body: UserCredentialsCardModule(
+          cardBody: FormBuilder(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 5.5.h),
+                Text(
+                  'signup'.tr(),
+                  style: TextStyleFormat.pageTitle.copyWith(
+                    color: ColorsFormat.pageTitlePurble,
+                  ),
                 ),
-              ),
-              SizedBox(height: 1.h),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          var textField = textFields[index];
+                SizedBox(height: 1.h),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            var textField = textFields[index];
 
-                          final customValidator =
-                              textField['name'] == 'Confirm password'
-                                  ? [
-                                      (val) {
-                                        final password = _formKey.currentState
-                                            ?.fields['Password']?.value;
-                                        if (val == null || val.isEmpty)
-                                          return "confirmPasswordRequired".tr();
-                                        if (val != password)
-                                          return "noMatchPassword".tr();
-                                        return null;
-                                      }
-                                    ]
-                                  : textField['validators'];
+                            final customValidator =
+                                textField['name'] == 'Confirm password'
+                                    ? [
+                                        (val) {
+                                          final password = _formKey.currentState
+                                              ?.fields['Password']?.value;
+                                          if (val == null || val.isEmpty)
+                                            return "confirmPasswordRequired".tr();
+                                          if (val != password)
+                                            return "noMatchPassword".tr();
+                                          return null;
+                                        }
+                                      ]
+                                    : textField['validators'];
 
-                          if (index == 5) {
-                            return FormBuilderField<String>(
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteraction,
-                              name: 'Phone',
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(
-                                    errorText: "phoneRequiredError".tr()),
-                                FormBuilderValidators.match(
-                                  RegExp(r'^\d{6,15}$'),
-                                  errorText: "phoneValid".tr(),
-                                ),
-                              ]),
-                              builder: (FormFieldState<String?> field) {
-                                final hasError = field.hasError;
+                            if (index == 5) {
+                              return FormBuilderField<String>(
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                name: 'Phone',
+                                validator: FormBuilderValidators.compose([
+                                  FormBuilderValidators.required(
+                                      errorText: "phoneRequiredError".tr()),
+                                  FormBuilderValidators.match(
+                                    RegExp(r'^\d{6,15}$'),
+                                    errorText: "phoneValid".tr(),
+                                  ),
+                                ]),
+                                builder: (FormFieldState<String?> field) {
+                                  final hasError = field.hasError;
 
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(height: 2.h),
-                                    Text(
-                                      textField['title'],
-                                      style: TextStyleFormat.textFieldStyle
-                                          .copyWith(
-                                        color: ColorsFormat.titleColor,
+                                  return Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(height: 2.h),
+                                      Text(
+                                        textField['title'],
+                                        style: TextStyleFormat.textFieldStyle
+                                            .copyWith(
+                                          color: ColorsFormat.titleColor,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(height: 0.5.h),
-                                    GestureDetector(
-                                      onTap: () {
-                                        showCountryPicker(
-                                          context: context,
-                                          showPhoneCode: true,
-                                          onSelect: (Country country) {
-                                            setState(() {
-                                              selectedPhoneCountry = country;
-                                            });
-                                          },
-                                        );
-                                      },
-                                      child: Container(
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: 2.8.w,
-                                          vertical: 0.4.h,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: ColorsFormat
-                                              .border_backgroundWhiteColor,
-                                          borderRadius:
-                                              BorderRadius.circular(2.6.w),
-                                          border: Border.all(
-                                            color: hasError
-                                                ? ColorsFormat.darckRedError
-                                                : Colors.transparent,
-                                            width: 0.3.w,
+                                      SizedBox(height: 0.5.h),
+                                      GestureDetector(
+                                        onTap: () {
+                                          showCountryPicker(
+                                            context: context,
+                                            showPhoneCode: true,
+                                            onSelect: (Country country) {
+                                              setState(() {
+                                                selectedPhoneCountry = country;
+                                              });
+                                            },
+                                          );
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 2.8.w,
+                                            vertical: 0.4.h,
                                           ),
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              selectedPhoneCountry != null
-                                                  ? '+${selectedPhoneCountry!.phoneCode}'
-                                                  : 'code'.tr(),
-                                              style: TextStyleFormat
-                                                  .textFieldStyle
-                                                  .copyWith(
-                                                color: selectedPhoneCountry !=
-                                                        null
-                                                    ? ColorsFormat.titleColor
-                                                    : ColorsFormat.hintColor,
-                                              ),
+                                          decoration: BoxDecoration(
+                                            color: ColorsFormat
+                                                .border_backgroundWhiteColor,
+                                            borderRadius:
+                                                BorderRadius.circular(2.6.w),
+                                            border: Border.all(
+                                              color: hasError
+                                                  ? ColorsFormat.darckRedError
+                                                  : Colors.transparent,
+                                              width: 0.3.w,
                                             ),
-                                            SizedBox(
-                                              width: 2.w,
-                                            ),
-                                            Container(
-                                              width: 0.2.w,
-                                              height: 3.h,
-                                              color: Colors.grey,
-                                            ),
-                                            SizedBox(
-                                              width: 2.w,
-                                            ),
-                                            Expanded(
-                                              child: TextField(
-                                                keyboardType:
-                                                    textField['keyboardType'],
-                                                onChanged: field.didChange,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                selectedPhoneCountry != null
+                                                    ? '+${selectedPhoneCountry!.phoneCode}'
+                                                    : 'code'.tr(),
                                                 style: TextStyleFormat
                                                     .textFieldStyle
                                                     .copyWith(
-                                                  color:
-                                                      ColorsFormat.titleColor,
+                                                  color: selectedPhoneCountry !=
+                                                          null
+                                                      ? ColorsFormat.titleColor
+                                                      : ColorsFormat.hintColor,
                                                 ),
-                                                decoration: InputDecoration(
-                                                  border: InputBorder.none,
-                                                  hintText: textField['hint'],
-                                                  hintStyle: TextStyleFormat
+                                              ),
+                                              SizedBox(
+                                                width: 2.w,
+                                              ),
+                                              Container(
+                                                width: 0.2.w,
+                                                height: 3.h,
+                                                color: Colors.grey,
+                                              ),
+                                              SizedBox(
+                                                width: 2.w,
+                                              ),
+                                              Expanded(
+                                                child: TextField(
+                                                  keyboardType:
+                                                      textField['keyboardType'],
+                                                  onChanged: field.didChange,
+                                                  style: TextStyleFormat
                                                       .textFieldStyle
                                                       .copyWith(
                                                     color:
-                                                        ColorsFormat.hintColor,
+                                                        ColorsFormat.titleColor,
                                                   ),
-                                                  // errorText removed here
+                                                  decoration: InputDecoration(
+                                                    border: InputBorder.none,
+                                                    hintText: textField['hint'],
+                                                    hintStyle: TextStyleFormat
+                                                        .textFieldStyle
+                                                        .copyWith(
+                                                      color:
+                                                          ColorsFormat.hintColor,
+                                                    ),
+                                                    // errorText removed here
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    if (hasError)
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 0.5.h, left: 2.8.w),
-                                        child: Text(
-                                          field.errorText ?? '',
-                                          style: TextStyleFormat.textFieldError
-                                              .copyWith(
-                                            color: ColorsFormat.darckRedError,
+                                            ],
                                           ),
                                         ),
                                       ),
-                                  ],
-                                );
-                              },
-                            );
-                          }
-                          return TextFieldModule(
-                            validators: customValidator,
-                            onTap: index == 4 ? selectDate : null,
-                            isReadOnly: textField['isReadOnly'] ?? false,
-                            textFieldType: textField['keyboardType'],
-                            obscureText: textField['keyboardType'] ==
-                                TextInputType.visiblePassword,
-                            textFieldTitle: textField['title'],
-                            hintTextTitle: textField['hint'],
-                            hintTextColor: ColorsFormat.hintColor,
-                            titelTextColor: ColorsFormat.titleColor,
-                            borderColor: Colors.transparent,
-                            backgroundColor:
-                                ColorsFormat.border_backgroundWhiteColor,
-                            suffix: textField['suffix'],
-                            name: textField['name'],
-                          );
-                        },
-                        itemCount: textFields.length,
-                      ),
-                      DropDownListModule(
-                        isReadOnly: false,
-                        options: ["male".tr(), "female".tr()],
-                        hintColor: ColorsFormat.hintColor,
-                        hintText: 'selectGender'.tr(),
-                        textColor: ColorsFormat.titleColor,
-                        borderColor: ColorsFormat.border_backgroundWhiteColor,
-                        text: 'gender'.tr(),
-                        backgroundColor:
-                            ColorsFormat.border_backgroundWhiteColor,
-                        name: 'Gender',
-                        validators: [
-                          FormBuilderValidators.required(
-                              errorText: "genderRequired".tr())
-                        ],
-                        onChanged: (value) {
-                          setState(() {
-                            selectedGender = value;
-                          });
-                        },
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      FormBuilderField<Country>(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        name: 'country',
-                        validator: FormBuilderValidators.required(
-                            errorText: "countryRequired".tr()),
-                        builder: (FormFieldState<Country?> field) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "country".tr(),
-                                style: TextStyleFormat.textFieldStyle.copyWith(
-                                  color: ColorsFormat.titleColor,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 0.5.h,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  showCountryPicker(
-                                    context: context,
-                                    onSelect: (Country country) {
-                                      field.didChange(country); // important
-                                      setState(() {
-                                        selectedCountry =
-                                            country; // optional for display
-                                      });
-                                    },
-                                  );
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 2.8.w,
-                                    vertical: 1.8.h,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: ColorsFormat
-                                        .border_backgroundWhiteColor,
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(
-                                      color: field.hasError
-                                          ? ColorsFormat.darckRedError
-                                          : Colors.transparent,
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        selectedCountry?.name ??
-                                            "selectCountry".tr(),
-                                        style: TextStyleFormat.textFieldStyle
-                                            .copyWith(
-                                          color: selectedCountry == null
-                                              ? ColorsFormat.hintColor
-                                              : ColorsFormat.titleColor,
+                                      if (hasError)
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 0.5.h, left: 2.8.w),
+                                          child: Text(
+                                            field.errorText ?? '',
+                                            style: TextStyleFormat.textFieldError
+                                                .copyWith(
+                                              color: ColorsFormat.darckRedError,
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                      Icon(
-                                        Icons.arrow_drop_down,
-                                        color: ColorsFormat.suffixColor,
-                                      ),
                                     ],
-                                  ),
-                                ),
-                              ),
-                              if (field.hasError)
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 0.6.h,
-                                    left: 2.w,
-                                  ),
-                                  child: Text(
-                                    field.errorText ?? '',
-                                    style:
-                                        TextStyleFormat.textFieldError.copyWith(
-                                      color: ColorsFormat.darckRedError,
-                                    ),
-                                  ),
-                                ),
-                            ],
-                          );
-                        },
-                      ),
-                      DropDownListModule(
-                        isReadOnly: false,
-                        options: [
-                          "ethnicityOption1".tr(),
-                          "ethnicityOption2".tr(),
-                          "ethnicityOption3".tr(),
-                          "ethnicityOption4".tr(),
-                          "ethnicityOption5".tr(),
-                          "ethnicityOption6".tr(),
-                          "ethnicityOption7".tr()
-                        ],
-                        hintColor: ColorsFormat.hintColor,
-                        hintText: 'selectEthnicity'.tr(),
-                        textColor: ColorsFormat.titleColor,
-                        borderColor: ColorsFormat.border_backgroundWhiteColor,
-                        text: 'ethnicity'.tr(),
-                        backgroundColor:
-                            ColorsFormat.border_backgroundWhiteColor,
-                        name: 'Ethnicity',
-                        validators: [
-                          FormBuilderValidators.required(
-                              errorText: "ethnicityRequired".tr())
-                        ],
-                        onChanged: (value) {
-                          setState(() {
-                            selectedEthnicity = value;
-                          });
-                        },
-                      ),
-                      SizedBox(height: 5.h),
-                      OperationButtonModule(
-                        onTap: signUp,
-                        borderColor: ColorsFormat.button_linksColor,
-                        buttonColor: ColorsFormat.button_linksColor,
-                        buttonText: "signup".tr(),
-                        buttonTextColor: Colors.white,
-                        isLoading: _isLoading,
-                        loadingIndicator: SizedBox(
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                            strokeWidth: 3.5.sp,
-                          ),
-                          height: 3.h,
-                          width: 6.w,
-                        ),
-                      ),
-                      AuthenticationButtonModule(
-                          onTap: () {
-                            Navigator.pushReplacement(
-                              context,
-                              PageRouteBuilder(
-                                transitionDuration: Duration(milliseconds: 300),
-                                pageBuilder:
-                                    (context, animation, secondaryAnimation) =>
-                                        LogIn(),
-                                transitionsBuilder: (context, animation,
-                                    secondaryAnimation, child) {
-                                  var begin = Offset(0.25.w, 0.0); // from right
-                                  const end = Offset.zero;
-                                  return SlideTransition(
-                                    position: animation.drive(
-                                      Tween(
-                                        begin: begin,
-                                        end: end,
-                                      ).chain(
-                                        CurveTween(curve: Curves.ease),
-                                      ),
-                                    ),
-                                    child: child,
                                   );
                                 },
-                              ),
+                              );
+                            }
+                            return TextFieldModule(
+                              validators: customValidator,
+                              onTap: index == 4 ? selectDate : null,
+                              isReadOnly: textField['isReadOnly'] ?? false,
+                              textFieldType: textField['keyboardType'],
+                              obscureText: textField['keyboardType'] ==
+                                  TextInputType.visiblePassword,
+                              textFieldTitle: textField['title'],
+                              hintTextTitle: textField['hint'],
+                              hintTextColor: ColorsFormat.hintColor,
+                              titelTextColor: ColorsFormat.titleColor,
+                              borderColor: Colors.transparent,
+                              backgroundColor:
+                                  ColorsFormat.border_backgroundWhiteColor,
+                              suffix: textField['suffix'],
+                              name: textField['name'],
                             );
                           },
-                          conditionOperation: "login".tr(),
-                          conditionQuestion: "haveAccount".tr()),
-                    ],
+                          itemCount: textFields.length,
+                        ),
+                        DropDownListModule(
+                          isReadOnly: false,
+                          options: ["male".tr(), "female".tr()],
+                          hintColor: ColorsFormat.hintColor,
+                          hintText: 'selectGender'.tr(),
+                          textColor: ColorsFormat.titleColor,
+                          borderColor: ColorsFormat.border_backgroundWhiteColor,
+                          text: 'gender'.tr(),
+                          backgroundColor:
+                              ColorsFormat.border_backgroundWhiteColor,
+                          name: 'Gender',
+                          validators: [
+                            FormBuilderValidators.required(
+                                errorText: "genderRequired".tr())
+                          ],
+                          onChanged: (value) {
+                            setState(() {
+                              selectedGender = value;
+                            });
+                          },
+                        ),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        FormBuilderField<Country>(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          name: 'country',
+                          validator: FormBuilderValidators.required(
+                              errorText: "countryRequired".tr()),
+                          builder: (FormFieldState<Country?> field) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "country".tr(),
+                                  style: TextStyleFormat.textFieldStyle.copyWith(
+                                    color: ColorsFormat.titleColor,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 0.5.h,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    showCountryPicker(
+                                      context: context,
+                                      onSelect: (Country country) {
+                                        field.didChange(country); // important
+                                        setState(() {
+                                          selectedCountry =
+                                              country; // optional for display
+                                        });
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 2.8.w,
+                                      vertical: 1.8.h,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: ColorsFormat
+                                          .border_backgroundWhiteColor,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: field.hasError
+                                            ? ColorsFormat.darckRedError
+                                            : Colors.transparent,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          selectedCountry?.name ??
+                                              "selectCountry".tr(),
+                                          style: TextStyleFormat.textFieldStyle
+                                              .copyWith(
+                                            color: selectedCountry == null
+                                                ? ColorsFormat.hintColor
+                                                : ColorsFormat.titleColor,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_drop_down,
+                                          color: ColorsFormat.suffixColor,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                if (field.hasError)
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      top: 0.6.h,
+                                      left: 2.w,
+                                    ),
+                                    child: Text(
+                                      field.errorText ?? '',
+                                      style:
+                                          TextStyleFormat.textFieldError.copyWith(
+                                        color: ColorsFormat.darckRedError,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            );
+                          },
+                        ),
+                        DropDownListModule(
+                          isReadOnly: false,
+                          options: [
+                            "ethnicityOption1".tr(),
+                            "ethnicityOption2".tr(),
+                            "ethnicityOption3".tr(),
+                            "ethnicityOption4".tr(),
+                            "ethnicityOption5".tr(),
+                            "ethnicityOption6".tr(),
+                            "ethnicityOption7".tr()
+                          ],
+                          hintColor: ColorsFormat.hintColor,
+                          hintText: 'selectEthnicity'.tr(),
+                          textColor: ColorsFormat.titleColor,
+                          borderColor: ColorsFormat.border_backgroundWhiteColor,
+                          text: 'ethnicity'.tr(),
+                          backgroundColor:
+                              ColorsFormat.border_backgroundWhiteColor,
+                          name: 'Ethnicity',
+                          validators: [
+                            FormBuilderValidators.required(
+                                errorText: "ethnicityRequired".tr())
+                          ],
+                          onChanged: (value) {
+                            setState(() {
+                              selectedEthnicity = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 5.h),
+                        OperationButtonModule(
+                          onTap: signUp,
+                          borderColor: ColorsFormat.button_linksColor,
+                          buttonColor: ColorsFormat.button_linksColor,
+                          buttonText: "signup".tr(),
+                          buttonTextColor: Colors.white,
+                          isLoading: _isLoading,
+                          loadingIndicator: SizedBox(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 3.5.sp,
+                            ),
+                            height: 3.h,
+                            width: 6.w,
+                          ),
+                        ),
+                        AuthenticationButtonModule(
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  transitionDuration: Duration(milliseconds: 300),
+                                  pageBuilder:
+                                      (context, animation, secondaryAnimation) =>
+                                          LogIn(),
+                                  transitionsBuilder: (context, animation,
+                                      secondaryAnimation, child) {
+                                    var begin = Offset(0.25.w, 0.0); // from right
+                                    const end = Offset.zero;
+                                    return SlideTransition(
+                                      position: animation.drive(
+                                        Tween(
+                                          begin: begin,
+                                          end: end,
+                                        ).chain(
+                                          CurveTween(curve: Curves.ease),
+                                        ),
+                                      ),
+                                      child: child,
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                            conditionOperation: "login".tr(),
+                            conditionQuestion: "haveAccount".tr()),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
