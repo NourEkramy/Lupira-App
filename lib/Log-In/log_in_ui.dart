@@ -251,7 +251,7 @@ class _LogInState extends State<LogIn> {
                                 transitionDuration: Duration(milliseconds: 250),
                                 pageBuilder:
                                     (context, animation, secondaryAnimation) =>
-                                        SignUp(),
+                                        SignUp(key: UniqueKey(),),
                                 transitionsBuilder: (context, animation,
                                     secondaryAnimation, child) {
                                   var begin = Offset(0.25.w, 0.0); // from right
