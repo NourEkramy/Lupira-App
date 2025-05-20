@@ -42,8 +42,9 @@ class ProfileApi {
     String country = '',
     String ethnicity = '',
     required String token,
+    required String language,
   }) async {
-    Uri url = Uri.parse("https://lupira.onrender.com/api/users/profile");
+    Uri url = Uri.parse("https://lupira.onrender.com/api/users/profile?lang=$language");
 
     final headers = {
       "Authorization": "Bearer $token",

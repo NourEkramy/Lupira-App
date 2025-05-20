@@ -86,8 +86,11 @@ class _ProfileState extends State<Profile> {
       try {
         final prefs = await SharedPreferences.getInstance();
         var token = prefs.getString('token');
+        var language = prefs.getString('selected_language') ??
+            EasyLocalization.of(context)!.locale.languageCode;
 
         final response = await ProfileApi.applyProfileEdits(
+          language: language,
           token: token ?? '',
           country: selectedCountry ?? '',
           dateOfBirth: dateOfBirth,
