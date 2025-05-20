@@ -4,7 +4,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:sizer/sizer.dart';
 import 'package:untitled/Formating/text_style_format.dart';
 
-class TextFieldModule extends StatelessWidget {
+class TextFieldModule extends StatefulWidget {
   final String textFieldTitle;
   final String hintTextTitle;
   final Color hintTextColor;
@@ -39,45 +39,78 @@ class TextFieldModule extends StatelessWidget {
   });
 
   @override
+  State<TextFieldModule> createState() => _TextFieldModuleState();
+}
+
+class _TextFieldModuleState extends State<TextFieldModule> {
+  late bool _obscureText;
+
+  @override
+  void initState() {
+    super.initState();
+    _obscureText = widget.obscureText;
+  }
+
+  void _toggleVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  Widget? _buildSuffixIcon() {
+    if (widget.obscureText) {
+      return IconButton(
+        icon: Icon(
+          _obscureText ? Icons.visibility_off : Icons.visibility,
+          color: Colors.grey,
+        ),
+        onPressed: _toggleVisibility,
+      );
+    } else {
+      return widget.suffix; // Use custom suffix if provided
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 3.h),
         Text(
-          textFieldTitle,
-          style: TextStyleFormat.textFieldStyle.copyWith(color: titelTextColor),
+          widget.textFieldTitle,
+          style: TextStyleFormat.textFieldStyle.copyWith(color: widget.titelTextColor),
         ),
         SizedBox(height: 0.5.h),
         FormBuilderTextField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          onTap: onTap,
-          initialValue: initialProfileData,
-          readOnly: isReadOnly,
-          obscureText: obscureText,
-          keyboardType: textFieldType,
+          onTap: widget.onTap,
+          initialValue: widget.initialProfileData,
+          readOnly: widget.isReadOnly,
+          obscureText: _obscureText,
+          keyboardType: widget.textFieldType,
           style:
-              TextStyleFormat.snackBarMessage.copyWith(color: titelTextColor),
+              TextStyleFormat.snackBarMessage.copyWith(color: widget.titelTextColor),
           decoration: InputDecoration(
             errorMaxLines: 3,
-            suffixIcon: suffix ?? SizedBox(),
-            hintText: hintTextTitle,
+            suffixIcon: _buildSuffixIcon() ?? SizedBox(),
+            hintText: widget.hintTextTitle,
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: borderColor),
+                borderSide: BorderSide(color: widget.borderColor),
                 borderRadius: BorderRadius.all(Radius.circular(2.6.w))),
             enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: borderColor),
+                borderSide: BorderSide(color: widget.borderColor),
                 borderRadius: BorderRadius.all(Radius.circular(2.6.w))),
             border: OutlineInputBorder(
-                borderSide: BorderSide(color: borderColor),
+                borderSide: BorderSide(color: widget.borderColor),
                 borderRadius: BorderRadius.all(Radius.circular(2.6.w))),
             hintStyle:
-                TextStyleFormat.snackBarMessage.copyWith(color: hintTextColor),
+                TextStyleFormat.snackBarMessage.copyWith(color: widget.hintTextColor),
             filled: true,
-            fillColor: backgroundColor,
+            fillColor: widget.backgroundColor,
           ),
-          name: name,
-          validator: FormBuilderValidators.compose(validators ?? []),
+          name: widget.name,
+          validator: FormBuilderValidators.compose(widget.validators ?? []),
         ),
       ],
     );

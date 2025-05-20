@@ -88,7 +88,7 @@ class _SignUpState extends State<SignUp> {
       'hint': 'DD/MM/YYYY',
       'suffix': Icon(
         Icons.calendar_today_outlined,
-        color: ColorsFormat.suffixColor,
+        color: Colors.grey,
       ),
       'isReadOnly': true,
     },
