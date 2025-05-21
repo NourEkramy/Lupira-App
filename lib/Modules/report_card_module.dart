@@ -1,7 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/About-Lupira/about_lupira.dart';
 import 'package:untitled/Formating/text_style_format.dart';
 import '../Formating/colors_format.dart';
+import 'package:intl/intl.dart';
 
 class ReportCardModule extends StatelessWidget {
   final String reportDate;
@@ -14,6 +17,14 @@ class ReportCardModule extends StatelessWidget {
     required this.reportResult,
     required this.onTap,
   });
+
+
+
+  String formatDateTime(String date, String language) {
+    final parsedDate = DateTime.parse(date).toLocal(); // Convert to local time
+    final formatter = DateFormat('dd-MM-yyyy - a h:mm', language); // Example: May 21, 2025 – 1:14 PM
+    return formatter.format(parsedDate);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +68,7 @@ class ReportCardModule extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  reportDate,
+                  formatDateTime(reportDate, context.locale.languageCode),
                   style: TextStyleFormat.textFieldStyle.copyWith(
                     fontWeight: FontWeight.w400,
                     color: ColorsFormat.titleColor,

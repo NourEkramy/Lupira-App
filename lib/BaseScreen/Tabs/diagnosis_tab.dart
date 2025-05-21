@@ -188,7 +188,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                           ),
                         );
                       },
-                      reportDate: historyData[index]['date'].substring(0, 10),
+                      reportDate: historyData[index]['date'],
                       reportResult: historyData[index]['resultLabel'],
                     );
                   },
