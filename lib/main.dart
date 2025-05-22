@@ -85,21 +85,21 @@ class _MyAppState extends State<MyApp> {
       final uri = Uri.parse(link);
 
       if (uri.scheme == 'lupira' && uri.host == 'reset-password') {
-        final segments = uri.pathSegments;
-        if (segments.isNotEmpty) {
-          final token = segments.first;
+        final token = uri.queryParameters['token'];
+        if (token != null && token.isNotEmpty) {
           _navigatorKey.currentState
               ?.pushNamed('/reset-password', arguments: token);
         } else {
           _showError('resetMissingToken'.tr());
         }
       } else if (uri.scheme == 'lupira' && uri.host == 'verify-email') {
-        // Optional: check token from `uri.pathSegments` if needed
+        // Optional: extract token if you want to use it
+        // final token = uri.queryParameters['token'];
 
         // ✅ Redirect to login page
         _navigatorKey.currentState?.pushNamedAndRemoveUntil(
           LogIn.routName,
-          (route) => false, // clear all previous routes
+              (route) => false,
         );
       } else {
         _showError('invalidResetFormat'.tr());

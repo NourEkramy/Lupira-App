@@ -1,0 +1,2 @@
+C:/Users/Rojena/StudioProjects/Lupira-App/android/app/.cxx/RelWithDebInfo/6u6d6d67/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/Rojena/StudioProjects/Lupira-App/android/app/.cxx/RelWithDebInfo/6u6d6d67/armeabi-v7a/CMakeFiles/rebuild_cache.dir
