@@ -153,5 +153,8 @@
   "confirmExit": "Confirm Exit",
   "exitQuestion": "If you exit now answers won't be save, Are you sure?",
   "reportDeletedSuccess": "Report deleted successfully",
-  "reportDeleteError": "Faild to delete this report"
+  "reportDeleteError": "Failed to delete this report",
+  "delete": "Delete all",
+  "deleteHistorySuccess": "Detection history deleted successfully",
+  "deleteHistoryError": "Failed to delete history"
 }

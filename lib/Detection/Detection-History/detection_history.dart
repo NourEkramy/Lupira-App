@@ -55,13 +55,64 @@ class _DetectionHistoryState extends State<DetectionHistory> {
     }
   }
 
+  Future<void> deleteAll() async {
+    final prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('token');
+    var language = prefs.getString('selected_language') ??
+        EasyLocalization.of(context)!.locale.languageCode;
+    bool success = await HistoryApi.deleteAllHistory(token ?? "", language);
+
+    if (success) {
+      await fetchData();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'deleteHistorySuccess'.tr(),
+            style:
+                TextStyleFormat.snackBarMessage.copyWith(color: Colors.white),
+          ),
+          backgroundColor: Colors.green,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(2.8.w),
+          ),
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.symmetric(
+            horizontal: 2.w,
+            vertical: 2.h,
+          ),
+          duration: Duration(seconds: 5),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'deleteHistoryError'.tr(),
+            style:
+                TextStyleFormat.snackBarMessage.copyWith(color: Colors.white),
+          ),
+          backgroundColor: ColorsFormat.darckRedError,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(2.8.w),
+          ),
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.symmetric(
+            horizontal: 2.w,
+            vertical: 2.h,
+          ),
+          duration: Duration(seconds: 5),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
         left: 2.9.w,
         right: 2.9.w,
-        top: 3.5.h,
+        top: 2.2.h,
       ),
       child: isLoading
           ? Center(child: CircularProgressIndicator())
@@ -79,86 +130,120 @@ class _DetectionHistoryState extends State<DetectionHistory> {
                     ),
                   ),
                 )
-              : ListView.builder(
-                  itemBuilder: (context, index) {
-                    return ReportCardModule(
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => MainLayout(
-                              child: DetectionDetailsScreen(
-                                detectionData: historyData[index],
-                              ),
-                              title: 'detectionDetails'.tr(),
-                              showBottomNav: false,
-                            ),
+                        setState(() {
+                          deleteAll();
+                        });
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 4.w,
+                          vertical: 0.7.h,
+                        ),
+                        child: Text(
+                          "delete".tr(),
+                          style: TextStyleFormat.textFieldStyle.copyWith(
+                            color: ColorsFormat.darckRedError,
+                            fontSize: 17.5.sp,
                           ),
-                        );
-                      },
-                      reportDate:
-                          historyData[index]['date']?.substring(0, 10) ??
-                              'unknownData'.tr(),
-                      reportResult:
-                          historyData[index]['resultLabel'] ?? 'noResult'.tr(),
-                      onDelete: () async {
-                        final prefs = await SharedPreferences.getInstance();
-                        var token = prefs.getString('token');
-                        var language = prefs.getString('selected_language') ??
-                            EasyLocalization.of(context)!.locale.languageCode;
-                        bool success = await HistoryApi.deleteOneHistoryReport(
-                            token ?? "",
-                            historyData[index]['id'] ?? "",
-                            language);
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemBuilder: (context, index) {
+                          return ReportCardModule(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MainLayout(
+                                    child: DetectionDetailsScreen(
+                                      detectionData: historyData[index],
+                                    ),
+                                    title: 'detectionDetails'.tr(),
+                                    showBottomNav: false,
+                                  ),
+                                ),
+                              );
+                            },
+                            reportDate:
+                                historyData[index]['date']?.substring(0, 10) ??
+                                    'unknownData'.tr(),
+                            reportResult: historyData[index]['resultLabel'] ??
+                                'noResult'.tr(),
+                            onDelete: () async {
+                              final prefs =
+                                  await SharedPreferences.getInstance();
+                              var token = prefs.getString('token');
+                              var language =
+                                  prefs.getString('selected_language') ??
+                                      EasyLocalization.of(context)!
+                                          .locale
+                                          .languageCode;
+                              bool success =
+                                  await HistoryApi.deleteOneHistoryReport(
+                                      token ?? "",
+                                      historyData[index]['id'] ?? "",
+                                      language);
 
-                        if (success) {
-                          setState(() {
-                            historyData.removeAt(index);
-                          });
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'reportDeletedSuccess'.tr(),
-                                style: TextStyleFormat.snackBarMessage
-                                    .copyWith(color: Colors.white),
-                              ),
-                              backgroundColor: Colors.green,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(2.8.w),
-                              ),
-                              behavior: SnackBarBehavior.floating,
-                              margin: EdgeInsets.symmetric(
-                                horizontal: 2.w,
-                                vertical: 2.h,
-                              ),
-                              duration: Duration(seconds: 5),
-                            ),
+                              if (success) {
+                                setState(() {
+                                  historyData.removeAt(index);
+                                });
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'reportDeletedSuccess'.tr(),
+                                      style: TextStyleFormat.snackBarMessage
+                                          .copyWith(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.green,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(2.8.w),
+                                    ),
+                                    behavior: SnackBarBehavior.floating,
+                                    margin: EdgeInsets.symmetric(
+                                      horizontal: 2.w,
+                                      vertical: 2.h,
+                                    ),
+                                    duration: Duration(seconds: 5),
+                                  ),
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'reportDeleteError'.tr(),
+                                      style: TextStyleFormat.snackBarMessage
+                                          .copyWith(color: Colors.white),
+                                    ),
+                                    backgroundColor: ColorsFormat.darckRedError,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(2.8.w),
+                                    ),
+                                    behavior: SnackBarBehavior.floating,
+                                    margin: EdgeInsets.symmetric(
+                                      horizontal: 2.w,
+                                      vertical: 2.h,
+                                    ),
+                                    duration: Duration(seconds: 5),
+                                  ),
+                                );
+                              }
+                            },
                           );
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'reportDeleteError'.tr(),
-                                style: TextStyleFormat.snackBarMessage
-                                    .copyWith(color: Colors.white),
-                              ),
-                              backgroundColor: ColorsFormat.darckRedError,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(2.8.w),
-                              ),
-                              behavior: SnackBarBehavior.floating,
-                              margin: EdgeInsets.symmetric(
-                                horizontal: 2.w,
-                                vertical: 2.h,
-                              ),
-                              duration: Duration(seconds: 5),
-                            ),
-                          );
-                        }
-                      },
-                    );
-                  },
-                  itemCount: historyData.length,
+                        },
+                        itemCount: historyData.length,
+                      ),
+                    ),
+                  ],
                 ),
     );
   }

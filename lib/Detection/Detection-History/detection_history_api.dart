@@ -51,4 +51,27 @@ class HistoryApi {
       return false;
     }
   }
+
+  static Future<bool> deleteAllHistory(
+      String token, String language) async {
+    final url = Uri.parse(
+        'https://lupira.onrender.com/api/diagnosis/history?lang=$language');
+
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    };
+
+    final response = await http.delete(
+      url,
+      headers: headers,
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      print(response.body);
+      return false;
+    }
+  }
 }

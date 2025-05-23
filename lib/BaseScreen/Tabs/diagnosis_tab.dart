@@ -174,7 +174,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return ReportCardModule(
-                      onTap: () {
+                      onTap: (){
                         Navigator.push(
                           context,
                           MaterialPageRoute(
