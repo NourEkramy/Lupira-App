@@ -96,12 +96,66 @@ class _DetectionHistoryState extends State<DetectionHistory> {
                           ),
                         );
                       },
-                      reportID: historyData[index]['id'] ?? "",
                       reportDate:
                           historyData[index]['date']?.substring(0, 10) ??
                               'unknownData'.tr(),
                       reportResult:
                           historyData[index]['resultLabel'] ?? 'noResult'.tr(),
+                      onDelete: () async {
+                        final prefs = await SharedPreferences.getInstance();
+                        var token = prefs.getString('token');
+                        var language = prefs.getString('selected_language') ??
+                            EasyLocalization.of(context)!.locale.languageCode;
+                        bool success = await HistoryApi.deleteOneHistoryReport(
+                            token ?? "",
+                            historyData[index]['id'] ?? "",
+                            language);
+
+                        if (success) {
+                          setState(() {
+                            historyData.removeAt(index);
+                          });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'reportDeletedSuccess'.tr(),
+                                style: TextStyleFormat.snackBarMessage
+                                    .copyWith(color: Colors.white),
+                              ),
+                              backgroundColor: Colors.green,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(2.8.w),
+                              ),
+                              behavior: SnackBarBehavior.floating,
+                              margin: EdgeInsets.symmetric(
+                                horizontal: 2.w,
+                                vertical: 2.h,
+                              ),
+                              duration: Duration(seconds: 5),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'reportDeleteError'.tr(),
+                                style: TextStyleFormat.snackBarMessage
+                                    .copyWith(color: Colors.white),
+                              ),
+                              backgroundColor: ColorsFormat.darckRedError,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(2.8.w),
+                              ),
+                              behavior: SnackBarBehavior.floating,
+                              margin: EdgeInsets.symmetric(
+                                horizontal: 2.w,
+                                vertical: 2.h,
+                              ),
+                              duration: Duration(seconds: 5),
+                            ),
+                          );
+                        }
+                      },
                     );
                   },
                   itemCount: historyData.length,

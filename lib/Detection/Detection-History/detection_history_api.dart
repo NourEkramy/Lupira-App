@@ -32,7 +32,7 @@ class HistoryApi {
   static Future<bool> deleteOneHistoryReport(
       String token, String id, String language) async {
     final url = Uri.parse(
-        'https://lupira.onrender.com/api/diagnosis/history/{$id}?lang=$language');
+        'https://lupira.onrender.com/api/diagnosis/history/$id?lang=$language');
 
     final headers = {
       'Content-Type': 'application/json',
@@ -47,6 +47,7 @@ class HistoryApi {
     if (response.statusCode == 200) {
       return true;
     } else {
+      print(response.body);
       return false;
     }
   }

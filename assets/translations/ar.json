@@ -151,5 +151,7 @@
   "forgotPassword": "نسيت كلمية المرور",
   "accountDeletedSuccess": "تم حذف الحساب بنجاح",
   "confirmExit": "تاكيد الخروج",
-  "exitQuestion": "إذا خرجت الأن لن تحفظ الإجابات, هل أنت متأكد؟"
+  "exitQuestion": "إذا خرجت الأن لن تحفظ الإجابات, هل أنت متأكد؟",
+  "reportDeletedSuccess": "تم حذف هذا التقرير بنجاح",
+  "reportDeleteError":"فشل حذف هذا التقرير"
 }
