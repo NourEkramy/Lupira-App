@@ -188,6 +188,7 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                           ),
                         );
                       },
+                      reportID: historyData[index]['id'] ?? "",
                       reportDate: historyData[index]['date'],
                       reportResult: historyData[index]['resultLabel'],
                     );

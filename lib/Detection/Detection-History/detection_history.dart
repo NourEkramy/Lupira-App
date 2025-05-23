@@ -96,6 +96,7 @@ class _DetectionHistoryState extends State<DetectionHistory> {
                           ),
                         );
                       },
+                      reportID: historyData[index]['id'] ?? "",
                       reportDate:
                           historyData[index]['date']?.substring(0, 10) ??
                               'unknownData'.tr(),

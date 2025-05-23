@@ -28,4 +28,26 @@ class HistoryApi {
       throw Exception("failedFetchHistory".tr() + "${e}");
     }
   }
+
+  static Future<bool> deleteOneHistoryReport(
+      String token, String id, String language) async {
+    final url = Uri.parse(
+        'https://lupira.onrender.com/api/diagnosis/history/{$id}?lang=$language');
+
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    };
+
+    final response = await http.delete(
+      url,
+      headers: headers,
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
