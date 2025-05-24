@@ -156,5 +156,7 @@
   "reportDeleteError": "Failed to delete this report",
   "delete": "Delete all",
   "deleteHistorySuccess": "Detection history deleted successfully",
-  "deleteHistoryError": "Failed to delete history"
+  "deleteHistoryError": "Failed to delete history",
+  "deleteHistoryQuestion": "Are you sure you want to delete history?",
+  "deleteHistory": "Delete history"
 }

@@ -156,5 +156,7 @@
   "reportDeleteError":"فشل حذف هذا التقرير",
   "delete": "حذف الكل",
   "deleteHistorySuccess": "تم حذف سجل الفحوصات بنجاح",
-  "deleteHistoryError": "فشل حذف السجل"
+  "deleteHistoryError": "فشل حذف السجل",
+  "deleteHistoryQuestion": "هل أنت متأكد من حذف السجل؟",
+  "deleteHistory": "حذف السجل"
 }
