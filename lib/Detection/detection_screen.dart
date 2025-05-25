@@ -168,6 +168,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
                 title: "detectionResult".tr(),
                 child: DetectionResultScreen(),
                 showBottomNav: false,
+                inDetectionResultScreen: true,
               ),
               settings: RouteSettings(
                 arguments: {
@@ -176,7 +177,14 @@ class _DetectionScreenState extends State<DetectionScreen> {
                 },
               ),
             ),
-          );
+          ).then((shouldRefresh) {
+            if (shouldRefresh == true && context.mounted) {
+              // This will trigger a rebuild of the DetectionScreen
+              setState(() {});
+              // Or if you need to go back to the Diagnosis tab:
+              Navigator.pop(context, true);
+            }
+          });
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

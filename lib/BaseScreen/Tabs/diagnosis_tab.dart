@@ -69,6 +69,12 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    fetchData();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
@@ -128,13 +134,17 @@ class _DiagnosisTabState extends State<DiagnosisTab> {
                           builder: (context) => MainLayout(
                             title: "history".tr(),
                             showBottomNav: false,
-                            child: DetectionHistory(),
+                            child: DetectionHistory(
+                              onDataChanged: fetchData, // Pass the callback here
+                            ),
                           ),
                           settings: RouteSettings(
                             arguments: {'responseData': historyData},
                           ),
                         ),
-                      );
+                      ).then((_) {
+                        fetchData();
+                      });
                     },
                     child: Row(
                       children: [

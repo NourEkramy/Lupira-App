@@ -12,8 +12,9 @@ import 'detection_details_screen.dart';
 
 class DetectionHistory extends StatefulWidget {
   static const String routeName = "DetectionHistory";
+  final Function() onDataChanged; // Add this line
 
-  const DetectionHistory({super.key});
+  const DetectionHistory({super.key, required this.onDataChanged});
 
   @override
   State<DetectionHistory> createState() => _DetectionHistoryState();
@@ -65,6 +66,8 @@ class _DetectionHistoryState extends State<DetectionHistory> {
 
     if (success) {
       await fetchData();
+      widget.onDataChanged(); // Call the callback to notify parent
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -256,7 +259,6 @@ class _DetectionHistoryState extends State<DetectionHistory> {
                                       ),
                                     );
                                   }
-
                                 });
                               });
                             },

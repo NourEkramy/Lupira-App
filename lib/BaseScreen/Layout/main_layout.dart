@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+import 'package:untitled/BaseScreen/base_screen.dart';
 import 'package:untitled/BaseScreen/base_screen_logic.dart';
 import 'package:untitled/BottomSheets/exit_without_answering_bottom_sheet.dart';
 import 'package:untitled/Formating/text_style_format.dart';
@@ -13,6 +14,7 @@ class MainLayout extends StatelessWidget {
   final String? appName;
   final bool showBottomNav;
   final bool inDetectionScreen;
+  final bool inDetectionResultScreen;
 
   MainLayout({
     super.key,
@@ -21,6 +23,7 @@ class MainLayout extends StatelessWidget {
     this.appName,
     this.showBottomNav = true,
     this.inDetectionScreen = false,
+    this.inDetectionResultScreen = false,
   });
 
   @override
@@ -49,6 +52,11 @@ class MainLayout extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (context) => ExitWithoutAnsweringBottomSheet(),
+                      );
+                    } else if (inDetectionResultScreen) {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => BaseScreen()),
                       );
                     } else {
                       Navigator.pop(context);
