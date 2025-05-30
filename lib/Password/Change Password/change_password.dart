@@ -14,7 +14,7 @@ import 'change_password_api.dart';
 class ChangePassword extends StatefulWidget {
   static const String routName = "ChangePassword";
 
-  static List<Map<String, dynamic>> textfields = [
+  List<Map<String, dynamic>> get textfields => [
     {
       'validators': [
         FormBuilderValidators.required(errorText: 'oldPaswwordRequired'.tr())
@@ -136,7 +136,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  var textField = ChangePassword.textfields[index];
+                  var textField = widget.textfields[index];
                   final customValidator =
                       textField['name'] == 'confirmNewPassword'
                           ? [

@@ -9,6 +9,7 @@ import 'package:untitled/Modules/operation_button_module.dart';
 import 'package:untitled/Modules/text_field_module.dart';
 import 'package:untitled/Modules/user_credentials_card_module.dart';
 import 'package:untitled/Password/Reset%20Password/reset_password_api.dart';
+import '../../BaseScreen/Layout/main_layout.dart';
 import '../../Formating/colors_format.dart';
 
 class ResetPassword extends StatefulWidget {
@@ -232,6 +233,40 @@ class _ResetPasswordState extends State<ResetPassword> {
                         buttonColor: ColorsFormat.button_linksColor,
                         buttonText: 'resetPassword'.tr(),
                         buttonTextColor: Colors.white,
+                      ),
+                      SizedBox(height: 2.5.h),
+                      OperationButtonModule(
+                        borderColor: ColorsFormat.button_linksColor,
+                        buttonColor: ColorsFormat.credentialsCardColor,
+                        buttonText: 'backLogin'.tr(),
+                        buttonTextColor: ColorsFormat.button_linksColor,
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            PageRouteBuilder(
+                              transitionDuration: Duration(milliseconds: 250),
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      LogIn(),
+                              transitionsBuilder: (context, animation,
+                                  secondaryAnimation, child) {
+                                var begin = Offset(0.25.w, 0.0); // from right
+                                const end = Offset.zero;
+                                return SlideTransition(
+                                  position: animation.drive(
+                                    Tween(
+                                      begin: begin,
+                                      end: end,
+                                    ).chain(
+                                      CurveTween(curve: Curves.ease),
+                                    ),
+                                  ),
+                                  child: child,
+                                );
+                              },
+                            ),
+                          );
+                        },
                       ),
                       SizedBox(
                         height: 2.5.h,
