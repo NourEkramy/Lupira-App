@@ -597,9 +597,19 @@ class _ProfileState extends State<Profile> {
 
   Future<void> selectDate() async {
     final DateTime now = DateTime.now();
+    DateTime initialDate = DateTime(now.year - 20);
+
+    if (profileData?.data?.dateOfBirth != null) {
+      try {
+        initialDate = DateTime.parse(profileData!.data!.dateOfBirth!);
+      } catch (e) {
+        initialDate = DateTime(now.year - 20);
+      }
+    }
+
     DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: now,
+      initialDate: initialDate,
       firstDate: DateTime(now.year - 100),
       lastDate: now,
     );
@@ -609,8 +619,7 @@ class _ProfileState extends State<Profile> {
         String formattedDate =
             "${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}";
 
-        _formKey.currentState?.fields['Date of birth']
-            ?.didChange(formattedDate);
+        _formKey.currentState?.fields['Date of birth']?.didChange(formattedDate);
       });
     }
   }

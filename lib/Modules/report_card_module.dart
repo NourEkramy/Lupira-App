@@ -19,7 +19,7 @@ class ReportCardModule extends StatelessWidget {
 
   String formatDateTime(String date, String language) {
     final parsedDate = DateTime.parse(date).toLocal(); // Convert to local time
-    final formatter = DateFormat('dd-MM-yyyy - a h:mm', language);
+    final formatter = DateFormat('dd-MM-yyyy - h:mm a', language);
     return formatter.format(parsedDate);
   }
 

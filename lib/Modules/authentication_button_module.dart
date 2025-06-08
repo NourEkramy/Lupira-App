@@ -21,7 +21,7 @@ class AuthenticationButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 5.h),
+        SizedBox(height: 3.h),
         Center(
           child: RichText(
             text: TextSpan(
@@ -45,75 +45,75 @@ class AuthenticationButtonModule extends StatelessWidget {
           ),
         ),
         SizedBox(height: 3.h),
-        Row(
-          children: [
-            Expanded(child: Divider()),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 2.w),
-              child: Text(
-                'or'.tr(),
-                style: TextStyleFormat.snackBarMessage
-                    .copyWith(color: ColorsFormat.titleColor),
-              ),
-            ),
-            Expanded(
-              child: Divider(),
-            ),
-          ],
-        ),
-        SizedBox(height: 3.h),
-        ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            backgroundColor: ColorsFormat.border_backgroundWhiteColor,
-            foregroundColor: Colors.white,
-            padding: EdgeInsets.symmetric(vertical: 1.8.h, horizontal: 4.w),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(2.6.w),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset('assets/images/google_logo 1.png'),
-              SizedBox(
-                width: 2.6.w,
-              ),
-              Text(
-                'googleAuth'.tr(),
-                style: TextStyleFormat.textFieldStyle
-                    .copyWith(color: ColorsFormat.titleColor),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 2.5.h),
-        ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            backgroundColor: ColorsFormat.border_backgroundWhiteColor,
-            foregroundColor: Colors.white,
-            padding: EdgeInsets.symmetric(vertical: 1.8.h, horizontal: 4.w),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(2.6.w),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset('assets/images/facebook_logo 1.png'),
-              SizedBox(
-                width: 2.4.w,
-              ),
-              Text(
-                'facebookAuth'.tr(),
-                style: TextStyleFormat.textFieldStyle
-                    .copyWith(color: ColorsFormat.titleColor),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 5.5.h),
+        // Row(
+        //   children: [
+        //     Expanded(child: Divider()),
+        //     Padding(
+        //       padding: EdgeInsets.symmetric(horizontal: 2.w),
+        //       child: Text(
+        //         'or'.tr(),
+        //         style: TextStyleFormat.snackBarMessage
+        //             .copyWith(color: ColorsFormat.titleColor),
+        //       ),
+        //     ),
+        //     Expanded(
+        //       child: Divider(),
+        //     ),
+        //   ],
+        // ),
+        // SizedBox(height: 3.h),
+        // ElevatedButton(
+        //   onPressed: () {},
+        //   style: ElevatedButton.styleFrom(
+        //     backgroundColor: ColorsFormat.border_backgroundWhiteColor,
+        //     foregroundColor: Colors.white,
+        //     padding: EdgeInsets.symmetric(vertical: 1.8.h, horizontal: 4.w),
+        //     shape: RoundedRectangleBorder(
+        //       borderRadius: BorderRadius.circular(2.6.w),
+        //     ),
+        //   ),
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.center,
+        //     children: [
+        //       Image.asset('assets/images/google_logo 1.png'),
+        //       SizedBox(
+        //         width: 2.6.w,
+        //       ),
+        //       Text(
+        //         'googleAuth'.tr(),
+        //         style: TextStyleFormat.textFieldStyle
+        //             .copyWith(color: ColorsFormat.titleColor),
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        // SizedBox(height: 2.5.h),
+        // ElevatedButton(
+        //   onPressed: () {},
+        //   style: ElevatedButton.styleFrom(
+        //     backgroundColor: ColorsFormat.border_backgroundWhiteColor,
+        //     foregroundColor: Colors.white,
+        //     padding: EdgeInsets.symmetric(vertical: 1.8.h, horizontal: 4.w),
+        //     shape: RoundedRectangleBorder(
+        //       borderRadius: BorderRadius.circular(2.6.w),
+        //     ),
+        //   ),
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.center,
+        //     children: [
+        //       Image.asset('assets/images/facebook_logo 1.png'),
+        //       SizedBox(
+        //         width: 2.4.w,
+        //       ),
+        //       Text(
+        //         'facebookAuth'.tr(),
+        //         style: TextStyleFormat.textFieldStyle
+        //             .copyWith(color: ColorsFormat.titleColor),
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        // SizedBox(height: 5.5.h),
       ],
     );
   }

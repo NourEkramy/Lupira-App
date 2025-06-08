@@ -13,7 +13,7 @@
   "passwordReset": "تم إرسال رابط إعادة التعيين إلى بريدك",
   "enterPassword": "أدخل كلمة المرور",
   "forgotPasswordLink": "هل نسيت كلمة المرور؟",
-  "noMatchPassword": "كلمات المرور غير متطابقة",
+  "noMatchPassword": "يجب أن تتطابق كلمات المرور",
   "changePassword": "تغيير كلمة المرور",
   "diffPassword": "يجب أن تكون كلمة المرور مختلفة عن ذي قبل",
   "oldPaswword": "كلمة المرور القديمة",
@@ -159,5 +159,6 @@
   "deleteHistoryError": "فشل حذف السجل",
   "deleteHistoryQuestion": "هل أنت متأكد من حذف السجل؟",
   "deleteHistory": "حذف السجل",
-  "verifyMissingToken": "هناك خطأ في التحقق"
+  "verifyMissingToken": "هناك خطأ في التحقق",
+  "failedVerifyEmail": "فشل التحقق من البريد الإلكتروني. يُرجى المحاولة مرة أخرى."
 }

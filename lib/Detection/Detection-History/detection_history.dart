@@ -190,9 +190,8 @@ class _DetectionHistoryState extends State<DetectionHistory> {
                                 ),
                               );
                             },
-                            reportDate:
-                                historyData[index]['date']?.substring(0, 10) ??
-                                    'unknownData'.tr(),
+                            reportDate: historyData[index]['date'] ??
+                                'unknownData'.tr(),
                             reportResult: historyData[index]['resultLabel'] ??
                                 'noResult'.tr(),
                             onDelete: () {

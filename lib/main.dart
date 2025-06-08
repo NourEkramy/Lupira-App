@@ -16,6 +16,7 @@ import 'Password/Forgot Password/forgot_password.dart';
 import 'Profile/profile.dart';
 import 'Sign-Up/sign_up_ui.dart';
 import 'Splash/splash_screen.dart';
+import 'Verification/verify_account.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -80,10 +81,9 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  void handleLink(String link) {
+  void handleLink(String link) async {
     try {
       final uri = Uri.parse(link);
-
       if (uri.scheme == 'lupira' && uri.host == 'reset-password') {
         final token = uri.queryParameters['token'];
         if (token != null && token.isNotEmpty) {
@@ -95,12 +95,20 @@ class _MyAppState extends State<MyApp> {
       } else if (uri.scheme == 'lupira' && uri.host == 'verify-email') {
         final token = uri.queryParameters['token'];
         if (token != null && token.isNotEmpty) {
-
-          // ✅ Redirect to login screen
-          _navigatorKey.currentState?.pushNamedAndRemoveUntil(
-            LogIn.routName,
-                (route) => false,
-          );
+          try {
+            // Call verify account API which might throw exception
+            var result = await VerifyAccount.verifyAccount(token);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('$result')),
+            );
+            // Redirect to login screen
+            _navigatorKey.currentState?.pushNamedAndRemoveUntil(
+              LogIn.routName,
+              (route) => false,
+            );
+          } catch (e) {
+            _showError('failedVerifyEmail'.tr());
+          }
         } else {
           _showError('verifyMissingToken'.tr());
         }
