@@ -43,18 +43,18 @@ class DetectionResultScreen extends StatelessWidget {
                     radius: 10.3.h,
                     backgroundColor: Color(0xffDDBCC3),
                     child: ImageIcon(
-                      AssetImage("assets/images/warning_positive_result.png"),
+                      AssetImage("assets/images/remove_11294539.png"),
                       color: ColorsFormat.lightRedError,
-                      size: 100.sp,
+                      size: 48.sp,
                     ),
                   )
                 : CircleAvatar(
                     radius: 10.3.h,
                     backgroundColor: Color(0xffC2D0D0),
                     child: ImageIcon(
-                      AssetImage("assets/images/negative_result.png"),
+                      AssetImage("assets/images/approve_11294447.png"),
                       color: Color(0xff209872),
-                      size: 51.sp,
+                      size: 48.sp,
                     ),
                   ),
             SizedBox(
