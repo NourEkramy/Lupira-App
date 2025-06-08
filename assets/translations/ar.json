@@ -158,5 +158,6 @@
   "deleteHistorySuccess": "تم حذف سجل الفحوصات بنجاح",
   "deleteHistoryError": "فشل حذف السجل",
   "deleteHistoryQuestion": "هل أنت متأكد من حذف السجل؟",
-  "deleteHistory": "حذف السجل"
+  "deleteHistory": "حذف السجل",
+  "verifyMissingToken": "هناك خطأ في التحقق"
 }

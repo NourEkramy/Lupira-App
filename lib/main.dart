@@ -93,14 +93,17 @@ class _MyAppState extends State<MyApp> {
           _showError('resetMissingToken'.tr());
         }
       } else if (uri.scheme == 'lupira' && uri.host == 'verify-email') {
-        // Optional: extract token if you want to use it
-        // final token = uri.queryParameters['token'];
+        final token = uri.queryParameters['token'];
+        if (token != null && token.isNotEmpty) {
 
-        // ✅ Redirect to login page
-        _navigatorKey.currentState?.pushNamedAndRemoveUntil(
-          LogIn.routName,
-              (route) => false,
-        );
+          // ✅ Redirect to login screen
+          _navigatorKey.currentState?.pushNamedAndRemoveUntil(
+            LogIn.routName,
+                (route) => false,
+          );
+        } else {
+          _showError('verifyMissingToken'.tr());
+        }
       } else {
         _showError('invalidResetFormat'.tr());
       }

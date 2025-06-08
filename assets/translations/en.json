@@ -158,5 +158,6 @@
   "deleteHistorySuccess": "Detection history deleted successfully",
   "deleteHistoryError": "Failed to delete history",
   "deleteHistoryQuestion": "Are you sure you want to delete history?",
-  "deleteHistory": "Delete history"
+  "deleteHistory": "Delete history",
+  "verifyMissingToken": "There is an error with verification"
 }
