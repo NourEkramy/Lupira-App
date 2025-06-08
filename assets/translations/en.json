@@ -126,7 +126,7 @@
   "noAnswerProvided": "No answer provided",
   "answer": "Answer:",
   "confirmStartDetection": "Please confirm to start detection",
-  "aboutLupiraParagraph": "Lupira is a medical mobile application designed to assist in the early detection of lupus, an autoimmune disease that causes widespread inflammation and damage to various body systems. By analyzing real-life scenarios and using an AI-powered model trained on symptoms and lab results, Lupira provides users with a reliable diagnosis tool.\\nAdditionally, the app educates users about lupus, its symptoms, and its impact, empowering individuals with knowledge to better manage their health.\n",
+  "aboutLupiraParagraph": "Lupira is a medical mobile application designed to assist in the early detection of lupus, an autoimmune disease that causes widespread inflammation and damage to various body systems. By analyzing real-life scenarios and using an AI-powered model trained on symptoms and lab results, Lupira provides users with a reliable diagnosis tool.\nAdditionally, the app educates users about lupus, its symptoms, and its impact, empowering individuals with knowledge to better manage their health.\n",
   "accountDeleteError": "Failed to delete account",
   "failedSubmit": "Failed to submit diagnosis: ",
   "signupSuccess": "Sign Up successful",
