@@ -3,9 +3,8 @@ import 'package:http/http.dart' as http;
 
 class VerifyAccount {
   static Future<Map<String, dynamic>> verifyAccount(String token) async {
-    final url = Uri.parse('https://lupira.onrender.com/api/auth/verify-email');
+    final url = Uri.parse('https://lupira.onrender.com/api/auth/verify-email?token=$token');
     final headers = {
-      "Authorization": "Bearer $token",
       "Content-Type": "application/json",
     };
 
